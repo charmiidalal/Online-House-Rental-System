@@ -5,10 +5,26 @@
  */
 package Business.Seller;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author Charmi Dalal
+ * @author Dinesh
  */
 public class SellerDirectory {
+   private ArrayList<Seller> sellerDirectory;
+
+    public SellerDirectory(ArrayList<Seller> sellerDirectory) {
+        this.sellerDirectory = sellerDirectory;
+    }
+
+    public ArrayList<Seller> getSellerDirectory() {
+        return sellerDirectory;
+    }
+
+    public void setSellerDirectory(ArrayList<Seller> sellerDirectory) {
+        this.sellerDirectory = sellerDirectory;
+    }
+   
    
 }
