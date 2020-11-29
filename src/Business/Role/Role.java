@@ -25,7 +25,18 @@ public abstract class Role {
     public enum RoleType{
         Admin("Admin"),
         Buyer("Buyer"),
-        Seller("Seller");
+        Seller("Seller"),
+        Inspector("Inspector"),
+        Agent("Agent"),
+        Builder("Builder"),
+        PropertyManager("Property Manager"),
+        Electrician("Electrician"),
+        Miscellaneous("Miscellaneous"),
+        Cleaning("Cleaning"),
+        PackersMovers("Movers & Packers"),
+        Photographer("Photographer"),
+        Plumbing("Plumbing"),
+        Goverment("Goverment Employee");
         
         private String value;
         private RoleType(String value){

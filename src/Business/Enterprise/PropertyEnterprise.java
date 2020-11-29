@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Business.Enterprise;
-
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -12,10 +11,10 @@ import java.util.ArrayList;
  *
  * @author MyPC1
  */
-public class HospitalEnterprise extends Enterprise {
+public class PropertyEnterprise extends Enterprise {
     
-    public HospitalEnterprise(String name){
-        super(name,EnterpriseType.Hospital);
+    public PropertyEnterprise(String name){
+        super(name,EnterpriseType.Property);
     }
     @Override
     public ArrayList<Role> getSupportedRole() {

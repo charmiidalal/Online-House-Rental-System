@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.BuyerRole;
+package userinterface;
 
 import Business.EcoSystem;
 import Business.Employee.Employee;
@@ -25,7 +25,7 @@ import javax.swing.JPanel;
  *
  * @author pooja
  */
-public class CreateNewUserJPanel extends javax.swing.JPanel {
+public class SignUpJpanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CreateNewManagerJPanel
@@ -34,7 +34,7 @@ public class CreateNewUserJPanel extends javax.swing.JPanel {
     EcoSystem system;
     Organization organization;
 
-    public CreateNewUserJPanel(JPanel cardSequenceJPanel, EcoSystem system) {
+    public SignUpJpanel(JPanel cardSequenceJPanel, EcoSystem system) {
         initComponents();
         this.cardSequenceJPanel = cardSequenceJPanel;
         this.system = system;
@@ -269,13 +269,13 @@ public class CreateNewUserJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void txtAirplaneIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAirplaneIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAirplaneIdActionPerformed
-
     private void txtAirlinerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAirlinerNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAirlinerNameActionPerformed
+
+    private void txtAirplaneIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAirplaneIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAirplaneIdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
