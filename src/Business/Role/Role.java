@@ -36,7 +36,7 @@ public abstract class Role {
         PackersMovers("Movers & Packers"),
         Photographer("Photographer"),
         Plumbing("Plumbing"),
-        Goverment("Goverment Employee");
+        GovermentEmployee("Goverment Employee");
         
         private String value;
         private RoleType(String value){
