@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author manushpatel
+ * @author anusha
  */
 public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
