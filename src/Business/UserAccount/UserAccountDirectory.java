@@ -49,4 +49,13 @@ public class UserAccountDirectory {
         }
         return true;
     }
+    
+    public UserAccount searchUser(String buyerName){
+        for (UserAccount buyers: userAccountList) {
+            if (buyers.getUsername().equals(buyerName)) {
+                return buyers;
+            }
+        }
+        return null;
+    }
 }

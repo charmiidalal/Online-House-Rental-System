@@ -5,10 +5,26 @@
  */
 package Business.Builder;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Charmi Dalal
  */
 public class BuilderDirectory {
+    private ArrayList<Builder> builderDirectory;
+
+    public BuilderDirectory(ArrayList<Builder> builderDirectory) {
+        this.builderDirectory = builderDirectory;
+    }
+
+    public ArrayList<Builder> getBuilderDirectory() {
+        return builderDirectory;
+    }
+
+    public void setBuilderDirectory(ArrayList<Builder> builderDirectory) {
+        this.builderDirectory = builderDirectory;
+    }
+    
     
 }

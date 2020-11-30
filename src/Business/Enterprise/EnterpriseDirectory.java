@@ -31,9 +31,25 @@ public class EnterpriseDirectory {
     //Create enterprise
     public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type){
         Enterprise enterprise=null;
-        if(type==Enterprise.EnterpriseType.Hospital){
-            enterprise=new HospitalEnterprise(name);
-            enterpriseList.add(enterprise);
+        if(null!=type)switch (type) {
+            case ServiceProvider:
+                enterprise=new ServiceProviderEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            case Property:
+                enterprise=new PropertyEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            case Broker:
+                enterprise=new BrokerEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            case QualityAssurance:
+                enterprise=new QualityAssuranceEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            default:
+                break;
         }
         return enterprise;
     }
