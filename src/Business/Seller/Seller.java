@@ -17,6 +17,24 @@ public class Seller {
     private String state;
     private String pincode;
     private String[] image;
+    private int bhk;
+    private double bathroom; 
+
+    public int getBhk() {
+        return bhk;
+    }
+
+    public void setBhk(int bhk) {
+        this.bhk = bhk;
+    }
+
+    public double getBathroom() {
+        return bathroom;
+    }
+
+    public void setBathroom(double bathroom) {
+        this.bathroom = bathroom;
+    }
     
     private double price;
 
@@ -28,7 +46,7 @@ public class Seller {
         this.price = price;
     }
 
-    public Seller(String name, String address, String city, String state, String pincode, String[] image, double price) {
+    public Seller(String name, String address, String city, String state, String pincode, String[] image, double price, int bhk, double bathroom) {
         this.name = name;
         this.address = address;
         this.city = city;
@@ -36,6 +54,8 @@ public class Seller {
         this.pincode = pincode;
         this.image = image;
         this.price = price;
+        this.bhk = bhk;
+        this.bathroom=bathroom;
     }
 
     
@@ -86,6 +106,7 @@ public class Seller {
     public void setImage(String[] image) {
         this.image = image;
     }
+    
     
     
   

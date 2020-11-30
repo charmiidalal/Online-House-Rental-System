@@ -5,19 +5,49 @@
  */
 package userinterface.BuyerRole;
 
+import Business.EcoSystem;
+import Business.Seller.Seller;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author manushpatel
+ * @author dinesh
  */
 public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private SellerDirectory sellerDirectory;
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerWorkAreaJPanel() {
+    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount, SellerDirectory sellerDirectory) {
         initComponents();
+        this.userProcessContainer=userProcess;
+        this.business= ecosystem;
+        this.userAccount= userAccount;
+        this.sellerDirectory=sellerDirectory;
+        populateMenuTable();
     }
 
+      public void populateMenuTable(){
+        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
+        model.setRowCount(0);
+        for(Seller seller: sellerDirectory.getSellerDirectory()){
+                    Object[] row = new Object[4];
+                    row[0] = seller.getName();
+                    row[1] = seller.getPrice();
+                    row[2] = seller.getBhk();
+                    row[3] = seller.getBathroom();
+                    model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,57 +60,92 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        houseTable = new javax.swing.JTable();
 
         jButton1.setText("View Details");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Buy House");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Price", "BHK", "Bathroom"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(houseTable);
+        if (houseTable.getColumnModel().getColumnCount() > 0) {
+            houseTable.getColumnModel().getColumn(0).setResizable(false);
+            houseTable.getColumnModel().getColumn(1).setResizable(false);
+            houseTable.getColumnModel().getColumn(2).setResizable(false);
+            houseTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140))
             .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(91, 91, 91)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addGap(199, 199, 199)
+                .addComponent(jButton2)
+                .addGap(140, 140, 140)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(61, 61, 61)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int selectedRow = houseTable.getSelectedRow();
+        int count = houseTable.getSelectedRowCount();
+        if(count == 1){
+             if (selectedRow >= 0) {
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            String name = (String) houseTable.getValueAt(selectedRow,0);
+            Seller seller = sellerDirectory.getSellerName(name);
+            ViewDetailsJPanel viewDetailsJPanel = new ViewDetailsJPanel(userProcessContainer, seller, sellerDirectory);
+            userProcessContainer.add(viewDetailsJPanel);
+            layout.next(userProcessContainer);
+        }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable houseTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

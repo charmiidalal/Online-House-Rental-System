@@ -25,6 +25,15 @@ public class SellerDirectory {
     public void setSellerDirectory(ArrayList<Seller> sellerDirectory) {
         this.sellerDirectory = sellerDirectory;
     }
+    
+       public Seller getSellerName(String name){
+        for(Seller seller: sellerDirectory){
+            if(seller.getName().equalsIgnoreCase(name)){
+                return seller;
+            }
+        }
+        return null;
+    }
    
    
 }
