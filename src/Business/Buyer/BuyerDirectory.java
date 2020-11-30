@@ -5,7 +5,7 @@
  */
 package Business.Buyer;
 
-import Business.Organization.Organization;
+
 import java.util.ArrayList;
 
 /**
@@ -36,4 +36,5 @@ public class BuyerDirectory {
         }
         return null;
     }
+    
 }
