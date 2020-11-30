@@ -6,6 +6,7 @@
 package userinterface.BuyerRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -34,6 +35,10 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount= userAccount;
         this.sellerDirectory=sellerDirectory;
         populateMenuTable();
+    }
+
+    public BuyerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
       public void populateMenuTable(){

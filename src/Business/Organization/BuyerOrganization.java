@@ -23,5 +23,7 @@ public class BuyerOrganization extends Organization {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new BuyerRole());
         return roles;
+    
     }
 }
+      

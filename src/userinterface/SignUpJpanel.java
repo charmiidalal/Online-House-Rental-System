@@ -7,6 +7,7 @@ package userinterface;
 
 import Business.EcoSystem;
 import Business.Employee.Employee;
+import Business.Organization.BuyerOrganization;
 
 import Business.Organization.Organization;
 import Business.Role.BuyerRole;
@@ -256,16 +257,8 @@ public class SignUpJpanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         try {
-
-            String employeeName = txtEmployeeName.getText();
-
-            String userName = txtUserName.getText();
-
-            String password = txtPassword.getText();
-
-            String address = txtAddress.getText();
-
-            String confirmpassword = txtConfirm.getText();
+    
+         
             for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
                 if (ua.getUsername().equals(txtUserName.getText())) {
                     JOptionPane.showMessageDialog(null, "Username should be unique. UserName is already in use.");
@@ -290,6 +283,15 @@ public class SignUpJpanel extends javax.swing.JPanel {
                 passwordLabel.setForeground(Color.BLACK);
                 txtPassword.setBorder(BorderFactory.createLineBorder(Color.black));
             }
+            String employeeName = txtEmployeeName.getText();
+
+            String userName = txtUserName.getText();
+
+            String password = txtPassword.getText();
+
+            String address = txtAddress.getText();
+
+            String confirmpassword = txtConfirm.getText();
             if (password == null ? confirmpassword == null : password.equals(confirmpassword)) {
                 txtConfirm.setForeground(Color.BLACK);
                 txtConfirm.setBorder(BorderFactory.createLineBorder(Color.BLACK));

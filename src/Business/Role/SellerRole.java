@@ -10,20 +10,16 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-
-import userinterface.BuyerRole.BuyerWorkAreaJPanel;
+import userinterface.SellerRole.SellerWorkAreaJPanel;
 
 /**
  *
  * @author anush
  */
-public class BuyerRole extends Role {
-
-    @Override
+public class SellerRole extends Role{
+     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new BuyerWorkAreaJPanel(userProcessContainer, enterprise);
+        return new SellerWorkAreaJPanel(userProcessContainer, enterprise);
     }
-   
 
-   
 }

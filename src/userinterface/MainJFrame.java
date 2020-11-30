@@ -441,7 +441,7 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void changePanel(UserAccount userAccount) {
+    /*private void changePanel(UserAccount userAccount) {
         if (userAccount != null) {
 
             if (userAccount instanceof Buyer) {
@@ -453,7 +453,8 @@ public class MainJFrame extends javax.swing.JFrame {
             layout.next(container);
         }
 
-    }
+    }*/
+    @SuppressWarnings("empty-statement")
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
         // Get user name
         /*String userName = userNameJTextField.getText();
@@ -488,7 +489,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         //Step1: Check in the system admin user account directory if you have the user
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
-
+ JOptionPane.showMessageDialog(null, "authenticated"+userAccount);
         Enterprise inEnterprise = null;
         Organization inOrganization = null;
 
@@ -517,6 +518,20 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
             }
         }
+        /*if(userAccount==null){
+           for(Buyer buyer :system.getBuyerDirectory().getbuyerList());
+                       {
+                           userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
+                           if(userAccount!=null)
+                           {
+                               BuyerOrganization buyerOrganization = null;
+                               inOrganization=buyerOrganization;
+                              
+                           }
+                           
+                       }
+                    
+        }*/
 
         if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
@@ -569,10 +584,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jBtnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSignupActionPerformed
 
-        Organization org = new BuyerOrganization();
+
+      
 
         CardLayout layout = (CardLayout) container.getLayout();
-        container.add(new SignUpJpanel(container, system, org));
+        container.add(new SignUpJpanel(container, system, organization));
         layout.next(container);
 
 

@@ -12,6 +12,7 @@ import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
+import Business.Organization.OrganizationDirectory;
 
 /**
  *
@@ -21,7 +22,15 @@ public class EcoSystem extends Organization {
 
     private static EcoSystem business;
     private EnterpriseDirectory enterpriseDirectory;
-    private BuyerDirectory buyerDirectory;
+    private OrganizationDirectory orgDirectory;
+
+    public OrganizationDirectory getOrgDirectory() {
+        return orgDirectory;
+    }
+
+    public void setOrgDirectory(OrganizationDirectory orgDirectory) {
+        this.orgDirectory = orgDirectory;
+    }
     private ArrayList<Network> networkList;
 
     public static EcoSystem getInstance() {
@@ -48,7 +57,7 @@ public class EcoSystem extends Organization {
         super(null);
         networkList = new ArrayList<Network>();
         enterpriseDirectory = new EnterpriseDirectory();
-        buyerDirectory = new BuyerDirectory();
+        orgDirectory = new OrganizationDirectory();
     }
 
     public ArrayList<Network> getNetworkList() {
@@ -67,13 +76,7 @@ public class EcoSystem extends Organization {
         this.enterpriseDirectory = enterpriseDirectory;
     }
 
-    public BuyerDirectory getBuyerDirectory() {
-        return buyerDirectory;
-    }
-
-    public void setBuyerDirectory(BuyerDirectory buyerDirectory) {
-        this.buyerDirectory = buyerDirectory;
-    }
+    
 
     public boolean checkIfUserIsUnique(String userName) {
         if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
@@ -83,5 +86,9 @@ public class EcoSystem extends Organization {
 
         }
         return true;
+    }
+
+    public Object getBuyerDirectory() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
