@@ -27,26 +27,25 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount, SellerDirectory sellerDirectory) {
+    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer=userProcess;
         this.business= ecosystem;
         this.userAccount= userAccount;
-        this.sellerDirectory=sellerDirectory;
-        populateMenuTable();
+        //populateMenuTable();
     }
 
       public void populateMenuTable(){
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for(Seller seller: sellerDirectory.getSellerDirectory()){
-                    Object[] row = new Object[4];
-                    row[0] = seller.getName();
-                    row[1] = seller.getPrice();
-                    row[2] = seller.getBhk();
-                    row[3] = seller.getBathroom();
-                    model.addRow(row);
-        }
+//        for(Seller seller: sellerDirectory.getSellerDirectory()){
+//                    Object[] row = new Object[4];
+//                    row[0] = seller.getName();
+//                    row[1] = seller.getPrice();
+//                    row[2] = seller.getBhk();
+//                    row[3] = seller.getBathroom();
+//                    model.addRow(row);
+//        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -125,20 +124,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if(count == 1){
-             if (selectedRow >= 0) {
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            String name = (String) houseTable.getValueAt(selectedRow,0);
-            Seller seller = sellerDirectory.getSellerName(name);
-            ViewDetailsJPanel viewDetailsJPanel = new ViewDetailsJPanel(userProcessContainer, seller, sellerDirectory);
-            userProcessContainer.add(viewDetailsJPanel);
-            layout.next(userProcessContainer);
-        }
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "Please select a Row!!");
-        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

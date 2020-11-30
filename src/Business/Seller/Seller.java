@@ -11,103 +11,62 @@ package Business.Seller;
  * @author Dinesh 
  */
 public class Seller {
-    private String name;
-    private String address;
-    private String city;
-    private String state;
-    private String pincode;
-    private String[] image;
-    private int bhk;
-    private double bathroom; 
+    private String sellerNo;
+    private String sellerName;
+    private String sellerPhone;
+    private String sellerStreet;
+    private String sellerZipcode;
+    private String sellerEmail;
 
-    public int getBhk() {
-        return bhk;
+    public String getSellerNo() {
+        return sellerNo;
     }
 
-    public void setBhk(int bhk) {
-        this.bhk = bhk;
+    public void setSellerNo(String sellerNo) {
+        this.sellerNo = sellerNo;
     }
 
-    public double getBathroom() {
-        return bathroom;
+    public String getSellerName() {
+        return sellerName;
     }
 
-    public void setBathroom(double bathroom) {
-        this.bathroom = bathroom;
-    }
-    
-    private double price;
-
-    public double getPrice() {
-        return price;
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public String getSellerPhone() {
+        return sellerPhone;
     }
 
-    public Seller(String name, String address, String city, String state, String pincode, String[] image, double price, int bhk, double bathroom) {
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.pincode = pincode;
-        this.image = image;
-        this.price = price;
-        this.bhk = bhk;
-        this.bathroom=bathroom;
+    public void setSellerPhone(String sellerPhone) {
+        this.sellerPhone = sellerPhone;
     }
 
-    
-    public String getName() {
-        return name;
+    public String getSellerStreet() {
+        return sellerStreet;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSellerStreet(String sellerStreet) {
+        this.sellerStreet = sellerStreet;
     }
 
-    public String getAddress() {
-        return address;
+    public String getSellerZipcode() {
+        return sellerZipcode;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setSellerZipcode(String sellerZipcode) {
+        this.sellerZipcode = sellerZipcode;
     }
 
-    public String getCity() {
-        return city;
+    public String getSellerEmail() {
+        return sellerEmail;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
-    }
-
-    public String[] getImage() {
-        return image;
-    }
-
-    public void setImage(String[] image) {
-        this.image = image;
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
     }
     
     
-    
-  
+
+     
 }

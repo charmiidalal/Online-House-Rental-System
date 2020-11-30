@@ -5,17 +5,29 @@
  */
 package userinterface.SellerRole;
 
+import Business.EcoSystem;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author manushpatel
  */
 public class SellerWorkAreaJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private SellerDirectory sellerDirectory;
     /**
      * Creates new form SellerWorkAreaJPanel1
      */
-    public SellerWorkAreaJPanel() {
+    public SellerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount) {
         initComponents();
+        this.userProcessContainer=userProcess;
+        this.business= ecosystem;
+        this.userAccount= userAccount;
+        //populateMenuTable();
     }
 
     /**

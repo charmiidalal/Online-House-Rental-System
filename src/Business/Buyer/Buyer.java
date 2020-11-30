@@ -5,62 +5,68 @@
  */
 package Business.Buyer;
 
-
-import Business.Role.BuyerRole;
 import Business.UserAccount.UserAccount;
-import java.util.ArrayList;
 
 /**
  *
  * @author Charmi Dalal
  */
 public class Buyer extends UserAccount {
-private String name;
-    private String address;
-    private String phone;
-  
+    private String buyerNo;
+    private String buyerName;
+    private String buyerPhone;
+    private String buyerStreet;
+    private String buyerZipcode;
+    private String buyerEmail;
 
-    public Buyer(String userName, String password, String name, String address, String phone) {
-        setUsername(userName);
-        setPassword(password);
-        setRole(new BuyerRole());
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
+    public String getBuyerNo() {
+        return buyerNo;
     }
 
-   
+    public void setBuyerNo(String buyerNo) {
+        this.buyerNo = buyerNo;
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
+    }
+
+    public String getBuyerPhone() {
+        return buyerPhone;
+    }
+
+    public void setBuyerPhone(String buyerPhone) {
+        this.buyerPhone = buyerPhone;
+    }
+
+    public String getBuyerStreet() {
+        return buyerStreet;
+    }
+
+    public void setBuyerStreet(String buyerStreet) {
+        this.buyerStreet = buyerStreet;
+    }
+
+    public String getBuyerZipcode() {
+        return buyerZipcode;
+    }
+
+    public void setBuyerZipcode(String buyerZipcode) {
+        this.buyerZipcode = buyerZipcode;
+    }
+
+    public String getBuyerEmail() {
+        return buyerEmail;
+    }
+
+    public void setBuyerEmail(String buyerEmail) {
+        this.buyerEmail = buyerEmail;
+    }
     
-    
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
-    }
-    
-
-   
+      
 }
