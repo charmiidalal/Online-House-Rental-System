@@ -24,6 +24,7 @@ public class SellerDirectory {
     }
     public void addSeller(Seller seller){
         sellerList.add(seller);
+
     }
     public void removeSeller(Seller seller){
         sellerList.remove(seller);
@@ -39,6 +40,23 @@ public class SellerDirectory {
     public String generateSellerID(){
         return "Seller"+(sellerList.size()+1);
     }
+
+    }
+    public void removeSeller(Seller seller){
+        sellerList.remove(seller);
+    }
+    public Seller searchseller(String sellerName){
+//        for (Buyer buyers: buyerList) {
+//            if (buyers.getName().equals(buyerName)) {
+//                return buyers;
+//            }
+//        }
+        return null;
+    }
+    public String generateSellerID(){
+        return "Seller"+(sellerList.size()+1);
+    }
+
     public Seller fetchSeller(String SellerNo) {
         for (Seller seller : sellerList) {
             if (seller.getSellerNo().equalsIgnoreCase(SellerNo)) {
@@ -46,6 +64,12 @@ public class SellerDirectory {
             }
         }
         return null;
+    }
+
+
+     ///./////// need to change ///////////////
+     public Seller getSellerByIndex(int index){
+        return sellerList.get(index);
     }
 
 }
