@@ -13,7 +13,6 @@ import java.util.ArrayList;
  * @author Dinesh
  */
 public class InspectorDirectory {
-    
     ArrayList<Inspector> inspectorList = new ArrayList<Inspector>();
 
     public ArrayList<Inspector> getInsepectorList() {
@@ -34,4 +33,5 @@ public class InspectorDirectory {
 public String generateInspectorID(){
         return "Inspector"+(inspectorList.size()+1);
     } 
+    
 }

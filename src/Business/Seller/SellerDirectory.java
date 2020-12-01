@@ -47,9 +47,9 @@ public class SellerDirectory {
         }
         return null;
     }
+
      ///./////// need to change ///////////////
      public Seller getSellerByIndex(int index){
         return sellerList.get(index);
     }
-
 }

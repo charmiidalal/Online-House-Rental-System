@@ -22,6 +22,7 @@ import Business.Seller.SellerDirectory;
  */
 public class EcoSystem extends Organization {
 
+   
     private static EcoSystem business;
     private EnterpriseDirectory enterpriseDirectory;
     private BuyerDirectory buyerDirectory;
@@ -115,6 +116,5 @@ public class EcoSystem extends Organization {
     public void setOrderDirectory(OrderDirectory orderDirectory) {
         this.orderDirectory = orderDirectory;
     }
-    
     
 }

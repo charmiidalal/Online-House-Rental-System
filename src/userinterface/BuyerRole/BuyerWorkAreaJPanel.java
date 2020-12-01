@@ -22,29 +22,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dinesh
  */
-public class BuyerWorkAreaJPanel  {
+public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
+    
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount) {
+    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount,SellerDirectory sellerdirectory) {
         initComponents();
         this.userProcessContainer=userProcess;
         this.business= ecosystem;
         this.userAccount= userAccount;
-        populateRequestTable();
+        this.sellerDirectory = sellerDirectory;
+        //populateMenuTable();
     }
 
-   
-
-    
-
       public void populateRequestTable(){
-     DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for(Seller seller: sellerDirectory.getSellerList()){
                     Object[] row = new Object[4];
@@ -136,7 +134,7 @@ public class BuyerWorkAreaJPanel  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-       int selectedRow = houseTable.getSelectedRow();
+         int selectedRow = houseTable.getSelectedRow();
          
        
         int count = houseTable.getSelectedRowCount();
@@ -144,8 +142,8 @@ public class BuyerWorkAreaJPanel  {
              if (selectedRow >= 0) {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             String Id = (String) houseTable.getValueAt(selectedRow,0);
-            Seller foodItem = sellerDirectory.fetchSeller(Id);
-            ViewDetailsJPanel viewJPanel = new ViewDetailsJPanel(userProcessContainer, foodItem, sellerDirectory);
+            Seller seller = sellerDirectory.fetchSeller(Id);
+            ViewDetailsJPanel viewJPanel = new ViewDetailsJPanel(userProcessContainer, seller, sellerDirectory);
             userProcessContainer.add(viewJPanel);
             layout.next(userProcessContainer);
         }
@@ -153,13 +151,11 @@ public class BuyerWorkAreaJPanel  {
         else {
             JOptionPane.showMessageDialog(null, "Please select a Row!!");
         }
-                                         
-
         
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
-        int row = houseTable.getSelectedRow();
+           int row = houseTable.getSelectedRow();
            if(row >= 0){
 
             Buyer buyer;//chang this
@@ -177,13 +173,14 @@ public class BuyerWorkAreaJPanel  {
             orderRequest.setSender(userAccount);
             orderRequest.setStatus(status);
             business.getWorkQueue().getWorkRequestList().add(orderRequest);
-            JOptionPane.showMessageDialog(null, "Your Order has been sucessfully placed!");
+            JOptionPane.showMessageDialog(null, "Inspection Success ");
             populateRequestTable();
         } 
         
         else{
             JOptionPane.showMessageDialog(null, "Please select one row!");
 }
+
     }//GEN-LAST:event_buyBtnActionPerformed
 
 

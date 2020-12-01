@@ -10,8 +10,7 @@ package Business.Inspector;
  * @author Dinesh
  */
 public class Inspector {
-
-    private String name;
+private String name;
     private String phone;
     private String email;
     private String inspectorID;
@@ -55,4 +54,5 @@ public class Inspector {
     public void setInspectorID(String inspectorID) {
         this.inspectorID = inspectorID;
     }
+    
 }
