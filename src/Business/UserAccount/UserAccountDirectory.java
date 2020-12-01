@@ -3,18 +3,20 @@
  * and open the template in the editor.
  */
 package Business.UserAccount;
-
+import Business.UserAccount.UserAccount;
 import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
 import Business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author Charmi Dalal
  */
 public class UserAccountDirectory {
     
-    private ArrayList<UserAccount> userAccountList;
+    private  ArrayList<UserAccount> userAccountList;
 
     public UserAccountDirectory() {
         userAccountList = new ArrayList();
@@ -25,14 +27,15 @@ public class UserAccountDirectory {
     }
     
     public UserAccount authenticateUser(String username, String password){
-        for (UserAccount ua : userAccountList)
-            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)){
+        for (UserAccount ua : userAccountList) {
+            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)) {
                 return ua;
             }
+        }
         return null;
     }
     
-    public UserAccount createUserAccount(String username, String password, Employee employee, Role role){
+    public UserAccount createUserAccount(String username, String password, Employee employee, Role role, Boolean isApproved){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);

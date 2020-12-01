@@ -13,6 +13,7 @@ import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
 import Business.Organization.OrganizationDirectory;
+import Business.Seller.SellerDirectory;
 
 /**
  *
@@ -22,16 +23,19 @@ public class EcoSystem extends Organization {
 
     private static EcoSystem business;
     private EnterpriseDirectory enterpriseDirectory;
-    private OrganizationDirectory orgDirectory;
-
-    public OrganizationDirectory getOrgDirectory() {
-        return orgDirectory;
-    }
-
-    public void setOrgDirectory(OrganizationDirectory orgDirectory) {
-        this.orgDirectory = orgDirectory;
-    }
+    private BuyerDirectory buyerDirectory;
+    private SellerDirectory sellerDirectory;
+    private OrganizationDirectory organizationDirectory;
     private ArrayList<Network> networkList;
+
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
+    }
+
+    public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
+        this.organizationDirectory = organizationDirectory;
+    }
+    
 
     public static EcoSystem getInstance() {
         if (business == null) {
@@ -57,7 +61,7 @@ public class EcoSystem extends Organization {
         super(null);
         networkList = new ArrayList<Network>();
         enterpriseDirectory = new EnterpriseDirectory();
-        orgDirectory = new OrganizationDirectory();
+        buyerDirectory = new BuyerDirectory();
     }
 
     public ArrayList<Network> getNetworkList() {
@@ -76,7 +80,13 @@ public class EcoSystem extends Organization {
         this.enterpriseDirectory = enterpriseDirectory;
     }
 
-    
+    public BuyerDirectory getBuyerDirectory() {
+        return buyerDirectory;
+    }
+
+    public void setBuyerDirectory(BuyerDirectory buyerDirectory) {
+        this.buyerDirectory = buyerDirectory;
+    }
 
     public boolean checkIfUserIsUnique(String userName) {
         if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
@@ -88,7 +98,12 @@ public class EcoSystem extends Organization {
         return true;
     }
 
-    public Object getBuyerDirectory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public SellerDirectory getSellerDirectory() {
+        return sellerDirectory;
     }
+
+    public void setSellerDirectory(SellerDirectory sellerDirectory) {
+        this.sellerDirectory = sellerDirectory;
+    }
+    
 }

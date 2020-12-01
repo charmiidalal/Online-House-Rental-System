@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public class BuyerDirectory {
    ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
 
-    public ArrayList<Buyer> getbuyerList() {
+    public ArrayList<Buyer> getBuyerList() {
         return buyerList;
     }
 
-    public void setCustomerList(ArrayList<Buyer> buyerList) {
+    public void setBellerList(ArrayList<Buyer> buyerList) {
         this.buyerList = buyerList;
     }
     public void addBuyer(Buyer buyer){
@@ -29,12 +29,15 @@ public class BuyerDirectory {
         buyerList.remove(buyer);
     }
     public Buyer searchBuyer(String buyerName){
-        for (Buyer buyers: buyerList) {
-            if (buyers.getName().equals(buyerName)) {
-                return buyers;
-            }
-        }
+//        for (Buyer buyers: buyerList) {
+//            if (buyers.getName().equals(buyerName)) {
+//                return buyers;
+//            }
+//        }
         return null;
+    }
+    public String generateBuyerID(){
+        return "Buyer"+(buyerList.size()+1);
     }
     
 }

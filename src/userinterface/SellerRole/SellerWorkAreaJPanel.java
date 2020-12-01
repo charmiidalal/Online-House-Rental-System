@@ -5,8 +5,14 @@
  */
 package userinterface.SellerRole;
 
+
 import Business.Enterprise.Enterprise;
 import java.awt.CardLayout;
+
+import Business.EcoSystem;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
+
 import javax.swing.JPanel;
 
 /**
@@ -14,17 +20,26 @@ import javax.swing.JPanel;
  * @author anusha
  */
 public class SellerWorkAreaJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private SellerDirectory sellerDirectory;
     /**
      * Creates new form SellerWorkAreaJPanel1
      */
-    JPanel userProcessContainer;
-    Enterprise enterprise;
+ private Enterprise enterprise;
+
     
-    public SellerWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise) {
+    public SellerWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
+        this.userAccount=useraccount;
+
+    }
+
+    public SellerWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

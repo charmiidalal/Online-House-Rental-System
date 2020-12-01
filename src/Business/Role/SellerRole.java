@@ -16,10 +16,13 @@ import userinterface.SellerRole.SellerWorkAreaJPanel;
  *
  * @author anush
  */
-public class SellerRole extends Role{
-     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new SellerWorkAreaJPanel(userProcessContainer, enterprise);
-    }
+public class SellerRole extends Role {
 
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+         return new SellerWorkAreaJPanel(userProcessContainer,business,account);
+    }
+   
+
+   
 }

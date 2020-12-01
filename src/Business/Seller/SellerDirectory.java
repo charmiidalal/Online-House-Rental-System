@@ -12,28 +12,32 @@ import java.util.ArrayList;
  * @author Dinesh
  */
 public class SellerDirectory {
-   private ArrayList<Seller> sellerDirectory;
 
-    public SellerDirectory(ArrayList<Seller> sellerDirectory) {
-        this.sellerDirectory = sellerDirectory;
+     ArrayList<Seller> sellerList = new ArrayList<Seller>();
+
+    public ArrayList<Seller> getSellerList() {
+        return sellerList;
     }
 
-    public ArrayList<Seller> getSellerDirectory() {
-        return sellerDirectory;
+    public void setSellerList(ArrayList<Seller> sellerList) {
+        this.sellerList = sellerList;
     }
-
-    public void setSellerDirectory(ArrayList<Seller> sellerDirectory) {
-        this.sellerDirectory = sellerDirectory;
+    public void addSeller(Seller seller){
+        sellerList.add(seller);
     }
-    
-       public Seller getSellerName(String name){
-        for(Seller seller: sellerDirectory){
-            if(seller.getName().equalsIgnoreCase(name)){
-                return seller;
-            }
-        }
+    public void removeCustomer(Seller seller){
+        sellerList.remove(seller);
+    }
+    public Seller searchseller(String sellerName){
+//        for (Buyer buyers: buyerList) {
+//            if (buyers.getName().equals(buyerName)) {
+//                return buyers;
+//            }
+//        }
         return null;
     }
-   
-   
+    public String generateSellerID(){
+        return "Seller"+(sellerList.size()+1);
+    }
+
 }
