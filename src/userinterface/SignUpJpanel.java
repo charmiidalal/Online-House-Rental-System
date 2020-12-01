@@ -39,7 +39,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
     private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     BuyerDirectory buyerDirectory;
     SellerDirectory sellerDirectory;
-
+    
     public SignUpJpanel(JPanel cardSequenceJPanel, EcoSystem system, BuyerDirectory buyerDirectory, SellerDirectory sellerDirectory) {
         initComponents();
         system = dB4OUtil.retrieveSystem();
@@ -227,7 +227,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         try {
-
+            
             String emailAddress = txtFullName.getText();
             String username = txtUsername.getText();
             String name = txtFullName.getText();
@@ -261,7 +261,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
             if (password == null ? confirmpassword == null : password.equals(confirmpassword)) {
                 txtConfirmPassword.setForeground(Color.BLACK);
                 txtConfirmPassword.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
+                
                 if (userType == "Buyer") {
                     Buyer buyer = new Buyer();
                     buyer.setBuyerNo(buyerDirectory.generateBuyerID());
@@ -269,17 +269,19 @@ public class SignUpJpanel extends javax.swing.JPanel {
                     this.buyerDirectory.addBuyer(buyer);
                     Employee employee = system.getEmployeeDirectory().createEmployee(buyer.getBuyerNo());
                     system.setBuyerDirectory(buyerDirectory);
-                    system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole());
+                    UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole(), true);
                 } else {
                     Seller seller = new Seller();
-                    seller.setSellerNo(buyerDirectory.generateBuyerID());
+                    seller.setSellerNo(sellerDirectory.generateSellerID());
                     seller.setSellerName(name);
+                    seller.setUsername(username);
+                    seller.setSellerEmail(emailAddress);
+                    seller.setIsApproved(false);
                     this.sellerDirectory.addSeller(seller);
                     Employee employee = system.getEmployeeDirectory().createEmployee(seller.getSellerNo());
                     system.setSellerDirectory(sellerDirectory);
-                    system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole());
+                    UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole(), false);
                 }
-
                 dB4OUtil.storeSystem(system);
                 //emptyAllFields();
                 JOptionPane.showMessageDialog(null, userType + " added successfully");
@@ -298,7 +300,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
         boolean b = m.matches();
         return b;
     }
-
+    
     private boolean passwordPatternCorrect() {
         Pattern p1;
         p1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");

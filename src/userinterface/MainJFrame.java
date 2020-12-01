@@ -7,7 +7,6 @@ package userinterface;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
-import Business.Employee.EmployeeDirectory;
 import Business.Seller.SellerDirectory;
 import java.awt.CardLayout;
 import java.io.IOException;
@@ -24,28 +23,25 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private final EcoSystem system;
+    private EcoSystem system;
     private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    private BuyerDirectory buyerDirectory;
-    private SellerDirectory sellerDirectory;
+    private final BuyerDirectory buyerDirectory;
+    private final SellerDirectory sellerDirectory;
 
     public MainJFrame() throws IOException {
         initComponents();
-        system = dB4OUtil.retrieveSystem();
-        if(system.getBuyerDirectory() == null)
-        {           
+        this.system = dB4OUtil.retrieveSystem();
+        if(system.getBuyerDirectory() == null){           
             this.buyerDirectory = new BuyerDirectory();
-
         } else {
             this.buyerDirectory = system.getBuyerDirectory();
         }
         if (system.getSellerDirectory() == null) {
             this.sellerDirectory = new SellerDirectory();
-
         } else {
             this.sellerDirectory = system.getSellerDirectory();
         }
-        
+
     }
 
     /**
@@ -204,11 +200,11 @@ public class MainJFrame extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = txtPassword.getPassword();
         String password = String.valueOf(passwordCharArray);
-       
+        this.system = dB4OUtil.retrieveSystem();
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
         if (userAccount != null) {
             CardLayout layout = (CardLayout) cardLayoutJPanel.getLayout();
-            cardLayoutJPanel.add("GetUserWorkArea", userAccount.getRole().createWorkArea(cardLayoutJPanel, userAccount,userAccount.getUserOrganizationList(),userAccount.getUserEnterpriseList(),system));
+            cardLayoutJPanel.add("GetUserWorkArea", userAccount.getRole().createWorkArea(cardLayoutJPanel, userAccount, userAccount.getUserOrganizationList(), userAccount.getUserEnterpriseList(), system));
             //add organisation and enterprise
             layout.next(cardLayoutJPanel);
             txtUsername.setText("");
@@ -243,7 +239,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) cardLayoutJPanel.getLayout();
-        cardLayoutJPanel.add(new SignUpJpanel(cardLayoutJPanel, system,this.buyerDirectory,this.sellerDirectory));
+        cardLayoutJPanel.add(new SignUpJpanel(cardLayoutJPanel, system, this.buyerDirectory, this.sellerDirectory));
         layout.next(cardLayoutJPanel);
     }//GEN-LAST:event_btnSignupActionPerformed
 

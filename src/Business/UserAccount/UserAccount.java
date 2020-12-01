@@ -19,6 +19,7 @@ public class UserAccount {
     
     private String username;
     private String password;
+    private Boolean isApproved = true;
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
@@ -79,6 +80,14 @@ public class UserAccount {
 
     public void setUserOrganizationList(Organization userOrganizationList) {
         this.userOrganizationList = userOrganizationList;
+    }
+
+    public Boolean getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(Boolean isApproved) {
+        this.isApproved = isApproved;
     }
     
     @Override
