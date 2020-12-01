@@ -83,6 +83,7 @@
                           <Component id="btnManageNetwork" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnManageEnterprise" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnManageAdmin" alignment="0" pref="294" max="32767" attributes="0"/>
+                          <Component id="btnManageSignup" alignment="0" pref="294" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="149" max="32767" attributes="0"/>
                   </Group>
@@ -107,9 +108,11 @@
                       <Component id="btnManageNetwork" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="btnManageEnterprise" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="btnManageSignup" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnManageAdmin" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="120" max="32767" attributes="0"/>
+                      <EmptySpace pref="82" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -147,6 +150,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageAdminActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnManageSignup">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manage Signup Request"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageSignupActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

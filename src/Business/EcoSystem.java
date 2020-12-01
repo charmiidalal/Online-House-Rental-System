@@ -27,7 +27,7 @@ public class EcoSystem extends Organization {
     private SellerDirectory sellerDirectory;
     private OrganizationDirectory organizationDirectory;
     private ArrayList<Network> networkList;
-
+    
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
@@ -101,7 +101,7 @@ public class EcoSystem extends Organization {
     public SellerDirectory getSellerDirectory() {
         return sellerDirectory;
     }
-
+    
     public void setSellerDirectory(SellerDirectory sellerDirectory) {
         this.sellerDirectory = sellerDirectory;
     }

@@ -269,15 +269,16 @@ public class SignUpJpanel extends javax.swing.JPanel {
                     this.buyerDirectory.addBuyer(buyer);
                     Employee employee = system.getEmployeeDirectory().createEmployee(buyer.getBuyerNo());
                     system.setBuyerDirectory(buyerDirectory);
-                    system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole());
+                    system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole(),true);
                 } else {
                     Seller seller = new Seller();
                     seller.setSellerNo(buyerDirectory.generateBuyerID());
                     seller.setSellerName(name);
+                    seller.setIsApproved(false);
                     this.sellerDirectory.addSeller(seller);
                     Employee employee = system.getEmployeeDirectory().createEmployee(seller.getSellerNo());
                     system.setSellerDirectory(sellerDirectory);
-                    system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole());
+                    system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole(),false);
                 }
 
                 dB4OUtil.storeSystem(system);

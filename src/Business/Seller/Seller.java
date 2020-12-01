@@ -17,6 +17,25 @@ public class Seller {
     private String sellerStreet;
     private String sellerZipcode;
     private String sellerEmail;
+    private Boolean isApproved;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+
+    public Boolean getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(Boolean isApproved) {
+        this.isApproved = isApproved;
+    }
 
     public String getSellerNo() {
         return sellerNo;
@@ -65,8 +84,6 @@ public class Seller {
     public void setSellerEmail(String sellerEmail) {
         this.sellerEmail = sellerEmail;
     }
-    
-    
 
-     
+    
 }

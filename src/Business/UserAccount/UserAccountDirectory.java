@@ -28,19 +28,20 @@ public class UserAccountDirectory {
     
     public UserAccount authenticateUser(String username, String password){
         for (UserAccount ua : userAccountList) {
-            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)) {
+            if (ua.getUsername().equals(username) && ua.getPassword().equals(password) && ua.getIsApproved()) {
                 return ua;
             }
         }
         return null;
     }
     
-    public UserAccount createUserAccount(String username, String password, Employee employee, Role role){
+    public UserAccount createUserAccount(String username, String password, Employee employee, Role role, Boolean isApproved){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
+        userAccount.setIsApproved(isApproved);
         userAccountList.add(userAccount);
         return userAccount;
     }
@@ -61,4 +62,5 @@ public class UserAccountDirectory {
         }
         return null;
     }
+    
 }
