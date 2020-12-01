@@ -12,6 +12,9 @@ import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
+
+import Business.Order.OrderDirectory;
+
 import Business.Organization.OrganizationDirectory;
 import Business.Seller.SellerDirectory;
 
@@ -21,11 +24,16 @@ import Business.Seller.SellerDirectory;
  */
 public class EcoSystem extends Organization {
 
+   
     private static EcoSystem business;
     private EnterpriseDirectory enterpriseDirectory;
     private BuyerDirectory buyerDirectory;
     private SellerDirectory sellerDirectory;
     private OrganizationDirectory organizationDirectory;
+
+    private OrderDirectory orderDirectory;
+
+
     private ArrayList<Network> networkList;
     
     public OrganizationDirectory getOrganizationDirectory() {
@@ -36,7 +44,6 @@ public class EcoSystem extends Organization {
         this.organizationDirectory = organizationDirectory;
     }
     
-
     public static EcoSystem getInstance() {
         if (business == null) {
             business = new EcoSystem();
@@ -101,9 +108,18 @@ public class EcoSystem extends Organization {
     public SellerDirectory getSellerDirectory() {
         return sellerDirectory;
     }
-    
+
+
     public void setSellerDirectory(SellerDirectory sellerDirectory) {
         this.sellerDirectory = sellerDirectory;
     }
-    
+
+    public OrderDirectory getOrderDirectory() {
+        return orderDirectory;
+    }
+
+    public void setOrderDirectory(OrderDirectory orderDirectory) {
+        this.orderDirectory = orderDirectory;
+    }
+
 }

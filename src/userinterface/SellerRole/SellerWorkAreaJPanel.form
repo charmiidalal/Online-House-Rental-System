@@ -20,12 +20,10 @@
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnManageHouse" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnServices" max="32767" attributes="0"/>
-                      <Component id="btnInspectors" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnAdvrt" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnBuyers" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="btnServices" max="32767" attributes="0"/>
+                  <Component id="btnInspectors" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnAdvrt" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnBuyers" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="560" max="32767" attributes="0"/>
           </Group>
