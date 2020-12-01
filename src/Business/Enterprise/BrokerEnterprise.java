@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author MyPC1
  */
 public class BrokerEnterprise extends Enterprise {
-    
+
     public BrokerEnterprise(String name){
         super(name,EnterpriseType.Broker);
     }
@@ -21,5 +21,5 @@ public class BrokerEnterprise extends Enterprise {
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
-    
+
 }

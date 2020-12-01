@@ -5,7 +5,11 @@
  */
 package userinterface.BuyerRole;
 
+import Business.Buyer.Buyer;
+import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Order.Order;
 import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -18,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dinesh
  */
-public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
+public class BuyerWorkAreaJPanel  {
 
     private JPanel userProcessContainer;
     private EcoSystem business;
@@ -27,24 +31,27 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount, SellerDirectory sellerDirectory) {
+    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer=userProcess;
         this.business= ecosystem;
         this.userAccount= userAccount;
-        this.sellerDirectory=sellerDirectory;
-        populateMenuTable();
+        populateRequestTable();
     }
 
-      public void populateMenuTable(){
-        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
+   
+
+    
+
+      public void populateRequestTable(){
+     DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for(Seller seller: sellerDirectory.getSellerDirectory()){
+        for(Seller seller: sellerDirectory.getSellerList()){
                     Object[] row = new Object[4];
-                    row[0] = seller.getName();
-                    row[1] = seller.getPrice();
-                    row[2] = seller.getBhk();
-                    row[3] = seller.getBathroom();
+                    row[0] = seller.getSellerName();
+                    row[1] = seller.getSellerNo();
+                    row[2] = seller.getSellerStreet();
+                    row[3] = seller.getSellerZipcode();
                     model.addRow(row);
         }
     }
@@ -57,19 +64,24 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        viewBtn = new javax.swing.JButton();
+        buyBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
 
-        jButton1.setText("View Details");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewBtn.setText("View Details");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Buy House");
+        buyBtn.setText("Buy House");
+        buyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyBtnActionPerformed(evt);
+            }
+        });
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,9 +117,9 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(140, 140, 140))
             .addGroup(layout.createSequentialGroup()
                 .addGap(199, 199, 199)
-                .addComponent(jButton2)
+                .addComponent(buyBtn)
                 .addGap(140, 140, 140)
-                .addComponent(jButton1)
+                .addComponent(viewBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,35 +129,68 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(buyBtn)
+                    .addComponent(viewBtn))
                 .addContainerGap(193, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+       int selectedRow = houseTable.getSelectedRow();
+         
+       
         int count = houseTable.getSelectedRowCount();
         if(count == 1){
              if (selectedRow >= 0) {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            String name = (String) houseTable.getValueAt(selectedRow,0);
-            Seller seller = sellerDirectory.getSellerName(name);
-            ViewDetailsJPanel viewDetailsJPanel = new ViewDetailsJPanel(userProcessContainer, seller, sellerDirectory);
-            userProcessContainer.add(viewDetailsJPanel);
+            String Id = (String) houseTable.getValueAt(selectedRow,0);
+            Seller foodItem = sellerDirectory.fetchSeller(Id);
+            ViewDetailsJPanel viewJPanel = new ViewDetailsJPanel(userProcessContainer, foodItem, sellerDirectory);
+            userProcessContainer.add(viewJPanel);
             layout.next(userProcessContainer);
         }
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select a Row!!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+                                         
+
+        
+    }//GEN-LAST:event_viewBtnActionPerformed
+
+    private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
+        int row = houseTable.getSelectedRow();
+           if(row >= 0){
+
+            Buyer buyer;//chang this
+            
+            buyer = BuyerDirectory.getBuyer(userAccount.getEmployee().getName());
+            Seller seller = sellerDirectory.getSellerByIndex(row);
+            String status = "Awaiting";
+            
+            Order orderRequest = business.getOrderDirectory().addOrder();
+            orderRequest.setOrderId("O"+(business.getOrderDirectory().getOrderDirectory().size()));
+            orderRequest.setSeller(seller);
+            
+            orderRequest.setBuyer(buyer);
+            orderRequest.setMessage("Request placed");            
+            orderRequest.setSender(userAccount);
+            orderRequest.setStatus(status);
+            business.getWorkQueue().getWorkRequestList().add(orderRequest);
+            JOptionPane.showMessageDialog(null, "Your Order has been sucessfully placed!");
+            populateRequestTable();
+        } 
+        
+        else{
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+}
+    }//GEN-LAST:event_buyBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buyBtn;
     private javax.swing.JTable houseTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,7 @@
 
 package userinterface.PhotographerRole;
 
-import userinterface.ElectricianRole.*;
+
 import Business.Enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;

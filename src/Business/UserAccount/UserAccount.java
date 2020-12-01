@@ -5,8 +5,11 @@
 package Business.UserAccount;
 
 import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,15 +19,16 @@ public class UserAccount {
     
     private String username;
     private String password;
+    private Boolean isApproved = true;
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private  Enterprise userEnterpriseList;
+    private  Organization userOrganizationList;
 
     public UserAccount() {
         workQueue = new WorkQueue();
     }
-    
-    
     
     public String getUsername() {
         return username;
@@ -62,7 +66,29 @@ public class UserAccount {
         return workQueue;
     }
 
-    
+    public Enterprise getUserEnterpriseList() {
+        return userEnterpriseList;
+    }
+
+    public void setUserEnterpriseList(Enterprise userEnterpriseList) {
+        this.userEnterpriseList = userEnterpriseList;
+    }
+
+    public Organization getUserOrganizationList() {
+        return userOrganizationList;
+    }
+
+    public void setUserOrganizationList(Organization userOrganizationList) {
+        this.userOrganizationList = userOrganizationList;
+    }
+
+    public Boolean getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(Boolean isApproved) {
+        this.isApproved = isApproved;
+    }
     
     @Override
     public String toString() {

@@ -5,17 +5,41 @@
  */
 package userinterface.SellerRole;
 
+
+import Business.Enterprise.Enterprise;
+import java.awt.CardLayout;
+
+import Business.EcoSystem;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
+
+import javax.swing.JPanel;
+
 /**
  *
- * @author manushpatel
+ * @author anusha
  */
 public class SellerWorkAreaJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private SellerDirectory sellerDirectory;
     /**
      * Creates new form SellerWorkAreaJPanel1
      */
-    public SellerWorkAreaJPanel() {
+ private Enterprise enterprise;
+
+    
+    public SellerWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.enterprise=enterprise;
+        this.userAccount=useraccount;
+
+    }
+
+    public SellerWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -27,30 +51,49 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBuyers = new javax.swing.JButton();
+        btnAdvrt = new javax.swing.JButton();
+        btnInspectors = new javax.swing.JButton();
+        btnServices = new javax.swing.JButton();
+        btnManageHouse = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jButton1.setText("View Advertise");
-
-        jButton2.setText("Create Advertise");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuyers.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBuyers.setText("Manage Buyers");
+        btnBuyers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBuyersActionPerformed(evt);
+            }
+        });
+
+        btnAdvrt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnAdvrt.setText("Create Advertise");
+        btnAdvrt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdvrtActionPerformed(evt);
+            }
+        });
+
+        btnInspectors.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnInspectors.setText("Manage Inspector");
+        btnInspectors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInspectorsActionPerformed(evt);
+            }
+        });
+
+        btnServices.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnServices.setText("Manage Invoices");
+        btnServices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnServicesActionPerformed(evt);
+            }
+        });
+
+        btnManageHouse.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnManageHouse.setText("Manage Houses");
+        btnManageHouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageHouseActionPerformed(evt);
             }
         });
 
@@ -59,39 +102,79 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(152, 152, 152))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(137, Short.MAX_VALUE))))
+                .addGap(116, 116, 116)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManageHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnServices, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInspectors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAdvrt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuyers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(560, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addComponent(btnAdvrt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(btnManageHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(btnBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(btnInspectors, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnServices, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAdvrtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdvrtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+         CreateAdvertiseJPanel advrtPanel = new CreateAdvertiseJPanel(userProcessContainer,enterprise);
+        userProcessContainer.add("CreateAdvertiseJPanel", advrtPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnAdvrtActionPerformed
+
+    private void btnBuyersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyersActionPerformed
+        // TODO add your handling code here:
+        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer,enterprise);
+        userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnBuyersActionPerformed
+
+    private void btnInspectorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspectorsActionPerformed
+        // TODO add your handling code here:
+        ManageInspectorJPanel mngInspectorPanel = new ManageInspectorJPanel(userProcessContainer,enterprise);
+        userProcessContainer.add("ManageInspectorJPanel", mngInspectorPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnInspectorsActionPerformed
+
+    private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
+        // TODO add your handling code here:
+        ManageInvoicesJPanel mngServicesPanel = new ManageInvoicesJPanel(userProcessContainer,enterprise);
+        userProcessContainer.add("ManageServicesJPanel", mngServicesPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnServicesActionPerformed
+
+    private void btnManageHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageHouseActionPerformed
+        // TODO add your handling code here:
+         ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(userProcessContainer,enterprise);
+        userProcessContainer.add("ManageHouseJPanel", mngHousesPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageHouseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton btnAdvrt;
+    private javax.swing.JButton btnBuyers;
+    private javax.swing.JButton btnInspectors;
+    private javax.swing.JButton btnManageHouse;
+    private javax.swing.JButton btnServices;
     // End of variables declaration//GEN-END:variables
 }

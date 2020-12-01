@@ -27,7 +27,7 @@ public abstract class Organization {
         Admin("Admin Organization"), Plumbing("Plumbing Organization"), PackersMovers("Movers Packers Organization"),
         Cleaning("Cleaning Organization"),Electrician("Electrician Organization"), Miscellaneous ("Miscellaneous"),
         PropertyManager("Property Manager Organization"), Builder("Builder Organization"), Inspector("Inspector Organization"),
-        Agent("Agent Organization");
+        Agent("Agent Organization"),Buyer("Buyer Organization");
         
         private String value; 
         private Type(String value) {
@@ -46,13 +46,13 @@ public abstract class Organization {
         organizationID = counter;
         ++counter;
     }
-
+        
     public abstract ArrayList<Role> getSupportedRole();
-    
+
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
     }
-
+    
     public int getOrganizationID() {
         return organizationID;
     }

@@ -4,12 +4,10 @@
  */
 package Business.Role;
 
-import Business.Buyer.Buyer;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -17,10 +15,6 @@ import javax.swing.JPanel;
  * @author raunak
  */
 public abstract class Role {
-
-    public Component createWorkArea(JPanel container, Buyer buyer, EcoSystem system) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public enum RoleType{
         Admin("Admin"),
@@ -54,7 +48,7 @@ public abstract class Role {
     }
     
    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
-            UserAccount account, 
+            UserAccount account,
             Organization organization, 
             Enterprise enterprise, 
             EcoSystem business);
