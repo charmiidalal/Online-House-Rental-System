@@ -25,7 +25,7 @@ public class SellerDirectory {
     public void addSeller(Seller seller){
         sellerList.add(seller);
     }
-    public void removeCustomer(Seller seller){
+    public void removeSeller(Seller seller){
         sellerList.remove(seller);
     }
     public Seller searchseller(String sellerName){
@@ -38,6 +38,14 @@ public class SellerDirectory {
     }
     public String generateSellerID(){
         return "Seller"+(sellerList.size()+1);
+    }
+    public Seller fetchSeller(String SellerNo) {
+        for (Seller seller : sellerList) {
+            if (seller.getSellerNo().equalsIgnoreCase(SellerNo)) {
+                return seller;
+            }
+        }
+        return null;
     }
 
 }

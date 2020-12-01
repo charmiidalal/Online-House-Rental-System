@@ -37,13 +37,13 @@ public class MainJFrame extends javax.swing.JFrame {
             this.buyerDirectory = new BuyerDirectory();
 
         } else {
-            this.buyerDirectory = (BuyerDirectory) system.getBuyerDirectory();
+            this.buyerDirectory = system.getBuyerDirectory();
         }
         if (system.getSellerDirectory() == null) {
             this.sellerDirectory = new SellerDirectory();
 
         } else {
-            this.sellerDirectory = (SellerDirectory) system.getSellerDirectory();
+            this.sellerDirectory = system.getSellerDirectory();
         }
         
     }

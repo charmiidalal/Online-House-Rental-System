@@ -28,7 +28,7 @@ public class UserAccountDirectory {
     
     public UserAccount authenticateUser(String username, String password){
         for (UserAccount ua : userAccountList) {
-            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)) {
+            if (ua.getUsername().equals(username) && ua.getPassword().equals(password) && ua.getIsApproved()) {
                 return ua;
             }
         }
@@ -41,6 +41,7 @@ public class UserAccountDirectory {
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
+        userAccount.setIsApproved(isApproved);
         userAccountList.add(userAccount);
         return userAccount;
     }
@@ -61,4 +62,5 @@ public class UserAccountDirectory {
         }
         return null;
     }
+    
 }
