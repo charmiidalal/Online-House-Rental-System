@@ -66,10 +66,16 @@ public class SellerDirectory {
         return null;
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3a464f5e852a51bf26e5cb6e4f5aaaa8f6a756c2
      ///./////// need to change ///////////////
      public Seller getSellerByIndex(int index){
         return sellerList.get(index);
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3a464f5e852a51bf26e5cb6e4f5aaaa8f6a756c2
 }
