@@ -5,9 +5,8 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
 import Business.Seller.Seller;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -38,19 +37,20 @@ public class ManageSignUpJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblRequestAccess.getModel();
 
         model.setRowCount(0);
-        for (Seller sd : system.getSellerDirectory().getSellerList()) {
-            if (!sd.getIsApproved()) {
-                Object[] row = new Object[4];
-                row[0] = sd.getSellerName();
-                row[1] = sd.getUsername();
-                row[2] = sd.getSellerEmail();
-                row[3] = "Seller";
-                model.addRow(row);
+        if (system.getSellerDirectory() != null) {
+            for (Seller sd : system.getSellerDirectory().getSellerList()) {
+                if (!sd.getIsApproved()) {
+                    Object[] row = new Object[5];
+                    row[0] = sd.getSellerNo();
+                    row[1] = sd.getSellerName();
+                    row[2] = sd.getUsername();
+                    row[3] = sd.getSellerEmail();
+                    row[4] = "Seller";
+                    model.addRow(row);
+                }
             }
         }
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,17 +76,17 @@ public class ManageSignUpJPanel extends javax.swing.JPanel {
 
         tblRequestAccess.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Name", "Username", "Email", "Role"
+                "Seller No", "Name", "Username", "Email", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                true, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -114,42 +114,34 @@ public class ManageSignUpJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
                         .addComponent(backJButton)
-                        .addGap(404, 404, 404)))
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(184, 184, 184)
-                    .addComponent(btnApprove)
-                    .addGap(38, 38, 38)
-                    .addComponent(btnReject)
-                    .addContainerGap(184, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnApprove)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnReject))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(185, 185, 185)
-                .addComponent(backJButton)
-                .addContainerGap(57, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(201, 201, 201)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnReject)
-                        .addComponent(btnApprove))
-                    .addContainerGap(201, Short.MAX_VALUE)))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backJButton)
+                    .addComponent(btnReject)
+                    .addComponent(btnApprove))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
-         Component[] componentArray = userProcessContainer.getComponents();
+        Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
         sysAdminwjp.populateTree();
@@ -159,11 +151,41 @@ public class ManageSignUpJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        int row = tblRequestAccess.getSelectedRow();
+        int orderCount = tblRequestAccess.getSelectedRowCount();
+        if (orderCount == 1) {
+            if (row >= 0) {
+                String sellerID = (String) tblRequestAccess.getValueAt(row, 0);
+                Seller seller = system.getSellerDirectory().fetchSeller(sellerID);
+                system.getSellerDirectory().removeSeller(seller);
+                JOptionPane.showMessageDialog(null, "Seller deleted successfully!");
+                populateTable();
+            }
 
+        } else {
+            JOptionPane.showMessageDialog(null, "Select one seller first!");
+        }
     }//GEN-LAST:event_btnRejectActionPerformed
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         // TODO add your handling code here:
+        int row = tblRequestAccess.getSelectedRow();
+        int orderCount = tblRequestAccess.getSelectedRowCount();
+        if (orderCount == 1) {
+            if (row >= 0) {
+                String sellerID = (String) tblRequestAccess.getValueAt(row, 0);
+                String username = (String) tblRequestAccess.getValueAt(row, 2);
+                Seller seller = system.getSellerDirectory().fetchSeller(sellerID);
+                seller.setIsApproved(true);
+                UserAccount ua = system.getUserAccountDirectory().searchUser(username);
+                ua.setIsApproved(true);
+                JOptionPane.showMessageDialog(null, "Seller approved successfully!");
+                populateTable();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Select one seller first!");
+        }
     }//GEN-LAST:event_btnApproveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

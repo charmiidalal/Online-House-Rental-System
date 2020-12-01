@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -72,6 +71,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 204));
         setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Name:");
 
         nameTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -80,16 +80,22 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("House Address:");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("City:");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("State:");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Pincode:");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Upload Image:");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Price:");
 
         uploadBtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -101,6 +107,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         });
 
         submitBtn.setBackground(new java.awt.Color(255, 255, 255));
+        submitBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +121,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("Bathroom:");
 
         bhkTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -122,8 +130,10 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("BHK:");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Rent Price");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +142,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("House Advertisement");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -167,7 +177,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                                 .addComponent(bathroomTxt)
                                 .addGap(485, 485, 485))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(bhkTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                                .addComponent(bhkTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                                 .addGap(480, 480, 480))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(uploadBtn)
@@ -231,7 +241,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(bathroomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -325,331 +335,3 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JButton uploadBtn;
     // End of variables declaration//GEN-END:variables
 }
-=======
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userinterface.SellerRole;
-
-import Business.Enterprise.Enterprise;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-/**
- *
- * @author Dinesh
- */
-public class CreateAdvertiseJPanel extends javax.swing.JPanel {
-
-    JFileChooser imgChooser;
-    private JPanel userProcessContainer;
-    BufferedImage img;
-    
-    /**
-     * Creates new form SellerWorkAreaJPanel
-     */
-    public CreateAdvertiseJPanel(JPanel userProcessContainer) {
-        initComponents();
-        this.userProcessContainer = userProcessContainer;
-    }
-
-    CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        jLabel1 = new javax.swing.JLabel();
-        nameTxt = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        addressTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        cityTxt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        stateTxt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        uploadBtn = new javax.swing.JButton();
-        pinTxt = new javax.swing.JTextField();
-        priceTxt = new javax.swing.JTextField();
-        submitBtn = new javax.swing.JButton();
-        bathroomTxt = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        bhkTxt = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-
-        setBackground(new java.awt.Color(204, 204, 204));
-        setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setText("Name:");
-
-        nameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("House Address:");
-
-        jLabel3.setText("City:");
-
-        jLabel4.setText("State:");
-
-        jLabel5.setText("Pincode:");
-
-        jLabel6.setText("Upload Image:");
-
-        jLabel7.setText("Price:");
-
-        uploadBtn.setBackground(new java.awt.Color(255, 255, 255));
-        uploadBtn.setText("Choose..");
-        uploadBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadBtnActionPerformed(evt);
-            }
-        });
-
-        submitBtn.setBackground(new java.awt.Color(255, 255, 255));
-        submitBtn.setText("Submit");
-        submitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBtnActionPerformed(evt);
-            }
-        });
-
-        bathroomTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bathroomTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setText("Bathroom:");
-
-        bhkTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bhkTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setText("BHK:");
-
-        jLabel8.setText("Rent Price");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel9.setText("House Advertisement");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(addressTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(nameTxt))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel8))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bathroomTxt)
-                                .addGap(485, 485, 485))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bhkTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                                .addGap(480, 480, 480))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(uploadBtn)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                        .addComponent(stateTxt)
-                                        .addComponent(pinTxt)
-                                        .addComponent(priceTxt)))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(226, 226, 226))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(371, 371, 371)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel9)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(stateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(pinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(priceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(uploadBtn))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(bhkTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(bathroomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submitBtn)
-                .addGap(51, 51, 51))
-        );
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTxtActionPerformed
-
-    private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
-        imgChooser = new JFileChooser();
-        imgChooser.setMultiSelectionEnabled(true);
-        imgChooser.showOpenDialog(null);
-        File[] files = imgChooser.getSelectedFiles();
-//        try{
-//            img = ImageIO.read(files);
-//        } catch (IOException e){
-//        }
-        
-    }//GEN-LAST:event_uploadBtnActionPerformed
-
-    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-      
-        String name = nameTxt.getText();
-        String address = addressTxt.getText();
-        String city = cityTxt.getText();
-        String state = stateTxt.getText();
-        String pincode =pinTxt.getText();
-        
-        
-       // String image = 
-        double price = 0.0;
-        double bathroom = 0.0;
-        try {
-            price = Double.parseDouble(priceTxt.getText());
-            int bhk = Integer.parseInt(bhkTxt.getText());
-            bathroom = Double.parseDouble(bathroomTxt.getText());
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Enter Price");
-        }
-        if(name.isEmpty() || address.isEmpty() || city.isEmpty()||state.isEmpty()||pincode.isEmpty() ||price == 0.0 || img == null || bathroom == 0.0){
-            JOptionPane.showMessageDialog(null, "Missing fields");
-        }
-//        else{
-//            String sellerID = account.getEmployee().getName();
-//            sellerDirectory.add(sellerId,name,bhk,bathroom,img,price);
-//            JOptionPane.showMessageDialog(null, "Added!");
-//           
-//        }
-    }//GEN-LAST:event_submitBtnActionPerformed
-
-    private void bathroomTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathroomTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bathroomTxtActionPerformed
-
-    private void bhkTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhkTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bhkTxtActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField addressTxt;
-    private javax.swing.JTextField bathroomTxt;
-    private javax.swing.JTextField bhkTxt;
-    private javax.swing.JTextField cityTxt;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField nameTxt;
-    private javax.swing.JTextField pinTxt;
-    private javax.swing.JTextField priceTxt;
-    private javax.swing.JTextField stateTxt;
-    private javax.swing.JButton submitBtn;
-    private javax.swing.JButton uploadBtn;
-    // End of variables declaration//GEN-END:variables
-}
-
