@@ -5,35 +5,47 @@
  */
 package userinterface.SellerRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Seller.Advertisement;
+import Business.Seller.AdvertisementDirectory;
+import Business.Seller.Seller;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author Dinesh
+ * @author anusha
  */
 public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
     JFileChooser imgChooser;
-    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private SellerDirectory sellerDirectory;
     BufferedImage img;
-    
+    private JPanel userProcessContainer;
+    private final Enterprise enterprise;
+
     /**
-     * Creates new form SellerWorkAreaJPanel
+     * Creates new form CreateAdvertiseJPanel
      */
-    public CreateAdvertiseJPanel(JPanel userProcessContainer) {
+    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-    }
-
-    CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.enterprise = enterprise;
+        this.userAccount = useraccount;
+        this.sellerDirectory = sellerDirectory;
     }
 
     /**
@@ -64,9 +76,9 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         bhkTxt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        imgupload = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -133,17 +145,15 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("BHK:");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel8.setText("Rent Price");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("House Advertisement");
+
+        btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -169,8 +179,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel10))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -181,31 +190,35 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                                 .addGap(480, 480, 480))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(uploadBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(imgupload, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                        .addComponent(stateTxt)
-                                        .addComponent(pinTxt)
-                                        .addComponent(priceTxt)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                    .addComponent(stateTxt)
+                                    .addComponent(pinTxt)
+                                    .addComponent(priceTxt))
                                 .addGap(0, 0, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(226, 226, 226))
             .addGroup(layout.createSequentialGroup()
-                .addGap(371, 371, 371)
+                .addGap(20, 20, 20)
+                .addComponent(btnBack)
+                .addGap(288, 288, 288)
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel9)
-                .addGap(36, 36, 36)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(btnBack))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -225,15 +238,16 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(pinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(priceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(uploadBtn))
-                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(uploadBtn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(imgupload, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(bhkTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -241,11 +255,11 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(bathroomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(priceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(submitBtn)
                 .addGap(51, 51, 51))
         );
@@ -256,45 +270,89 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nameTxtActionPerformed
 
     private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
-        imgChooser = new JFileChooser();
-        imgChooser.setMultiSelectionEnabled(true);
-        imgChooser.showOpenDialog(null);
-        File[] files = imgChooser.getSelectedFiles();
-//        try{
-//            img = ImageIO.read(files);
-//        } catch (IOException e){
-//        }
-        
-    }//GEN-LAST:event_uploadBtnActionPerformed
 
+        JFileChooser biofilechooser = new JFileChooser();
+        biofilechooser.setDialogTitle("Choose Your File");
+        biofilechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        // below code selects the file 
+        int returnvalbio = biofilechooser.showOpenDialog(this);
+        if (returnvalbio == JFileChooser.APPROVE_OPTION) {
+            File fileBio = biofilechooser.getSelectedFile();
+            String pathBio = fileBio.getAbsolutePath();
+            BufferedImage bioImage;
+            try {
+                // display the image in a Jlabel
+                bioImage = ImageIO.read(fileBio);
+                imgupload.setIcon(ResizeImage(pathBio));
+                //lblPhotos.setIcon(new ImageIcon(bi));
+            } catch (IOException e) {
+                e.printStackTrace(); // todo: implement proper error handeling
+            }
+        }
+    }//GEN-LAST:event_uploadBtnActionPerformed
+    public ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(imgupload.getWidth(), imgupload.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-      
+
         String name = nameTxt.getText();
         String address = addressTxt.getText();
         String city = cityTxt.getText();
         String state = stateTxt.getText();
-        String pincode =pinTxt.getText();
-        
-        
-       // String image = 
+        String pincode = pinTxt.getText();
+
+        ImageIcon img = (ImageIcon) imgupload.getIcon();
+        //blBioId.setIcon(personBioId);
         double price = 0.0;
         double bathroom = 0.0;
-        try {
-            price = Double.parseDouble(priceTxt.getText());
-            int bhk = Integer.parseInt(bhkTxt.getText());
-            bathroom = Double.parseDouble(bathroomTxt.getText());
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Enter Price");
+
+        price = Double.parseDouble(priceTxt.getText());
+        int bhk = Integer.parseInt(bhkTxt.getText());
+        bathroom = Double.parseDouble(bathroomTxt.getText());
+
+        if (name.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty() || price == 0.0 || img == null || bathroom == 0.0) {
+            JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
+        } else {
+            String sellerID = this.userAccount.getEmployee().getName();
+            JOptionPane.showMessageDialog(null, "employee id name" + sellerID);
+
+            //Seller seller=this.sellerDirectory.searchseller(sellerID);
+            //  seller.setSellerName(sellerID);
+            // String sellerEmail=seller.getSellerEmail();
+            // seller.setSellerEmail(sellerEmail);
+            // JOptionPane.showMessageDialog(null,"selleremail"+sellerEmail);
+            // String sellerPhone=seller.getSellerPhone();
+            // seller.setSellerPhone(sellerPhone);
+            // JOptionPane.showMessageDialog(null,"sellerph"+ sellerPhone);
+            //  String sellerStreet=seller.getSellerStreet();
+            // seller.setSellerStreet(sellerStreet);
+            // JOptionPane.showMessageDialog(null,"sellerstreet"+sellerStreet);
+            //   String sellerZipcode=seller.getSellerZipcode();
+            // seller.setSellerZipcode(sellerZipcode);
+            // JOptionPane.showMessageDialog(null,"sellerzipcode"+sellerZipcode);
+            // Boolean sellerIsapproved=seller.getIsApproved();
+            //  seller.setIsApproved(sellerIsapproved);
+            // JOptionPane.showMessageDialog(null, "sellerapproved"+sellerIsapproved);
+            // this.sellerDirectory.addSeller(seller);
+            Advertisement advrt = new Advertisement();
+            advrt.setName(name);
+            advrt.setAddress(address);
+            advrt.setZipcode(pincode);
+            advrt.setCity(city);
+            advrt.setState(state);
+            advrt.setBhk(bhk);
+            advrt.setBathroom(bathroom);
+            advrt.setRent(price);
+            AdvertisementDirectory advrtdirector = new AdvertisementDirectory();
+            advrtdirector.addAdvertisement(advrt);
+
+            JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + "seller!");
+
         }
-        if(name.isEmpty() || address.isEmpty() || city.isEmpty()||state.isEmpty()||pincode.isEmpty() ||price == 0.0 || img == null || bathroom == 0.0){
-            JOptionPane.showMessageDialog(null, "Missing fields");
-        }
-//        else{
-//            String sellerID = account.getEmployee().getName();
-//            sellerDirectory.add(sellerId,name,bhk,bathroom,img,price);
-//            JOptionPane.showMessageDialog(null, "Added!");
-//           
-//        }
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void bathroomTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathroomTxtActionPerformed
@@ -305,16 +363,22 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bhkTxtActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, userAccount);
+        userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTxt;
     private javax.swing.JTextField bathroomTxt;
     private javax.swing.JTextField bhkTxt;
+    private javax.swing.JButton btnBack;
     private javax.swing.JTextField cityTxt;
+    private javax.swing.JLabel imgupload;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -324,9 +388,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JTextField pinTxt;
     private javax.swing.JTextField priceTxt;

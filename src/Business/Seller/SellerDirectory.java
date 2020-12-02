@@ -6,6 +6,7 @@
 package Business.Seller;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -33,11 +34,11 @@ public class SellerDirectory {
     }
 
     public Seller searchseller(String sellerName) {
-//        for (Buyer buyers: buyerList) {
-//            if (buyers.getName().equals(buyerName)) {
-//                return buyers;
-//            }
-//        }
+  for (Seller seller : sellerList) {
+            if (seller.getSellerName().equalsIgnoreCase(sellerName)) {
+                return seller;
+            }
+        }
         return null;
     }
 
@@ -58,4 +59,7 @@ public class SellerDirectory {
     public Seller getSellerByIndex(int index) {
         return sellerList.get(index);
     }
+  
+
+   
 }
