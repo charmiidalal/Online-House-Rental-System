@@ -19,7 +19,7 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
-        valueLabel.setText(enterprise.getName());
+        //valueLabel.setText(enterprise.getName());
     }
     
     /** This method is called from within the constructor to

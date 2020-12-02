@@ -93,7 +93,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageEnterprise = new javax.swing.JButton();
         btnManageAdmin = new javax.swing.JButton();
         btnManageSysUsers = new javax.swing.JButton();
-        btnManageSignup1 = new javax.swing.JButton();
+        btnManageSignup = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -153,10 +153,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManageSignup1.setText("Manage Signup Request");
-        btnManageSignup1.addActionListener(new java.awt.event.ActionListener() {
+        btnManageSignup.setText("Manage Signup Request");
+        btnManageSignup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageSignup1ActionPerformed(evt);
+                btnManageSignupActionPerformed(evt);
             }
         });
 
@@ -176,7 +176,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnManageAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                            .addComponent(btnManageSignup1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
+                            .addComponent(btnManageSignup, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnManageSysUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +197,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addComponent(btnManageEnterprise)
                 .addGap(29, 29, 29)
-                .addComponent(btnManageSignup1)
+                .addComponent(btnManageSignup)
                 .addGap(18, 18, 18)
                 .addComponent(btnManageAdmin)
                 .addContainerGap(172, Short.MAX_VALUE))
@@ -245,16 +245,20 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageSysUsersActionPerformed
 
-    private void btnManageSignup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSignup1ActionPerformed
+    private void btnManageSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSignupActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnManageSignup1ActionPerformed
+        ManageSignUpJPanel manageSignUpJPanel=new ManageSignUpJPanel(userProcessContainer, ecosystem);
+        userProcessContainer.add("manageSignUpJPanel",manageSignUpJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageSignupActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageAdmin;
     private javax.swing.JButton btnManageEnterprise;
     private javax.swing.JButton btnManageNetwork;
-    private javax.swing.JButton btnManageSignup1;
+    private javax.swing.JButton btnManageSignup;
     private javax.swing.JButton btnManageSysUsers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

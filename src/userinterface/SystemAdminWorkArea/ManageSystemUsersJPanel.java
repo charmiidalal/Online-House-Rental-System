@@ -7,8 +7,10 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Network.Network;
 import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +22,7 @@ public class ManageSystemUsersJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem system;
+    private final UserAccountDirectory userAccountDirectory;
 
     /**
      *
@@ -30,11 +33,12 @@ public class ManageSystemUsersJPanel extends javax.swing.JPanel {
 
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.userAccountDirectory = (system.getUserAccountDirectory() == null) ? new UserAccountDirectory() : system.getUserAccountDirectory();
 
-        populateNetworkTable();
+        populateTree();
     }
 
-    private void populateNetworkTable() {
+    public void populateTree() {
         DefaultTableModel model = (DefaultTableModel) tblUserList.getModel();
 
         model.setRowCount(0);
@@ -147,8 +151,18 @@ public class ManageSystemUsersJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUsersActionPerformed
-
-
+        int selectedRow = tblUserList.getSelectedRow();
+        int count = tblUserList.getSelectedRowCount();
+        if (count == 1) {
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            String userName = (String) tblUserList.getValueAt(selectedRow, 2);
+            UserAccount ua = userAccountDirectory.searchUser(userName);
+            UpdateSystemUsersJPanel updateSystemUsersJPanel = new UpdateSystemUsersJPanel(userProcessContainer,system, ua, userAccountDirectory);
+            userProcessContainer.add(updateSystemUsersJPanel);
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+        }
     }//GEN-LAST:event_btnViewUsersActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

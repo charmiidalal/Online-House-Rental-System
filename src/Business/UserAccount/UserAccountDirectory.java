@@ -57,13 +57,21 @@ public class UserAccountDirectory {
         return true;
     }
     
-    public UserAccount searchUser(String buyerName){
-        for (UserAccount buyers: userAccountList) {
-            if (buyers.getUsername().equals(buyerName)) {
-                return buyers;
+    public UserAccount searchUser(String userName){
+        for (UserAccount ua: userAccountList) {
+            if (ua.getUsername().equals(userName)) {
+                return ua;
             }
         }
         return null;
     }
     
+     public void updateItem(String userName, String fullName, String userEmail) {
+        for(UserAccount ua: userAccountList){
+            if(ua.getUsername().equalsIgnoreCase(userName)){
+                ua.setName(fullName);
+                ua.setEmail(userEmail);
+            }
+        }
+    }
 }
