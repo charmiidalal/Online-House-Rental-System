@@ -19,7 +19,7 @@ public class BuyerDirectory {
         return buyerList;
     }
 
-    public void setBellerList(ArrayList<Buyer> buyerList) {
+    public void setBuyerList(ArrayList<Buyer> buyerList) {
         this.buyerList = buyerList;
     }
     public void addBuyer(Buyer buyer){
@@ -29,15 +29,24 @@ public class BuyerDirectory {
         buyerList.remove(buyer);
     }
     public Buyer searchBuyer(String buyerName){
-//        for (Buyer buyers: buyerList) {
-//            if (buyers.getName().equals(buyerName)) {
-//                return buyers;
-//            }
-//        }
+        for (Buyer buyers: buyerList) {
+            if (buyers.getBuyerName().equals(buyerName)) {
+                return buyers;
+            }
+        }
         return null;
     }
     public String generateBuyerID(){
         return "Buyer"+(buyerList.size()+1);
+    }
+    
+     public Buyer getBuyer(String name){
+        for(Buyer buyer: buyerList){
+            if(buyer.getBuyerName().equalsIgnoreCase(name)){
+                return buyer;
+            }
+        }
+        return null;
     }
     
 }

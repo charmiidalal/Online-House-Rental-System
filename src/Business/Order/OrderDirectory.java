@@ -36,9 +36,9 @@ public class OrderDirectory {
         return order;
     }
     
-//    public Order getOrderById(int index){
-//        return orderDirectory.get(index);
-//    }
+    public Order getOrderById(int index){
+        return orderDirectory.get(index);
+    }
     
     public Order getOrderByOrderId(String id){
         for(Order order: orderDirectory){

@@ -165,28 +165,29 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
         int row = houseTable.getSelectedRow();
-//        if (row >= 0) {
-//
-//            Buyer buyer;//chang this
-//
-//            buyer = BuyerDirectory.getBuyer(userAccount.getEmployee().getName());
-//            Seller seller = sellerDirectory.getSellerByIndex(row);
-//            String status = "Awaiting";
-//
-//            Order orderRequest = business.getOrderDirectory().addOrder();
-//            orderRequest.setOrderId("O" + (business.getOrderDirectory().getOrderDirectory().size()));
-//            orderRequest.setSeller(seller);
-//
-//            orderRequest.setBuyer(buyer);
-//            orderRequest.setMessage("Request placed");
-//            orderRequest.setSender(userAccount);
-//            orderRequest.setStatus(status);
-//            business.getWorkQueue().getWorkRequestList().add(orderRequest);
-//            JOptionPane.showMessageDialog(null, "Inspection Success ");
-//            populateRequestTable();
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Please select one row!");
-//        }
+        if (row >= 0) {
+ 
+            
+           
+           //Property property = propertyDirectory.getPropertyByIndex(row);
+           // Buyer buyer = BuyerDirectory.getBuyer(userAccount.getEmployee().getName());
+            Seller seller = sellerDirectory.getSellerByIndex(row);
+            String status = "Awaiting";
+
+            Order orderRequest = business.getOrderDirectory().addOrder();
+            orderRequest.setOrderId("O" + (business.getOrderDirectory().getOrderDirectory().size()));
+            orderRequest.setSeller(seller);
+           
+           // orderRequest.setBuyer(buyer);
+            orderRequest.setMessage("Request placed");
+            orderRequest.setSender(userAccount);
+            orderRequest.setStatus(status);
+            business.getWorkQueue().getWorkRequestList().add(orderRequest);
+            JOptionPane.showMessageDialog(null, "Inspection Success ");
+            populateRequestTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
 
     }//GEN-LAST:event_buyBtnActionPerformed
 
