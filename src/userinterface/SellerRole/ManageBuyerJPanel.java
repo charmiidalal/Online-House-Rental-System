@@ -27,11 +27,12 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount useraccount;
 
-     public ManageBuyerJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount) {
+     public ManageBuyerJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.useraccount=useraccount;
+        this.sellerDirectory=sellerDirectory;
     }
 
     /**
@@ -88,8 +89,18 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         });
 
         btnEditBuyer.setText("Edit/Update Buyer");
+        btnEditBuyer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditBuyerActionPerformed(evt);
+            }
+        });
 
         btnDeleteBuyer.setText("Delete Buyer");
+        btnDeleteBuyer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteBuyerActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +149,10 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
     private void btnAddBuyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBuyerActionPerformed
         // TODO add your handling code here:
+        AddBuyerJPanel addBuyerPanel = new AddBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory);
+        userProcessContainer.add("AddBuyerJPanel", addBuyerPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddBuyerActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -147,6 +162,14 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnEditBuyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditBuyerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditBuyerActionPerformed
+
+    private void btnDeleteBuyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBuyerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteBuyerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

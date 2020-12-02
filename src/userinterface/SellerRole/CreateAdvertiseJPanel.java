@@ -7,6 +7,9 @@ package userinterface.SellerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Seller.Advertisement;
+import Business.Seller.AdvertisementDirectory;
+import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -37,11 +40,12 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateAdvertiseJPanel
      */
-    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount) {
+    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = useraccount;
+        this.sellerDirectory = sellerDirectory;
     }
 
     /**
@@ -266,38 +270,27 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nameTxtActionPerformed
 
     private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
-        //imgChooser = new JFileChooser();
-        //.setMultiSelectionEnabled(true);
-       // imgChooser.showOpenDialog(null);
-     //   File[] files = imgChooser.getSelectedFiles();
-//    try{
-//            img = ImageIO.read(files);
-//        } catch (IOException e){
-//      }
- JFileChooser biofilechooser = new JFileChooser();
-    biofilechooser.setDialogTitle("Choose Your File");
-    biofilechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    // below code selects the file 
-    int returnvalbio = biofilechooser.showOpenDialog(this);
-    if (returnvalbio == JFileChooser.APPROVE_OPTION)
-    {
-        File fileBio = biofilechooser.getSelectedFile();
-        String pathBio = fileBio.getAbsolutePath();
-        BufferedImage bioImage;
-        try {
-           // display the image in a Jlabel
-            bioImage = ImageIO.read(fileBio);
-            imgupload.setIcon(ResizeImage(pathBio));
-             //lblPhotos.setIcon(new ImageIcon(bi));
-        } 
-        catch(IOException e) 
-        {
-           e.printStackTrace(); // todo: implement proper error handeling
+
+        JFileChooser biofilechooser = new JFileChooser();
+        biofilechooser.setDialogTitle("Choose Your File");
+        biofilechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        // below code selects the file 
+        int returnvalbio = biofilechooser.showOpenDialog(this);
+        if (returnvalbio == JFileChooser.APPROVE_OPTION) {
+            File fileBio = biofilechooser.getSelectedFile();
+            String pathBio = fileBio.getAbsolutePath();
+            BufferedImage bioImage;
+            try {
+                // display the image in a Jlabel
+                bioImage = ImageIO.read(fileBio);
+                imgupload.setIcon(ResizeImage(pathBio));
+                //lblPhotos.setIcon(new ImageIcon(bi));
+            } catch (IOException e) {
+                e.printStackTrace(); // todo: implement proper error handeling
+            }
         }
-    }
     }//GEN-LAST:event_uploadBtnActionPerformed
- public ImageIcon ResizeImage(String ImagePath)
-    {
+    public ImageIcon ResizeImage(String ImagePath) {
         ImageIcon MyImage = new ImageIcon(ImagePath);
         Image img = MyImage.getImage();
         Image newImg = img.getScaledInstance(imgupload.getWidth(), imgupload.getHeight(), Image.SCALE_SMOOTH);
@@ -312,31 +305,54 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         String state = stateTxt.getText();
         String pincode = pinTxt.getText();
 
-        
-       ImageIcon img=(ImageIcon) imgupload.getIcon();
+        ImageIcon img = (ImageIcon) imgupload.getIcon();
         //blBioId.setIcon(personBioId);
         double price = 0.0;
         double bathroom = 0.0;
-       
-            price = Double.parseDouble(priceTxt.getText());
-            int bhk = Integer.parseInt(bhkTxt.getText());
-            bathroom = Double.parseDouble(bathroomTxt.getText());
-            JOptionPane.showMessageDialog(null, "Price"+price);
-            JOptionPane.showMessageDialog(null, "bthroom"+price);
-            JOptionPane.showMessageDialog(null, "bhk"+bhk);
-                    
-       
-           
-       
+
+        price = Double.parseDouble(priceTxt.getText());
+        int bhk = Integer.parseInt(bhkTxt.getText());
+        bathroom = Double.parseDouble(bathroomTxt.getText());
+
         if (name.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty() || price == 0.0 || img == null || bathroom == 0.0) {
-             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
+            JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
+        } else {
+            String sellerID = this.userAccount.getEmployee().getName();
+            JOptionPane.showMessageDialog(null, "employee id name" + sellerID);
+
+            //Seller seller=this.sellerDirectory.searchseller(sellerID);
+            //  seller.setSellerName(sellerID);
+            // String sellerEmail=seller.getSellerEmail();
+            // seller.setSellerEmail(sellerEmail);
+            // JOptionPane.showMessageDialog(null,"selleremail"+sellerEmail);
+            // String sellerPhone=seller.getSellerPhone();
+            // seller.setSellerPhone(sellerPhone);
+            // JOptionPane.showMessageDialog(null,"sellerph"+ sellerPhone);
+            //  String sellerStreet=seller.getSellerStreet();
+            // seller.setSellerStreet(sellerStreet);
+            // JOptionPane.showMessageDialog(null,"sellerstreet"+sellerStreet);
+            //   String sellerZipcode=seller.getSellerZipcode();
+            // seller.setSellerZipcode(sellerZipcode);
+            // JOptionPane.showMessageDialog(null,"sellerzipcode"+sellerZipcode);
+            // Boolean sellerIsapproved=seller.getIsApproved();
+            //  seller.setIsApproved(sellerIsapproved);
+            // JOptionPane.showMessageDialog(null, "sellerapproved"+sellerIsapproved);
+            // this.sellerDirectory.addSeller(seller);
+            Advertisement advrt = new Advertisement();
+            advrt.setName(name);
+            advrt.setAddress(address);
+            advrt.setZipcode(pincode);
+            advrt.setCity(city);
+            advrt.setState(state);
+            advrt.setBhk(bhk);
+            advrt.setBathroom(bathroom);
+            advrt.setRent(price);
+            AdvertisementDirectory advrtdirector = new AdvertisementDirectory();
+            advrtdirector.addAdvertisement(advrt);
+
+            JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + "seller!");
+
         }
-      else{
-           String sellerID = this.userAccount.getEmployee().getName();
-          sellerDirectory.add(sellerID,name,bhk,bathroom,img,price);
-           JOptionPane.showMessageDialog(null, "Added!");
-         
-      }
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void bathroomTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathroomTxtActionPerformed

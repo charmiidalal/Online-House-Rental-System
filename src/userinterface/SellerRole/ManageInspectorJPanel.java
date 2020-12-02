@@ -26,11 +26,12 @@ public class ManageInspectorJPanel extends javax.swing.JPanel {
      */
     private Enterprise enterprise;
     private UserAccount useraccount;
-     public ManageInspectorJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount) {
+     public ManageInspectorJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory) {
           initComponents();
               this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.useraccount=useraccount;
+        this.sellerDirectory=sellerDirectory;
     }
     /**
      * This method is called from within the constructor to initialize the form.

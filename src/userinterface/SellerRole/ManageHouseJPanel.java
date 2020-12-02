@@ -7,10 +7,13 @@ package userinterface.SellerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,14 +30,39 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount useraccount;
 
-    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount) {
+    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory) 
+    {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.useraccount=useraccount;
-
+        this.sellerDirectory=sellerDirectory;
+           populateTable();
     }
-
+private void populateTable()
+    {
+        DefaultTableModel dtm=(DefaultTableModel) jtblHouse.getModel();
+        dtm.setRowCount(0);
+        for(Seller seller : sellerDirectory.getSellerList())
+        {
+           
+            Object[] row=new Object[9];
+            row[0]=seller;
+            row[1]=seller.getAdvrt().getName();
+            row[2]=seller.getAdvrt().getAddress();
+            row[3]=seller.getAdvrt().getCity();
+             row[4]=seller.getAdvrt().getState();
+              row[5]=seller.getAdvrt().getZipcode();
+               row[6]=seller.getAdvrt().getBhk();
+                row[7]=seller.getAdvrt().getBathroom();
+             row[8]=seller.getAdvrt().getRent();
+             
+              
+               
+            dtm.addRow(row);
+            
+        }
+    }
     
 
     /**
@@ -47,7 +75,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtblHouse = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnAddHouse = new javax.swing.JButton();
         btnAssignTenant = new javax.swing.JButton();
@@ -55,29 +83,33 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnEdit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtblHouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "House Number", "House Type", "Building Name", "Tenant Name", "Status"
+                " Name", " Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(jtblHouse);
+        if (jtblHouse.getColumnModel().getColumnCount() > 0) {
+            jtblHouse.getColumnModel().getColumn(0).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(1).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(2).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(3).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(4).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(5).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(6).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(7).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(8).setResizable(false);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -85,6 +117,11 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
         btnAddHouse.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAddHouse.setText("Add New House");
+        btnAddHouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddHouseActionPerformed(evt);
+            }
+        });
 
         btnAssignTenant.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAssignTenant.setText("Assign New Tenant");
@@ -166,6 +203,10 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnAddHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddHouseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddHouseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddHouse;
@@ -175,6 +216,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtblHouse;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,11 @@
  */
 package userinterface.SellerRole;
 
+import Business.Enterprise.Enterprise;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,6 +22,10 @@ public class AddBuyerJPanel extends javax.swing.JPanel {
      */
     public AddBuyerJPanel() {
         initComponents();
+    }
+
+    AddBuyerJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -83,6 +91,11 @@ public class AddBuyerJPanel extends javax.swing.JPanel {
         });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnBack.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnBack.setText("<< Back");
@@ -196,6 +209,10 @@ public class AddBuyerJPanel extends javax.swing.JPanel {
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

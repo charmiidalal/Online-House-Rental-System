@@ -27,11 +27,12 @@ public class ManageInvoicesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageInvoicesJPanel
      */
-    public ManageInvoicesJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount){
+    public ManageInvoicesJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory){
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.useraccount=useraccount;
+        this.sellerDirectory=sellerDirectory;
 
     }
 
