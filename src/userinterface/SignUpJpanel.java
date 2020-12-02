@@ -269,7 +269,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
                     this.buyerDirectory.addBuyer(buyer);
                     Employee employee = system.getEmployeeDirectory().createEmployee(buyer.getBuyerNo());
                     system.setBuyerDirectory(buyerDirectory);
-                    UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole(), true);
+                    UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole(), true,name,emailAddress,"Buyer");
                 } else {
                     Seller seller = new Seller();
                     seller.setSellerNo(sellerDirectory.generateSellerID());
@@ -280,7 +280,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
                     this.sellerDirectory.addSeller(seller);
                     Employee employee = system.getEmployeeDirectory().createEmployee(seller.getSellerNo());
                     system.setSellerDirectory(sellerDirectory);
-                    UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole(), false);
+                    UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole(), false,name,emailAddress,"Seller");
                 }
                 dB4OUtil.storeSystem(system);
                 //emptyAllFields();

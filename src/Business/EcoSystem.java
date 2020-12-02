@@ -5,6 +5,8 @@
  */
 package Business;
 
+import Business.Agent.AgentDirectory;
+import Business.Builder.BuilderDirectory;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -12,10 +14,11 @@ import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
-
+import Business.Inspector.InspectorDirectory;
 import Business.Order.OrderDirectory;
-
 import Business.Organization.OrganizationDirectory;
+import Business.Photographer.PhotographerDirectory;
+import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 
 /**
@@ -30,10 +33,12 @@ public class EcoSystem extends Organization {
     private BuyerDirectory buyerDirectory;
     private SellerDirectory sellerDirectory;
     private OrganizationDirectory organizationDirectory;
-
+    private PhotographerDirectory photographerDirectory;
+    private InspectorDirectory inspectorDirectory;
     private OrderDirectory orderDirectory;
-
-
+    private AgentDirectory agentDirectory;
+    private BuilderDirectory builderDirectory;
+    private PropertyManagerDirectory propertyManagerDirectory;
     private ArrayList<Network> networkList;
     
     public OrganizationDirectory getOrganizationDirectory() {
@@ -122,4 +127,45 @@ public class EcoSystem extends Organization {
         this.orderDirectory = orderDirectory;
     }
 
+    public PhotographerDirectory getPhotographerDirectory() {
+        return photographerDirectory;
+    }
+
+    public void setPhotographerDirectory(PhotographerDirectory photographerDirectory) {
+        this.photographerDirectory = photographerDirectory;
+    }
+
+    public InspectorDirectory getInspectorDirectory() {
+        return inspectorDirectory;
+    }
+
+    public void setInspectorDirectory(InspectorDirectory inspectorDirectory) {
+        this.inspectorDirectory = inspectorDirectory;
+    }
+
+    public AgentDirectory getAgentDirectory() {
+        return agentDirectory;
+    }
+
+    public void setAgentDirectory(AgentDirectory agentDirectory) {
+        this.agentDirectory = agentDirectory;
+    }
+
+    public BuilderDirectory getBuilderDirectory() {
+        return builderDirectory;
+    }
+
+    public void setBuilderDirectory(BuilderDirectory builderDirectory) {
+        this.builderDirectory = builderDirectory;
+    }
+
+    public PropertyManagerDirectory getPropertyManagerDirectory() {
+        return propertyManagerDirectory;
+    }
+
+    public void setPropertyManagerDirectory(PropertyManagerDirectory propertyManagerDirectory) {
+        this.propertyManagerDirectory = propertyManagerDirectory;
+    }
+    
+    
 }

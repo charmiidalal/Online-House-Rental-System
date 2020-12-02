@@ -5,7 +5,6 @@
  */
 package Business.Agent;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -13,53 +12,41 @@ import java.util.ArrayList;
  */
 public class Agent {
 
-    private String name ;
-    private String userName;
-    private String password;
-    private String phone;
+    private String agentNo;
+    private String agentName;
+    private String agentPhone;
+    private String agentEmail;
 
-    public Agent(String name, String userName, String password, String phone) {
-        this.name = name;
-        this.userName = userName;
-        this.password = password;
-        this.phone = phone;
+    public String getAgentNo() {
+        return agentNo;
     }
 
-    
-
-    public String getName() {
-        return name;
+    public void setAgentNo(String agentNo) {
+        this.agentNo = agentNo;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getAgentName() {
+        return agentName;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getAgentPhone() {
+        return agentPhone;
     }
 
-    public String getPassword() {
-        return password;
+    public void setAgentPhone(String agentPhone) {
+        this.agentPhone = agentPhone;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getAgentEmail() {
+        return agentEmail;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setAgentEmail(String agentEmail) {
+        this.agentEmail = agentEmail;
     }
     
-    
-   
-
 }

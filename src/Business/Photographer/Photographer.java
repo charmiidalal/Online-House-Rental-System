@@ -11,59 +11,45 @@ package Business.Photographer;
  */
 public class Photographer {
 
-    private String customerNo;
-    private String customerName;
-    private String customerPhone;
-    private String customerStreet;
-    private String customerZipcode;
-    private String customerEmail;
+    private String photographerNo;
+    private String photographerName;
+    private String photographerPhone;
+    private String photographerEmail;
 
-    public String getCustomerNo() {
-        return customerNo;
+    public String getRole() {
+        return "Photographer";
     }
 
-    public void setCustomerNo(String customerNo) {
-        this.customerNo = customerNo;
+    public String getPhotographerNo() {
+        return photographerNo;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public void setPhotographerNo(String photographerNo) {
+        this.photographerNo = photographerNo;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public String getPhotographerName() {
+        return photographerName;
     }
 
-    public String getCustomerPhone() {
-        return customerPhone;
+    public void setPhotographerName(String photographerName) {
+        this.photographerName = photographerName;
     }
 
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
+    public String getPhotographerPhone() {
+        return photographerPhone;
     }
 
-    public String getCustomerStreet() {
-        return customerStreet;
+    public void setPhotographerPhone(String photographerPhone) {
+        this.photographerPhone = photographerPhone;
     }
 
-    public void setCustomerStreet(String customerStreet) {
-        this.customerStreet = customerStreet;
+    public String getPhotographerEmail() {
+        return photographerEmail;
     }
 
-    public String getCustomerZipcode() {
-        return customerZipcode;
-    }
-
-    public void setCustomerZipcode(String customerZipcode) {
-        this.customerZipcode = customerZipcode;
-    }
-
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
+    public void setPhotographerEmail(String photographerEmail) {
+        this.photographerEmail = photographerEmail;
     }
     
 }

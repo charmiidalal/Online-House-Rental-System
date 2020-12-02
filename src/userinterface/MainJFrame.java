@@ -7,7 +7,6 @@ package userinterface;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
-import Business.Employee.EmployeeDirectory;
 import Business.Seller.SellerDirectory;
 import java.awt.CardLayout;
 import java.io.IOException;
@@ -32,20 +31,8 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() throws IOException {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        if(system.getBuyerDirectory() == null)
-        {           
-            this.buyerDirectory = new BuyerDirectory();
-
-        } else {
-            this.buyerDirectory = system.getBuyerDirectory();
-        }
-        if (system.getSellerDirectory() == null) {
-            this.sellerDirectory = new SellerDirectory();
-
-        } else {
-            this.sellerDirectory = system.getSellerDirectory();
-        }
-        
+        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
     }
 
     /**
@@ -217,6 +204,7 @@ public class MainJFrame extends javax.swing.JFrame {
             txtUsername.setEnabled(false);
             txtPassword.setEnabled(false);
             btnLogin.setEnabled(false);
+            dB4OUtil.storeSystem(system);
         } else {
             JOptionPane.showMessageDialog(null, "Username or password incorrect. Please try again.");
         }

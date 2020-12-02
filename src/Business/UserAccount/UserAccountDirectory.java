@@ -35,13 +35,16 @@ public class UserAccountDirectory {
         return null;
     }
     
-    public UserAccount createUserAccount(String username, String password, Employee employee, Role role, Boolean isApproved){
+    public UserAccount createUserAccount(String username, String password, Employee employee, Role role, Boolean isApproved, String name, String email, String roleName){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
         userAccount.setIsApproved(isApproved);
+        userAccount.setEmail(email);
+        userAccount.setName(name);
+        userAccount.setRoleName(roleName);
         userAccountList.add(userAccount);
         return userAccount;
     }
