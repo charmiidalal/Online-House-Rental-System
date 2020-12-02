@@ -8,27 +8,34 @@ import Business.Agent.Agent;
 import Business.Agent.AgentDirectory;
 import Business.Builder.Builder;
 import Business.Builder.BuilderDirectory;
-import Business.Buyer.Buyer;
-import Business.DB4OUtil.DB4OUtil;
+import Business.Cleaner.Cleaner;
+import Business.Cleaner.CleanerDirectory;
 import Business.EcoSystem;
+import Business.Electrician.Electrician;
+import Business.Electrician.ElectricianDirectory;
 import Business.Employee.Employee;
-import Business.Enterprise.Enterprise;
+import Business.GovermentEmployee.GovermentEmployee;
+import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
-import Business.Network.Network;
-import Business.Organization.Organization;
+import Business.PackersMovers.PackersMovers;
+import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.Photographer;
 import Business.Photographer.PhotographerDirectory;
+import Business.Plumber.Plumber;
+import Business.Plumber.PlumberDirectory;
 import Business.PropertyManager.PropertyManager;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Role.AgentRole;
 import Business.Role.BuilderRole;
-import Business.Role.BuyerRole;
+import Business.Role.CleaningRole;
+import Business.Role.ElectricianRole;
+import Business.Role.GovermentEmployeeRole;
+import Business.Role.InspectorRole;
+import Business.Role.PackersMoversRole;
 import Business.Role.PhotographerRole;
+import Business.Role.PlumbingRole;
 import Business.Role.PropertyManagerRole;
-import Business.Role.Role;
-import Business.Role.SellerRole;
-import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -39,7 +46,6 @@ import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,17 +53,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CreateSystemUsersJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
-    private EcoSystem system;
-    private PhotographerDirectory photographerDirectory;
-    private InspectorDirectory inspectorDirectory;
-    private AgentDirectory agentDirectory;
-    private BuilderDirectory builderDirectory;
-    private PropertyManagerDirectory propertyManagerDirectory;
-    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    private final JPanel userProcessContainer;
+    private final EcoSystem system;
+    private final PhotographerDirectory photographerDirectory;
+    private final InspectorDirectory inspectorDirectory;
+    private final AgentDirectory agentDirectory;
+    private final BuilderDirectory builderDirectory;
+    private final PropertyManagerDirectory propertyManagerDirectory;
+    private final ElectricianDirectory electricianDirectory;
+    private final PlumberDirectory plumberDirectory;
+    private final CleanerDirectory cleanerDirectory;
+    private final PackersMoversDirectory packersMoversDirectory;
+    private final GovermentEmployeeDirectory govermentEmployeeDirectory;
 
     public enum RoleType {
-        Admin("Admin"),
         Buyer("Buyer"),
         Seller("Seller"),
         Inspector("Inspector"),
@@ -65,11 +74,10 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
         Builder("Builder"),
         PropertyManager("Property Manager"),
         Electrician("Electrician"),
-        Miscellaneous("Miscellaneous"),
-        Cleaning("Cleaning"),
+        Cleaning("Cleaner"),
         PackersMovers("Movers & Packers"),
         Photographer("Photographer"),
-        Plumbing("Plumbing"),
+        Plumbing("Plumber"),
         GovermentEmployee("Goverment Employee");
 
         private String value;
@@ -100,6 +108,12 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
         this.inspectorDirectory = (system.getInspectorDirectory() == null) ? new InspectorDirectory() : system.getInspectorDirectory();
         this.agentDirectory = (system.getAgentDirectory() == null) ? new AgentDirectory() : system.getAgentDirectory();
         this.builderDirectory = (system.getBuilderDirectory() == null) ? new BuilderDirectory() : system.getBuilderDirectory();
+        this.propertyManagerDirectory = (system.getPropertyManagerDirectory() == null) ? new PropertyManagerDirectory() : system.getPropertyManagerDirectory();
+        this.electricianDirectory = (system.getElectricianDirectory() == null) ? new ElectricianDirectory() : system.getElectricianDirectory();
+        this.plumberDirectory = (system.getPlumberDirectory() == null) ? new PlumberDirectory() : system.getPlumberDirectory();
+        this.cleanerDirectory = (system.getCleanerDirectory() == null) ? new CleanerDirectory() : system.getCleanerDirectory();
+        this.packersMoversDirectory = (system.getPackersMoversDirectory() == null) ? new PackersMoversDirectory() : system.getPackersMoversDirectory();
+        this.govermentEmployeeDirectory = (system.getGovermentEmployeeDirectory() == null) ? new GovermentEmployeeDirectory() : system.getGovermentEmployeeDirectory();
         populateComboBox();
     }
 
@@ -234,13 +248,11 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
-        sysAdminwjp.populateTree();
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.remove(this);
         layout.previous(userProcessContainer);
+        Component[] comps = this.userProcessContainer.getComponents();
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -285,21 +297,17 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 PhotographerRole role = new PhotographerRole();
                 system.setPhotographerDirectory(photographerDirectory);
                 UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Photographer");
-            }
-            else if(userType == "Inspector")
-            {
+            } else if (userType == "Inspector") {
                 Inspector inspector = new Inspector();
                 inspector.setInspectorName(name);
                 inspector.setInspectorEmail(emailAddress);
-                inspector.setInspectorNo(photographerDirectory.generatePhotographerID());
+                inspector.setInspectorNo(inspectorDirectory.generateInspectorID());
                 inspectorDirectory.addInspector(inspector);
                 Employee employee = system.getEmployeeDirectory().createEmployee(inspector.getInspectorNo());
-                PhotographerRole role = new PhotographerRole();
-                system.setPhotographerDirectory(photographerDirectory);
+                InspectorRole role = new InspectorRole();
+                system.setInspectorDirectory(inspectorDirectory);
                 UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Inspector");
-            }
-            else if(userType == "Agent")
-            {
+            } else if (userType == "Agent") {
                 Agent agent = new Agent();
                 agent.setAgentName(name);
                 agent.setAgentEmail(emailAddress);
@@ -309,21 +317,17 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 AgentRole role = new AgentRole();
                 system.setAgentDirectory(agentDirectory);
                 UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Agent");
-            }
-            else if(userType == "Builder")
-            {
+            } else if (userType == "Builder") {
                 Builder builder = new Builder();
                 builder.setBuilderName(name);
                 builder.setBuilderEmail(emailAddress);
-                builder.setBuilderNo(agentDirectory.generateAgentID());
+                builder.setBuilderNo(builderDirectory.generateBuilderID());
                 builderDirectory.addBuilder(builder);
                 Employee employee = system.getEmployeeDirectory().createEmployee(builder.getBuilderNo());
                 BuilderRole role = new BuilderRole();
                 system.setBuilderDirectory(builderDirectory);
                 UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Builder");
-            }
-            else if(userType == "Property Manager")
-            {
+            } else if (userType == "Property Manager") {
                 PropertyManager propertyManager = new PropertyManager();
                 propertyManager.setPropertyName(name);
                 propertyManager.setPropertyEmail(emailAddress);
@@ -333,6 +337,66 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 PropertyManagerRole role = new PropertyManagerRole();
                 system.setPropertyManagerDirectory(propertyManagerDirectory);
                 UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Property Manager");
+            } else if (userType == "Property Manager") {
+                PropertyManager propertyManager = new PropertyManager();
+                propertyManager.setPropertyName(name);
+                propertyManager.setPropertyEmail(emailAddress);
+                propertyManager.setPropertyNo(propertyManagerDirectory.generatePropertyManagerID());
+                propertyManagerDirectory.addPropertyManager(propertyManager);
+                Employee employee = system.getEmployeeDirectory().createEmployee(propertyManager.getPropertyNo());
+                PropertyManagerRole role = new PropertyManagerRole();
+                system.setPropertyManagerDirectory(propertyManagerDirectory);
+                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Property Manager");
+            } else if (userType == "Electrician") {
+                Electrician electrician = new Electrician();
+                electrician.setElectricianName(name);
+                electrician.setElectricianEmail(emailAddress);
+                electrician.setElectricianNo(propertyManagerDirectory.generatePropertyManagerID());
+                electricianDirectory.addElectrician(electrician);
+                Employee employee = system.getEmployeeDirectory().createEmployee(electrician.getElectricianNo());
+                ElectricianRole role = new ElectricianRole();
+                system.setElectricianDirectory(electricianDirectory);
+                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Electrician");
+            } else if (userType == "Plumber") {
+                Plumber plumber = new Plumber();
+                plumber.setPlumberName(name);
+                plumber.setPlumberEmail(emailAddress);
+                plumber.setPlumberNo(propertyManagerDirectory.generatePropertyManagerID());
+                plumberDirectory.addPlumber(plumber);
+                Employee employee = system.getEmployeeDirectory().createEmployee(plumber.getPlumberNo());
+                PlumbingRole role = new PlumbingRole();
+                system.setPlumberDirectory(plumberDirectory);
+                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Plumber");
+            } else if (userType == "Cleaner") {
+                Cleaner cleaner = new Cleaner();
+                cleaner.setCleanerName(name);
+                cleaner.setCleanerEmail(emailAddress);
+                cleaner.setCleanerNo(cleanerDirectory.generateCleanerID());
+                cleanerDirectory.addCleaner(cleaner);
+                Employee employee = system.getEmployeeDirectory().createEmployee(cleaner.getCleanerNo());
+                CleaningRole role = new CleaningRole();
+                system.setCleanerDirectory(cleanerDirectory);
+                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Cleaner");
+            } else if (userType == "Movers & Packers") {
+                PackersMovers packersMovers = new PackersMovers();
+                packersMovers.setPackersMoversName(name);
+                packersMovers.setPackersMoversEmail(emailAddress);
+                packersMovers.setPackersMoversNo(packersMoversDirectory.generatePackersMoversID());
+                packersMoversDirectory.addPackersMovers(packersMovers);
+                Employee employee = system.getEmployeeDirectory().createEmployee(packersMovers.getPackersMoversNo());
+                PackersMoversRole role = new PackersMoversRole();
+                system.setPackersMoversDirectory(packersMoversDirectory);
+                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Movers & Packers");
+            } else if (userType == "Goverment Employee") {
+                GovermentEmployee govermentEmployee = new GovermentEmployee();
+                govermentEmployee.setGovermentEmployeeName(name);
+                govermentEmployee.setGovermentEmployeeEmail(emailAddress);
+                govermentEmployee.setGovermentEmployeeNo(govermentEmployeeDirectory.generateGovermentEmployeeID());
+                govermentEmployeeDirectory.addGovermentEmployee(govermentEmployee);
+                Employee employee = system.getEmployeeDirectory().createEmployee(govermentEmployee.getGovermentEmployeeNo());
+                GovermentEmployeeRole role = new GovermentEmployeeRole();
+                system.setGovermentEmployeeDirectory(govermentEmployeeDirectory);
+                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, false, name, emailAddress, "Goverment Employee");
             }
             JOptionPane.showMessageDialog(null, userType + " added successfully");
         } catch (HeadlessException ex) {

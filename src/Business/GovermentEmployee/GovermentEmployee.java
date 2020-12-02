@@ -11,59 +11,42 @@ package Business.GovermentEmployee;
  */
 public class GovermentEmployee {
 
-    private String customerNo;
-    private String customerName;
-    private String customerPhone;
-    private String customerStreet;
-    private String customerZipcode;
-    private String customerEmail;
+    private String govermentEmployeeNo;
+    private String govermentEmployeeName;
+    private String govermentEmployeePhone;
+    private String govermentEmployeeEmail;
 
-    public String getCustomerNo() {
-        return customerNo;
+    public String getGovermentEmployeeNo() {
+        return govermentEmployeeNo;
     }
 
-    public void setCustomerNo(String customerNo) {
-        this.customerNo = customerNo;
+    public void setGovermentEmployeeNo(String govermentEmployeeNo) {
+        this.govermentEmployeeNo = govermentEmployeeNo;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getGovermentEmployeeName() {
+        return govermentEmployeeName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setGovermentEmployeeName(String govermentEmployeeName) {
+        this.govermentEmployeeName = govermentEmployeeName;
     }
 
-    public String getCustomerPhone() {
-        return customerPhone;
+    public String getGovermentEmployeePhone() {
+        return govermentEmployeePhone;
     }
 
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
+    public void setGovermentEmployeePhone(String govermentEmployeePhone) {
+        this.govermentEmployeePhone = govermentEmployeePhone;
     }
 
-    public String getCustomerStreet() {
-        return customerStreet;
+    public String getGovermentEmployeeEmail() {
+        return govermentEmployeeEmail;
     }
 
-    public void setCustomerStreet(String customerStreet) {
-        this.customerStreet = customerStreet;
+    public void setGovermentEmployeeEmail(String govermentEmployeeEmail) {
+        this.govermentEmployeeEmail = govermentEmployeeEmail;
     }
 
-    public String getCustomerZipcode() {
-        return customerZipcode;
-    }
-
-    public void setCustomerZipcode(String customerZipcode) {
-        this.customerZipcode = customerZipcode;
-    }
-
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
     
 }

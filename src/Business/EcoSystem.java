@@ -14,12 +14,17 @@ import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
+import Business.Cleaner.CleanerDirectory;
+import Business.Electrician.ElectricianDirectory;
+import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
 import Business.Order.OrderDirectory;
 import Business.Organization.OrganizationDirectory;
+import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
+import Business.Plumber.PlumberDirectory;
 
 /**
  *
@@ -38,7 +43,12 @@ public class EcoSystem extends Organization {
     private OrderDirectory orderDirectory;
     private AgentDirectory agentDirectory;
     private BuilderDirectory builderDirectory;
+    private ElectricianDirectory electricianDirectory;
     private PropertyManagerDirectory propertyManagerDirectory;
+    private PlumberDirectory plumberDirectory;
+    private CleanerDirectory cleanerDirectory;
+    private PackersMoversDirectory packersMoversDirectory;
+    private GovermentEmployeeDirectory govermentEmployeeDirectory;
     private ArrayList<Network> networkList;
     
     public OrganizationDirectory getOrganizationDirectory() {
@@ -166,6 +176,45 @@ public class EcoSystem extends Organization {
     public void setPropertyManagerDirectory(PropertyManagerDirectory propertyManagerDirectory) {
         this.propertyManagerDirectory = propertyManagerDirectory;
     }
-    
-    
+
+    public ElectricianDirectory getElectricianDirectory() {
+        return electricianDirectory;
+    }
+
+    public void setElectricianDirectory(ElectricianDirectory electricianDirectory) {
+        this.electricianDirectory = electricianDirectory;
+    } 
+
+    public PlumberDirectory getPlumberDirectory() {
+        return plumberDirectory;
+    }
+
+    public void setPlumberDirectory(PlumberDirectory plumberDirectory) {
+        this.plumberDirectory = plumberDirectory;
+    }
+
+    public CleanerDirectory getCleanerDirectory() {
+        return cleanerDirectory;
+    }
+
+    public void setCleanerDirectory(CleanerDirectory cleanerDirectory) {
+        this.cleanerDirectory = cleanerDirectory;
+    }
+
+    public PackersMoversDirectory getPackersMoversDirectory() {
+        return packersMoversDirectory;
+    }
+
+    public void setPackersMoversDirectory(PackersMoversDirectory packersMoversDirectory) {
+        this.packersMoversDirectory = packersMoversDirectory;
+    }
+
+    public GovermentEmployeeDirectory getGovermentEmployeeDirectory() {
+        return govermentEmployeeDirectory;
+    }
+
+    public void setGovermentEmployeeDirectory(GovermentEmployeeDirectory govermentEmployeeDirectory) {
+        this.govermentEmployeeDirectory = govermentEmployeeDirectory;
+    }
+     
 }

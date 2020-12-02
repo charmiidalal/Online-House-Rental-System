@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Inspector;
+package userinterface.inspector;
 
 import Business.EcoSystem;
 import Business.Order.Order;
@@ -25,25 +25,26 @@ public class InspectorJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private SellerDirectory sellerDirectory;
     private OrderDirectory orderDirectory;
+
     /**
      * Creates new form InspectorJPanel
      */
-    public InspectorJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem business ) {
+    public InspectorJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
-        this.userProcessContainer= userProcessContainer;
+        this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.business=business;
-        this.sellerDirectory=sellerDirectory;
-        this.orderDirectory=orderDirectory;
+        this.business = business;
+        this.sellerDirectory = sellerDirectory;
+        this.orderDirectory = orderDirectory;
     }
-    
-     public void populateTable(){
+
+    public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) requestTbl.getModel();
         model.setRowCount(0);
-        for(Order order: business.getOrderDirectory().getOrderDirectory()){
-            if(order.getInspector()!= null){
-                if(order.getInspector().getInspectorID().equalsIgnoreCase(account.getEmployee().getName())){
-                Object[] row = new Object[7];
+        for (Order order : business.getOrderDirectory().getOrderDirectory()) {
+            if (order.getInspector() != null) {
+                if (order.getInspector().getInspectorNo().equalsIgnoreCase(account.getEmployee().getName())) {
+                    Object[] row = new Object[7];
                     row[0] = order.getMessage();
                     row[1] = order.getSender();
                     row[2] = order.getReceiver();
@@ -52,7 +53,7 @@ public class InspectorJPanel extends javax.swing.JPanel {
                     row[5] = order.getBuyer().getBuyerStreet();
                     row[6] = order.getSeller().getSellerStreet();
                     model.addRow(row);
-            }
+                }
             }
         }
     }
@@ -148,28 +149,27 @@ public class InspectorJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void completeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeTxtActionPerformed
-        
+
     }//GEN-LAST:event_completeTxtActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           int selectedRow = requestTbl.getSelectedRow();
-        
-        if (selectedRow < 0){
+        int selectedRow = requestTbl.getSelectedRow();
+
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Select a row!");
             return;
         }
-        
+
         String selectedOrderId = (String) requestTbl.getValueAt(selectedRow, 4);
         Order order = business.getOrderDirectory().getOrderByOrderId(selectedOrderId);
-     
-        if(order.getStatus().trim().equalsIgnoreCase("Inspection underway")){
+
+        if (order.getStatus().trim().equalsIgnoreCase("Inspection underway")) {
             order.setResult(completeTxt.getText());
             order.setStatus("Completed");
             completeTxt.setText("");
             JOptionPane.showMessageDialog(null, "Order updated!");
             populateTable();
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Accept inspection before confirming");
         }
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -31,7 +31,7 @@ public class BuilderDirectory {
         builderList.remove(builder);
     }
 
-    public String generateAgentID() {
+    public String generateBuilderID() {
         return "Builder" + (builderList.size() + 1);
     }
     
