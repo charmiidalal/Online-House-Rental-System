@@ -5,7 +5,11 @@
  */
 package userinterface.SellerRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -17,9 +21,17 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageBuyerJPanel
      */
-    
-     public ManageBuyerJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private SellerDirectory sellerDirectory;
+    private Enterprise enterprise;
+    private UserAccount useraccount;
+
+     public ManageBuyerJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.enterprise=enterprise;
+        this.useraccount=useraccount;
     }
 
     /**
@@ -36,6 +48,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         btnAddBuyer = new javax.swing.JButton();
         btnEditBuyer = new javax.swing.JButton();
         btnDeleteBuyer = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         jTable1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -78,14 +91,17 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
         btnDeleteBuyer.setText("Delete Buyer");
 
+        btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAddBuyer, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,11 +110,22 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
                 .addGap(93, 93, 93)
                 .addComponent(btnDeleteBuyer)
                 .addGap(122, 122, 122))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -113,9 +140,18 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddBuyerActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount);
+        userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBuyer;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDeleteBuyer;
     private javax.swing.JButton btnEditBuyer;
     private javax.swing.JScrollPane jScrollPane1;

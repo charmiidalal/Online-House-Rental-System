@@ -6,6 +6,7 @@
 package Business.Seller;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -57,5 +58,9 @@ public class SellerDirectory {
     ///./////// need to change ///////////////
     public Seller getSellerByIndex(int index) {
         return sellerList.get(index);
+    }
+
+    public void add(String sellerID, String name, int bhk, double bathroom, ImageIcon img, double price) {
+       
     }
 }

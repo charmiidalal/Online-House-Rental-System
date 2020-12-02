@@ -5,7 +5,11 @@
  */
 package userinterface.SellerRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -13,13 +17,20 @@ import javax.swing.JPanel;
  * @author anush
  */
 public class ManageInspectorJPanel extends javax.swing.JPanel {
-
+   private JPanel userProcessContainer;
+    private EcoSystem business;
+   
+    private SellerDirectory sellerDirectory;
     /**
-     * Creates new form ManageInspectorJPanel
+     * Creates new form SellerWorkAreaJPanel1
      */
- 
-     public ManageInspectorJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    private Enterprise enterprise;
+    private UserAccount useraccount;
+     public ManageInspectorJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount) {
           initComponents();
+              this.userProcessContainer=userProcessContainer;
+        this.enterprise=enterprise;
+        this.useraccount=useraccount;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,19 +41,43 @@ public class ManageInspectorJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnBack = new javax.swing.JButton();
+
+        btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btnBack)
+                .addContainerGap(594, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btnBack)
+                .addContainerGap(486, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount);
+        userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     // End of variables declaration//GEN-END:variables
 }
