@@ -19,32 +19,16 @@ public class Seller {
     private String sellerEmail;
     private Boolean isApproved;
     private String username;
-    private Advertisement advrt;
 
-     public Seller(String sellerNo, String sellerName,String sellerPhone,String sellerStreet,String sellerZipcode,String sellerEmail) {
-        this.sellerNo = sellerNo;
-        this.sellerName=sellerName;
-        this.sellerPhone=sellerPhone;
-        this.sellerStreet=sellerStreet;
-        
-        this.sellerZipcode = sellerZipcode;
-        this.sellerEmail=sellerEmail;
-        this.advrt=new Advertisement();
+//     public Seller(String sellerNo, String sellerName,String sellerPhone,String sellerStreet,String sellerZipcode,String sellerEmail) {
+//        this.sellerNo = sellerNo;
+//        this.sellerName=sellerName;
+//        this.sellerPhone=sellerPhone;
+//        this.sellerStreet=sellerStreet;
+//        this.sellerZipcode = sellerZipcode;
+//        this.sellerEmail=sellerEmail;
+//    }
      
-        
-    }
-
-    public Advertisement getAdvrt() {
-        return advrt;
-    }
-
-    public void setAdvrt(Advertisement advrt) {
-        this.advrt = advrt;
-    }
-     public Seller()
-     {
-         this.advrt=new Advertisement();
-     }
     public String getUsername() {
         return username;
     }
@@ -109,6 +93,6 @@ public class Seller {
     public void setSellerEmail(String sellerEmail) {
         this.sellerEmail = sellerEmail;
     }
-
+    
     
 }

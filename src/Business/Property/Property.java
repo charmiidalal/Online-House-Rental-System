@@ -5,37 +5,50 @@
  */
 package Business.Property;
 
+import Business.Buyer.Buyer;
 import Business.Seller.Seller;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Dinesh
  */
 public class Property {
+
+    private ImageIcon uploadImg;
     private String PropertyID;
     private String propertyName;
+    private String street;
     private String city;
     private String state;
     private String pincode;
-    private int price;
+    private String status;
+    private double price;
     private BufferedImage img;
     private int bhk;
     private double bathroom;
     private Seller seller;
+    private Buyer buyer;
+    ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
 
-    public Property(String PropertyID, String propertyName, String city, String state, String pincode, int price, BufferedImage img, int bhk, double bathroom, Seller seller) {
-        this.PropertyID = PropertyID;
-        this.propertyName = propertyName;
-        this.city = city;
-        this.state = state;
-        this.pincode = pincode;
-        this.price = price;
-        this.img = img;
-        this.bhk = bhk;
-        this.bathroom = bathroom;
-        this.seller = seller;
+    public String getStatus() {
+        return status;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public ArrayList<Buyer> getBuyerList() {
+        return buyerList;
+    }
+
+    public void setBuyerList(ArrayList<Buyer> buyerList) {
+        this.buyerList = buyerList;
+    }
+    
 
     public String getPropertyName() {
         return propertyName;
@@ -69,11 +82,11 @@ public class Property {
         this.pincode = pincode;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -100,11 +113,22 @@ public class Property {
     public void setBathroom(double bathroom) {
         this.bathroom = bathroom;
     }
-    
-    
-    
-    
-    
+
+    public ImageIcon getUploadImg() {
+        return uploadImg;
+    }
+
+    public void setUploadImg(ImageIcon uploadImg) {
+        this.uploadImg = uploadImg;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
 
     public String getPropertyID() {
         return PropertyID;
@@ -120,5 +144,17 @@ public class Property {
 
     public void setSeller(Seller seller) {
         this.seller = seller;
+    }
+
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
+    @Override
+    public String toString() {
+        return propertyName;
     }
 }

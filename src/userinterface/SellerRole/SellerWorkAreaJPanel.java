@@ -29,15 +29,15 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
      */
     private Enterprise enterprise;
     private UserAccount useraccount;
-
+    private EcoSystem system;
     
-    public SellerWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount) {
+    public SellerWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount,EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.useraccount=useraccount;
-        this.sellerDirectory=new SellerDirectory();
-
+        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
+        this.system = system;
     }
 
     /**
@@ -129,7 +129,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAdvrtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdvrtActionPerformed
         // TODO add your handling code here:
-        CreateAdvertiseJPanel advrtPanel = new CreateAdvertiseJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory);
+        CreateAdvertiseJPanel advrtPanel = new CreateAdvertiseJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
         userProcessContainer.add("CreateAdvertiseJPanel", advrtPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -137,7 +137,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnBuyersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyersActionPerformed
         // TODO add your handling code here:
-        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory);
+        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
         userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -145,7 +145,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnInspectorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspectorsActionPerformed
         // TODO add your handling code here:
-        ManageInspectorJPanel mngInspectorPanel = new ManageInspectorJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory);
+        ManageInspectorJPanel mngInspectorPanel = new ManageInspectorJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
         userProcessContainer.add("ManageInspectorJPanel", mngInspectorPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -153,7 +153,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
         // TODO add your handling code here:
-        ManageInvoicesJPanel mngServicesPanel = new ManageInvoicesJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory);
+        ManageInvoicesJPanel mngServicesPanel = new ManageInvoicesJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
         userProcessContainer.add("ManageServicesJPanel", mngServicesPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -161,7 +161,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageHouseActionPerformed
         // TODO add your handling code here:
-         ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory);
+         ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
         userProcessContainer.add("ManageHouseJPanel", mngHousesPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

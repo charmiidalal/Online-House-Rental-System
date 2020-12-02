@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author Dinesh
  */
-public class CreateBuilderJPanel extends javax.swing.JPanel {
+public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
 
     
     private JPanel userProcessContainer;
@@ -23,7 +23,8 @@ public class CreateBuilderJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateBuilderJPanel
      */
-    public CreateBuilderJPanel(JPanel userProcessContainer,EcoSystem system,UserAccount account) {
+
+    public BuilderWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
         this.userProcessContainer= userProcessContainer;
         this.account=account;

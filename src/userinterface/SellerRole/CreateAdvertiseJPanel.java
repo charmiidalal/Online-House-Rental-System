@@ -7,8 +7,8 @@ package userinterface.SellerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Seller.Advertisement;
-import Business.Seller.AdvertisementDirectory;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -30,22 +30,25 @@ import javax.swing.JPanel;
 public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
     JFileChooser imgChooser;
-    private EcoSystem business;
+    private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
     BufferedImage img;
     private JPanel userProcessContainer;
     private final Enterprise enterprise;
+    private PropertyDirectory propertyDirectory;
 
     /**
      * Creates new form CreateAdvertiseJPanel
      */
-    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory) {
+    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = useraccount;
         this.sellerDirectory = sellerDirectory;
+        this.system = system;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
     }
 
     /**
@@ -318,38 +321,20 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
         } else {
             String sellerID = this.userAccount.getEmployee().getName();
-            JOptionPane.showMessageDialog(null, "employee id name" + sellerID);
-
-            //Seller seller=this.sellerDirectory.searchseller(sellerID);
-            //  seller.setSellerName(sellerID);
-            // String sellerEmail=seller.getSellerEmail();
-            // seller.setSellerEmail(sellerEmail);
-            // JOptionPane.showMessageDialog(null,"selleremail"+sellerEmail);
-            // String sellerPhone=seller.getSellerPhone();
-            // seller.setSellerPhone(sellerPhone);
-            // JOptionPane.showMessageDialog(null,"sellerph"+ sellerPhone);
-            //  String sellerStreet=seller.getSellerStreet();
-            // seller.setSellerStreet(sellerStreet);
-            // JOptionPane.showMessageDialog(null,"sellerstreet"+sellerStreet);
-            //   String sellerZipcode=seller.getSellerZipcode();
-            // seller.setSellerZipcode(sellerZipcode);
-            // JOptionPane.showMessageDialog(null,"sellerzipcode"+sellerZipcode);
-            // Boolean sellerIsapproved=seller.getIsApproved();
-            //  seller.setIsApproved(sellerIsapproved);
-            // JOptionPane.showMessageDialog(null, "sellerapproved"+sellerIsapproved);
-            // this.sellerDirectory.addSeller(seller);
-            Advertisement advrt = new Advertisement();
-            advrt.setName(name);
-            advrt.setAddress(address);
-            advrt.setZipcode(pincode);
-            advrt.setCity(city);
-            advrt.setState(state);
-            advrt.setBhk(bhk);
-            advrt.setBathroom(bathroom);
-            advrt.setRent(price);
-            AdvertisementDirectory advrtdirector = new AdvertisementDirectory();
-            advrtdirector.addAdvertisement(advrt);
-
+            Property property = new Property();
+            property.setPropertyName(name);
+            property.setStreet(address);
+            property.setPincode(pincode);
+            property.setCity(city);
+            property.setState(state);
+            property.setBhk(bhk);
+            property.setBathroom(bathroom);
+            property.setPrice(price);
+            property.setStatus("On Sell");
+            property.setSeller(sellerDirectory.fetchSeller(sellerID));
+            property.setPropertyID(propertyDirectory.generatePropertyID());
+            propertyDirectory.addProperty(property);
+            system.setPropertyDirectory(propertyDirectory);
             JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + "seller!");
 
         }
@@ -365,7 +350,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, userAccount);
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, userAccount,system);
         userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

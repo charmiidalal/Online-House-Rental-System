@@ -34,5 +34,12 @@ public class InspectorDirectory {
     public String generateInspectorID() {
         return "Inspector" + (inspectorList.size() + 1);
     }
-
+    public Inspector fetchInspector(String InspectorNo) {
+        for (Inspector inspector : inspectorList) {
+            if (inspector.getInspectorNo().equalsIgnoreCase(InspectorNo)) {
+                return inspector;
+            }
+        }
+        return null;
+    }
 }
