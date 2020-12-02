@@ -7,6 +7,7 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -51,6 +52,7 @@ public abstract class Role {
             UserAccount account,
             Organization organization, 
             Enterprise enterprise, 
+            
             EcoSystem business);
     
 

@@ -101,7 +101,7 @@ public class InspectorJPanel extends javax.swing.JPanel {
             requestTbl.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        jButton1.setText("Take Job Bla bla");
+        jButton1.setText("Take Job ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -109,6 +109,11 @@ public class InspectorJPanel extends javax.swing.JPanel {
         });
 
         submitBtn.setText("Mark complete:");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         completeTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,8 +159,24 @@ public class InspectorJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int selectedRow = requestTbl.getSelectedRow();
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Select a row!");
+            return;
+        }
+        
+        String selectedOrderId = (String) requestTbl.getValueAt(selectedRow, 4);
+        Order order = business.getOrderDirectory().getOrderByOrderId(selectedOrderId);
+     
+        order.setStatus("Inspection Underway");
+        JOptionPane.showMessageDialog(null, "Request Updated");
+        populateTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        if (selectedRow < 0) {
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+           int selectedRow = requestTbl.getSelectedRow();
+        
+        if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Select a row!");
             return;
         }
@@ -167,12 +188,12 @@ public class InspectorJPanel extends javax.swing.JPanel {
             order.setResult(completeTxt.getText());
             order.setStatus("Completed");
             completeTxt.setText("");
-            JOptionPane.showMessageDialog(null, "Order updated!");
+            JOptionPane.showMessageDialog(null, "Request Uodated");
             populateTable();
         } else {
             JOptionPane.showMessageDialog(null, "Accept inspection before confirming");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_submitBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
