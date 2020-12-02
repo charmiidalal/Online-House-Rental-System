@@ -10,6 +10,8 @@ import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Order.Order;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -28,6 +30,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
+    private PropertyDirectory propertyDirectory;
 
     /**
      * Creates new form BuyerWorkAreaJpanel
@@ -37,21 +40,26 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcess;
         this.business = ecosystem;
         this.userAccount = userAccount;
+        //this.propertyDirectory=propertyDirectory;
         //this.sellerDirectory = sellerDirectory;
-        //populateMenuTable();
+        populateRequestTable();
     }
+
+   
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-//        for (Seller seller : sellerDirectory.getSellerList()) {
-//            Object[] row = new Object[4];
-//            row[0] = seller.getSellerName();
-//            row[1] = seller.getSellerNo();
-//            row[2] = seller.getSellerStreet();
-//            row[3] = seller.getSellerZipcode();
-//            model.addRow(row);
-//        }
+        for (Property property : propertyDirectory.getPropertyList()) {
+            Object[] row = new Object[6];
+            row[0] = property.getPropertyName();
+            row[1] = property.getPrice();
+            row[2] = property.getBhk();
+            row[3] = property.getBathroom();
+            row[4] = property.getCity();
+            row[5]=property.getState();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -87,11 +95,11 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Price", "BHK", "Bathroom"
+                "Name", "Price", "BHK", "Bathroom", "City", "State"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,6 +112,8 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             houseTable.getColumnModel().getColumn(1).setResizable(false);
             houseTable.getColumnModel().getColumn(2).setResizable(false);
             houseTable.getColumnModel().getColumn(3).setResizable(false);
+            houseTable.getColumnModel().getColumn(4).setResizable(false);
+            houseTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -142,8 +152,8 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             if (selectedRow >= 0) {
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 String Id = (String) houseTable.getValueAt(selectedRow, 0);
-                Seller seller = sellerDirectory.fetchSeller(Id);
-                ViewDetailsJPanel viewJPanel = new ViewDetailsJPanel(userProcessContainer, seller, sellerDirectory);
+                Property seller = propertyDirectory.fetchProperty(Id);
+                ViewDetailsJPanel viewJPanel = new ViewDetailsJPanel(userProcessContainer, seller, propertyDirectory);
                 userProcessContainer.add(viewJPanel);
                 layout.next(userProcessContainer);
             }
