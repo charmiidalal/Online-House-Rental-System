@@ -304,6 +304,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 Inspector inspector = new Inspector();
                 inspector.setInspectorName(name);
                 inspector.setEmail(emailAddress);
+                inspector.setStatus("Available");
                 inspector.setInspectorNo(inspectorDirectory.generateInspectorID());
                 inspectorDirectory.addInspector(inspector);
                 Employee employee = system.getEmployeeDirectory().createEmployee(inspector.getInspectorNo());

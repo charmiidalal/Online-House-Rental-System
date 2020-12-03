@@ -278,10 +278,9 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        InspectorWorkAreaJPanel inspectorWorkAreaJPanel = new InspectorWorkAreaJPanel(userProcessContainer, system, userAccount);
-        userProcessContainer.add("InspectorWorkAreaJPanel", inspectorWorkAreaJPanel);
+        userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

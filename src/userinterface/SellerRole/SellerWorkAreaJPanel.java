@@ -21,7 +21,6 @@ import javax.swing.JPanel;
  */
 public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private EcoSystem business;
    
     private SellerDirectory sellerDirectory;
     /**
@@ -31,7 +30,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount useraccount;
     private EcoSystem system;
     
-    public SellerWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount,EcoSystem system) {
+    public SellerWorkAreaJPanel(JPanel userProcessContainer,UserAccount useraccount,EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
@@ -57,6 +56,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         btnInspectors = new javax.swing.JButton();
         btnServices = new javax.swing.JButton();
         btnManageHouse = new javax.swing.JButton();
+        btnManageProfile = new javax.swing.JButton();
 
         btnBuyers.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBuyers.setText("Manage Buyers");
@@ -98,6 +98,14 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnManageProfile.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnManageProfile.setText("Manage Profile");
+        btnManageProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageProfileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,27 +114,30 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnManageHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnServices, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInspectors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAdvrt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuyers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(560, Short.MAX_VALUE))
+                    .addComponent(btnInspectors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdvrt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBuyers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(181, 181, 181)
+                .addComponent(btnServices, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(232, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(btnAdvrt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdvrt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnServices, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addComponent(btnManageHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(btnBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnInspectors, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(btnServices, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                .addGap(57, 57, 57)
+                .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,12 +181,21 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageHouseActionPerformed
 
+    private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
+        // TODO add your handling code here:
+        ManageSellerProfileJPanel manageSellerProfileJPanel = new ManageSellerProfileJPanel(userProcessContainer,system,useraccount);
+        userProcessContainer.add("ManageInspectorJPanel", manageSellerProfileJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageProfileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdvrt;
     private javax.swing.JButton btnBuyers;
     private javax.swing.JButton btnInspectors;
     private javax.swing.JButton btnManageHouse;
+    private javax.swing.JButton btnManageProfile;
     private javax.swing.JButton btnServices;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,7 +22,8 @@ import Business.WorkQueue.WorkRequest;
     private Buyer buyer;
     private Inspector inspector;
     private Property property;
-    private String note;
+    private String inspectorNote;
+     private String buyerNote;
     private String status;
     private String requestedDate;
 
@@ -58,14 +59,23 @@ import Business.WorkQueue.WorkRequest;
         this.inspector = inspector;
     }
 
-    public String getNote() {
-        return note;
+    public String getInspectorNote() {
+        return inspectorNote;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setInspectorNote(String inspectorNote) {
+        this.inspectorNote = inspectorNote;
     }
 
+    public String getBuyerNote() {
+        return buyerNote;
+    }
+
+    public void setBuyerNote(String buyerNote) {
+        this.buyerNote = buyerNote;
+    }
+
+    
     public String getStatus() {
         return status;
     }

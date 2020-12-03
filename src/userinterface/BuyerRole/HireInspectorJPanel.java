@@ -151,9 +151,8 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         if (count == 1) {
             Inspector inspector = inspectorDirectory.fetchInspector(inspectorID);
             if ("Available".equals(inspector.getStatus())) {
-                inspector.setStatus("Occupied");
                 InspectRequest ir = new InspectRequest();
-                ir.setRequestID(inspectorDirectory.generateInspectorID());
+                ir.setRequestID(inspectRequestDirectory.generateInspectorRequestID());
                 ir.setBuyer(buyer);
                 ir.setInspector(inspector);
                 ir.setSeller(property.getSeller());

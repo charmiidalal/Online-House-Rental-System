@@ -228,7 +228,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
 
-            String emailAddress = txtFullName.getText();
+            String emailAddress = txtEmail.getText();
             String username = txtUsername.getText();
             String name = txtFullName.getText();
             String password = txtPassword.getText();

@@ -113,7 +113,7 @@ public class ElectricianWorkAreaJPanel extends javax.swing.JPanel {
                 takeBtnActionPerformed(evt);
             }
         });
-        add(takeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
+        add(takeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
         jButton2.setText("Complete ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -121,8 +121,8 @@ public class ElectricianWorkAreaJPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, -1, -1));
-        add(commentTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 90, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, -1, -1));
+        add(commentTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 90, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void takeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeBtnActionPerformed

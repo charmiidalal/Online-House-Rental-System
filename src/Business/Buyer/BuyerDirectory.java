@@ -48,5 +48,14 @@ public class BuyerDirectory {
         }
         return null;
     }
+     
+    public Buyer fetchBuyer(String BuyerNo) {
+        for (Buyer buyer : buyerList) {
+            if (buyer.getBuyerNo().equalsIgnoreCase(BuyerNo)) {
+                return buyer;
+            }
+        }
+        return null;
+    }
     
 }
