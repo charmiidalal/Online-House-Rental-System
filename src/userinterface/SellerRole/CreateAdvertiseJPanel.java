@@ -330,7 +330,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             property.setBhk(bhk);
             property.setBathroom(bathroom);
             property.setPrice(price);
-            property.setStatus("On Sell");
+            property.setStatus("Vacant");
             property.setSeller(sellerDirectory.fetchSeller(sellerID));
             property.setPropertyID(propertyDirectory.generatePropertyID());
             propertyDirectory.addProperty(property);

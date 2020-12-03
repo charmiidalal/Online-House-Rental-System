@@ -10,11 +10,11 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Dinesh
+ * @author anusha
  */
 public class SellerDirectory {
 
-    ArrayList<Seller> sellerList = new ArrayList<Seller>();
+    private ArrayList<Seller> sellerList = new ArrayList<Seller>();
 
     public ArrayList<Seller> getSellerList() {
         return sellerList;
@@ -34,7 +34,7 @@ public class SellerDirectory {
     }
 
     public Seller searchseller(String sellerName) {
-  for (Seller seller : sellerList) {
+        for (Seller seller : sellerList) {
             if (seller.getName().equalsIgnoreCase(sellerName)) {
                 return seller;
             }
@@ -59,7 +59,5 @@ public class SellerDirectory {
     public Seller getSellerByIndex(int index) {
         return sellerList.get(index);
     }
-  
 
-   
 }
