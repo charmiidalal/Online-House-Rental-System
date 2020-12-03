@@ -303,7 +303,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             } else if (userType == "Inspector") {
                 Inspector inspector = new Inspector();
                 inspector.setInspectorName(name);
-                inspector.setInspectorEmail(emailAddress);
+                inspector.setEmail(emailAddress);
                 inspector.setInspectorNo(inspectorDirectory.generateInspectorID());
                 inspectorDirectory.addInspector(inspector);
                 Employee employee = system.getEmployeeDirectory().createEmployee(inspector.getInspectorNo());

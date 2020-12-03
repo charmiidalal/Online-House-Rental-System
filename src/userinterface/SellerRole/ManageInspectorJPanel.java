@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  */
 public class ManageInspectorJPanel extends javax.swing.JPanel {
    private JPanel userProcessContainer;
-    private EcoSystem business;
+    private EcoSystem system;
    
     private SellerDirectory sellerDirectory;
     /**
@@ -26,12 +26,13 @@ public class ManageInspectorJPanel extends javax.swing.JPanel {
      */
     private Enterprise enterprise;
     private UserAccount useraccount;
-     public ManageInspectorJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory) {
+     public ManageInspectorJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory,EcoSystem system) {
           initComponents();
               this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.useraccount=useraccount;
         this.sellerDirectory=sellerDirectory;
+        this.system = system;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +72,7 @@ public class ManageInspectorJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount);
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount,system);
         userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

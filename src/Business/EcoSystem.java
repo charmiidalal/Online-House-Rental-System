@@ -18,13 +18,14 @@ import Business.Cleaner.CleanerDirectory;
 import Business.Electrician.ElectricianDirectory;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
-import Business.Order.OrderDirectory;
+import Business.InspectRequest.InspectRequestDirectory;
 import Business.Organization.OrganizationDirectory;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
+import Business.Property.PropertyDirectory;
 
 /**
  *
@@ -32,7 +33,6 @@ import Business.Plumber.PlumberDirectory;
  */
 public class EcoSystem extends Organization {
 
-   
     private static EcoSystem business;
     private EnterpriseDirectory enterpriseDirectory;
     private BuyerDirectory buyerDirectory;
@@ -40,7 +40,7 @@ public class EcoSystem extends Organization {
     private OrganizationDirectory organizationDirectory;
     private PhotographerDirectory photographerDirectory;
     private InspectorDirectory inspectorDirectory;
-    private OrderDirectory orderDirectory;
+    private InspectRequestDirectory orderDirectory;
     private AgentDirectory agentDirectory;
     private BuilderDirectory builderDirectory;
     private ElectricianDirectory electricianDirectory;
@@ -49,8 +49,10 @@ public class EcoSystem extends Organization {
     private CleanerDirectory cleanerDirectory;
     private PackersMoversDirectory packersMoversDirectory;
     private GovermentEmployeeDirectory govermentEmployeeDirectory;
+    private PropertyDirectory propertyDirectory;
+    private InspectRequestDirectory inspectRequestDirectory;
     private ArrayList<Network> networkList;
-    
+
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
@@ -58,7 +60,7 @@ public class EcoSystem extends Organization {
     public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
         this.organizationDirectory = organizationDirectory;
     }
-    
+
     public static EcoSystem getInstance() {
         if (business == null) {
             business = new EcoSystem();
@@ -124,16 +126,15 @@ public class EcoSystem extends Organization {
         return sellerDirectory;
     }
 
-
     public void setSellerDirectory(SellerDirectory sellerDirectory) {
         this.sellerDirectory = sellerDirectory;
     }
 
-    public OrderDirectory getOrderDirectory() {
+    public InspectRequestDirectory getOrderDirectory() {
         return orderDirectory;
     }
 
-    public void setOrderDirectory(OrderDirectory orderDirectory) {
+    public void setOrderDirectory(InspectRequestDirectory orderDirectory) {
         this.orderDirectory = orderDirectory;
     }
 
@@ -183,7 +184,7 @@ public class EcoSystem extends Organization {
 
     public void setElectricianDirectory(ElectricianDirectory electricianDirectory) {
         this.electricianDirectory = electricianDirectory;
-    } 
+    }
 
     public PlumberDirectory getPlumberDirectory() {
         return plumberDirectory;
@@ -216,5 +217,21 @@ public class EcoSystem extends Organization {
     public void setGovermentEmployeeDirectory(GovermentEmployeeDirectory govermentEmployeeDirectory) {
         this.govermentEmployeeDirectory = govermentEmployeeDirectory;
     }
-     
+
+    public PropertyDirectory getPropertyDirectory() {
+        return propertyDirectory;
+    }
+
+    public void setPropertyDirectory(PropertyDirectory propertyDirectory) {
+        this.propertyDirectory = propertyDirectory;
+    }
+
+    public InspectRequestDirectory getInspectRequestDirectory() {
+        return inspectRequestDirectory;
+    }
+
+    public void setInspectRequestDirectory(InspectRequestDirectory inspectRequestDirectory) {
+        this.inspectRequestDirectory = inspectRequestDirectory;
+    }
+
 }

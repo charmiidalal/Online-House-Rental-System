@@ -7,6 +7,8 @@ package userinterface.SellerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -20,50 +22,48 @@ import javax.swing.table.DefaultTableModel;
  * @author anush
  */
 public class ManageHouseJPanel extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private EcoSystem business;
-   
     private SellerDirectory sellerDirectory;
     /**
      * Creates new form ManageHouseJPanel
      */
     private Enterprise enterprise;
     private UserAccount useraccount;
+    private PropertyDirectory propertyDirectory;
+    private EcoSystem system;
 
-    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory) 
-    {
+    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory, EcoSystem system) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.enterprise=enterprise;
-        this.useraccount=useraccount;
-        this.sellerDirectory=sellerDirectory;
-           populateTable();
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.useraccount = useraccount;
+        this.sellerDirectory = sellerDirectory;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+        populateTable();
     }
-private void populateTable()
-    {
-        DefaultTableModel dtm=(DefaultTableModel) jtblHouse.getModel();
+
+    private void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
         dtm.setRowCount(0);
-        for(Seller seller : sellerDirectory.getSellerList())
-        {
-           
-            Object[] row=new Object[9];
-            row[0]=seller;
-            row[1]=seller.getAdvrt().getName();
-            row[2]=seller.getAdvrt().getAddress();
-            row[3]=seller.getAdvrt().getCity();
-             row[4]=seller.getAdvrt().getState();
-              row[5]=seller.getAdvrt().getZipcode();
-               row[6]=seller.getAdvrt().getBhk();
-                row[7]=seller.getAdvrt().getBathroom();
-             row[8]=seller.getAdvrt().getRent();
-             
-              
-               
-            dtm.addRow(row);
-            
+        for (Property property : propertyDirectory.getPropertyList()) {
+            if(property.getSeller().getUsername().equals(useraccount.getUsername())){
+                Object[] row = new Object[10];
+                row[0] = property.getPropertyName();
+                row[1] = property.getStreet();
+                row[2] = property.getCity();
+                row[3] = property.getState();
+                row[4] = property.getPincode();
+                row[5] = property.getBhk();
+                row[6] = property.getBathroom();
+                row[7] = property.getPrice();
+                row[8] = property.getStatus();
+                row[9] = property.getBuyer();
+                dtm.addRow(row);
+            }
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,22 +77,21 @@ private void populateTable()
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblHouse = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        btnAddHouse = new javax.swing.JButton();
-        btnAssignTenant = new javax.swing.JButton();
         btnDeleteHouse = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnSellHouse = new javax.swing.JButton();
 
         jtblHouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                " Name", " Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status"
+                " Name", " Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status", "SoldTo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,17 +114,6 @@ private void populateTable()
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("List of All Houses");
 
-        btnAddHouse.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnAddHouse.setText("Add New House");
-        btnAddHouse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddHouseActionPerformed(evt);
-            }
-        });
-
-        btnAssignTenant.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnAssignTenant.setText("Assign New Tenant");
-
         btnDeleteHouse.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnDeleteHouse.setText("Delete House");
         btnDeleteHouse.addActionListener(new java.awt.event.ActionListener() {
@@ -144,6 +132,14 @@ private void populateTable()
             }
         });
 
+        btnSellHouse.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSellHouse.setText("Sell House");
+        btnSellHouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSellHouseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,22 +147,20 @@ private void populateTable()
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(btnAddHouse)
-                        .addGap(43, 43, 43)
-                        .addComponent(btnAssignTenant)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnDeleteHouse)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnEdit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(184, 184, 184)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(btnSellHouse)
+                        .addGap(162, 162, 162)
+                        .addComponent(btnDeleteHouse)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnEdit))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -179,15 +173,14 @@ private void populateTable()
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(77, 77, 77)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAssignTenant, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                    .addComponent(btnSellHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(129, 129, 129))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,23 +190,22 @@ private void populateTable()
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount);
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount,system);
         userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnAddHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddHouseActionPerformed
+    private void btnSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellHouseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddHouseActionPerformed
+    }//GEN-LAST:event_btnSellHouseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddHouse;
-    private javax.swing.JButton btnAssignTenant;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDeleteHouse;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnSellHouse;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtblHouse;

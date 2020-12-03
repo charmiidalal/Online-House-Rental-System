@@ -22,17 +22,18 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
      * Creates new form ManageBuyerJPanel
      */
     private JPanel userProcessContainer;
-    private EcoSystem business;
+    private EcoSystem system;
     private SellerDirectory sellerDirectory;
     private Enterprise enterprise;
     private UserAccount useraccount;
 
-     public ManageBuyerJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory) {
+     public ManageBuyerJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory, EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.useraccount=useraccount;
         this.sellerDirectory=sellerDirectory;
+        this.system = system;
     }
 
     /**
@@ -149,15 +150,15 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
     private void btnAddBuyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBuyerActionPerformed
         // TODO add your handling code here:
-        AddBuyerJPanel addBuyerPanel = new AddBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory);
-        userProcessContainer.add("AddBuyerJPanel", addBuyerPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+//        AddBuyerJPanel addBuyerPanel = new AddBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory);
+//        userProcessContainer.add("AddBuyerJPanel", addBuyerPanel);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddBuyerActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount);
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount,system);
         userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

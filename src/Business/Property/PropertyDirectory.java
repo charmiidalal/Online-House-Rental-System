@@ -5,8 +5,6 @@
  */
 package Business.Property;
 
-import Business.Order.Order;
-import Business.Seller.Seller;
 import java.util.ArrayList;
 
 /**
@@ -14,11 +12,8 @@ import java.util.ArrayList;
  * @author Dinesh
  */
 public class PropertyDirectory {
-    private ArrayList<Property> propertyList;
 
-    public PropertyDirectory(ArrayList<Property> propertyList) {
-        this.propertyList = propertyList;
-    }
+    private ArrayList<Property> propertyList = new ArrayList<Property>();
 
     public ArrayList<Property> getPropertyList() {
         return propertyList;
@@ -27,7 +22,7 @@ public class PropertyDirectory {
     public void setPropertyList(ArrayList<Property> propertyList) {
         this.propertyList = propertyList;
     }
-    
+
     public String generatePropertyID() {
         return "Property" + (propertyList.size() + 1);
     }
@@ -45,6 +40,13 @@ public class PropertyDirectory {
     public Property getPropertyByIndex(int index) {
         return propertyList.get(index);
     }
-    
-    
+
+    public void addProperty(Property property) {
+        propertyList.add(property);
+    }
+
+    public void removeProperty(Property property) {
+        propertyList.remove(property);
+    }
+   
 }

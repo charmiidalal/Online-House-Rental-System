@@ -28,9 +28,9 @@ public class BuyerDirectory {
     public void removeCustomer(Buyer buyer){
         buyerList.remove(buyer);
     }
-    public Buyer searchBuyer(String buyerName){
+    public Buyer searchBuyer(String buyerID){
         for (Buyer buyers: buyerList) {
-            if (buyers.getBuyerName().equals(buyerName)) {
+            if (buyers.getBuyerNo().equals(buyerID)) {
                 return buyers;
             }
         }

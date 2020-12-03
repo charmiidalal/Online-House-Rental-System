@@ -1,25 +1,65 @@
 
 
-package userinterface.AdministrativeRole;
+package userinterface.ElectricianRole;
 
+import Business.Buyer.BuyerDirectory;
+import Business.EcoSystem;
+import Business.ElectricianRequest.ElectricianRequest;
+import Business.ElectricianRequest.ElectricianRequestDirectory;
 import Business.Enterprise.Enterprise;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import static java.time.Clock.system;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author  raunak
+ * @author  Dinesh
  */
 public class ElectricianWorkAreaJPanel extends javax.swing.JPanel {
-    
-    JPanel userProcessContainer;
-    Enterprise enterprise;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount userAccount;
+    private ElectricianRequestDirectory electricianRequestDirectory;
+    private SellerDirectory sellerDirectory;
+    private PropertyDirectory propertyDirectory;
+    private BuyerDirectory buyerDirectory;
+
     /** Creates new form AdminWorkAreaJPanel */
-    public ElectricianWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public ElectricianWorkAreaJPanel(JPanel userProcessContainer,EcoSystem system,UserAccount userAccount ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
-        valueLabel.setText(enterprise.getName());
+        this.system = system;
+        this.userAccount=userAccount;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        populateRequestTable();
+    }
+    
+     public void populateRequestTable() {
+        DefaultTableModel model = (DefaultTableModel) requestTbl.getModel();
+        model.setRowCount(0);
+        for (Property property : propertyDirectory.getPropertyList()) {
+            Object[] row = new Object[12];
+            row[0] = property.getPropertyID();
+            row[1] = property.getPropertyName();
+            row[2] = property.getStreet();
+            row[3] = property.getCity();
+            row[4] = property.getState();
+            row[5] = property.getPincode();
+//            row[6] = property.getBhk();
+//            row[7] = property.getBathroom();
+//            row[8] = property.getPrice();
+            row[9] = property.getStatus();
+//            row[10] = property.getSeller().getSellerNo();
+//            row[11] = property.getSeller().getSellerName();
+            model.addRow(row);
+        }
     }
     
     /** This method is called from within the constructor to
@@ -30,86 +70,103 @@ public class ElectricianWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        userJButton = new javax.swing.JButton();
-        manageEmployeeJButton = new javax.swing.JButton();
-        manageOrganizationJButton = new javax.swing.JButton();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        requestTbl = new javax.swing.JTable();
+        takeBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        commentTxt = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("My Work Area -Adminstrative Role");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+        requestTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        userJButton.setText("Manage User");
-        userJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userJButtonActionPerformed(evt);
+            },
+            new String [] {
+                "PropertyID", "PropertyName", "Street", "City", "State", "Pincode", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 150, -1));
+        jScrollPane1.setViewportView(requestTbl);
+        if (requestTbl.getColumnModel().getColumnCount() > 0) {
+            requestTbl.getColumnModel().getColumn(0).setResizable(false);
+            requestTbl.getColumnModel().getColumn(1).setResizable(false);
+            requestTbl.getColumnModel().getColumn(2).setResizable(false);
+            requestTbl.getColumnModel().getColumn(3).setResizable(false);
+            requestTbl.getColumnModel().getColumn(4).setResizable(false);
+            requestTbl.getColumnModel().getColumn(5).setResizable(false);
+            requestTbl.getColumnModel().getColumn(6).setResizable(false);
+        }
 
-        manageEmployeeJButton.setText("Manage Employee");
-        manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 540, 160));
+
+        takeBtn.setText("Take");
+        takeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageEmployeeJButtonActionPerformed(evt);
+                takeBtnActionPerformed(evt);
             }
         });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
+        add(takeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
-        manageOrganizationJButton.setText("Manage Organization");
-        manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Complete ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageOrganizationJButtonActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
-
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 120, 30));
-
-        valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, -1, -1));
+        add(commentTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 90, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
-        // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
-        userProcessContainer.add("ManageUserAccountJPanel", muajp);
+    private void takeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeBtnActionPerformed
+          int selectedRow = requestTbl.getSelectedRow();
+        int count = requestTbl.getSelectedRowCount();
+        if (count == 1) {
+            String jobID = (String) requestTbl.getValueAt(selectedRow, 0);
 
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_userJButtonActionPerformed
+            ElectricianRequest  electricianRequest = electricianRequestDirectory.fetchElectricianRequest(jobID);
+            electricianRequest.setStatus("Job Taken");
+            JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_takeBtnActionPerformed
 
-    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       int selectedRow = requestTbl.getSelectedRow();
+        int count = requestTbl.getSelectedRowCount();
+        if (count == 1) {
+            String feedback = commentTxt.getText();
+            String jobID = (String) requestTbl.getValueAt(selectedRow, 0);
 
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
+            if (!"".equals(feedback)) {
+                ElectricianRequest electricianRequest = electricianRequestDirectory.fetchElectricianRequest(jobID);
+                electricianRequest.setStatus("Completed");
+                electricianRequest.setMessage(feedback);
+                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter feedback!");
+            }
 
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        
-    }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
-
-    private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
-
-        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton manageEmployeeJButton;
-    private javax.swing.JButton manageOrganizationJButton;
-    private javax.swing.JButton userJButton;
-    private javax.swing.JLabel valueLabel;
+    private javax.swing.JTextField commentTxt;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable requestTbl;
+    private javax.swing.JButton takeBtn;
     // End of variables declaration//GEN-END:variables
     
 }
