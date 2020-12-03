@@ -16,6 +16,7 @@ import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -26,12 +27,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HireInspectorJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
-    private EcoSystem system;
+    private final JPanel userProcessContainer;
+    private final EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private InspectorDirectory inspectorDirectory;
-    private InspectRequestDirectory inspectRequestDirectory;
+    private final InspectorDirectory inspectorDirectory;
+    private final InspectRequestDirectory inspectRequestDirectory;
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
@@ -57,16 +57,16 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Inspector inspector : inspectorDirectory.getInsepectorList()) {
 //            if ("Available".equals(inspector.getStatus())) {
-                Object[] row = new Object[12];
-                row[0] = inspector.getInspectorNo();
-                row[1] = inspector.getInspectorName();
-                row[2] = inspector.getStreet();
-                row[3] = inspector.getCity();
-                row[4] = inspector.getState();
-                row[5] = inspector.getZipcode();
-                row[6] = inspector.getStatus();
-                row[7] = inspector.getCharge();
-                model.addRow(row);
+            Object[] row = new Object[12];
+            row[0] = inspector.getInspectorNo();
+            row[1] = inspector.getInspectorName();
+            row[2] = inspector.getStreet();
+            row[3] = inspector.getCity();
+            row[4] = inspector.getState();
+            row[5] = inspector.getZipcode();
+            row[6] = inspector.getStatus();
+            row[7] = inspector.getCharge();
+            model.addRow(row);
 //            }
         }
     }
@@ -150,17 +150,22 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         String inspectorID = (String) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
             Inspector inspector = inspectorDirectory.fetchInspector(inspectorID);
-            inspector.setStatus("Occupied");
-            InspectRequest ir = new InspectRequest();
-            ir.setBuyer(buyer);
-            ir.setInspector(inspector);
-            ir.setSeller(property.getSeller());
-            ir.setStatus("Requested");
-            ir.setMessage("Inspect House");
-            ir.setProperty(property);
-            inspectRequestDirectory.addInspectRequest(ir);
-            system.setInspectRequestDirectory(inspectRequestDirectory);
-            JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+            if ("Available".equals(inspector.getStatus())) {
+                inspector.setStatus("Occupied");
+                InspectRequest ir = new InspectRequest();
+                ir.setRequestID(inspectorDirectory.generateInspectorID());
+                ir.setBuyer(buyer);
+                ir.setInspector(inspector);
+                ir.setSeller(property.getSeller());
+                ir.setStatus("Requested");
+                ir.setMessage("Inspect House");
+                ir.setProperty(property);
+                inspectRequestDirectory.addInspectRequest(ir);
+                system.setInspectRequestDirectory(inspectRequestDirectory);
+                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Sorry! This inspector is already Occupied");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -168,6 +173,11 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
 
     private void btnBuyHouse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyHouse1ActionPerformed
         // TODO add your handling code here:
+        BuyerWorkAreaJPanel buyerWorkAreaJPanel = new BuyerWorkAreaJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("BuyerWorkAreaJPanel", buyerWorkAreaJPanel);
+        buyerWorkAreaJPanel.populateRequestTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBuyHouse1ActionPerformed
 
 

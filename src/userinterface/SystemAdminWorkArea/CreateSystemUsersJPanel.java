@@ -340,21 +340,11 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 PropertyManagerRole role = new PropertyManagerRole();
                 system.setPropertyManagerDirectory(propertyManagerDirectory);
                 UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Property Manager");
-            } else if (userType == "Property Manager") {
-                PropertyManager propertyManager = new PropertyManager();
-                propertyManager.setPropertyName(name);
-                propertyManager.setPropertyEmail(emailAddress);
-                propertyManager.setPropertyNo(propertyManagerDirectory.generatePropertyManagerID());
-                propertyManagerDirectory.addPropertyManager(propertyManager);
-                Employee employee = system.getEmployeeDirectory().createEmployee(propertyManager.getPropertyNo());
-                PropertyManagerRole role = new PropertyManagerRole();
-                system.setPropertyManagerDirectory(propertyManagerDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Property Manager");
-            } else if (userType == "Electrician") {
+            }  else if (userType == "Electrician") {
                 Electrician electrician = new Electrician();
                 electrician.setElectricianName(name);
                 electrician.setElectricianEmail(emailAddress);
-                electrician.setElectricianNo(propertyManagerDirectory.generatePropertyManagerID());
+                electrician.setElectricianNo(electricianDirectory.generateElectricianID());
                 electricianDirectory.addElectrician(electrician);
                 Employee employee = system.getEmployeeDirectory().createEmployee(electrician.getElectricianNo());
                 ElectricianRole role = new ElectricianRole();
@@ -364,7 +354,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 Plumber plumber = new Plumber();
                 plumber.setPlumberName(name);
                 plumber.setPlumberEmail(emailAddress);
-                plumber.setPlumberNo(propertyManagerDirectory.generatePropertyManagerID());
+                plumber.setPlumberNo(plumberDirectory.generatePlumberID());
                 plumberDirectory.addPlumber(plumber);
                 Employee employee = system.getEmployeeDirectory().createEmployee(plumber.getPlumberNo());
                 PlumbingRole role = new PlumbingRole();

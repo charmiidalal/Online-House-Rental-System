@@ -35,7 +35,7 @@ public class SellerDirectory {
 
     public Seller searchseller(String sellerName) {
   for (Seller seller : sellerList) {
-            if (seller.getSellerName().equalsIgnoreCase(sellerName)) {
+            if (seller.getName().equalsIgnoreCase(sellerName)) {
                 return seller;
             }
         }

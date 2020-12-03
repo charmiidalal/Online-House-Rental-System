@@ -42,6 +42,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
         populateRequestTable();
     }
 
@@ -61,7 +62,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             row[8] = property.getPrice();
             row[9] = property.getStatus();
             row[10] = property.getSeller().getSellerNo();
-            row[11] = property.getSeller().getSellerName();
+            row[11] = property.getSeller().getName();
             model.addRow(row);
         }
     }
@@ -82,7 +83,6 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         btnHireInspector = new javax.swing.JButton();
         btnViewSellerDetails = new javax.swing.JButton();
         btnRequestNegotiation = new javax.swing.JButton();
-        btnBuyHouse1 = new javax.swing.JButton();
 
         btnViewHouseDetails.setText("View House Details");
         btnViewHouseDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -137,13 +137,6 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBuyHouse1.setText("<< Back");
-        btnBuyHouse1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuyHouse1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,10 +151,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnViewSellerDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBuyHouse1)
-                        .addGap(98, 98, 98)
-                        .addComponent(btnBuyHouse))
+                    .addComponent(btnBuyHouse)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -181,11 +171,9 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuyHouse)
-                    .addComponent(btnBuyHouse1))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(btnBuyHouse)
+                .addContainerGap(248, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -242,20 +230,27 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnViewSellerDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSellerDetailsActionPerformed
         // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+        int count = houseTable.getSelectedRowCount();
+        if (count == 1) {
+            String sellerID = (String) houseTable.getValueAt(selectedRow, 10);
+            Seller seller = sellerDirectory.fetchSeller(sellerID);
+            ViewSellerDetailsJPanel viewSellerDetailsJPanel = new ViewSellerDetailsJPanel(userProcessContainer,seller,userAccount,system);
+            userProcessContainer.add("viewSellerDetailsJPanel", viewSellerDetailsJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
     }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
 
     private void btnRequestNegotiationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestNegotiationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRequestNegotiationActionPerformed
 
-    private void btnBuyHouse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyHouse1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuyHouse1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyHouse;
-    private javax.swing.JButton btnBuyHouse1;
     private javax.swing.JButton btnHireInspector;
     private javax.swing.JButton btnRequestNegotiation;
     private javax.swing.JButton btnViewHouseDetails;

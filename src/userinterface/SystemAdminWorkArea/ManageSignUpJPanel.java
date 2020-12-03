@@ -42,9 +42,9 @@ public class ManageSignUpJPanel extends javax.swing.JPanel {
                 if (!sd.getIsApproved()) {
                     Object[] row = new Object[5];
                     row[0] = sd.getSellerNo();
-                    row[1] = sd.getSellerName();
+                    row[1] = sd.getName();
                     row[2] = sd.getUsername();
-                    row[3] = sd.getSellerEmail();
+                    row[3] = sd.getEmail();
                     row[4] = "Seller";
                     model.addRow(row);
                 }
