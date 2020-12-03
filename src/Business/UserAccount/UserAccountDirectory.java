@@ -35,13 +35,16 @@ public class UserAccountDirectory {
         return null;
     }
     
-    public UserAccount createUserAccount(String username, String password, Employee employee, Role role, Boolean isApproved){
+    public UserAccount createUserAccount(String username, String password, Employee employee, Role role, Boolean isApproved, String name, String email, String roleName){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
         userAccount.setIsApproved(isApproved);
+        userAccount.setEmail(email);
+        userAccount.setName(name);
+        userAccount.setRoleName(roleName);
         userAccountList.add(userAccount);
         return userAccount;
     }
@@ -54,13 +57,21 @@ public class UserAccountDirectory {
         return true;
     }
     
-    public UserAccount searchUser(String buyerName){
-        for (UserAccount buyers: userAccountList) {
-            if (buyers.getUsername().equals(buyerName)) {
-                return buyers;
+    public UserAccount searchUser(String userName){
+        for (UserAccount ua: userAccountList) {
+            if (ua.getUsername().equals(userName)) {
+                return ua;
             }
         }
         return null;
     }
     
+     public void updateItem(String userName, String fullName, String userEmail) {
+        for(UserAccount ua: userAccountList){
+            if(ua.getUsername().equalsIgnoreCase(userName)){
+                ua.setName(fullName);
+                ua.setEmail(userEmail);
+            }
+        }
+    }
 }

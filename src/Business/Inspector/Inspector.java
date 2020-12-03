@@ -10,33 +10,80 @@ package Business.Inspector;
  * @author Dinesh
  */
 public class Inspector {
-private String name;
-    private String phone;
+
+    private String inspectorNo;
+    private String inspectorName;
+    private String street;
+    private String city;
+    private String zipcode;
+    private String state;
+    private String status;
+    private String charge;
     private String email;
-    private String inspectorID;
-    
+    private String phone;
 
-    public Inspector(String name, String phone, String email, String inspectorID) {
-        this.name = name;
-        this.inspectorID= inspectorID;
-        this.phone = phone;
-        this.email = email;
+    public String getInspectorNo() {
+        return inspectorNo;
     }
 
-    public String getName() {
-        return name;
+    public void setInspectorNo(String inspectorNo) {
+        this.inspectorNo = inspectorNo;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getInspectorName() {
+        return inspectorName;
     }
 
-    public String getPhone() {
-        return phone;
+    public void setInspectorName(String inspectorName) {
+        this.inspectorName = inspectorName;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCharge() {
+        return charge;
+    }
+
+    public void setCharge(String charge) {
+        this.charge = charge;
     }
 
     public String getEmail() {
@@ -47,12 +94,12 @@ private String name;
         this.email = email;
     }
 
-    public String getInspectorID() {
-        return inspectorID;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setInspectorID(String inspectorID) {
-        this.inspectorID = inspectorID;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
-    
+
 }

@@ -16,20 +16,23 @@ import java.util.ArrayList;
  * @author raunak
  */
 public class UserAccount {
-    
+
     private String username;
     private String password;
+    private String email;
+    private String name;
+    private String roleName;
     private Boolean isApproved = true;
-    private Employee employee;
+    public Employee employee;
     private Role role;
     private WorkQueue workQueue;
-    private  Enterprise userEnterpriseList;
-    private  Organization userOrganizationList;
+    private Enterprise userEnterpriseList;
+    private Organization userOrganizationList;
 
     public UserAccount() {
         workQueue = new WorkQueue();
     }
-    
+
     public String getUsername() {
         return username;
     }
@@ -89,7 +92,7 @@ public class UserAccount {
     public void setIsApproved(Boolean isApproved) {
         this.isApproved = isApproved;
     }
-    
+
     @Override
     public String toString() {
         return username;
@@ -98,7 +101,30 @@ public class UserAccount {
     public Object getUserAccountDirectory() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
     
     
 }

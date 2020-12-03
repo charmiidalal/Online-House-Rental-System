@@ -7,8 +7,8 @@ package userinterface.SellerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Seller.Advertisement;
-import Business.Seller.AdvertisementDirectory;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -30,22 +30,25 @@ import javax.swing.JPanel;
 public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
     JFileChooser imgChooser;
-    private EcoSystem business;
+    private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
     BufferedImage img;
     private JPanel userProcessContainer;
     private final Enterprise enterprise;
+    private PropertyDirectory propertyDirectory;
 
     /**
      * Creates new form CreateAdvertiseJPanel
      */
-    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory) {
+    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = useraccount;
         this.sellerDirectory = sellerDirectory;
+        this.system = system;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
     }
 
     /**
@@ -317,6 +320,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         if (name.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty() || price == 0.0 || img == null || bathroom == 0.0) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
         } else {
+<<<<<<< HEAD
             
          
             Advertisement advrt = new Advertisement();
@@ -337,6 +341,24 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
           
           // seller.setAdvrt(advrt);
             JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + " seller!");
+=======
+            String sellerID = this.userAccount.getEmployee().getName();
+            Property property = new Property();
+            property.setPropertyName(name);
+            property.setStreet(address);
+            property.setPincode(pincode);
+            property.setCity(city);
+            property.setState(state);
+            property.setBhk(bhk);
+            property.setBathroom(bathroom);
+            property.setPrice(price);
+            property.setStatus("On Sell");
+            property.setSeller(sellerDirectory.fetchSeller(sellerID));
+            property.setPropertyID(propertyDirectory.generatePropertyID());
+            propertyDirectory.addProperty(property);
+            system.setPropertyDirectory(propertyDirectory);
+            JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + "seller!");
+>>>>>>> e64d5139bffb1d7e4bb29ec0cdf5180b6cbbbfeb
 
         }
     }//GEN-LAST:event_submitBtnActionPerformed
@@ -351,7 +373,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, userAccount);
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, userAccount,system);
         userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

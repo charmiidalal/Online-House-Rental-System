@@ -8,8 +8,9 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Order.Order;
+import Business.InspectRequest.InspectRequest;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -25,33 +26,44 @@ import javax.swing.table.DefaultTableModel;
 public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private EcoSystem business;
+    private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
+    private PropertyDirectory propertyDirectory;
+    private BuyerDirectory buyerDirectory;
 
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem ecosystem, UserAccount userAccount) {
+    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcess;
-        this.business = ecosystem;
+        this.system = system;
         this.userAccount = userAccount;
-        //this.sellerDirectory = sellerDirectory;
-        //populateMenuTable();
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-//        for (Seller seller : sellerDirectory.getSellerList()) {
-//            Object[] row = new Object[4];
-//            row[0] = seller.getSellerName();
-//            row[1] = seller.getSellerNo();
-//            row[2] = seller.getSellerStreet();
-//            row[3] = seller.getSellerZipcode();
-//            model.addRow(row);
-//        }
+        for (Property property : propertyDirectory.getPropertyList()) {
+            Object[] row = new Object[12];
+            row[0] = property.getPropertyID();
+            row[1] = property.getPropertyName();
+            row[2] = property.getStreet();
+            row[3] = property.getCity();
+            row[4] = property.getState();
+            row[5] = property.getPincode();
+            row[6] = property.getBhk();
+            row[7] = property.getBathroom();
+            row[8] = property.getPrice();
+            row[9] = property.getStatus();
+            row[10] = property.getSeller().getSellerNo();
+            row[11] = property.getSeller().getSellerName();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -63,22 +75,26 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        viewBtn = new javax.swing.JButton();
-        buyBtn = new javax.swing.JButton();
+        btnViewHouseDetails = new javax.swing.JButton();
+        btnBuyHouse = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
+        btnHireInspector = new javax.swing.JButton();
+        btnViewSellerDetails = new javax.swing.JButton();
+        btnRequestNegotiation = new javax.swing.JButton();
+        btnBuyHouse1 = new javax.swing.JButton();
 
-        viewBtn.setText("View Details");
-        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnViewHouseDetails.setText("View House Details");
+        btnViewHouseDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewBtnActionPerformed(evt);
+                btnViewHouseDetailsActionPerformed(evt);
             }
         });
 
-        buyBtn.setText("Buy House");
-        buyBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnBuyHouse.setText("Buy House");
+        btnBuyHouse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buyBtnActionPerformed(evt);
+                btnBuyHouseActionPerformed(evt);
             }
         });
 
@@ -87,11 +103,11 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Price", "BHK", "Bathroom"
+                "PropertyID", " Name", " Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status", "SoldByID", "SoldBy"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, false, false, false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -99,42 +115,81 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(houseTable);
-        if (houseTable.getColumnModel().getColumnCount() > 0) {
-            houseTable.getColumnModel().getColumn(0).setResizable(false);
-            houseTable.getColumnModel().getColumn(1).setResizable(false);
-            houseTable.getColumnModel().getColumn(2).setResizable(false);
-            houseTable.getColumnModel().getColumn(3).setResizable(false);
-        }
+
+        btnHireInspector.setText("Hire Inspector");
+        btnHireInspector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHireInspectorActionPerformed(evt);
+            }
+        });
+
+        btnViewSellerDetails.setText("View Seller Details");
+        btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewSellerDetailsActionPerformed(evt);
+            }
+        });
+
+        btnRequestNegotiation.setText("Request Negotiation");
+        btnRequestNegotiation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRequestNegotiationActionPerformed(evt);
+            }
+        });
+
+        btnBuyHouse1.setText("<< Back");
+        btnBuyHouse1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuyHouse1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
             .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(buyBtn)
-                .addGap(140, 140, 140)
-                .addComponent(viewBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnRequestNegotiation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                        .addComponent(btnHireInspector, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnViewHouseDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewSellerDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBuyHouse1)
+                        .addGap(98, 98, 98)
+                        .addComponent(btnBuyHouse))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(btnHireInspector)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnRequestNegotiation)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnViewSellerDetails)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnViewHouseDetails))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buyBtn)
-                    .addComponent(viewBtn))
-                .addContainerGap(193, Short.MAX_VALUE))
+                    .addComponent(btnBuyHouse)
+                    .addComponent(btnBuyHouse1))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+    private void btnViewHouseDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHouseDetailsActionPerformed
         int selectedRow = houseTable.getSelectedRow();
 
         int count = houseTable.getSelectedRowCount();
@@ -142,8 +197,8 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             if (selectedRow >= 0) {
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 String Id = (String) houseTable.getValueAt(selectedRow, 0);
-                Seller seller = sellerDirectory.fetchSeller(Id);
-                ViewDetailsJPanel viewJPanel = new ViewDetailsJPanel(userProcessContainer, seller, sellerDirectory);
+                Property seller = propertyDirectory.fetchProperty(Id);
+                ViewDetailsJPanel viewJPanel = new ViewDetailsJPanel(userProcessContainer, seller, propertyDirectory);
                 userProcessContainer.add(viewJPanel);
                 layout.next(userProcessContainer);
             }
@@ -151,40 +206,61 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a Row!!");
         }
 
-    }//GEN-LAST:event_viewBtnActionPerformed
+    }//GEN-LAST:event_btnViewHouseDetailsActionPerformed
 
-    private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
-        int row = houseTable.getSelectedRow();
-//        if (row >= 0) {
-//
-//            Buyer buyer;//chang this
-//
-//            buyer = BuyerDirectory.getBuyer(userAccount.getEmployee().getName());
-//            Seller seller = sellerDirectory.getSellerByIndex(row);
-//            String status = "Awaiting";
-//
-//            Order orderRequest = business.getOrderDirectory().addOrder();
-//            orderRequest.setOrderId("O" + (business.getOrderDirectory().getOrderDirectory().size()));
-//            orderRequest.setSeller(seller);
-//
-//            orderRequest.setBuyer(buyer);
-//            orderRequest.setMessage("Request placed");
-//            orderRequest.setSender(userAccount);
-//            orderRequest.setStatus(status);
-//            business.getWorkQueue().getWorkRequestList().add(orderRequest);
-//            JOptionPane.showMessageDialog(null, "Inspection Success ");
-//            populateRequestTable();
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Please select one row!");
-//        }
+    private void btnBuyHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyHouseActionPerformed
+        int selectedRow = houseTable.getSelectedRow();
+        int count = houseTable.getSelectedRowCount();
+        String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
+        if (count == 1) {
+            Property property = propertyDirectory.fetchProperty(propertyID);
+            property.setStatus("Sold");
+            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
+            property.setBuyer(buyer);
+            populateRequestTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_btnBuyHouseActionPerformed
 
-    }//GEN-LAST:event_buyBtnActionPerformed
+    private void btnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireInspectorActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+        int count = houseTable.getSelectedRowCount();
+        String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
+        if (count == 1) {
+            Property property = propertyDirectory.fetchProperty(propertyID);
+            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
+            HireInspectorJPanel hireInspectorJPanel = new HireInspectorJPanel(userProcessContainer, property,buyer, system);
+            userProcessContainer.add("hireInspectorJPanel", hireInspectorJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_btnHireInspectorActionPerformed
+
+    private void btnViewSellerDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSellerDetailsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
+
+    private void btnRequestNegotiationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestNegotiationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRequestNegotiationActionPerformed
+
+    private void btnBuyHouse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyHouse1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuyHouse1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buyBtn;
+    private javax.swing.JButton btnBuyHouse;
+    private javax.swing.JButton btnBuyHouse1;
+    private javax.swing.JButton btnHireInspector;
+    private javax.swing.JButton btnRequestNegotiation;
+    private javax.swing.JButton btnViewHouseDetails;
+    private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JTable houseTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

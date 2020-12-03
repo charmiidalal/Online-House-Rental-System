@@ -9,7 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.AdministrativeRole.InspectorWorkAreaJPanel;
+import userinterface.InspectorRole.InspectorWorkAreaJPanel;
 
 /**
  *
@@ -19,7 +19,7 @@ public class InspectorRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new InspectorWorkAreaJPanel(userProcessContainer, enterprise);
+        return new InspectorWorkAreaJPanel(userProcessContainer,business, account);
     }
 
     

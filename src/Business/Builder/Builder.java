@@ -11,52 +11,41 @@ package Business.Builder;
  */
 public class Builder {
 
-   
-    private String name ;
-    private String userName;
-    private String password;
-    private String phone;
+    private String builderNo;
+    private String builderName;
+    private String builderPhone;
+    private String builderEmail;
 
-     public Builder(String name, String userName, String password, String phone) {
-        this.name = name;
-        this.userName = userName;
-        this.password = password;
-        this.phone = phone;
+    public String getBuilderNo() {
+        return builderNo;
     }
 
-    public String getName() {
-        return name;
+    public void setBuilderNo(String builderNo) {
+        this.builderNo = builderNo;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getBuilderName() {
+        return builderName;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setBuilderName(String builderName) {
+        this.builderName = builderName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getBuilderPhone() {
+        return builderPhone;
     }
 
-    public String getPassword() {
-        return password;
+    public void setBuilderPhone(String builderPhone) {
+        this.builderPhone = builderPhone;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getBuilderEmail() {
+        return builderEmail;
     }
 
-    public String getPhone() {
-        return phone;
+    public void setBuilderEmail(String builderEmail) {
+        this.builderEmail = builderEmail;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-     
-     
-    
-    
 }

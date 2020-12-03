@@ -12,18 +12,27 @@ import java.util.ArrayList;
  * @author Charmi Dalal
  */
 public class BuilderDirectory {
-    private ArrayList<Builder> builderDirectory;
+    
+    ArrayList<Builder> builderList = new ArrayList<Builder>();
 
-    public BuilderDirectory(ArrayList<Builder> builderDirectory) {
-        this.builderDirectory = builderDirectory;
+    public ArrayList<Builder> getBuilderList() {
+        return builderList;
     }
 
-    public ArrayList<Builder> getBuilderDirectory() {
-        return builderDirectory;
+    public void setBuilderList(ArrayList<Builder> builderList) {
+        this.builderList = builderList;
     }
 
-    public void setBuilderDirectory(ArrayList<Builder> builderDirectory) {
-        this.builderDirectory = builderDirectory;
+    public void addBuilder(Builder builder) {
+        builderList.add(builder);
+    }
+
+    public void removeInespector(Builder builder) {
+        builderList.remove(builder);
+    }
+
+    public String generateBuilderID() {
+        return "Builder" + (builderList.size() + 1);
     }
     
     

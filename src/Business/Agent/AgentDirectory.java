@@ -13,20 +13,25 @@ import java.util.ArrayList;
  */
 public class AgentDirectory {
     
-    private ArrayList <Agent> agentDirectorty;
+    ArrayList<Agent> agentList = new ArrayList<Agent>();
 
-    public AgentDirectory(ArrayList<Agent> agentDirectorty) {
-        this.agentDirectorty = agentDirectorty;
+    public ArrayList<Agent> getAgentList() {
+        return agentList;
     }
 
-    public ArrayList<Agent> getAgentDirectorty() {
-        return agentDirectorty;
+    public void setAgentList(ArrayList<Agent> agentList) {
+        this.agentList = agentList;
     }
 
-    public void setAgentDirectorty(ArrayList<Agent> agentDirectorty) {
-        this.agentDirectorty = agentDirectorty;
+    public void addAgent(Agent agent) {
+        agentList.add(agent);
     }
-    
-    
 
+    public void removeInespector(Agent agent) {
+        agentList.remove(agent);
+    }
+
+    public String generateAgentID() {
+        return "Agent" + (agentList.size() + 1);
+    }
 }
