@@ -13,7 +13,12 @@ import java.util.ArrayList;
  */
 public class AdvertisementDirectory {
 
-    ArrayList<Advertisement> advertisementList = new ArrayList<Advertisement>();
+     private ArrayList<Advertisement> advertisementList;
+
+    public AdvertisementDirectory() {
+         advertisementList = new ArrayList<Advertisement>();
+    }
+  
 
     public ArrayList<Advertisement> getAdvertisementList() {
         return advertisementList;

@@ -20,9 +20,10 @@ import javax.swing.table.DefaultTableModel;
  * @author anush
  */
 public class ManageHouseJPanel extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private EcoSystem business;
-   
+
     private SellerDirectory sellerDirectory;
     /**
      * Creates new form ManageHouseJPanel
@@ -30,40 +31,37 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount useraccount;
 
-    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise,UserAccount useraccount,SellerDirectory sellerDirectory) 
-    {
+    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.enterprise=enterprise;
-        this.useraccount=useraccount;
-        this.sellerDirectory=sellerDirectory;
-           populateTable();
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.useraccount = useraccount;
+        this.sellerDirectory = sellerDirectory;
+        populateTable();
     }
-private void populateTable()
-    {
-        DefaultTableModel dtm=(DefaultTableModel) jtblHouse.getModel();
+
+    private void populateTable() {
+
+        DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
         dtm.setRowCount(0);
-        for(Seller seller : sellerDirectory.getSellerList())
-        {
-           
-            Object[] row=new Object[9];
-            row[0]=seller;
-            row[1]=seller.getAdvrt().getName();
-            row[2]=seller.getAdvrt().getAddress();
-            row[3]=seller.getAdvrt().getCity();
-             row[4]=seller.getAdvrt().getState();
-              row[5]=seller.getAdvrt().getZipcode();
-               row[6]=seller.getAdvrt().getBhk();
-                row[7]=seller.getAdvrt().getBathroom();
-             row[8]=seller.getAdvrt().getRent();
-             
-              
-               
+        for (Seller seller : sellerDirectory.getSellerList()) {
+
+            Object[] row = new Object[10];
+            row[0] = seller;
+            row[1] = seller.getAdvrt().getName();
+            row[2] = seller.getAdvrt().getAddress();
+            row[3] = seller.getAdvrt().getCity();
+            row[4] = seller.getAdvrt().getState();
+            row[5] = seller.getAdvrt().getZipcode();
+            row[6] = seller.getAdvrt().getBhk();
+            row[7] = seller.getAdvrt().getBathroom();
+            row[8] = seller.getAdvrt().getRent();
+            row[9] = seller.getAdvrt().getName();
+
             dtm.addRow(row);
-            
+
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

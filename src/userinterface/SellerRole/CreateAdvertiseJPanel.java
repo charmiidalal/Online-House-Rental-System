@@ -317,27 +317,8 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         if (name.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty() || price == 0.0 || img == null || bathroom == 0.0) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
         } else {
-            String sellerID = this.userAccount.getEmployee().getName();
-            JOptionPane.showMessageDialog(null, "employee id name" + sellerID);
-
-            //Seller seller=this.sellerDirectory.searchseller(sellerID);
-            //  seller.setSellerName(sellerID);
-            // String sellerEmail=seller.getSellerEmail();
-            // seller.setSellerEmail(sellerEmail);
-            // JOptionPane.showMessageDialog(null,"selleremail"+sellerEmail);
-            // String sellerPhone=seller.getSellerPhone();
-            // seller.setSellerPhone(sellerPhone);
-            // JOptionPane.showMessageDialog(null,"sellerph"+ sellerPhone);
-            //  String sellerStreet=seller.getSellerStreet();
-            // seller.setSellerStreet(sellerStreet);
-            // JOptionPane.showMessageDialog(null,"sellerstreet"+sellerStreet);
-            //   String sellerZipcode=seller.getSellerZipcode();
-            // seller.setSellerZipcode(sellerZipcode);
-            // JOptionPane.showMessageDialog(null,"sellerzipcode"+sellerZipcode);
-            // Boolean sellerIsapproved=seller.getIsApproved();
-            //  seller.setIsApproved(sellerIsapproved);
-            // JOptionPane.showMessageDialog(null, "sellerapproved"+sellerIsapproved);
-            // this.sellerDirectory.addSeller(seller);
+            
+         
             Advertisement advrt = new Advertisement();
             advrt.setName(name);
             advrt.setAddress(address);
@@ -347,10 +328,15 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             advrt.setBhk(bhk);
             advrt.setBathroom(bathroom);
             advrt.setRent(price);
-            AdvertisementDirectory advrtdirector = new AdvertisementDirectory();
-            advrtdirector.addAdvertisement(advrt);
-
-            JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + "seller!");
+            AdvertisementDirectory advrtdirectory =new AdvertisementDirectory();
+            advrtdirectory.addAdvertisement(advrt);
+            
+           String sellerID = this.userAccount.getEmployee().getName();
+            JOptionPane.showMessageDialog(null, "employee id name" + sellerID);
+            //Seller seller=this.sellerDirectory.fetchSeller(sellerID);
+          
+          // seller.setAdvrt(advrt);
+            JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + " seller!");
 
         }
     }//GEN-LAST:event_submitBtnActionPerformed
