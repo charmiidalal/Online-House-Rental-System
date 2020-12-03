@@ -36,8 +36,11 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.useraccount=useraccount;
+        this.system=system;
         this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.system = system;
+        
+       
+      
     }
 
     /**

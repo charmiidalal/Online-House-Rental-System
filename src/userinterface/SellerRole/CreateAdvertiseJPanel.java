@@ -320,28 +320,6 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         if (name.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty() || price == 0.0 || img == null || bathroom == 0.0) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
         } else {
-<<<<<<< HEAD
-            
-         
-            Advertisement advrt = new Advertisement();
-            advrt.setName(name);
-            advrt.setAddress(address);
-            advrt.setZipcode(pincode);
-            advrt.setCity(city);
-            advrt.setState(state);
-            advrt.setBhk(bhk);
-            advrt.setBathroom(bathroom);
-            advrt.setRent(price);
-            AdvertisementDirectory advrtdirectory =new AdvertisementDirectory();
-            advrtdirectory.addAdvertisement(advrt);
-            
-           String sellerID = this.userAccount.getEmployee().getName();
-            JOptionPane.showMessageDialog(null, "employee id name" + sellerID);
-            //Seller seller=this.sellerDirectory.fetchSeller(sellerID);
-          
-          // seller.setAdvrt(advrt);
-            JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + " seller!");
-=======
             String sellerID = this.userAccount.getEmployee().getName();
             Property property = new Property();
             property.setPropertyName(name);
@@ -352,13 +330,12 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             property.setBhk(bhk);
             property.setBathroom(bathroom);
             property.setPrice(price);
-            property.setStatus("On Sell");
+            property.setStatus("Vacant");
             property.setSeller(sellerDirectory.fetchSeller(sellerID));
             property.setPropertyID(propertyDirectory.generatePropertyID());
             propertyDirectory.addProperty(property);
             system.setPropertyDirectory(propertyDirectory);
             JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + "seller!");
->>>>>>> e64d5139bffb1d7e4bb29ec0cdf5180b6cbbbfeb
 
         }
     }//GEN-LAST:event_submitBtnActionPerformed

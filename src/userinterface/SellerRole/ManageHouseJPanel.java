@@ -5,6 +5,7 @@
  */
 package userinterface.SellerRole;
 
+import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
@@ -16,6 +17,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import sun.security.x509.X500Name;
 
 /**
  *
@@ -25,10 +27,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem business;
-<<<<<<< HEAD
-
-=======
->>>>>>> e64d5139bffb1d7e4bb29ec0cdf5180b6cbbbfeb
     private SellerDirectory sellerDirectory;
     /**
      * Creates new form ManageHouseJPanel
@@ -38,63 +36,36 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     private PropertyDirectory propertyDirectory;
     private EcoSystem system;
 
-<<<<<<< HEAD
-    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory) {
-=======
     public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory, EcoSystem system) {
->>>>>>> e64d5139bffb1d7e4bb29ec0cdf5180b6cbbbfeb
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.useraccount = useraccount;
         this.sellerDirectory = sellerDirectory;
-<<<<<<< HEAD
-=======
+        this.system = system;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
->>>>>>> e64d5139bffb1d7e4bb29ec0cdf5180b6cbbbfeb
         populateTable();
     }
 
     private void populateTable() {
-<<<<<<< HEAD
-
-        DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
-        dtm.setRowCount(0);
-        for (Seller seller : sellerDirectory.getSellerList()) {
-
-            Object[] row = new Object[10];
-            row[0] = seller;
-            row[1] = seller.getAdvrt().getName();
-            row[2] = seller.getAdvrt().getAddress();
-            row[3] = seller.getAdvrt().getCity();
-            row[4] = seller.getAdvrt().getState();
-            row[5] = seller.getAdvrt().getZipcode();
-            row[6] = seller.getAdvrt().getBhk();
-            row[7] = seller.getAdvrt().getBathroom();
-            row[8] = seller.getAdvrt().getRent();
-            row[9] = seller.getAdvrt().getName();
-
-            dtm.addRow(row);
-
-=======
         DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
         dtm.setRowCount(0);
         for (Property property : propertyDirectory.getPropertyList()) {
-            if(property.getSeller().getUsername().equals(useraccount.getUsername())){
-                Object[] row = new Object[10];
-                row[0] = property.getPropertyName();
-                row[1] = property.getStreet();
-                row[2] = property.getCity();
-                row[3] = property.getState();
-                row[4] = property.getPincode();
-                row[5] = property.getBhk();
-                row[6] = property.getBathroom();
-                row[7] = property.getPrice();
-                row[8] = property.getStatus();
-                row[9] = property.getBuyer();
+            if (property.getSeller().getUsername().equals(useraccount.getUsername())) {
+                Object[] row = new Object[11];
+                row[0] = property;
+                row[1] = property.getPropertyName();
+                row[2] = property.getStreet();
+                row[3] = property.getCity();
+                row[4] = property.getState();
+                row[5] = property.getPincode();
+                row[6] = property.getBhk();
+                row[7] = property.getBathroom();
+                row[8] = property.getPrice();
+                row[9] = property.getStatus();
+                row[10] = property.getBuyer();
                 dtm.addRow(row);
             }
->>>>>>> e64d5139bffb1d7e4bb29ec0cdf5180b6cbbbfeb
         }
     }
 
@@ -114,17 +85,38 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnEdit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnSellHouse = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        nameTxt = new javax.swing.JTextField();
+        addressTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        cityTxt = new javax.swing.JTextField();
+        stateTxt = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        pinTxt = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        bhkTxt = new javax.swing.JTextField();
+        bathroomTxt = new javax.swing.JTextField();
+        priceTxt = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jbtnUpdate = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBoxStatus = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        txtSoldTo = new javax.swing.JTextField();
 
         jtblHouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                " Name", " Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status", "SoldTo"
+                "", " Name", " Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status", "SoldTo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -142,6 +134,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             jtblHouse.getColumnModel().getColumn(6).setResizable(false);
             jtblHouse.getColumnModel().getColumn(7).setResizable(false);
             jtblHouse.getColumnModel().getColumn(8).setResizable(false);
+            jtblHouse.getColumnModel().getColumn(9).setResizable(false);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -157,8 +150,14 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnEdit.setText("Edit House");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
-        btnBack.setText("<Back");
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -173,28 +172,127 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setText("Name:");
+
+        nameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setText("House Address:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("City:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("State:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setText("Pincode:");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("BHK:");
+
+        bhkTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhkTxtActionPerformed(evt);
+            }
+        });
+
+        bathroomTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathroomTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setText("Price:");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("Bathroom:");
+
+        jbtnUpdate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jbtnUpdate.setText("Update");
+        jbtnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnUpdateActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Status:");
+
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacant", "Sold" }));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setText("SoldTo:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(184, 184, 184)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(btnSellHouse)
-                        .addGap(162, 162, 162)
-                        .addComponent(btnDeleteHouse)
-                        .addGap(43, 43, 43)
-                        .addComponent(btnEdit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addComponent(btnBack)
+                            .addGap(176, 176, 176)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(75, 75, 75)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGap(42, 42, 42)
+                                            .addComponent(btnSellHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(63, 63, 63))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel5)
+                                                        .addComponent(jLabel4)
+                                                        .addComponent(jLabel6))
+                                                    .addGap(60, 60, 60)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(cityTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                                        .addComponent(stateTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(pinTxt, javax.swing.GroupLayout.Alignment.LEADING)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel2)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel3)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel8)
+                                                .addComponent(jLabel10)
+                                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel7)
+                                                .addComponent(jLabel9))
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(bhkTxt)
+                                        .addComponent(btnDeleteHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bathroomTxt)
+                                        .addComponent(priceTxt)
+                                        .addComponent(jComboBoxStatus, 0, 188, Short.MAX_VALUE)
+                                        .addComponent(txtSoldTo))
+                                    .addGap(21, 21, 21))))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,41 +304,255 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(btnSellHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDeleteHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bhkTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(jLabel2)
+                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeleteHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSellHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(129, 129, 129))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel3)
+                    .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bathroomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(priceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel4)
+                        .addComponent(cityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel9)
+                    .addComponent(txtSoldTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addComponent(jbtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteHouseActionPerformed
         // TODO add your handling code here:
+        int selectedRow = jtblHouse.getSelectedRow();
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to delete the house", "Warning", dialogButton);
+
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Property property = (Property) jtblHouse.getValueAt(selectedRow, 0);
+                propertyDirectory.removeProperty(property);
+                JOptionPane.showMessageDialog(this, "Selected house is removed from the list!");
+                populateTable();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a house to be deleted");
+        }
     }//GEN-LAST:event_btnDeleteHouseActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount,system);
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount, system);
         userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellHouseActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
+
+        int selectedRow = jtblHouse.getSelectedRow();
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to sell the house", "Warning", dialogButton);
+
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Property property = (Property) jtblHouse.getValueAt(selectedRow, 0);
+                String statusget = (String) jtblHouse.getValueAt(selectedRow, 9);
+                if (!statusget.equalsIgnoreCase("sold")) {
+                    statusget="sold";
+                    dtm.setValueAt(statusget, selectedRow, 9);
+                    property.setStatus(statusget);
+                }
+                String buyer = "Nicholas";
+                dtm.setValueAt(buyer, selectedRow, 10);
+                
+                property.setBuyer(system.getBuyerDirectory().getBuyer(buyer));
+             
+               system.setPropertyDirectory(propertyDirectory);
+                JOptionPane.showMessageDialog(this, "Selected house is sold!!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a house to be sold");
+        }
     }//GEN-LAST:event_btnSellHouseActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
+
+        int selectedRow = jtblHouse.getSelectedRow();
+        if (selectedRow >= 0) {
+
+            String name = (String) jtblHouse.getValueAt(selectedRow, 1);
+            String address = (String) jtblHouse.getValueAt(selectedRow, 2);
+            String city = (String) jtblHouse.getValueAt(selectedRow, 3);
+            String state = (String) jtblHouse.getValueAt(selectedRow, 4);
+            String zipcode = (String) jtblHouse.getValueAt(selectedRow, 5);
+            int bhk = (Integer) jtblHouse.getValueAt(selectedRow, 6);
+            double bathroom = (Double) jtblHouse.getValueAt(selectedRow, 7);
+            double price = (Double) jtblHouse.getValueAt(selectedRow, 8);
+            String status = (String) jtblHouse.getValueAt(selectedRow, 9);
+            String soldto = (String) jtblHouse.getValueAt(selectedRow, 10);
+
+            nameTxt.setText(name);
+            addressTxt.setText(address);
+            pinTxt.setText(zipcode);
+            stateTxt.setText(state);
+            String bhkset = Integer.toString(bhk);
+            bhkTxt.setText(bhkset);
+            String bathroomset = Double.toString(bathroom);
+            bathroomTxt.setText(bathroomset);
+            String priceset = Double.toString(price);
+            priceTxt.setText(priceset);
+            jComboBoxStatus.getModel().setSelectedItem(status);
+            txtSoldTo.setText(soldto);
+            cityTxt.setText(city);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTxtActionPerformed
+
+    private void bhkTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhkTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bhkTxtActionPerformed
+
+    private void bathroomTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathroomTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bathroomTxtActionPerformed
+
+    private void jbtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnUpdateActionPerformed
+        // TODO add your handling code here:
+      
+        String sellerID = this.useraccount.getEmployee().getName();
+        DefaultTableModel dtm1 = (DefaultTableModel) jtblHouse.getModel();
+
+        int selectedRow = jtblHouse.getSelectedRow();
+        Property property = (Property) jtblHouse.getValueAt(selectedRow, 0);
+
+        property.setPropertyName(nameTxt.getText());
+        property.setStreet(addressTxt.getText());
+        property.setCity(cityTxt.getText());
+        property.setPincode(pinTxt.getText());
+        property.setState(stateTxt.getText());
+        int bhkget = Integer.parseInt(bhkTxt.getText());
+       
+        System.out.println(bhkget);
+        property.setBhk(bhkget);
+        property.setBathroom(Double.parseDouble(bathroomTxt.getText()));
+        property.setPrice(Double.parseDouble(priceTxt.getText()));
+        String statusget = String.valueOf(jComboBoxStatus.getSelectedItem());
+        property.setStatus(statusget);
+        //property.setBuyer(buyer);
+        try {
+            if (txtSoldTo.getText() != null) {
+                property.getBuyer().setBuyerName(txtSoldTo.getText());
+            }
+
+        } catch (NullPointerException e) {
+            System.out.println("NullPointerException thrown!");
+        }
+
+        DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
+        dtm.setRowCount(0);
+
+        Object[] row = new Object[11];
+        row[0] = property;
+        row[1] = property.getPropertyName();
+        row[2] = property.getStreet();
+        row[3] = property.getCity();
+        row[4] = property.getState();
+        row[5] = property.getPincode();
+        row[6] = property.getBhk();
+        row[7] = property.getBathroom();
+        row[8] = property.getPrice();
+        row[9] = property.getStatus();
+        row[10] = property.getBuyer();
+        dtm.addRow(row);
+       
+        property.setSeller(sellerDirectory.fetchSeller(sellerID));
+    
+        system.setPropertyDirectory(propertyDirectory);
+        JOptionPane.showMessageDialog(null, "House details Updated!");
+        nameTxt.setText("");
+        addressTxt.setText("");
+        pinTxt.setText("");
+        stateTxt.setText("");
+
+        bhkTxt.setText("");
+
+        bathroomTxt.setText("");
+
+        priceTxt.setText("");
+
+        txtSoldTo.setText("");
+        cityTxt.setText("");
+    }//GEN-LAST:event_jbtnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField addressTxt;
+    private javax.swing.JTextField bathroomTxt;
+    private javax.swing.JTextField bhkTxt;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDeleteHouse;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSellHouse;
+    private javax.swing.JTextField cityTxt;
+    private javax.swing.JComboBox<String> jComboBoxStatus;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtnUpdate;
     private javax.swing.JTable jtblHouse;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JTextField pinTxt;
+    private javax.swing.JTextField priceTxt;
+    private javax.swing.JTextField stateTxt;
+    private javax.swing.JTextField txtSoldTo;
     // End of variables declaration//GEN-END:variables
 }
