@@ -44,10 +44,6 @@ public class CreateAgentJPanel extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
-        userNameTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        passwordTxt = new javax.swing.JTextField();
         submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         phoneTxt = new javax.swing.JTextField();
@@ -55,16 +51,6 @@ public class CreateAgentJPanel extends javax.swing.JPanel {
         jLabel2.setText("Name:");
 
         nameTxt.setText(" ");
-
-        userNameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("User Name:");
-
-        jLabel4.setText("Password:");
 
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -87,13 +73,9 @@ public class CreateAgentJPanel extends javax.swing.JPanel {
                 .addContainerGap(201, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(42, 42, 42)
+                .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userNameTxt)
-                    .addComponent(passwordTxt)
                     .addComponent(nameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                     .addComponent(phoneTxt))
                 .addGap(263, 263, 263))
@@ -109,35 +91,17 @@ public class CreateAgentJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(16, 16, 16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addGap(18, 163, Short.MAX_VALUE)))
                 .addComponent(submitBtn)
                 .addGap(93, 93, 93))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userNameTxtActionPerformed
-
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-       String name = nameTxt.getText();
-       String userName = userNameTxt.getText();
-       String password = passwordTxt.getText();
-       String phone = phoneTxt.getText();
-       
+ 
        
        
     }//GEN-LAST:event_submitBtnActionPerformed
@@ -146,12 +110,8 @@ public class CreateAgentJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nameTxt;
-    private javax.swing.JTextField passwordTxt;
     private javax.swing.JTextField phoneTxt;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JTextField userNameTxt;
     // End of variables declaration//GEN-END:variables
 }
