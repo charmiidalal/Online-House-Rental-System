@@ -293,7 +293,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             if (userType == "Photographer") {
                 Photographer photographer = new Photographer();
                 photographer.setPhotographerName(name);
-                photographer.setPhotographerEmail(emailAddress);
+                photographer.setEmail(emailAddress);
                 photographer.setPhotographerNo(photographerDirectory.generatePhotographerID());
                 photographerDirectory.addPhotographer(photographer);
                 Employee employee = system.getEmployeeDirectory().createEmployee(photographer.getPhotographerNo());

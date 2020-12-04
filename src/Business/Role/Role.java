@@ -52,7 +52,6 @@ public abstract class Role {
             UserAccount account,
             Organization organization, 
             Enterprise enterprise, 
-            
             EcoSystem business);
     
 

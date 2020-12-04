@@ -13,8 +13,13 @@ public class Photographer {
 
     private String photographerNo;
     private String photographerName;
-    private String photographerPhone;
-    private String photographerEmail;
+    private String city;
+    private String zipcode;
+    private String state;
+    private String status;
+    private String charge;
+    private String email;
+    private String phone;
 
     public String getRole() {
         return "Photographer";
@@ -36,20 +41,61 @@ public class Photographer {
         this.photographerName = photographerName;
     }
 
-    public String getPhotographerPhone() {
-        return photographerPhone;
+    public String getCity() {
+        return city;
     }
 
-    public void setPhotographerPhone(String photographerPhone) {
-        this.photographerPhone = photographerPhone;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getPhotographerEmail() {
-        return photographerEmail;
+    public String getZipcode() {
+        return zipcode;
     }
 
-    public void setPhotographerEmail(String photographerEmail) {
-        this.photographerEmail = photographerEmail;
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCharge() {
+        return charge;
+    }
+
+    public void setCharge(String charge) {
+        this.charge = charge;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     
 }

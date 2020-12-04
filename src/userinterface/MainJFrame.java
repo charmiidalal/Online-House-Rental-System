@@ -204,7 +204,7 @@ public class MainJFrame extends javax.swing.JFrame {
             txtUsername.setEnabled(false);
             txtPassword.setEnabled(false);
             btnLogin.setEnabled(false);
-            dB4OUtil.storeSystem(system);
+           // dB4OUtil.storeSystem(system);
         } else {
             JOptionPane.showMessageDialog(null, "Username or password incorrect. Please try again.");
         }
