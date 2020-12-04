@@ -86,6 +86,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         btnHireInspector1 = new javax.swing.JButton();
         hireSPBtn = new javax.swing.JButton();
+        btnViewAgent = new javax.swing.JButton();
 
         btnViewHouseDetails.setText("View House Details");
         btnViewHouseDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +162,13 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnViewAgent.setText("View Agent Jobs");
+        btnViewAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewAgentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,7 +191,8 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnViewHouseDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHireInspector1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnHireInspector1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnViewAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(128, Short.MAX_VALUE))
@@ -194,12 +203,14 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnHireInspector1)
-                        .addGap(41, 41, 41)
-                        .addComponent(btnHireInspector)
+                        .addComponent(btnViewAgent)
                         .addGap(18, 18, 18)
+                        .addComponent(btnHireInspector1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnHireInspector)
+                        .addGap(29, 29, 29)
                         .addComponent(hireSPBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnViewHouseDetails)
                         .addGap(18, 18, 18)
                         .addComponent(btnViewSellerDetails)
@@ -303,18 +314,27 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnHireInspector1ActionPerformed
 
     private void hireSPBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireSPBtnActionPerformed
-         int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
         HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer,property, buyer, system, userAccount);
-        userProcessContainer.add("manageInspectorActivity", hireServiceJPanel);
+            userProcessContainer.add("manageInspectorActivity", hireServiceJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_hireSPBtnActionPerformed
+
+    private void btnViewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAgentActionPerformed
+        // TODO add your handling code here:
+        ManageAgentActivity manageAgentActivity = new ManageAgentActivity(userProcessContainer,system, userAccount);
+        userProcessContainer.add("manageAgentActivity", manageAgentActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_hireSPBtnActionPerformed
-    }
+    }//GEN-LAST:event_btnViewAgentActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -322,6 +342,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnHireInspector;
     private javax.swing.JButton btnHireInspector1;
     private javax.swing.JButton btnRequestNegotiation;
+    private javax.swing.JButton btnViewAgent;
     private javax.swing.JButton btnViewHouseDetails;
     private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JButton hireSPBtn;

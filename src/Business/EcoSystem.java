@@ -17,9 +17,11 @@ import Business.Buyer.BuyerDirectory;
 import Business.Cleaner.CleanerDirectory;
 import Business.Electrician.ElectricianDirectory;
 import Business.ElectricianRequest.ElectricianRequestDirectory;
+import Business.Employee.Employee;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
 import Business.InspectRequest.InspectRequestDirectory;
+import Business.AgentRequest.AgentRequestDirectory;
 import Business.Organization.OrganizationDirectory;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
@@ -28,6 +30,13 @@ import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.PropertyDirectory;
+import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -55,6 +64,7 @@ public class EcoSystem extends Organization {
     private InspectRequestDirectory inspectRequestDirectory;
     private PlumbingRequestDirectory plumbingRequestDirectory;
     private ElectricianRequestDirectory electricianRequestDirectory;
+    private AgentRequestDirectory agentRequestDirectory;
 
     public ElectricianRequestDirectory getElectricianRequestDirectory() {
         return electricianRequestDirectory;
@@ -158,7 +168,6 @@ public class EcoSystem extends Organization {
         this.plumbingRequestDirectory = plumbingRequestDirectory;
     }
 
-    
     public PhotographerDirectory getPhotographerDirectory() {
         return photographerDirectory;
     }
@@ -254,5 +263,55 @@ public class EcoSystem extends Organization {
     public void setInspectRequestDirectory(InspectRequestDirectory inspectRequestDirectory) {
         this.inspectRequestDirectory = inspectRequestDirectory;
     }
+
+    public AgentRequestDirectory getAgentRequestDirectory() {
+        return agentRequestDirectory;
+    }
+
+    public void setAgentRequestDirectory(AgentRequestDirectory agentRequestDirectory) {
+        this.agentRequestDirectory = agentRequestDirectory;
+    }
+    
+    public Boolean checkValidPhoneFormat(String phoneNo) {
+        String regex = "^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(phoneNo);
+        if (matcher.matches()) {
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean checkValidEmailFormat(String email) {
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkValidPasswordFormat(String password) {
+        Pattern p1;
+        p1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = p1.matcher(password);
+        boolean b1 = m1.matches();
+        return b1;
+    }
+
+    public void setValidationAlert(JLabel lblName, JTextField txtBoxName, String validationMsg, Boolean flag) {
+        if (flag) {
+            lblName.setForeground(Color.red);
+            txtBoxName.setBorder(BorderFactory.createLineBorder(Color.RED));
+            JOptionPane.showMessageDialog(null, validationMsg);
+        } else {
+            lblName.setForeground(Color.BLACK);
+            txtBoxName.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+    }
+    
 
 }

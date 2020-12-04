@@ -19,14 +19,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerWorkAreaJPanel.java</file>
-            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/SellerWorkAreaJPanel.java</file>
-            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/InspectorRole/InspectorWorkAreaJPanel.java</file>
-            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/AddBuyerJPanel.java</file>
-            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/inspector/InspectorJPanel.java</file>
-            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/ManageInspectorJPanel.java</file>
-            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/ManageHouseJPanel.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

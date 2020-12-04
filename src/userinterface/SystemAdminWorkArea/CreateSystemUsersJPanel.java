@@ -313,8 +313,9 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             } else if (userType == "Agent") {
                 Agent agent = new Agent();
                 agent.setAgentName(name);
-                agent.setAgentEmail(emailAddress);
+                agent.setEmail(emailAddress);
                 agent.setAgentNo(agentDirectory.generateAgentID());
+                agent.setStatus("Available");
                 agentDirectory.addAgent(agent);
                 Employee employee = system.getEmployeeDirectory().createEmployee(agent.getAgentNo());
                 AgentRole role = new AgentRole();

@@ -55,6 +55,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePackBtn = new javax.swing.JButton();
         hirePhotoBtn = new javax.swing.JButton();
         hireCleanBtn = new javax.swing.JButton();
+        hireAgent = new javax.swing.JButton();
 
         hireElecBtn.setText("Hire Electrician");
         hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +77,13 @@ public class HireServiceJPanel extends javax.swing.JPanel {
 
         hireCleanBtn.setText("Hire Cleaner");
 
+        hireAgent.setText("Hire Agent");
+        hireAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireAgentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,9 +95,11 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                     .addComponent(hirePackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(hireElecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(hirePlumBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hireCleanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(hirePlumBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hireCleanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hireAgent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(327, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,7 +114,9 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                     .addComponent(hirePackBtn)
                     .addComponent(hireCleanBtn))
                 .addGap(52, 52, 52)
-                .addComponent(hirePhotoBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hirePhotoBtn)
+                    .addComponent(hireAgent))
                 .addContainerGap(209, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -123,8 +135,17 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePlumBtnActionPerformed
 
+    private void hireAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireAgentActionPerformed
+        // TODO add your handling code here:
+        HireAgentJPanel hireAgentJPanel = new HireAgentJPanel(userProcessContainer, property, buyer,system);
+        userProcessContainer.add("hireAgentJPanel", hireAgentJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_hireAgentActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton hireAgent;
     private javax.swing.JButton hireCleanBtn;
     private javax.swing.JButton hireElecBtn;
     private javax.swing.JButton hirePackBtn;
