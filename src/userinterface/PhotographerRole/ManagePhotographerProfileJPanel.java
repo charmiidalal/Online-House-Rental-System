@@ -41,7 +41,7 @@ public class ManagePhotographerProfileJPanel extends javax.swing.JPanel {
         txtName.setText(photographer.getPhotographerName());
         txtCharge.setText(photographer.getCharge());
         txtCity.setText(photographer.getCity());
-        txtStatus.setText(photographer.getState());
+        txtState.setText(photographer.getState());
         txtZipcode.setText(photographer.getZipcode());
         txtEmail.setText(photographer.getEmail());
         txtPhone.setText(photographer.getPhone());
