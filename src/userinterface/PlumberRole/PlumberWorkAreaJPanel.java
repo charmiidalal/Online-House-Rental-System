@@ -2,9 +2,19 @@
 
 package userinterface.PlumberRole;
 
+import Business.Buyer.BuyerDirectory;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.PlumbingRequest.PlumbingRequest;
+import Business.PlumbingRequest.PlumbingRequestDirectory;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,14 +22,22 @@ import javax.swing.JPanel;
  */
 public class PlumberWorkAreaJPanel extends javax.swing.JPanel {
     
-    JPanel userProcessContainer;
-    Enterprise enterprise;
+   private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount userAccount;
+    private SellerDirectory sellerDirectory;
+    private PropertyDirectory propertyDirectory;
+    private BuyerDirectory buyerDirectory;
+    private PlumbingRequestDirectory plumbingRequestDirectory;
+
     /** Creates new form AdminWorkAreaJPanel */
-    public PlumberWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+     public PlumberWorkAreaJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
-    
+        this.userProcessContainer = userProcess;
+        this.system = system;
+        this.userAccount = userAccount;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
     }
     
     /** This method is called from within the constructor to
@@ -30,36 +48,46 @@ public class PlumberWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnManageProfile = new javax.swing.JButton();
+        btnViewJobs = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Job Title", "Buyer", "Seller", "Address"
+        btnManageProfile.setText("Manage Profile");
+        btnManageProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageProfileActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
+        add(btnManageProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 130, 30));
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 750, 290));
-
-        jButton2.setText("Take Job");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
+        btnViewJobs.setText("View Jobs");
+        btnViewJobs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewJobsActionPerformed(evt);
+            }
+        });
+        add(btnViewJobs, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 130, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
+        ManagePlumberJPanel manageElectricianJPanel = new ManagePlumberJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("ManagePlumberJPanel", manageElectricianJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageProfileActionPerformed
+
+    private void btnViewJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewJobsActionPerformed
+        ViewJobJPanel viewJobsJPanel = new ViewJobJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("ViewJobJPanel", viewJobsJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewJobsActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton btnManageProfile;
+    private javax.swing.JButton btnViewJobs;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
 import Business.Cleaner.CleanerDirectory;
 import Business.Electrician.ElectricianDirectory;
+import Business.ElectricianRequest.ElectricianRequestDirectory;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
 import Business.InspectRequest.InspectRequestDirectory;
@@ -25,6 +26,7 @@ import Business.Photographer.PhotographerDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
+import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.PropertyDirectory;
 
 /**
@@ -51,6 +53,16 @@ public class EcoSystem extends Organization {
     private GovermentEmployeeDirectory govermentEmployeeDirectory;
     private PropertyDirectory propertyDirectory;
     private InspectRequestDirectory inspectRequestDirectory;
+    private PlumbingRequestDirectory plumbingRequestDirectory;
+    private ElectricianRequestDirectory electricianRequestDirectory;
+
+    public ElectricianRequestDirectory getElectricianRequestDirectory() {
+        return electricianRequestDirectory;
+    }
+
+    public void setElectricianRequestDirectory(ElectricianRequestDirectory electricianRequestDirectory) {
+        this.electricianRequestDirectory = electricianRequestDirectory;
+    }
     private ArrayList<Network> networkList;
 
     public OrganizationDirectory getOrganizationDirectory() {
@@ -138,6 +150,15 @@ public class EcoSystem extends Organization {
         this.orderDirectory = orderDirectory;
     }
 
+    public PlumbingRequestDirectory getPlumbingRequestDirectory() {
+        return plumbingRequestDirectory;
+    }
+
+    public void setPlumbingRequestDirectory(PlumbingRequestDirectory plumbingRequestDirectory) {
+        this.plumbingRequestDirectory = plumbingRequestDirectory;
+    }
+
+    
     public PhotographerDirectory getPhotographerDirectory() {
         return photographerDirectory;
     }

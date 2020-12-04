@@ -46,7 +46,6 @@ import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 /**
  *
  * @author raunak
@@ -293,7 +292,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             if (userType == "Photographer") {
                 Photographer photographer = new Photographer();
                 photographer.setPhotographerName(name);
-                photographer.setPhotographerEmail(emailAddress);
+                photographer.setEmail(emailAddress);
                 photographer.setPhotographerNo(photographerDirectory.generatePhotographerID());
                 photographerDirectory.addPhotographer(photographer);
                 Employee employee = system.getEmployeeDirectory().createEmployee(photographer.getPhotographerNo());
@@ -304,6 +303,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 Inspector inspector = new Inspector();
                 inspector.setInspectorName(name);
                 inspector.setEmail(emailAddress);
+                inspector.setStatus("Available");
                 inspector.setInspectorNo(inspectorDirectory.generateInspectorID());
                 inspectorDirectory.addInspector(inspector);
                 Employee employee = system.getEmployeeDirectory().createEmployee(inspector.getInspectorNo());
@@ -340,21 +340,12 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 PropertyManagerRole role = new PropertyManagerRole();
                 system.setPropertyManagerDirectory(propertyManagerDirectory);
                 UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Property Manager");
-            } else if (userType == "Property Manager") {
-                PropertyManager propertyManager = new PropertyManager();
-                propertyManager.setPropertyName(name);
-                propertyManager.setPropertyEmail(emailAddress);
-                propertyManager.setPropertyNo(propertyManagerDirectory.generatePropertyManagerID());
-                propertyManagerDirectory.addPropertyManager(propertyManager);
-                Employee employee = system.getEmployeeDirectory().createEmployee(propertyManager.getPropertyNo());
-                PropertyManagerRole role = new PropertyManagerRole();
-                system.setPropertyManagerDirectory(propertyManagerDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Property Manager");
-            } else if (userType == "Electrician") {
+            }  else if (userType == "Electrician") {
                 Electrician electrician = new Electrician();
                 electrician.setElectricianName(name);
-                electrician.setElectricianEmail(emailAddress);
-                electrician.setElectricianNo(propertyManagerDirectory.generatePropertyManagerID());
+                electrician.setEmail(emailAddress);
+                electrician.setStatus("Available");
+                electrician.setElectricianNo(electricianDirectory.generateElectricianID());
                 electricianDirectory.addElectrician(electrician);
                 Employee employee = system.getEmployeeDirectory().createEmployee(electrician.getElectricianNo());
                 ElectricianRole role = new ElectricianRole();
@@ -363,8 +354,9 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             } else if (userType == "Plumber") {
                 Plumber plumber = new Plumber();
                 plumber.setPlumberName(name);
-                plumber.setPlumberEmail(emailAddress);
-                plumber.setPlumberNo(propertyManagerDirectory.generatePropertyManagerID());
+                plumber.setEmail(emailAddress);
+                plumber.setStatus("Available");
+                plumber.setPlumberNo(plumberDirectory.generatePlumberID());
                 plumberDirectory.addPlumber(plumber);
                 Employee employee = system.getEmployeeDirectory().createEmployee(plumber.getPlumberNo());
                 PlumbingRole role = new PlumbingRole();

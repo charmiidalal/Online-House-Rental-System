@@ -15,13 +15,15 @@ import userinterface.PhotographerRole.PhotographerWorkAreaJPanel;
  *
  * @author raunak
  */
-public class PhotographerRole extends Role{
+
+public class PhotographerRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new PhotographerWorkAreaJPanel(userProcessContainer, enterprise);
+        return new PhotographerWorkAreaJPanel(userProcessContainer,business,account);
     }
+   
 
-    
-    
+   
 }
+

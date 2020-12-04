@@ -331,6 +331,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             property.setBathroom(bathroom);
             property.setPrice(price);
             property.setStatus("Vacant");
+            property.setUploadImg(img);
             property.setSeller(sellerDirectory.fetchSeller(sellerID));
             property.setPropertyID(propertyDirectory.generatePropertyID());
             propertyDirectory.addProperty(property);
@@ -350,7 +351,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, userAccount,system);
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, userAccount,system);
         userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

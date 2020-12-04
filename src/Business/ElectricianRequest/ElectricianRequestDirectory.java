@@ -44,4 +44,7 @@ public class ElectricianRequestDirectory {
         }
         return null;
     }
+    public String generateElectricianRequestID() {
+        return "ElectricianRequest" + (electricianRequestList.size() + 1);
+    }
 }

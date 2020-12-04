@@ -45,5 +45,8 @@ public class InspectRequestDirectory {
         }
         return null;
     }
-
+    
+    public String generateInspectorRequestID() {
+        return "InspectorRequest" + (inspectRequestList.size() + 1);
+    }
 }

@@ -27,11 +27,20 @@ public class PhotographerDirectory {
 
     }
 
-    public void removeSeller(Photographer photographer) {
+    public void removePhotographer(Photographer photographer) {
         PhotographerList.remove(photographer);
     }
     
     public String generatePhotographerID(){
         return "Photographer"+(PhotographerList.size()+1);
+    }
+    
+    public Photographer fetchPhotographer(String PhotographerNo) {
+        for (Photographer photographer : PhotographerList) {
+            if (photographer.getPhotographerNo().equalsIgnoreCase(PhotographerNo)) {
+                return photographer;
+            }
+        }
+        return null;
     }
 }

@@ -371,7 +371,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, enterprise, useraccount, system);
+        SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, useraccount, system);
         userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -522,6 +522,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
         txtSoldTo.setText("");
         cityTxt.setText("");
+        populateTable();
     }//GEN-LAST:event_jbtnUpdateActionPerformed
 
 

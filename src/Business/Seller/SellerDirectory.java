@@ -13,13 +13,8 @@ import javax.swing.ImageIcon;
  * @author anusha
  */
 public class SellerDirectory {
- 
-    private ArrayList<Seller> sellerList;
-    public SellerDirectory()
-   {
-       this.sellerList=new ArrayList<Seller>();
-   }
-   
+
+    private ArrayList<Seller> sellerList = new ArrayList<Seller>();
 
     public ArrayList<Seller> getSellerList() {
         return sellerList;
@@ -39,8 +34,8 @@ public class SellerDirectory {
     }
 
     public Seller searchseller(String sellerName) {
-    for (Seller seller : sellerList) {
-            if (seller.getSellerName().equalsIgnoreCase(sellerName)) {
+        for (Seller seller : sellerList) {
+            if (seller.getName().equalsIgnoreCase(sellerName)) {
                 return seller;
             }
         }
@@ -64,7 +59,5 @@ public class SellerDirectory {
     public Seller getSellerByIndex(int index) {
         return sellerList.get(index);
     }
-  
 
-   
 }

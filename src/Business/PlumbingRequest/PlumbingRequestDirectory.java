@@ -45,4 +45,7 @@ public class PlumbingRequestDirectory {
         }
         return null;
     }
+    public String generatePlumbingRequestID() {
+        return "PlumbingRequest" + (plumbingRequestList.size() + 1);
+    }
 }

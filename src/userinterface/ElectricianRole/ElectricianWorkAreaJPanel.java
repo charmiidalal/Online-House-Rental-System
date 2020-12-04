@@ -1,26 +1,48 @@
 
 
-package userinterface.AdministrativeRole;
+package userinterface.ElectricianRole;
 
+import Business.Buyer.BuyerDirectory;
+import Business.EcoSystem;
+import Business.ElectricianRequest.ElectricianRequest;
+import Business.ElectricianRequest.ElectricianRequestDirectory;
 import Business.Enterprise.Enterprise;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
+import Business.Seller.SellerDirectory;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import static java.time.Clock.system;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author  raunak
+ * @author  Dinesh
  */
 public class ElectricianWorkAreaJPanel extends javax.swing.JPanel {
-    
-    JPanel userProcessContainer;
-    Enterprise enterprise;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount userAccount;
+    private ElectricianRequestDirectory electricianRequestDirectory;
+    private SellerDirectory sellerDirectory;
+    private PropertyDirectory propertyDirectory;
+    private BuyerDirectory buyerDirectory;
+    private ElectricianRequestDirectory ElectricianRequestDirectory;
+
     /** Creates new form AdminWorkAreaJPanel */
-    public ElectricianWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public ElectricianWorkAreaJPanel(JPanel userProcessContainer,EcoSystem system,UserAccount userAccount ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
-        valueLabel.setText(enterprise.getName());
+        this.system = system;
+        this.userAccount=userAccount;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        this.electricianRequestDirectory = (system.getElectricianRequestDirectory()== null) ? new ElectricianRequestDirectory(): system.getElectricianRequestDirectory();
     }
+    
+     
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -30,86 +52,46 @@ public class ElectricianWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        userJButton = new javax.swing.JButton();
-        manageEmployeeJButton = new javax.swing.JButton();
-        manageOrganizationJButton = new javax.swing.JButton();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        viewJobsBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("My Work Area -Adminstrative Role");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
-
-        userJButton.setText("Manage User");
-        userJButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Manage Profile");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userJButtonActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 150, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 130, 30));
 
-        manageEmployeeJButton.setText("Manage Employee");
-        manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
+        viewJobsBtn.setText("View Jobs");
+        viewJobsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageEmployeeJButtonActionPerformed(evt);
+                viewJobsBtnActionPerformed(evt);
             }
         });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
-
-        manageOrganizationJButton.setText("Manage Organization");
-        manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageOrganizationJButtonActionPerformed(evt);
-            }
-        });
-        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
-
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 120, 30));
-
-        valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
+        add(viewJobsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 130, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
-        // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
-        userProcessContainer.add("ManageUserAccountJPanel", muajp);
-
+    private void viewJobsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobsBtnActionPerformed
+        ViewElectricianJobsJPanel viewJobsJPanel = new ViewElectricianJobsJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("viewJobsJPanel", viewJobsJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_userJButtonActionPerformed
+    }//GEN-LAST:event_viewJobsBtnActionPerformed
 
-    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
-
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
-
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ManageElectricianJPanel manageElectricianJPanel = new ManageElectricianJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("viewJobsJPanel", manageElectricianJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-        
-    }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
-
-    private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
-
-        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton manageEmployeeJButton;
-    private javax.swing.JButton manageOrganizationJButton;
-    private javax.swing.JButton userJButton;
-    private javax.swing.JLabel valueLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton viewJobsBtn;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -14,11 +14,13 @@ import Business.UserAccount.UserAccount;
  */
 public class Seller extends UserAccount {
     private String sellerNo;
-    private String sellerName;
-    private String sellerPhone;
-    private String sellerStreet;
-    private String sellerZipcode;
-    private String sellerEmail;
+    private String Name;
+    private String Phone;
+    private String Street;
+    private String Zipcode;
+    private String Email;
+    private String City;
+    private String State;
     private Boolean isApproved;
     private String username;
 
@@ -56,45 +58,64 @@ public class Seller extends UserAccount {
         this.sellerNo = sellerNo;
     }
 
-    public String getSellerName() {
-        return sellerName;
+    public String getName() {
+        return Name;
     }
 
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public String getSellerPhone() {
-        return sellerPhone;
+    public String getPhone() {
+        return Phone;
     }
 
-    public void setSellerPhone(String sellerPhone) {
-        this.sellerPhone = sellerPhone;
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
     }
 
-    public String getSellerStreet() {
-        return sellerStreet;
+    public String getStreet() {
+        return Street;
     }
 
-    public void setSellerStreet(String sellerStreet) {
-        this.sellerStreet = sellerStreet;
+    public void setStreet(String Street) {
+        this.Street = Street;
     }
 
-    public String getSellerZipcode() {
-        return sellerZipcode;
+    public String getZipcode() {
+        return Zipcode;
     }
 
-    public void setSellerZipcode(String sellerZipcode) {
-        this.sellerZipcode = sellerZipcode;
+    public void setZipcode(String Zipcode) {
+        this.Zipcode = Zipcode;
     }
 
-    public String getSellerEmail() {
-        return sellerEmail;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setSellerEmail(String sellerEmail) {
-        this.sellerEmail = sellerEmail;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String City) {
+        this.City = City;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String State) {
+        this.State = State;
+    }
+
+    
+    
     
     
 }
