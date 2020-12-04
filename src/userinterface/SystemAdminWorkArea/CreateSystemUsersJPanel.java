@@ -345,6 +345,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 Electrician electrician = new Electrician();
                 electrician.setElectricianName(name);
                 electrician.setEmail(emailAddress);
+                electrician.setStatus("Available");
                 electrician.setElectricianNo(electricianDirectory.generateElectricianID());
                 electricianDirectory.addElectrician(electrician);
                 Employee employee = system.getEmployeeDirectory().createEmployee(electrician.getElectricianNo());
@@ -355,6 +356,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
                 Plumber plumber = new Plumber();
                 plumber.setPlumberName(name);
                 plumber.setEmail(emailAddress);
+                plumber.setStatus("Available");
                 plumber.setPlumberNo(plumberDirectory.generatePlumberID());
                 plumberDirectory.addPlumber(plumber);
                 Employee employee = system.getEmployeeDirectory().createEmployee(plumber.getPlumberNo());

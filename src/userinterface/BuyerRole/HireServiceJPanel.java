@@ -27,6 +27,8 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
+    private Property property;
+    private Buyer buyer;
     
    
 
@@ -35,8 +37,8 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.userAccount=userAccount;
         this.system=system;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        this.buyer = buyer;
+        this.property = property;
     }
 
     /**
@@ -79,41 +81,43 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(336, 336, 336)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hireCleanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(hirePhotoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hirePackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hireElecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(hirePlumBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hireElecBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hirePackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hirePhotoBtn))
-                .addContainerGap(353, Short.MAX_VALUE))
+                    .addComponent(hireCleanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(hireElecBtn)
-                .addGap(18, 18, 18)
-                .addComponent(hirePlumBtn)
-                .addGap(18, 18, 18)
-                .addComponent(hirePackBtn)
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hireElecBtn)
+                    .addComponent(hirePlumBtn))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hirePackBtn)
+                    .addComponent(hireCleanBtn))
+                .addGap(52, 52, 52)
                 .addComponent(hirePhotoBtn)
-                .addGap(26, 26, 26)
-                .addComponent(hireCleanBtn)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer, system, userAccount);
+        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer, property, buyer,system);
         userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireElecBtnActionPerformed
 
     private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
-        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer, system, userAccount);
+        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer, property, buyer,system);
         userProcessContainer.add("plumbeWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

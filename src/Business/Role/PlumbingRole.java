@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
 import javax.swing.JPanel;
+import userinterface.PlumberRole.PlumberWorkAreaJPanel;
 
 /**
  *
@@ -19,7 +20,7 @@ public class PlumbingRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
+        return new PlumberWorkAreaJPanel(userProcessContainer, business,account);
     }
 
     

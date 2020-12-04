@@ -522,6 +522,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
         txtSoldTo.setText("");
         cityTxt.setText("");
+        populateTable();
     }//GEN-LAST:event_jbtnUpdateActionPerformed
 
 

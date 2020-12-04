@@ -8,8 +8,6 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.Electrician.ElectricianDirectory;
-import Business.ElectricianRequest.ElectricianRequestDirectory;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequest;
