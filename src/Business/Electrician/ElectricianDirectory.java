@@ -5,6 +5,8 @@
  */
 package Business.Electrician;
 
+import Business.ElectricianRequest.ElectricianRequest;
+import Business.InspectRequest.InspectRequest;
 import java.util.ArrayList;
 
 /**
@@ -30,9 +32,18 @@ public class ElectricianDirectory {
     public void removeElectrician(Electrician electrician) {
         electricianList.remove(electrician);
     }
+  
 
     public String generateElectricianID() {
         return "Electrician" + (electricianList.size() + 1);
     }
 
+       public Electrician fetchElectrician(String ElectricianNo) {
+        for (Electrician electrician : electricianList) {
+            if (electrician.getElectricianNo().equalsIgnoreCase(ElectricianNo)) {
+                return electrician;
+            }
+        }
+        return null;
+    }
 }

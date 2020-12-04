@@ -35,4 +35,12 @@ public class PlumberDirectory {
         return "Plumber" + (plumberist.size() + 1);
     }
 
+       public Plumber fetchPlumber(String PlumberNo) {
+        for (Plumber plumber : plumberist) {
+            if (plumber.getPlumberNo().equalsIgnoreCase(PlumberNo)) {
+                return plumber;
+            }
+        }
+        return null;
+    }
 }

@@ -6,6 +6,7 @@
 package Business.PlumbingRequest;
 
 import Business.Buyer.Buyer;
+import Business.Plumber.Plumber;
 import Business.Property.Property;
 import Business.Seller.Seller;
 import Business.WorkQueue.WorkRequest;
@@ -18,8 +19,10 @@ public class PlumbingRequest extends WorkRequest {
     private String requestID;
     private Seller seller;
     private Buyer buyer;
+    private Plumber plumber;
     private Property property;
-    private String note;
+    private String inspectorNote;
+     private String buyerNote;
     private String status;
     private String requestedDate;
 
@@ -55,12 +58,28 @@ public class PlumbingRequest extends WorkRequest {
         this.property = property;
     }
 
-    public String getNote() {
-        return note;
+    public Plumber getPlumber() {
+        return plumber;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setPlumber(Plumber plumber) {
+        this.plumber = plumber;
+    }
+
+    public String getInspectorNote() {
+        return inspectorNote;
+    }
+
+    public void setInspectorNote(String inspectorNote) {
+        this.inspectorNote = inspectorNote;
+    }
+
+    public String getBuyerNote() {
+        return buyerNote;
+    }
+
+    public void setBuyerNote(String buyerNote) {
+        this.buyerNote = buyerNote;
     }
 
     public String getStatus() {
@@ -78,6 +97,8 @@ public class PlumbingRequest extends WorkRequest {
     public void setRequestedDate(String requestedDate) {
         this.requestedDate = requestedDate;
     }
+
+   
     
     
 }
