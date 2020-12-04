@@ -344,7 +344,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             }  else if (userType == "Electrician") {
                 Electrician electrician = new Electrician();
                 electrician.setElectricianName(name);
-                electrician.setElectricianEmail(emailAddress);
+                electrician.setEmail(emailAddress);
                 electrician.setElectricianNo(electricianDirectory.generateElectricianID());
                 electricianDirectory.addElectrician(electrician);
                 Employee employee = system.getEmployeeDirectory().createEmployee(electrician.getElectricianNo());
@@ -354,7 +354,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             } else if (userType == "Plumber") {
                 Plumber plumber = new Plumber();
                 plumber.setPlumberName(name);
-                plumber.setPlumberEmail(emailAddress);
+                plumber.setEmail(emailAddress);
                 plumber.setPlumberNo(plumberDirectory.generatePlumberID());
                 plumberDirectory.addPlumber(plumber);
                 Employee employee = system.getEmployeeDirectory().createEmployee(plumber.getPlumberNo());

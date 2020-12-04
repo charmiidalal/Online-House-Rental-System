@@ -6,6 +6,7 @@
 package Business.ElectricianRequest;
 
 import Business.Buyer.Buyer;
+import Business.Electrician.Electrician;
 import Business.Property.Property;
 import Business.Seller.Seller;
 import Business.WorkQueue.WorkRequest;
@@ -15,14 +16,17 @@ import Business.WorkQueue.WorkRequest;
  * @author Dinesh
  */
 public class ElectricianRequest extends WorkRequest {
-    private String requestID;
+  private String requestID;
     private Seller seller;
     private Buyer buyer;
+    private Electrician electrician;
     private Property property;
-    private String note;
+    private String inspectorNote;
+     private String buyerNote;
     private String status;
     private String requestedDate;
-
+    
+    
     public String getRequestID() {
         return requestID;
     }
@@ -55,12 +59,28 @@ public class ElectricianRequest extends WorkRequest {
         this.property = property;
     }
 
-    public String getNote() {
-        return note;
+    public Electrician getElectrician() {
+        return electrician;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setElectrician(Electrician electrician) {
+        this.electrician = electrician;
+    }
+
+    public String getInspectorNote() {
+        return inspectorNote;
+    }
+
+    public void setInspectorNote(String inspectorNote) {
+        this.inspectorNote = inspectorNote;
+    }
+
+    public String getBuyerNote() {
+        return buyerNote;
+    }
+
+    public void setBuyerNote(String buyerNote) {
+        this.buyerNote = buyerNote;
     }
 
     public String getStatus() {
@@ -78,8 +98,7 @@ public class ElectricianRequest extends WorkRequest {
     public void setRequestedDate(String requestedDate) {
         this.requestedDate = requestedDate;
     }
-    
-    
+
     
 
 }
