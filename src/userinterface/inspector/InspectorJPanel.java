@@ -38,9 +38,9 @@ public class InspectorJPanel extends javax.swing.JPanel {
     }
     
      public void populateTable(){
-        DefaultTableModel model = (DefaultTableModel) requestTbl.getModel();
+     /*   DefaultTableModel model = (DefaultTableModel) requestTbl.getModel();
         model.setRowCount(0);
-        for(Order order: business.getOrderDirectory().getOrderDirectory()){
+     //   for(Order order: business.getOrderDirectory().getOrderDirectory()){
             if(order.getInspector()!= null){
                 if(order.getInspector().getInspectorID().equalsIgnoreCase(account.getEmployee().getName())){
                 Object[] row = new Object[7];
@@ -54,7 +54,7 @@ public class InspectorJPanel extends javax.swing.JPanel {
                     model.addRow(row);
             }
             }
-        }
+        }*/
     }
 
     /**
@@ -152,7 +152,7 @@ public class InspectorJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_completeTxtActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           int selectedRow = requestTbl.getSelectedRow();
+      /*     int selectedRow = requestTbl.getSelectedRow();
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Select a row!");
@@ -171,7 +171,7 @@ public class InspectorJPanel extends javax.swing.JPanel {
         }
         else{
             JOptionPane.showMessageDialog(null, "Accept inspection before confirming");
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
