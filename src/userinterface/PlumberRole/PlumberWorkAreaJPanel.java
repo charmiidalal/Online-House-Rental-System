@@ -38,28 +38,7 @@ public class PlumberWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        populateRequestTable();
-    }
-
-       public void populateRequestTable() {
-        DefaultTableModel model = (DefaultTableModel) requestTbl.getModel();
-        model.setRowCount(0);
-        for (Property property : propertyDirectory.getPropertyList()) {
-            Object[] row = new Object[12];
-            row[0] = property.getPropertyID();
-            row[1] = property.getPropertyName();
-            row[2] = property.getStreet();
-            row[3] = property.getCity();
-            row[4] = property.getState();
-            row[5] = property.getPincode();
-//            row[6] = property.getBhk();
-//            row[7] = property.getBathroom();
-//            row[8] = property.getPrice();
-            row[9] = property.getStatus();
-//            row[10] = property.getSeller().getSellerNo();
-//            row[11] = property.getSeller().getSellerName();
-            model.addRow(row);
-        }
+        this.plumbingRequestDirectory = (system.getPlumbingRequestDirectory()== null) ? new PlumbingRequestDirectory(): system.getPlumbingRequestDirectory();
     }
     
     /** This method is called from within the constructor to
@@ -70,94 +49,46 @@ public class PlumberWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        takeBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        commentTxt = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        requestTbl = new javax.swing.JTable();
+        btnManageProfile = new javax.swing.JButton();
+        btnViewJobs = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        takeBtn.setText("Take");
-        takeBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnManageProfile.setText("Manage Profile");
+        btnManageProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                takeBtnActionPerformed(evt);
+                btnManageProfileActionPerformed(evt);
             }
         });
-        add(takeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, -1, -1));
+        add(btnManageProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 130, 30));
 
-        jButton2.setText("Complete ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnViewJobs.setText("View Jobs");
+        btnViewJobs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnViewJobsActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
-        add(commentTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, 90, -1));
-
-        requestTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "PropertyID", "PropertyName", "Street", "City", "State", "Pincode", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(requestTbl);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 540, 160));
+        add(btnViewJobs, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 130, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void takeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeBtnActionPerformed
-        int selectedRow = requestTbl.getSelectedRow();
-        int count = requestTbl.getSelectedRowCount();
-        if (count == 1) {
-            String jobID = (String) requestTbl.getValueAt(selectedRow, 0);
+    private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
+        ManagePlumberJPanel manageElectricianJPanel = new ManagePlumberJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("ManagePlumberJPanel", manageElectricianJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageProfileActionPerformed
 
-            PlumbingRequest  plumbingRequest = plumbingRequestDirectory.fetchPlumbingRequest(jobID);
-            plumbingRequest.setStatus("Job Taken");
-            JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-        }
-    }//GEN-LAST:event_takeBtnActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int selectedRow = requestTbl.getSelectedRow();
-        int count = requestTbl.getSelectedRowCount();
-        if (count == 1) {
-            String feedback = commentTxt.getText();
-            String jobID = (String) requestTbl.getValueAt(selectedRow, 0);
-
-            if (!"".equals(feedback)) {
-                PlumbingRequest plumbingRequest = plumbingRequestDirectory.fetchPlumbingRequest(jobID);
-                plumbingRequest.setStatus("Completed");
-                plumbingRequest.setMessage(feedback);
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnViewJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewJobsActionPerformed
+        ViewJobJPanel viewJobsJPanel = new ViewJobJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("ViewJobJPanel", viewJobsJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewJobsActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField commentTxt;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable requestTbl;
-    private javax.swing.JButton takeBtn;
+    private javax.swing.JButton btnManageProfile;
+    private javax.swing.JButton btnViewJobs;
     // End of variables declaration//GEN-END:variables
     
 }

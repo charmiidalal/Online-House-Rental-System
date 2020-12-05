@@ -7,11 +7,11 @@ package userinterface.BuyerRole;
 
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
+import Business.Cleaner.Cleaner;
+import Business.Cleaner.CleanerDirectory;
+import Business.CleaningRequest.CleaningRequest;
+import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.EcoSystem;
-import Business.Plumber.Plumber;
-import Business.Plumber.PlumberDirectory;
-import Business.PlumbingRequest.PlumbingRequest;
-import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.Property;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -23,50 +23,54 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Dinesh
  */
-public class HirePlumberJPanel extends javax.swing.JPanel {
+public class HireCleanerJPanel extends javax.swing.JPanel {
 
-     private  JPanel userProcessContainer;
+    /**
+     * Creates new form HireCleanerJPanel
+     */
+    private  JPanel userProcessContainer;
     private  EcoSystem system;
     private UserAccount userAccount;
-    private  PlumberDirectory plumberDirectory;
-    private  PlumbingRequestDirectory plumbingRequestDirectory;
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
-    /**
-     * Creates new form HirePlumberJPanel
-     */
-    public HirePlumberJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system) {
+    private CleanerDirectory cleanerDirectory;
+    private CleaningRequestDirectory cleaningRequestDirectory;
+    
+    
+  
+    public HireCleanerJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
-        this.plumberDirectory = (system.getPlumberDirectory()== null) ? new PlumberDirectory(): system.getPlumberDirectory();
+        this.cleanerDirectory = (system.getCleanerDirectory()== null) ? new CleanerDirectory(): system.getCleanerDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.plumbingRequestDirectory = (system.getPlumbingRequestDirectory()== null) ? new PlumbingRequestDirectory(): system.getPlumbingRequestDirectory();
+        this.cleaningRequestDirectory = (system.getCleaningRequestDirectory()== null) ? new CleaningRequestDirectory(): system.getCleaningRequestDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Plumber plumber : plumberDirectory.getPlumberist()) {
+        for (Cleaner cleaner : cleanerDirectory.getCleanerList()) {
 //            if ("Available".equals(inspector.getStatus())) {
             Object[] row = new Object[12];
-            row[0] = plumber.getPlumberNo();
-            row[1] = plumber.getPlumberName();
-            row[2] = plumber.getStreet();
-            row[3] = plumber.getCity();
-            row[4] = plumber.getState();
-            row[5] = plumber.getZipcode();
-            row[6] = plumber.getStatus();
-            row[7] = plumber.getCharge();
+            row[0] = cleaner.getCleanerNo();
+            row[1] = cleaner.getCleanerName();
+            row[2] = cleaner.getStreet();
+            row[3] = cleaner.getCity();
+            row[4] = cleaner.getState();
+            row[5] = cleaner.getZipcode();
+            row[6] = cleaner.getStatus();
+            row[7] = cleaner.getCharge();
             model.addRow(row);
 //            }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,6 +80,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
         brnHireInspector = new javax.swing.JButton();
@@ -86,7 +91,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "PlumberID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
+                "CleanerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,7 +104,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        brnHireInspector.setText("Hire Plumber");
+        brnHireInspector.setText("Hire Cleaner");
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnHireInspectorActionPerformed(evt);
@@ -113,51 +118,65 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(120, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(brnHireInspector)
+                        .addGap(568, 568, 568)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(55, 55, 55))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(brnHireInspector)
+                    .addComponent(btnBack))
+                .addGap(41, 41, 41))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(brnHireInspector)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)))
-                .addGap(41, 41, 41))
+            .addGap(0, 956, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brnHireInspector)
-                    .addComponent(btnBack))
-                .addGap(41, 41, 41))
+            .addGap(0, 506, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String plumberID = (String) houseTable.getValueAt(selectedRow, 0);
+        String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
-            Plumber plumber = plumberDirectory.fetchPlumber(plumberID);
-            if ("Available".equals(plumber.getStatus())) {
-                PlumbingRequest er = new PlumbingRequest();
-                er.setRequestID(plumbingRequestDirectory.generatePlumbingRequestID());
-                er.setBuyer(buyer);
-                er.setPlumber(plumber);
-                er.setSeller(property.getSeller());
-                er.setStatus("Requested");
-                er.setMessage("Inspect House");
-                er.setProperty(property);
-                plumbingRequestDirectory.addPlumbingRequest(er);
-                system.setPlumbingRequestDirectory(plumbingRequestDirectory);
+            Cleaner cleaner = cleanerDirectory.fetchCleaner(cleanerID);
+            if ("Available".equals(cleaner.getStatus())) {
+                CleaningRequest cr = new CleaningRequest();
+                cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
+                cr.setBuyer(buyer);
+                cr.setCleaner(cleaner);
+                cr.setSeller(property.getSeller());
+                cr.setStatus("Requested");
+                cr.setMessage("Inspect House");
+                cr.setProperty(property);
+                cleaningRequestDirectory.addCleaningRequest(cr);
+                system.setCleaningRequestDirectory(cleaningRequestDirectory);
                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
             } else {
                 JOptionPane.showMessageDialog(null, "Sorry! This inspector is already Occupied");
@@ -179,6 +198,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     private javax.swing.JButton brnHireInspector;
     private javax.swing.JButton btnBack;
     private javax.swing.JTable houseTable;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

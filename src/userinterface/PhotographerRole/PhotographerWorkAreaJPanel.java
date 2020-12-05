@@ -20,7 +20,7 @@ public class PhotographerWorkAreaJPanel extends javax.swing.JPanel {
     public PhotographerWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.userAccount = userAccount;
+        this.userAccount = account;
         this.business = business;
     }
     
@@ -29,6 +29,7 @@ public class PhotographerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         btnViewProfile = new javax.swing.JButton();
+        btnViewJob = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -42,7 +43,15 @@ public class PhotographerWorkAreaJPanel extends javax.swing.JPanel {
                 btnViewProfileActionPerformed(evt);
             }
         });
-        add(btnViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, -1));
+        add(btnViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, -1));
+
+        btnViewJob.setText("View Jobs");
+        btnViewJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewJobActionPerformed(evt);
+            }
+        });
+        add(btnViewJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProfileActionPerformed
@@ -52,9 +61,18 @@ public class PhotographerWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewProfileActionPerformed
+
+    private void btnViewJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewJobActionPerformed
+        // TODO add your handling code here:
+        ViewJobJPanel viewJobsJPanel = new ViewJobJPanel(userProcessContainer, business, userAccount);
+        userProcessContainer.add("ViewJobJPanel", viewJobsJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewJobActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnViewJob;
     private javax.swing.JButton btnViewProfile;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

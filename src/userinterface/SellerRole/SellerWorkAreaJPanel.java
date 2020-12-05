@@ -53,7 +53,6 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         btnBuyers = new javax.swing.JButton();
         btnAdvrt = new javax.swing.JButton();
-        btnInspectors = new javax.swing.JButton();
         btnServices = new javax.swing.JButton();
         btnManageHouse = new javax.swing.JButton();
         btnManageProfile = new javax.swing.JButton();
@@ -71,14 +70,6 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         btnAdvrt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdvrtActionPerformed(evt);
-            }
-        });
-
-        btnInspectors.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnInspectors.setText("Manage Inspector");
-        btnInspectors.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInspectorsActionPerformed(evt);
             }
         });
 
@@ -114,30 +105,30 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnManageHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInspectors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAdvrt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdvrt, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                     .addComponent(btnBuyers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManageProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(181, 181, 181)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                 .addComponent(btnServices, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addGap(143, 143, 143))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
+                .addComponent(btnAdvrt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAdvrt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnServices, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(btnManageHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(btnManageHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(btnServices, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(btnBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(btnInspectors, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(40, 40, 40)
                 .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addGap(178, 178, 178))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,22 +148,6 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBuyersActionPerformed
 
-    private void btnInspectorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspectorsActionPerformed
-        // TODO add your handling code here:
-        ManageInspectorJPanel mngInspectorPanel = new ManageInspectorJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
-        userProcessContainer.add("ManageInspectorJPanel", mngInspectorPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnInspectorsActionPerformed
-
-    private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
-        // TODO add your handling code here:
-        ManageInvoicesJPanel mngServicesPanel = new ManageInvoicesJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
-        userProcessContainer.add("ManageServicesJPanel", mngServicesPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnServicesActionPerformed
-
     private void btnManageHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageHouseActionPerformed
         // TODO add your handling code here:
          ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
@@ -189,11 +164,18 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageProfileActionPerformed
 
+    private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
+        // TODO add your handling code here:
+        ManageInvoicesJPanel mngServicesPanel = new ManageInvoicesJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
+        userProcessContainer.add("ManageServicesJPanel", mngServicesPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnServicesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdvrt;
     private javax.swing.JButton btnBuyers;
-    private javax.swing.JButton btnInspectors;
     private javax.swing.JButton btnManageHouse;
     private javax.swing.JButton btnManageProfile;
     private javax.swing.JButton btnServices;

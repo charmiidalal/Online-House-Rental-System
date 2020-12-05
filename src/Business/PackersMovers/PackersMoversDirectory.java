@@ -34,5 +34,13 @@ public class PackersMoversDirectory {
     public String generatePackersMoversID() {
         return "PackersMovers" + (packersMoversList.size() + 1);
     }
+     public PackersMovers fetchPacker(String PackerNo) {
+        for (PackersMovers packersMovers : packersMoversList) {
+            if (packersMovers.getPackersMoversNo().equalsIgnoreCase(PackerNo)) {
+                return packersMovers;
+            }
+        }
+        return null;
+    }
 
 }
