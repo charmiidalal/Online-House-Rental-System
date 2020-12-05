@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<<<<<<< HEAD
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/inspector/InspectorJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/CreateAdvertiseJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/SellerWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Property/PropertyDirectory.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Role/ElectricianRole.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/MainJFrame.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SystemAdminWorkArea/ManageSystemUsersJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SignUpJpanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ManageBuyerJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Property/Property.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SystemAdminWorkArea/ManageNetworkJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/EcoSystem.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ManageHouseJPanel.java</file>
+=======
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
         <file>
             <url>src/Business/EcoSystem.java</url>
@@ -19,6 +38,19 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerWorkAreaJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/SellerWorkAreaJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/InspectorRole/InspectorWorkAreaJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/AddBuyerJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/inspector/InspectorJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/ManageInspectorJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/ManageHouseJPanel.java</file>
+>>>>>>> 14c436efbbf6a9d28793254f5a84e619c0780490
+        </group>
+>>>>>>> 5e9f349ce78c2880c976fca17d14a36eb956827d
     </open-files>
 </project-private>

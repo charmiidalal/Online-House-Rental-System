@@ -267,6 +267,8 @@ public class SignUpJpanel extends javax.swing.JPanel {
                     Buyer buyer = new Buyer();
                     buyer.setBuyerNo(buyerDirectory.generateBuyerID());
                     buyer.setBuyerName(name);
+                    buyer.setBuyerEmail(emailAddress);
+                    
                     this.buyerDirectory.addBuyer(buyer);
                     Employee employee = system.getEmployeeDirectory().createEmployee(buyer.getBuyerNo());
                     system.setBuyerDirectory(buyerDirectory);
