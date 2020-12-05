@@ -6,14 +6,11 @@
 package userinterface.BuyerRole;
 
 import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Property.Property;
-import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import userinterface.ElectricianRole.ElectricianWorkAreaJPanel;
 
 /**
  *
@@ -55,7 +52,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePackBtn = new javax.swing.JButton();
         hirePhotoBtn = new javax.swing.JButton();
         hireCleanBtn = new javax.swing.JButton();
-        hireAgent = new javax.swing.JButton();
+        btnHireAgent = new javax.swing.JButton();
 
         hireElecBtn.setText("Hire Electrician");
         hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -74,13 +71,23 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePackBtn.setText("Hire Packers/Movers");
 
         hirePhotoBtn.setText("Hire Photographer");
+        hirePhotoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hirePhotoBtnActionPerformed(evt);
+            }
+        });
 
         hireCleanBtn.setText("Hire Cleaner");
-
-        hireAgent.setText("Hire Agent");
-        hireAgent.addActionListener(new java.awt.event.ActionListener() {
+        hireCleanBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireAgentActionPerformed(evt);
+                hireCleanBtnActionPerformed(evt);
+            }
+        });
+
+        btnHireAgent.setText("Hire Agent");
+        btnHireAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHireAgentActionPerformed(evt);
             }
         });
 
@@ -99,7 +106,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(hirePlumBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(hireCleanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(hireAgent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHireAgent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(327, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -116,7 +123,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hirePhotoBtn)
-                    .addComponent(hireAgent))
+                    .addComponent(btnHireAgent))
                 .addContainerGap(209, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -130,10 +137,11 @@ public class HireServiceJPanel extends javax.swing.JPanel {
 
     private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
         HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer, property, buyer,system);
-        userProcessContainer.add("plumbeWorkAreaJPanel", hireService);
+        userProcessContainer.add("plumberWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePlumBtnActionPerformed
+
 
     private void hireAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireAgentActionPerformed
         // TODO add your handling code here:
@@ -143,9 +151,29 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireAgentActionPerformed
 
+    private void hireCleanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtnActionPerformed
+       HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer, property, buyer,system);
+        userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_hireCleanBtnActionPerformed
+
+    private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hirePhotoBtnActionPerformed
+
+    private void btnHireAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireAgentActionPerformed
+        // TODO add your handling code here:
+        HireAgentJPanel hireAgentJPanel = new HireAgentJPanel(userProcessContainer, property, buyer,system);
+        userProcessContainer.add("hireAgentJPanel", hireAgentJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnHireAgentActionPerformed
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton hireAgent;
+    private javax.swing.JButton btnHireAgent;
     private javax.swing.JButton hireCleanBtn;
     private javax.swing.JButton hireElecBtn;
     private javax.swing.JButton hirePackBtn;

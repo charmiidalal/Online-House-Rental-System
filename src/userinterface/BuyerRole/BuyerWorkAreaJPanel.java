@@ -86,7 +86,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         btnHireInspector1 = new javax.swing.JButton();
         hireSPBtn = new javax.swing.JButton();
-        btnViewAgent = new javax.swing.JButton();
+        btnViewAgentJobs = new javax.swing.JButton();
 
         btnViewHouseDetails.setText("View House Details");
         btnViewHouseDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -162,10 +162,10 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnViewAgent.setText("View Agent Jobs");
-        btnViewAgent.addActionListener(new java.awt.event.ActionListener() {
+        btnViewAgentJobs.setText("View Agent Jobs");
+        btnViewAgentJobs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewAgentActionPerformed(evt);
+                btnViewAgentJobsActionPerformed(evt);
             }
         });
 
@@ -191,8 +191,10 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnViewHouseDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHireInspector1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnHireInspector1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btnViewAgentJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(128, Short.MAX_VALUE))
@@ -203,14 +205,14 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnViewAgent)
+                        .addComponent(btnViewAgentJobs)
                         .addGap(18, 18, 18)
                         .addComponent(btnHireInspector1)
-                        .addGap(18, 18, 18)
+                        .addGap(41, 41, 41)
                         .addComponent(btnHireInspector)
-                        .addGap(29, 29, 29)
-                        .addComponent(hireSPBtn)
                         .addGap(18, 18, 18)
+                        .addComponent(hireSPBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnViewHouseDetails)
                         .addGap(18, 18, 18)
                         .addComponent(btnViewSellerDetails)
@@ -327,14 +329,21 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_hireSPBtnActionPerformed
 
-    private void btnViewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAgentActionPerformed
+    private void btnViewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireInspector2ActionPerformed
         // TODO add your handling code here:
         ManageAgentActivity manageAgentActivity = new ManageAgentActivity(userProcessContainer,system, userAccount);
         userProcessContainer.add("manageAgentActivity", manageAgentActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnViewAgentActionPerformed
+    }//GEN-LAST:event_btnHireInspector2ActionPerformed
 
+    private void btnViewAgentJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAgentJobsActionPerformed
+        // TODO add your handling code here:
+        ManageAgentActivity manageAgentActivity = new ManageAgentActivity(userProcessContainer,system, userAccount);
+        userProcessContainer.add("manageAgentActivity", manageAgentActivity);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewAgentJobsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -342,7 +351,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnHireInspector;
     private javax.swing.JButton btnHireInspector1;
     private javax.swing.JButton btnRequestNegotiation;
-    private javax.swing.JButton btnViewAgent;
+    private javax.swing.JButton btnViewAgentJobs;
     private javax.swing.JButton btnViewHouseDetails;
     private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JButton hireSPBtn;

@@ -366,7 +366,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             } else if (userType == "Cleaner") {
                 Cleaner cleaner = new Cleaner();
                 cleaner.setCleanerName(name);
-                cleaner.setCleanerEmail(emailAddress);
+                cleaner.setEmail(emailAddress);
                 cleaner.setCleanerNo(cleanerDirectory.generateCleanerID());
                 cleanerDirectory.addCleaner(cleaner);
                 Employee employee = system.getEmployeeDirectory().createEmployee(cleaner.getCleanerNo());
@@ -376,7 +376,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             } else if (userType == "Movers & Packers") {
                 PackersMovers packersMovers = new PackersMovers();
                 packersMovers.setPackersMoversName(name);
-                packersMovers.setPackersMoversEmail(emailAddress);
+                packersMovers.setEmail(emailAddress);
                 packersMovers.setPackersMoversNo(packersMoversDirectory.generatePackersMoversID());
                 packersMoversDirectory.addPackersMovers(packersMovers);
                 Employee employee = system.getEmployeeDirectory().createEmployee(packersMovers.getPackersMoversNo());

@@ -15,6 +15,7 @@ import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
 import Business.Cleaner.CleanerDirectory;
+import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.Electrician.ElectricianDirectory;
 import Business.ElectricianRequest.ElectricianRequestDirectory;
 import Business.Employee.Employee;
@@ -23,6 +24,7 @@ import Business.Inspector.InspectorDirectory;
 import Business.InspectRequest.InspectRequestDirectory;
 import Business.AgentRequest.AgentRequestDirectory;
 import Business.Organization.OrganizationDirectory;
+import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
@@ -65,6 +67,8 @@ public class EcoSystem extends Organization {
     private PlumbingRequestDirectory plumbingRequestDirectory;
     private ElectricianRequestDirectory electricianRequestDirectory;
     private AgentRequestDirectory agentRequestDirectory;
+    private CleaningRequestDirectory cleaningRequestDirectory;
+    private PackerRequestDirectory packerRequestDirectory;
 
     public ElectricianRequestDirectory getElectricianRequestDirectory() {
         return electricianRequestDirectory;
@@ -156,6 +160,23 @@ public class EcoSystem extends Organization {
         return orderDirectory;
     }
 
+    public CleaningRequestDirectory getCleaningRequestDirectory() {
+        return cleaningRequestDirectory;
+    }
+
+    public void setCleaningRequestDirectory(CleaningRequestDirectory cleaningRequestDirectory) {
+        this.cleaningRequestDirectory = cleaningRequestDirectory;
+    }
+
+    public PackerRequestDirectory getPackerRequestDirectory() {
+        return packerRequestDirectory;
+    }
+
+    public void setPackerRequestDirectory(PackerRequestDirectory packerRequestDirectory) {
+        this.packerRequestDirectory = packerRequestDirectory;
+    }
+
+    
     public void setOrderDirectory(InspectRequestDirectory orderDirectory) {
         this.orderDirectory = orderDirectory;
     }

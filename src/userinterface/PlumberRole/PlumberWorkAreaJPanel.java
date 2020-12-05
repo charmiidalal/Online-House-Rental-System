@@ -38,6 +38,7 @@ public class PlumberWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        this.plumbingRequestDirectory = (system.getPlumbingRequestDirectory()== null) ? new PlumbingRequestDirectory(): system.getPlumbingRequestDirectory();
     }
     
     /** This method is called from within the constructor to
