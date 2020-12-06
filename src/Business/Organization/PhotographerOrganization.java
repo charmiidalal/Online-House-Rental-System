@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class PhotographerOrganization extends Organization{
 
-    public PhotographerOrganization() {
-        super(Type.Builder.getValue());
+    public PhotographerOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,9 @@ public class PhotographerOrganization extends Organization{
         roles.add(new PhotographerRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Photographer;
+    }  
      
 }

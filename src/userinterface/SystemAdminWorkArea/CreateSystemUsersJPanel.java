@@ -259,145 +259,145 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        try {
-            String emailAddress = txtEmail.getText();
-            String username = lblUsername.getText();
-            String name = txtFullName.getText();
-            String password = txtPassword.getText();
-            String userType = comboboxRole.getSelectedItem().toString();
-            for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
-                if (ua.getUsername().equals(username)) {
-                    JOptionPane.showMessageDialog(null, "Username should be unique. UserName is already in use.");
-                    return;
-                }
-            }
-            if (usernamePatternCorrect() == false) {
-                lblUsername.setForeground(Color.red);
-                txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED));
-                JOptionPane.showMessageDialog(null, "Username should be in the format of xx_xx@xx.xx");
-                return;
-            } else {
-                lblUsername.setForeground(Color.BLACK);
-                txtEmail.setBorder(BorderFactory.createLineBorder(Color.black));
-            }
-            if (passwordPatternCorrect() == false) {
-                lblPassword.setForeground(Color.red);
-                txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
-                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
-                return;
-            } else {
-                lblPassword.setForeground(Color.BLACK);
-                txtPassword.setBorder(BorderFactory.createLineBorder(Color.black));
-            }
-            if (userType == "Photographer") {
-                Photographer photographer = new Photographer();
-                photographer.setPhotographerName(name);
-                photographer.setEmail(emailAddress);
-                photographer.setPhotographerNo(photographerDirectory.generatePhotographerID());
-                photographerDirectory.addPhotographer(photographer);
-                Employee employee = system.getEmployeeDirectory().createEmployee(photographer.getPhotographerNo());
-                PhotographerRole role = new PhotographerRole();
-                system.setPhotographerDirectory(photographerDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Photographer");
-            } else if (userType == "Inspector") {
-                Inspector inspector = new Inspector();
-                inspector.setInspectorName(name);
-                inspector.setEmail(emailAddress);
-                inspector.setStatus("Available");
-                inspector.setInspectorNo(inspectorDirectory.generateInspectorID());
-                inspectorDirectory.addInspector(inspector);
-                Employee employee = system.getEmployeeDirectory().createEmployee(inspector.getInspectorNo());
-                InspectorRole role = new InspectorRole();
-                system.setInspectorDirectory(inspectorDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Inspector");
-            } else if (userType == "Agent") {
-                Agent agent = new Agent();
-                agent.setAgentName(name);
-                agent.setEmail(emailAddress);
-                agent.setAgentNo(agentDirectory.generateAgentID());
-                agent.setStatus("Available");
-                agentDirectory.addAgent(agent);
-                Employee employee = system.getEmployeeDirectory().createEmployee(agent.getAgentNo());
-                AgentRole role = new AgentRole();
-                system.setAgentDirectory(agentDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Agent");
-            } else if (userType == "Builder") {
-                Builder builder = new Builder();
-                builder.setBuilderName(name);
-                builder.setBuilderEmail(emailAddress);
-                builder.setBuilderNo(builderDirectory.generateBuilderID());
-                builderDirectory.addBuilder(builder);
-                Employee employee = system.getEmployeeDirectory().createEmployee(builder.getBuilderNo());
-                BuilderRole role = new BuilderRole();
-                system.setBuilderDirectory(builderDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Builder");
-            } else if (userType == "Property Manager") {
-                PropertyManager propertyManager = new PropertyManager();
-                propertyManager.setPropertyName(name);
-                propertyManager.setPropertyEmail(emailAddress);
-                propertyManager.setPropertyNo(propertyManagerDirectory.generatePropertyManagerID());
-                propertyManagerDirectory.addPropertyManager(propertyManager);
-                Employee employee = system.getEmployeeDirectory().createEmployee(propertyManager.getPropertyNo());
-                PropertyManagerRole role = new PropertyManagerRole();
-                system.setPropertyManagerDirectory(propertyManagerDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Property Manager");
-            }  else if (userType == "Electrician") {
-                Electrician electrician = new Electrician();
-                electrician.setElectricianName(name);
-                electrician.setEmail(emailAddress);
-                electrician.setStatus("Available");
-                electrician.setElectricianNo(electricianDirectory.generateElectricianID());
-                electricianDirectory.addElectrician(electrician);
-                Employee employee = system.getEmployeeDirectory().createEmployee(electrician.getElectricianNo());
-                ElectricianRole role = new ElectricianRole();
-                system.setElectricianDirectory(electricianDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Electrician");
-            } else if (userType == "Plumber") {
-                Plumber plumber = new Plumber();
-                plumber.setPlumberName(name);
-                plumber.setEmail(emailAddress);
-                plumber.setStatus("Available");
-                plumber.setPlumberNo(plumberDirectory.generatePlumberID());
-                plumberDirectory.addPlumber(plumber);
-                Employee employee = system.getEmployeeDirectory().createEmployee(plumber.getPlumberNo());
-                PlumbingRole role = new PlumbingRole();
-                system.setPlumberDirectory(plumberDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Plumber");
-            } else if (userType == "Cleaner") {
-                Cleaner cleaner = new Cleaner();
-                cleaner.setCleanerName(name);
-                cleaner.setEmail(emailAddress);
-                cleaner.setCleanerNo(cleanerDirectory.generateCleanerID());
-                cleanerDirectory.addCleaner(cleaner);
-                Employee employee = system.getEmployeeDirectory().createEmployee(cleaner.getCleanerNo());
-                CleaningRole role = new CleaningRole();
-                system.setCleanerDirectory(cleanerDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Cleaner");
-            } else if (userType == "Movers & Packers") {
-                PackersMovers packersMovers = new PackersMovers();
-                packersMovers.setPackersMoversName(name);
-                packersMovers.setEmail(emailAddress);
-                packersMovers.setPackersMoversNo(packersMoversDirectory.generatePackersMoversID());
-                packersMoversDirectory.addPackersMovers(packersMovers);
-                Employee employee = system.getEmployeeDirectory().createEmployee(packersMovers.getPackersMoversNo());
-                PackersMoversRole role = new PackersMoversRole();
-                system.setPackersMoversDirectory(packersMoversDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Movers & Packers");
-            } else if (userType == "Goverment Employee") {
-                GovermentEmployee govermentEmployee = new GovermentEmployee();
-                govermentEmployee.setGovermentEmployeeName(name);
-                govermentEmployee.setGovermentEmployeeEmail(emailAddress);
-                govermentEmployee.setGovermentEmployeeNo(govermentEmployeeDirectory.generateGovermentEmployeeID());
-                govermentEmployeeDirectory.addGovermentEmployee(govermentEmployee);
-                Employee employee = system.getEmployeeDirectory().createEmployee(govermentEmployee.getGovermentEmployeeNo());
-                GovermentEmployeeRole role = new GovermentEmployeeRole();
-                system.setGovermentEmployeeDirectory(govermentEmployeeDirectory);
-                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true, name, emailAddress, "Goverment Employee");
-            }
-            JOptionPane.showMessageDialog(null, userType + " added successfully");
-        } catch (HeadlessException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
+//        try {
+//            String emailAddress = txtEmail.getText();
+//            String username = lblUsername.getText();
+//            String name = txtFullName.getText();
+//            String password = txtPassword.getText();
+//            String userType = comboboxRole.getSelectedItem().toString();
+//            for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
+//                if (ua.getUsername().equals(username)) {
+//                    JOptionPane.showMessageDialog(null, "Username should be unique. UserName is already in use.");
+//                    return;
+//                }
+//            }
+//            if (usernamePatternCorrect() == false) {
+//                lblUsername.setForeground(Color.red);
+//                txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED));
+//                JOptionPane.showMessageDialog(null, "Username should be in the format of xx_xx@xx.xx");
+//                return;
+//            } else {
+//                lblUsername.setForeground(Color.BLACK);
+//                txtEmail.setBorder(BorderFactory.createLineBorder(Color.black));
+//            }
+//            if (passwordPatternCorrect() == false) {
+//                lblPassword.setForeground(Color.red);
+//                txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
+//                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+//                return;
+//            } else {
+//                lblPassword.setForeground(Color.BLACK);
+//                txtPassword.setBorder(BorderFactory.createLineBorder(Color.black));
+//            }
+//            if (userType == "Photographer") {
+//                Photographer photographer = new Photographer();
+//                photographer.setPhotographerName(name);
+//                photographer.setEmail(emailAddress);
+//                photographer.setPhotographerNo(photographerDirectory.generatePhotographerID());
+//                photographerDirectory.addPhotographer(photographer);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(photographer.getPhotographerNo());
+//                PhotographerRole role = new PhotographerRole();
+//                system.setPhotographerDirectory(photographerDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            } else if (userType == "Inspector") {
+//                Inspector inspector = new Inspector();
+//                inspector.setInspectorName(name);
+//                inspector.setEmail(emailAddress);
+//                inspector.setStatus("Available");
+//                inspector.setInspectorNo(inspectorDirectory.generateInspectorID());
+//                inspectorDirectory.addInspector(inspector);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(inspector.getInspectorNo());
+//                InspectorRole role = new InspectorRole();
+//                system.setInspectorDirectory(inspectorDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            } else if (userType == "Agent") {
+//                Agent agent = new Agent();
+//                agent.setAgentName(name);
+//                agent.setEmail(emailAddress);
+//                agent.setAgentNo(agentDirectory.generateAgentID());
+//                agent.setStatus("Available");
+//                agentDirectory.addAgent(agent);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(agent.getAgentNo());
+//                AgentRole role = new AgentRole();
+//                system.setAgentDirectory(agentDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            } else if (userType == "Builder") {
+//                Builder builder = new Builder();
+//                builder.setBuilderName(name);
+//                builder.setBuilderEmail(emailAddress);
+//                builder.setBuilderNo(builderDirectory.generateBuilderID());
+//                builderDirectory.addBuilder(builder);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(builder.getBuilderNo());
+//                BuilderRole role = new BuilderRole();
+//                system.setBuilderDirectory(builderDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            } else if (userType == "Property Manager") {
+//                PropertyManager propertyManager = new PropertyManager();
+//                propertyManager.setPropertyName(name);
+//                propertyManager.setPropertyEmail(emailAddress);
+//                propertyManager.setPropertyNo(propertyManagerDirectory.generatePropertyManagerID());
+//                propertyManagerDirectory.addPropertyManager(propertyManager);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(propertyManager.getPropertyNo());
+//                PropertyManagerRole role = new PropertyManagerRole();
+//                system.setPropertyManagerDirectory(propertyManagerDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            }  else if (userType == "Electrician") {
+//                Electrician electrician = new Electrician();
+//                electrician.setElectricianName(name);
+//                electrician.setEmail(emailAddress);
+//                electrician.setStatus("Available");
+//                electrician.setElectricianNo(electricianDirectory.generateElectricianID());
+//                electricianDirectory.addElectrician(electrician);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(electrician.getElectricianNo());
+//                ElectricianRole role = new ElectricianRole();
+//                system.setElectricianDirectory(electricianDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            } else if (userType == "Plumber") {
+//                Plumber plumber = new Plumber();
+//                plumber.setPlumberName(name);
+//                plumber.setEmail(emailAddress);
+//                plumber.setStatus("Available");
+//                plumber.setPlumberNo(plumberDirectory.generatePlumberID());
+//                plumberDirectory.addPlumber(plumber);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(plumber.getPlumberNo());
+//                PlumbingRole role = new PlumbingRole();
+//                system.setPlumberDirectory(plumberDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role,true);
+//            } else if (userType == "Cleaner") {
+//                Cleaner cleaner = new Cleaner();
+//                cleaner.setCleanerName(name);
+//                cleaner.setEmail(emailAddress);
+//                cleaner.setCleanerNo(cleanerDirectory.generateCleanerID());
+//                cleanerDirectory.addCleaner(cleaner);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(cleaner.getCleanerNo());
+//                CleaningRole role = new CleaningRole();
+//                system.setCleanerDirectory(cleanerDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            } else if (userType == "Movers & Packers") {
+//                PackersMovers packersMovers = new PackersMovers();
+//                packersMovers.setPackersMoversName(name);
+//                packersMovers.setEmail(emailAddress);
+//                packersMovers.setPackersMoversNo(packersMoversDirectory.generatePackersMoversID());
+//                packersMoversDirectory.addPackersMovers(packersMovers);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(packersMovers.getPackersMoversNo());
+//                PackersMoversRole role = new PackersMoversRole();
+//                system.setPackersMoversDirectory(packersMoversDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            } else if (userType == "Goverment Employee") {
+//                GovermentEmployee govermentEmployee = new GovermentEmployee();
+//                govermentEmployee.setGovermentEmployeeName(name);
+//                govermentEmployee.setGovermentEmployeeEmail(emailAddress);
+//                govermentEmployee.setGovermentEmployeeNo(govermentEmployeeDirectory.generateGovermentEmployeeID());
+//                govermentEmployeeDirectory.addGovermentEmployee(govermentEmployee);
+//                Employee employee = system.getEmployeeDirectory().createEmployee(govermentEmployee.getGovermentEmployeeNo());
+//                GovermentEmployeeRole role = new GovermentEmployeeRole();
+//                system.setGovermentEmployeeDirectory(govermentEmployeeDirectory);
+//                UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, role, true);
+//            }
+//            JOptionPane.showMessageDialog(null, userType + " added successfully");
+//        } catch (HeadlessException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+//        }
     }//GEN-LAST:event_btnSaveActionPerformed
     private boolean usernamePatternCorrect() {
         Pattern p = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");

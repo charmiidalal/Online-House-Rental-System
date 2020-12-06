@@ -5,6 +5,11 @@
  */
 package Business.Enterprise;
 
+import Business.Role.CleaningRole;
+import Business.Role.ElectricianRole;
+import Business.Role.GovermentEmployeeRole;
+import Business.Role.PackersMoversRole;
+import Business.Role.PlumbingRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -18,8 +23,15 @@ public class ServiceProviderEnterprise extends Enterprise {
         super(name,EnterpriseType.ServiceProvider);
     }
     @Override
+
     public ArrayList<Role> getSupportedRole() {
-        return null;
+        roles = new ArrayList<Role>();
+        roles.add(new CleaningRole());
+        roles.add(new ElectricianRole());
+        roles.add(new PlumbingRole());
+        roles.add(new PackersMoversRole());
+        roles.add(new GovermentEmployeeRole());
+        return roles;
     }
     
 }

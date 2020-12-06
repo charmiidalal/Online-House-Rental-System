@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class ElectricianOrganization extends Organization{
 
-    public ElectricianOrganization() {
-        super(Type.Electrician.getValue());
+    public ElectricianOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,10 @@ public class ElectricianOrganization extends Organization{
         roles.add(new ElectricianRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Electrician;
+    }  
+     
      
 }

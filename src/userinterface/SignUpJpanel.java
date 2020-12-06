@@ -42,7 +42,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
 
     private List<JTextField> fieldList = new ArrayList<JTextField>();
 
-    public SignUpJpanel(JPanel cardSequenceJPanel, EcoSystem system, BuyerDirectory buyerDirectory, SellerDirectory sellerDirectory) {
+    public SignUpJpanel(JPanel cardSequenceJPanel, EcoSystem system) {
         initComponents();
         this.cardSequenceJPanel = cardSequenceJPanel;
         this.system = system;
@@ -272,7 +272,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
                     this.buyerDirectory.addBuyer(buyer);
                     Employee employee = system.getEmployeeDirectory().createEmployee(buyer.getBuyerNo());
                     system.setBuyerDirectory(buyerDirectory);
-                    UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole(), true, name, emailAddress, "Buyer");
+                   // UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole(), true, name, emailAddress, "Buyer");
                 } else {
                     Seller seller = new Seller();
                     seller.setSellerNo(sellerDirectory.generateSellerID());
@@ -283,7 +283,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
                     this.sellerDirectory.addSeller(seller);
                     Employee employee = system.getEmployeeDirectory().createEmployee(seller.getSellerNo());
                     system.setSellerDirectory(sellerDirectory);
-                    UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole(), false, name, emailAddress, "Seller");
+                   // UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole(), false, name, emailAddress, "Seller");
                 }
                 dB4OUtil.storeSystem(system);
                 emptyAllFields();
