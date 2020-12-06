@@ -7,6 +7,7 @@ package Business;
 
 import Business.Agent.AgentDirectory;
 import Business.Builder.BuilderDirectory;
+import Business.BuilderRequest.BuilderRequestDirectory;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -21,10 +22,12 @@ import Business.ElectricianRequest.ElectricianRequestDirectory;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
 import Business.InspectRequest.InspectRequestDirectory;
+import Business.ManagerRequest.ManagerRequestDirectory;
 import Business.Organization.OrganizationDirectory;
 import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
+import Business.PhotographerRequest.PhotographerRequestDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
@@ -59,6 +62,9 @@ public class EcoSystem extends Organization {
     private ElectricianRequestDirectory electricianRequestDirectory;
     private CleaningRequestDirectory cleaningRequestDirectory;
     private PackerRequestDirectory packerRequestDirectory;
+    private PhotographerRequestDirectory photographerRequestDirectory;
+    private ManagerRequestDirectory managerRequestDirectory;
+    private BuilderRequestDirectory builderRequestDirectory;
 
     public ElectricianRequestDirectory getElectricianRequestDirectory() {
         return electricianRequestDirectory;
@@ -128,6 +134,15 @@ public class EcoSystem extends Organization {
         this.buyerDirectory = buyerDirectory;
     }
 
+    public BuilderRequestDirectory getBuilderRequestDirectory() {
+        return builderRequestDirectory;
+    }
+
+    public void setBuilderRequestDirectory(BuilderRequestDirectory builderRequestDirectory) {
+        this.builderRequestDirectory = builderRequestDirectory;
+    }
+
+    
     public boolean checkIfUserIsUnique(String userName) {
         if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
             return false;
@@ -138,6 +153,15 @@ public class EcoSystem extends Organization {
         return true;
     }
 
+    public ManagerRequestDirectory getManagerRequestDirectory() {
+        return managerRequestDirectory;
+    }
+
+    public void setManagerRequestDirectory(ManagerRequestDirectory managerRequestDirectory) {
+        this.managerRequestDirectory = managerRequestDirectory;
+    }
+
+    
     public SellerDirectory getSellerDirectory() {
         return sellerDirectory;
     }
@@ -145,6 +169,16 @@ public class EcoSystem extends Organization {
     public void setSellerDirectory(SellerDirectory sellerDirectory) {
         this.sellerDirectory = sellerDirectory;
     }
+
+    public PhotographerRequestDirectory getPhotographerRequestDirectory() {
+        return photographerRequestDirectory;
+    }
+
+    public void setPhotographerRequestDirectory(PhotographerRequestDirectory photographerRequestDirectory) {
+        this.photographerRequestDirectory = photographerRequestDirectory;
+    }
+    
+    
 
     public InspectRequestDirectory getOrderDirectory() {
         return orderDirectory;

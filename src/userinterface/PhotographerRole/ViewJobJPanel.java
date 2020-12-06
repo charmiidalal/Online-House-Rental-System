@@ -12,6 +12,10 @@ import Business.InspectRequest.InspectRequest;
 import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
+import Business.Photographer.Photographer;
+import Business.Photographer.PhotographerDirectory;
+import Business.PhotographerRequest.PhotographerRequest;
+import Business.PhotographerRequest.PhotographerRequestDirectory;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequest;
@@ -36,8 +40,8 @@ public class ViewJobJPanel extends javax.swing.JPanel {
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private PlumbingRequestDirectory plumbingRequestDirectory;
-    private PlumberDirectory plumberDirectory;
+    private PhotographerRequestDirectory photographerRequestDirectory;
+    private PhotographerDirectory photographerDirectory;
 
     /**
      * Creates new form ViewJobJPanel
@@ -49,28 +53,28 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.plumbingRequestDirectory = (system.getPlumbingRequestDirectory()== null) ? new PlumbingRequestDirectory(): system.getPlumbingRequestDirectory();
-        this.plumberDirectory = (system.getPlumberDirectory()== null) ? new PlumberDirectory(): system.getPlumberDirectory();
+        this.photographerRequestDirectory = (system.getPhotographerRequestDirectory()== null) ? new PhotographerRequestDirectory(): system.getPhotographerRequestDirectory();
+        this.photographerDirectory = (system.getPhotographerDirectory()== null) ? new PhotographerDirectory(): system.getPhotographerDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Plumber plumber = plumberDirectory.fetchPlumber(userAccount.getEmployee().getName());
-        for (PlumbingRequest plumberRequest : plumbingRequestDirectory.getPlumbingRequestList()) {
-            if (plumberRequest.getPlumber().getPlumberNo().equals(plumber.getPlumberNo())) {
+        Photographer photo = photographerDirectory.fetchPhotographer(userAccount.getEmployee().getName());
+        for (PhotographerRequest photoRequest : photographerRequestDirectory.getPhotoRequestList()) {
+            if (photoRequest.getPhotographer().getPhotographerNo().equals(photo.getPhotographerNo())) {
                 Object[] row = new Object[10];
-                row[0] = plumberRequest.getRequestID();
-                row[1] = plumberRequest.getBuyer().getBuyerName();
-                row[2] = plumberRequest.getSeller().getName();
-                row[3] = plumberRequest.getProperty().getStreet();
-                row[4] = plumberRequest.getProperty().getCity();
-                row[5] = plumberRequest.getProperty().getState();
-                row[6] = plumberRequest.getProperty().getPincode();
-                row[7] = plumberRequest.getStatus();
-                row[8] = plumberRequest.getBuyerNote();
-                row[9] = plumberRequest.getInspectorNote();
+                row[0] = photoRequest.getRequestID();
+                row[1] = photoRequest.getBuyer().getBuyerName();
+                row[2] = photoRequest.getSeller().getName();
+                row[3] = photoRequest.getProperty().getStreet();
+                row[4] = photoRequest.getProperty().getCity();
+                row[5] = photoRequest.getProperty().getState();
+                row[6] = photoRequest.getProperty().getPincode();
+                row[7] = photoRequest.getStatus();
+                row[8] = photoRequest.getBuyerNote();
+                row[9] = photoRequest.getInspectorNote();
 
                 model.addRow(row);
             }
@@ -138,34 +142,31 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(brnTakeJob)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBack)
-                            .addGap(166, 166, 166)
-                            .addComponent(jLabel1)
-                            .addGap(46, 46, 46)
-                            .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(20, 20, 20))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(429, 429, 429)
                         .addComponent(btnCompleteJob)
-                        .addGap(242, 242, 242)))
-                .addGap(29, 29, 29))
+                        .addGap(271, 271, 271))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(brnTakeJob)
+                                .addGap(219, 219, 219)
+                                .addComponent(btnBack)
+                                .addGap(166, 166, 166)
+                                .addComponent(jLabel1)
+                                .addGap(46, 46, 46)
+                                .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(brnTakeJob)
                     .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,11 +184,11 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         if (count == 1) {
 
             String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            PlumbingRequest plumbingRequest = plumbingRequestDirectory.fetchPlumbingRequest(jobID);
-            if (!"Job Taken".equals(plumbingRequest.getStatus())) {
-                plumbingRequest.setStatus("Job Taken");
-                Plumber plumber = plumberDirectory.fetchPlumber(userAccount.getEmployee().getName());
-                plumber.setStatus("Occupied");
+            PhotographerRequest photoRequest = photographerRequestDirectory.fetchPhotoRequest(jobID);
+            if (!"Job Taken".equals(photoRequest.getStatus())) {
+                photoRequest.setStatus("Job Taken");
+                Photographer photo = photographerDirectory.fetchPhotographer(userAccount.getEmployee().getName());
+                photo.setStatus("Occupied");
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
             } else {
@@ -214,9 +215,9 @@ public class ViewJobJPanel extends javax.swing.JPanel {
             String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                PlumbingRequest plumberRequest = plumbingRequestDirectory.fetchPlumbingRequest(jobID);
-                plumberRequest.setStatus("Completed");
-                plumberRequest.setInspectorNote(feedback);
+                PhotographerRequest photoRequest = photographerRequestDirectory.fetchPhotoRequest(jobID);
+                photoRequest.setStatus("Completed");
+                photoRequest.setInspectorNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
             } else {

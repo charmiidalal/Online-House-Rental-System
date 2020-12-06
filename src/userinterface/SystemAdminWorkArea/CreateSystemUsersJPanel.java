@@ -323,7 +323,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             } else if (userType == "Builder") {
                 Builder builder = new Builder();
                 builder.setBuilderName(name);
-                builder.setBuilderEmail(emailAddress);
+                builder.setEmail(emailAddress);
                 builder.setBuilderNo(builderDirectory.generateBuilderID());
                 builderDirectory.addBuilder(builder);
                 Employee employee = system.getEmployeeDirectory().createEmployee(builder.getBuilderNo());
@@ -333,7 +333,7 @@ public class CreateSystemUsersJPanel extends javax.swing.JPanel {
             } else if (userType == "Property Manager") {
                 PropertyManager propertyManager = new PropertyManager();
                 propertyManager.setPropertyName(name);
-                propertyManager.setPropertyEmail(emailAddress);
+                propertyManager.setEmail(emailAddress);
                 propertyManager.setPropertyNo(propertyManagerDirectory.generatePropertyManagerID());
                 propertyManagerDirectory.addPropertyManager(propertyManager);
                 Employee employee = system.getEmployeeDirectory().createEmployee(propertyManager.getPropertyNo());

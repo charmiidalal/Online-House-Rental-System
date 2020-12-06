@@ -73,6 +73,11 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePackBtn.setText("Hire Packers/Movers");
 
         hirePhotoBtn.setText("Hire Photographer");
+        hirePhotoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hirePhotoBtnActionPerformed(evt);
+            }
+        });
 
         hireCleanBtn.setText("Hire Cleaner");
         hireCleanBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +139,13 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireCleanBtnActionPerformed
+
+    private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
+        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer, property, buyer,system);
+        userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_hirePhotoBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
