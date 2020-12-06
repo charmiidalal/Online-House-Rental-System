@@ -7,7 +7,6 @@ package Business;
 
 import Business.Agent.AgentDirectory;
 import Business.Builder.BuilderDirectory;
-import Business.BuilderRequest.BuilderRequestDirectory;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -19,20 +18,27 @@ import Business.Cleaner.CleanerDirectory;
 import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.Electrician.ElectricianDirectory;
 import Business.ElectricianRequest.ElectricianRequestDirectory;
+import Business.Employee.Employee;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
 import Business.InspectRequest.InspectRequestDirectory;
-import Business.ManagerRequest.ManagerRequestDirectory;
+import Business.AgentRequest.AgentRequestDirectory;
 import Business.Organization.OrganizationDirectory;
 import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
-import Business.PhotographerRequest.PhotographerRequestDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.PropertyDirectory;
+import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -60,11 +66,9 @@ public class EcoSystem extends Organization {
     private InspectRequestDirectory inspectRequestDirectory;
     private PlumbingRequestDirectory plumbingRequestDirectory;
     private ElectricianRequestDirectory electricianRequestDirectory;
+    private AgentRequestDirectory agentRequestDirectory;
     private CleaningRequestDirectory cleaningRequestDirectory;
     private PackerRequestDirectory packerRequestDirectory;
-    private PhotographerRequestDirectory photographerRequestDirectory;
-    private ManagerRequestDirectory managerRequestDirectory;
-    private BuilderRequestDirectory builderRequestDirectory;
 
     public ElectricianRequestDirectory getElectricianRequestDirectory() {
         return electricianRequestDirectory;
@@ -134,15 +138,6 @@ public class EcoSystem extends Organization {
         this.buyerDirectory = buyerDirectory;
     }
 
-    public BuilderRequestDirectory getBuilderRequestDirectory() {
-        return builderRequestDirectory;
-    }
-
-    public void setBuilderRequestDirectory(BuilderRequestDirectory builderRequestDirectory) {
-        this.builderRequestDirectory = builderRequestDirectory;
-    }
-
-    
     public boolean checkIfUserIsUnique(String userName) {
         if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
             return false;
@@ -153,15 +148,6 @@ public class EcoSystem extends Organization {
         return true;
     }
 
-    public ManagerRequestDirectory getManagerRequestDirectory() {
-        return managerRequestDirectory;
-    }
-
-    public void setManagerRequestDirectory(ManagerRequestDirectory managerRequestDirectory) {
-        this.managerRequestDirectory = managerRequestDirectory;
-    }
-
-    
     public SellerDirectory getSellerDirectory() {
         return sellerDirectory;
     }
@@ -169,16 +155,6 @@ public class EcoSystem extends Organization {
     public void setSellerDirectory(SellerDirectory sellerDirectory) {
         this.sellerDirectory = sellerDirectory;
     }
-
-    public PhotographerRequestDirectory getPhotographerRequestDirectory() {
-        return photographerRequestDirectory;
-    }
-
-    public void setPhotographerRequestDirectory(PhotographerRequestDirectory photographerRequestDirectory) {
-        this.photographerRequestDirectory = photographerRequestDirectory;
-    }
-    
-    
 
     public InspectRequestDirectory getOrderDirectory() {
         return orderDirectory;
@@ -213,7 +189,6 @@ public class EcoSystem extends Organization {
         this.plumbingRequestDirectory = plumbingRequestDirectory;
     }
 
-    
     public PhotographerDirectory getPhotographerDirectory() {
         return photographerDirectory;
     }
@@ -309,5 +284,55 @@ public class EcoSystem extends Organization {
     public void setInspectRequestDirectory(InspectRequestDirectory inspectRequestDirectory) {
         this.inspectRequestDirectory = inspectRequestDirectory;
     }
+
+    public AgentRequestDirectory getAgentRequestDirectory() {
+        return agentRequestDirectory;
+    }
+
+    public void setAgentRequestDirectory(AgentRequestDirectory agentRequestDirectory) {
+        this.agentRequestDirectory = agentRequestDirectory;
+    }
+    
+    public Boolean checkValidPhoneFormat(String phoneNo) {
+        String regex = "^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(phoneNo);
+        if (matcher.matches()) {
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean checkValidEmailFormat(String email) {
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkValidPasswordFormat(String password) {
+        Pattern p1;
+        p1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = p1.matcher(password);
+        boolean b1 = m1.matches();
+        return b1;
+    }
+
+    public void setValidationAlert(JLabel lblName, JTextField txtBoxName, String validationMsg, Boolean flag) {
+        if (flag) {
+            lblName.setForeground(Color.red);
+            txtBoxName.setBorder(BorderFactory.createLineBorder(Color.RED));
+            JOptionPane.showMessageDialog(null, validationMsg);
+        } else {
+            lblName.setForeground(Color.BLACK);
+            txtBoxName.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+    }
+    
 
 }

@@ -85,15 +85,13 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         houseTable = new javax.swing.JTable();
         brnHireInspector = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        commentTxxt = new javax.swing.JTextField();
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "PackerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
+                "CleanerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -106,7 +104,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        brnHireInspector.setText("Hire Packer");
+        brnHireInspector.setText("Hire Cleaner");
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnHireInspectorActionPerformed(evt);
@@ -120,22 +118,16 @@ public class HirePackersJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Comment:");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(brnHireInspector)
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(342, 342, 342)
+                        .addGap(568, 568, 568)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -150,10 +142,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(brnHireInspector)
-                    .addComponent(btnBack)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnBack))
                 .addGap(41, 41, 41))
         );
 
@@ -177,7 +166,6 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String packerID = (String) houseTable.getValueAt(selectedRow, 0);
-         String comment = commentTxxt.getText();
         if (count == 1) {
             PackersMovers packers = packersMoversDirectory.fetchPacker(packerID);
             if ("Available".equals(packers.getStatus())) {
@@ -187,13 +175,13 @@ public class HirePackersJPanel extends javax.swing.JPanel {
                 pr.setPackers(packers);
                 pr.setSeller(property.getSeller());
                 pr.setStatus("Requested");
-                pr.setBuyerNote(comment);
+                pr.setMessage("Inspect House");
                 pr.setProperty(property);
                 packerRequestDirectory.addPackerRequest(pr);
                 system.setPackerRequestDirectory(packerRequestDirectory);
                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
             } else {
-                JOptionPane.showMessageDialog(null, "Sorry! This Packer is already Occupied");
+                JOptionPane.showMessageDialog(null, "Sorry! This inspector is already Occupied");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
@@ -211,9 +199,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnHireInspector;
     private javax.swing.JButton btnBack;
-    private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

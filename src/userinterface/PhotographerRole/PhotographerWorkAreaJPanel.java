@@ -43,7 +43,7 @@ public class PhotographerWorkAreaJPanel extends javax.swing.JPanel {
                 btnViewProfileActionPerformed(evt);
             }
         });
-        add(btnViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+        add(btnViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, -1));
 
         btnViewJob.setText("View Jobs");
         btnViewJob.addActionListener(new java.awt.event.ActionListener() {
@@ -51,7 +51,7 @@ public class PhotographerWorkAreaJPanel extends javax.swing.JPanel {
                 btnViewJobActionPerformed(evt);
             }
         });
-        add(btnViewJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
+        add(btnViewJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProfileActionPerformed

@@ -6,8 +6,9 @@
 package Business.Property;
 
 import Business.Buyer.Buyer;
+
 import Business.Seller.Seller;
-import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -26,11 +27,13 @@ public class Property {
     private String pincode;
     private String status;
     private double price;
-    private BufferedImage img;
+    
     private int bhk;
     private double bathroom;
     private Seller seller;
     private Buyer buyer;
+   
+    
     ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
 
     public String getStatus() {
@@ -90,13 +93,7 @@ public class Property {
         this.price = price;
     }
 
-    public BufferedImage getImg() {
-        return img;
-    }
-
-    public void setImg(BufferedImage img) {
-        this.img = img;
-    }
+    
 
     public int getBhk() {
         return bhk;
@@ -153,6 +150,10 @@ public class Property {
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
     }
+
+   
+    
+    
     @Override
     public String toString() {
         return propertyName;

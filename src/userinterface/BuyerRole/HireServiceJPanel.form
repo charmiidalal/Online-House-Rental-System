@@ -23,10 +23,13 @@
                   <Component id="hirePackBtn" max="32767" attributes="0"/>
                   <Component id="hireElecBtn" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="hirePlumBtn" min="-2" pref="137" max="-2" attributes="0"/>
-                  <Component id="hireCleanBtn" min="-2" pref="137" max="-2" attributes="0"/>
+              <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="hirePlumBtn" min="-2" pref="137" max="-2" attributes="0"/>
+                      <Component id="hireCleanBtn" min="-2" pref="137" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnHireAgent" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="327" max="32767" attributes="0"/>
           </Group>
@@ -46,7 +49,10 @@
                   <Component id="hireCleanBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Component id="hirePhotoBtn" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="hirePhotoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnHireAgent" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="209" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -88,6 +94,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hireCleanBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnHireAgent">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hire Agent"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHireAgentActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

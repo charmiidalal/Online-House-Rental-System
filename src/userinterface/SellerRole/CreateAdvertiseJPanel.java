@@ -331,7 +331,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             property.setBathroom(bathroom);
             property.setPrice(price);
             property.setStatus("Vacant");
-            property.setUploadImg(img);
+            property.setUploadImg((ImageIcon) imgupload.getIcon());
             property.setSeller(sellerDirectory.fetchSeller(sellerID));
             property.setPropertyID(propertyDirectory.generatePropertyID());
             propertyDirectory.addProperty(property);

@@ -13,7 +13,6 @@ public class Photographer {
 
     private String photographerNo;
     private String photographerName;
-    private String street;
     private String city;
     private String zipcode;
     private String state;
@@ -29,15 +28,6 @@ public class Photographer {
     public String getPhotographerNo() {
         return photographerNo;
     }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-    
 
     public void setPhotographerNo(String photographerNo) {
         this.photographerNo = photographerNo;

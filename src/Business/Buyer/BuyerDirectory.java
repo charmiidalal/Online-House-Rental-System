@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Charmi Dalal
  */
 public class BuyerDirectory {
-   ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
+    ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
 
     public ArrayList<Buyer> getBuyerList() {
         return buyerList;

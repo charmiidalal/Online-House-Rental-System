@@ -35,13 +35,5 @@ public class BuilderDirectory {
         return "Builder" + (builderList.size() + 1);
     }
     
-      public Builder fetchBuilder(String BuilderNO) {
-        for (Builder builder : builderList) {
-            if (builder.getBuilderNo().equalsIgnoreCase(BuilderNO)) {
-                return builder;
-            }
-        }
-        return null;
-    }
     
 }

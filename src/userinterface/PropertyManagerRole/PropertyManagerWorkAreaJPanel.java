@@ -1,52 +1,25 @@
 
 
-package userinterface.PropertyManagerRole;
+package userinterface.AdministrativeRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
-import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.ManagerRequest.ManagerRequestDirectory;
-import Business.Property.Property;
-import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
-import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import userinterface.PropertyManagerRole.ManageProfileJPanel;
-import userinterface.PropertyManagerRole.ViewJobsJPanel;
 
 /**
  *
- * @author Dinesh
+ * @author  raunak
  */
 public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
     
-   
+    JPanel userProcessContainer;
+    Enterprise enterprise;
     /** Creates new form AdminWorkAreaJPanel */
-    private JPanel userProcessContainer;
-    private EcoSystem system;
-    private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private ManagerRequestDirectory managerRequestDirectory;
-      private Property property;
-    private Buyer buyer;
-
-   
-     public PropertyManagerWorkAreaJPanel(JPanel userProcess, EcoSystem system ,UserAccount userAccount) {
+    public PropertyManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
-        this.userProcessContainer = userProcess;
-        this.system = system;
-        this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.managerRequestDirectory = (system.getManagerRequestDirectory()== null) ? new ManagerRequestDirectory(): system.getManagerRequestDirectory();
-        this.property=property;
-        this.buyer=buyer;
+        this.userProcessContainer = userProcessContainer;
+        
     }
-    
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -56,46 +29,50 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnManageProfile = new javax.swing.JButton();
-        btnViewJobs = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnManageProfile.setText("Manage Profile");
-        btnManageProfile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageProfileActionPerformed(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
-        add(btnManageProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 130, 30));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
 
-        btnViewJobs.setText("View Jobs");
-        btnViewJobs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewJobsActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        add(btnViewJobs, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 130, 30));
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 560, 120));
+
+        jButton2.setText("Set Issue Fixed");
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
-        ManageProfileJPanel managerJPanel = new ManageProfileJPanel(userProcessContainer, system, userAccount);
-        userProcessContainer.add("ManagerJPanel", managerJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnManageProfileActionPerformed
-
-    private void btnViewJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewJobsActionPerformed
-        ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(userProcessContainer, system,property,buyer, userAccount);
-        userProcessContainer.add("ViewJobJPanel", viewJobsJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnViewJobsActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageProfile;
-    private javax.swing.JButton btnViewJobs;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     
 }

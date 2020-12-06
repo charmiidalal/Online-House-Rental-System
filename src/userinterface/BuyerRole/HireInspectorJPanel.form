@@ -21,10 +21,6 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="brnHireInspector" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="commentTxxt" min="-2" pref="114" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnBuyHouse1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -43,10 +39,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnBuyHouse1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="brnHireInspector" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="commentTxxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace pref="232" max="32767" attributes="0"/>
           </Group>
@@ -141,13 +133,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuyHouse1ActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Comment:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="commentTxxt">
     </Component>
   </SubComponents>
 </Form>

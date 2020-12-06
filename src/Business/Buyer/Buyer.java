@@ -18,6 +18,27 @@ public class Buyer extends UserAccount {
     private String buyerStreet;
     private String buyerZipcode;
     private String buyerEmail;
+    private String buyerID;
+    private String nationalId;
+    private String idDoc;
+
+    public String getIdDoc() {
+        return idDoc;
+    }
+
+    public void setIdDoc(String idDoc) {
+        this.idDoc = idDoc;
+    }
+    
+    
+
+    public String getNationalId() {
+        return nationalId;
+    }
+
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+    }
 
     public String getBuyerNo() {
         return buyerNo;
@@ -65,6 +86,14 @@ public class Buyer extends UserAccount {
 
     public void setBuyerEmail(String buyerEmail) {
         this.buyerEmail = buyerEmail;
+    }
+
+    public String getBuyerID() {
+        return buyerID;
+    }
+
+    public void setBuyerID(String buyerID) {
+        this.buyerID = buyerID;
     }
     
 

@@ -85,8 +85,6 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         houseTable = new javax.swing.JTable();
         brnHireInspector = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        commentTxxt = new javax.swing.JTextField();
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,8 +118,6 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Comment:");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,11 +128,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(brnHireInspector)
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(338, 338, 338)
+                        .addGap(568, 568, 568)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(55, 55, 55))
         );
@@ -148,10 +140,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(brnHireInspector)
-                    .addComponent(btnBack)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnBack))
                 .addGap(41, 41, 41))
         );
 
@@ -175,7 +164,6 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
-         String comment = commentTxxt.getText();
         if (count == 1) {
             Cleaner cleaner = cleanerDirectory.fetchCleaner(cleanerID);
             if ("Available".equals(cleaner.getStatus())) {
@@ -185,13 +173,13 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                 cr.setCleaner(cleaner);
                 cr.setSeller(property.getSeller());
                 cr.setStatus("Requested");
-                cr.setBuyerNote(comment);
+                cr.setMessage("Inspect House");
                 cr.setProperty(property);
                 cleaningRequestDirectory.addCleaningRequest(cr);
                 system.setCleaningRequestDirectory(cleaningRequestDirectory);
                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
             } else {
-                JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");
+                JOptionPane.showMessageDialog(null, "Sorry! This inspector is already Occupied");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
@@ -209,9 +197,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnHireInspector;
     private javax.swing.JButton btnBack;
-    private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

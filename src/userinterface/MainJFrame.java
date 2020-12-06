@@ -27,7 +27,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private BuyerDirectory buyerDirectory;
     private SellerDirectory sellerDirectory;
-
+    
     public MainJFrame() throws IOException {
         initComponents();
         system = dB4OUtil.retrieveSystem();
@@ -191,11 +191,11 @@ public class MainJFrame extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = txtPassword.getPassword();
         String password = String.valueOf(passwordCharArray);
-       
+
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
         if (userAccount != null) {
             CardLayout layout = (CardLayout) cardLayoutJPanel.getLayout();
-            cardLayoutJPanel.add("GetUserWorkArea", userAccount.getRole().createWorkArea(cardLayoutJPanel, userAccount,userAccount.getUserOrganizationList(),userAccount.getUserEnterpriseList(),system));
+            cardLayoutJPanel.add("GetUserWorkArea", userAccount.getRole().createWorkArea(cardLayoutJPanel, userAccount, userAccount.getUserOrganizationList(), userAccount.getUserEnterpriseList(), system));
             //add organisation and enterprise
             layout.next(cardLayoutJPanel);
             txtUsername.setText("");
@@ -204,7 +204,7 @@ public class MainJFrame extends javax.swing.JFrame {
             txtUsername.setEnabled(false);
             txtPassword.setEnabled(false);
             btnLogin.setEnabled(false);
-           // dB4OUtil.storeSystem(system);
+            // dB4OUtil.storeSystem(system);
         } else {
             JOptionPane.showMessageDialog(null, "Username or password incorrect. Please try again.");
         }
@@ -231,7 +231,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) cardLayoutJPanel.getLayout();
-        cardLayoutJPanel.add(new SignUpJpanel(cardLayoutJPanel, system,this.buyerDirectory,this.sellerDirectory));
+        cardLayoutJPanel.add(new SignUpJpanel(cardLayoutJPanel, system, this.buyerDirectory, this.sellerDirectory));
         layout.next(cardLayoutJPanel);
     }//GEN-LAST:event_btnSignupActionPerformed
 
