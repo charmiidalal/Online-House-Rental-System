@@ -27,6 +27,7 @@ import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequestDirectory;
+
 import Business.Property.PropertyDirectory;
 
 /**
@@ -55,6 +56,9 @@ public class EcoSystem extends Organization {
     private InspectRequestDirectory inspectRequestDirectory;
     private PlumbingRequestDirectory plumbingRequestDirectory;
     private ElectricianRequestDirectory electricianRequestDirectory;
+    
+    
+    
 
     public ElectricianRequestDirectory getElectricianRequestDirectory() {
         return electricianRequestDirectory;

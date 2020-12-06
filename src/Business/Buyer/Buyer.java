@@ -6,6 +6,7 @@
 package Business.Buyer;
 
 import Business.UserAccount.UserAccount;
+import java.io.File;
 
 /**
  *
@@ -29,6 +30,9 @@ public class Buyer extends UserAccount {
     public void setIdDoc(String idDoc) {
         this.idDoc = idDoc;
     }
+   
+
+    
     
     
 

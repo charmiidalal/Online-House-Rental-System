@@ -139,10 +139,10 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnBuyersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyersActionPerformed
         // TODO add your handling code here:
-        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
-        userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        //ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
+       // userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
+       // CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+       // layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBuyersActionPerformed
 
     private void btnManageHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageHouseActionPerformed

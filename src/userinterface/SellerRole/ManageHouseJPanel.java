@@ -5,6 +5,7 @@
  */
 package userinterface.SellerRole;
 
+import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -14,6 +15,7 @@ import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -53,8 +55,8 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         for (Property property : propertyDirectory.getPropertyList()) {
             if (property.getSeller().getUsername().equals(useraccount.getUsername())) {
-               // String buyername=(property.getBuyer().getBuyerName())==null ? "null": property.getBuyer().getBuyerName();
-              /*  try {
+                // String buyername=(property.getBuyer().getBuyerName())==null ? "null": property.getBuyer().getBuyerName();
+                /*  try {
             if ((property.getBuyer().getBuyerName())!=null ) {
                   System.out.println("no exception");
                 }
@@ -75,20 +77,15 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 row[7] = property.getBathroom();
                 row[8] = property.getPrice();
                 row[9] = property.getStatus();
-                try{
-                if(property.getBuyer().getBuyerName()!=null)
-                {
-                row[10]=property.getBuyer().getBuyerName();
+                try {
+                    if (property.getBuyer().getBuyerName() != null) {
+                        row[10] = property.getBuyer().getBuyerName();
+                    } else {
+                        row[10] = "";
+                    }
+                } catch (NullPointerException ex) {
+                    System.out.println("userinterface.SellerRole.ManageHouseJPanel.populateTable()");
                 }
-                else
-                {
-                    row[10]="";
-                }
-                }
-                catch(NullPointerException ex)
-                        {
-                            System.out.println("userinterface.SellerRole.ManageHouseJPanel.populateTable()");
-                        }
                 dtm.addRow(row);
             }
         }
@@ -109,7 +106,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnDeleteHouse = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btnSellHouse = new javax.swing.JButton();
         btnBuyers = new javax.swing.JButton();
         jPanelHouse = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -189,14 +185,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
-            }
-        });
-
-        btnSellHouse.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSellHouse.setText("Sell House");
-        btnSellHouse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSellHouseActionPerformed(evt);
             }
         });
 
@@ -368,22 +356,16 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnSellHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnDeleteHouse))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 76, Short.MAX_VALUE))))
+                    .addComponent(btnEdit)
+                    .addComponent(btnDeleteHouse)
+                    .addComponent(btnBuyers))
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1)
+                .addGap(56, 56, 56))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBuyers)
-                .addContainerGap(824, Short.MAX_VALUE))
+                .addContainerGap(305, Short.MAX_VALUE)
+                .addComponent(jPanelHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(btnBack)
@@ -401,29 +383,26 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
                         .addComponent(btnDeleteHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSellHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)))
-                .addComponent(btnBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(btnBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
                 .addComponent(jPanelHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(227, 227, 227))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteHouseActionPerformed
         // TODO add your handling code here:
-        
+
         int selectedRow = jtblHouse.getSelectedRow();
         if (selectedRow >= 0) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -448,39 +427,9 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellHouseActionPerformed
-        // TODO add your handling code here
-        DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
-
-        int selectedRow = jtblHouse.getSelectedRow();
-        if (selectedRow >= 0) {
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to sell the house", "Warning", dialogButton);
-
-            if (dialogResult == JOptionPane.YES_OPTION) {
-                Property property = (Property) jtblHouse.getValueAt(selectedRow, 0);
-                String statusget = (String) jtblHouse.getValueAt(selectedRow, 9);
-                if (!statusget.equalsIgnoreCase("sold")) {
-                    statusget="sold";
-                    dtm.setValueAt(statusget, selectedRow, 9);
-                    property.setStatus(statusget);
-                }
-                String buyer = "Nicholas";
-                dtm.setValueAt(buyer, selectedRow, 10);
-                
-                property.setBuyer(system.getBuyerDirectory().getBuyer(buyer));
-             
-               system.setPropertyDirectory(propertyDirectory);
-                JOptionPane.showMessageDialog(this, "Selected house is sold!!");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Please select a house to be sold");
-        }
-    }//GEN-LAST:event_btnSellHouseActionPerformed
-
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-         jPanelHouse.setVisible(true);
+        jPanelHouse.setVisible(true);
         DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
 
         int selectedRow = jtblHouse.getSelectedRow();
@@ -530,7 +479,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
     private void jbtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnUpdateActionPerformed
         // TODO add your handling code here:
-         jPanelHouse.setVisible(true);
+        jPanelHouse.setVisible(true);
         String sellerID = this.useraccount.getEmployee().getName();
         DefaultTableModel dtm1 = (DefaultTableModel) jtblHouse.getModel();
 
@@ -543,7 +492,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         property.setPincode(pinTxt.getText());
         property.setState(stateTxt.getText());
         int bhkget = Integer.parseInt(bhkTxt.getText());
-       
+
         System.out.println(bhkget);
         property.setBhk(bhkget);
         property.setBathroom(Double.parseDouble(bathroomTxt.getText()));
@@ -576,9 +525,9 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         row[9] = property.getStatus();
         row[10] = property.getBuyer();
         dtm.addRow(row);
-       
+
         property.setSeller(sellerDirectory.fetchSeller(sellerID));
-    
+
         system.setPropertyDirectory(propertyDirectory);
         JOptionPane.showMessageDialog(null, "House details Updated!");
         nameTxt.setText("");
@@ -605,24 +554,35 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         int count = jtblHouse.getSelectedRowCount();
         if (count == 1) {
             if (selectedRow >= 0) {
+
+                String name = (String) jtblHouse.getValueAt(selectedRow,1);
+                Property property = propertyDirectory.searchPropertyName(name);
                
-                String name = (String) jtblHouse.getValueAt(selectedRow, 0);
-                Property property = propertyDirectory.fetchProperty(name);
-                
-                ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
-        userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-            
+                    ArrayList<Buyer> buyers = property.getRegisteredBuyer();
+                    try{
+                    if (!buyers.isEmpty() || buyers != null) {
+
+                    
+                            ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer, enterprise, useraccount, property, system);
+                            userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
+                            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                            layout.next(userProcessContainer);
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Sorry,No interested buyer for this property!!");
+                        }
+                    }
+                 catch (NullPointerException e) {
+                    System.out.println("NullPointerException thrown!");
+                    JOptionPane.showMessageDialog(null, "Sorry,No interested buyer for this property!!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a Row!!");
+            }}
+else {
+                JOptionPane.showMessageDialog(null, "Please select a Row!!");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a Row!!");
-        }
-        
-        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer,enterprise,useraccount,sellerDirectory,system);
-        userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnBuyersActionPerformed
 
 
@@ -634,7 +594,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBuyers;
     private javax.swing.JButton btnDeleteHouse;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnSellHouse;
     private javax.swing.JTextField cityTxt;
     private javax.swing.JComboBox<String> jComboBoxStatus;
     private javax.swing.JLabel jLabel1;

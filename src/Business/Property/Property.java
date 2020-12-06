@@ -8,6 +8,7 @@ package Business.Property;
 import Business.Buyer.Buyer;
 
 import Business.Seller.Seller;
+import java.io.File;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -33,7 +34,24 @@ public class Property {
     private Seller seller;
     private Buyer buyer;
    
-    
+    ArrayList<ImageIcon> images = new ArrayList<>();
+
+    public ArrayList<Buyer> getRegisteredBuyer() {
+        return RegisteredBuyer;
+    }
+
+    public void setRegisteredBuyer(ArrayList<Buyer> RegisteredBuyer) {
+        this.RegisteredBuyer = RegisteredBuyer;
+    }
+    ArrayList<Buyer> RegisteredBuyer = new ArrayList<>();
+
+    public ArrayList<ImageIcon> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<ImageIcon> images) {
+        this.images = images;
+    }
     ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
 
     public String getStatus() {

@@ -35,6 +35,14 @@ public class PropertyDirectory {
         }
         return null;
     }
+     public Property searchPropertyName(String PropertyName) {
+        for (Property property : propertyList) {
+            if (property.getPropertyName().equalsIgnoreCase(PropertyName)) {
+                return property;
+            }
+        }
+        return null;
+    }
 
     ///./////// need to change ///////////////
     public Property getPropertyByIndex(int index) {

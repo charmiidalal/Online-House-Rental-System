@@ -10,10 +10,12 @@ import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
+import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -36,6 +38,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
     private UserAccount useraccount;
     private Property property;
     private Buyer buyer;
+    private PropertyDirectory propertyDirectory;
 
     public BuyerRegistrationFormJPanel(JPanel userProcessContainer,Property property, Buyer buyer, EcoSystem system,UserAccount useraccount) {
         initComponents();
@@ -47,6 +50,8 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         //this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
         this.buyer=buyer;
         this.property=property;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+
         txtHouse.setText(property.getPropertyName());
     }
 
@@ -71,7 +76,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         txtAddress = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnUpload = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         btnsubmit = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -97,10 +102,10 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("NationalID");
 
-        jButton1.setText("Upload ID document");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnUpload.setText("Upload ID document");
+        btnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnUploadActionPerformed(evt);
             }
         });
 
@@ -139,7 +144,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel9)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
-                                .addComponent(jButton1)))
+                                .addComponent(btnUpload)))
                         .addGap(9, 9, 9)
                         .addComponent(uploadlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -147,7 +152,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                         .addComponent(btnsubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(59, 59, 59))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -174,10 +179,10 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                                     .addComponent(txtPhone)
                                     .addComponent(txtEmail)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)))
                 .addContainerGap(180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -218,14 +223,14 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel7)
                         .addGap(39, 39, 39)
                         .addComponent(uploadlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(446, 446, 446)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(txtHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btnsubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
@@ -247,9 +252,10 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         String zipcode = txtZipcode.getText();
         String email = txtEmail.getText();
         String nationalId = txtId.getText();
+       
         String idDoc=uploadlbl.getText();
         
-        //Buyer buyer = (this.buyerDirectory.getBuyer(name)) == null ? new Buyer() : this.buyerDirectory.getBuyer(name);
+     // Buyer buyer = (this.buyerDirectory.getBuyer(name)) == null ? new Buyer() : this.buyerDirectory.getBuyer(name);
 
         buyer.setBuyerName(name);
         buyer.setBuyerPhone(phone);
@@ -257,28 +263,35 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         buyer.setBuyerStreet(address);
         buyer.setBuyerZipcode(zipcode);
         buyer.setNationalId(nationalId);
-        buyer.setIdDoc(email);
         
-        //this.buyerDirectory.setBuyerList(buyerList);
-        system.setBuyerDirectory(buyerDirectory);
+        buyer.setIdDoc(idDoc);
+           property.setBuyer(buyer);
+         ArrayList<Buyer> RegisteredBuyer = new ArrayList<>();
+        RegisteredBuyer.add(buyer);
+        property.setRegisteredBuyer(RegisteredBuyer);
+        system.getPropertyDirectory().getPropertyList().set(propertyDirectory.getPropertyList().indexOf(property), property);
+        //system.getPropertyDirectory().addProperty(property);
+       system.setPropertyDirectory(propertyDirectory);
+      // this.buyerDirectory.setBuyerList(RegisteredBuyer);
+        //system.setBuyerDirectory(buyerDirectory);
         JOptionPane.showMessageDialog(this, "Thank you for submitting the form!");
 
     }//GEN-LAST:event_btnsubmitActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
         uploadlbl.setText(filename);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnUploadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnUpload;
     private javax.swing.JButton btnsubmit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
