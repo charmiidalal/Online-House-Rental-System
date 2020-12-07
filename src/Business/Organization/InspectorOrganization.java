@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class InspectorOrganization extends Organization{
 
-    public InspectorOrganization() {
-        super(Type.Inspector.getValue());
+    public InspectorOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,9 @@ public class InspectorOrganization extends Organization{
         roles.add(new InspectorRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Inspector;
+    }  
      
 }

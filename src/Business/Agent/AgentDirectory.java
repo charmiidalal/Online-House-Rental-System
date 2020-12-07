@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class AgentDirectory {
     
-    ArrayList<Agent> agentList = new ArrayList<Agent>();
+    ArrayList<Agent> agentList = new ArrayList<>();
 
     public ArrayList<Agent> getAgentList() {
         return agentList;
@@ -33,5 +33,14 @@ public class AgentDirectory {
 
     public String generateAgentID() {
         return "Agent" + (agentList.size() + 1);
+    }
+    
+    public Agent fetchAgent(String AgentNo) {
+        for (Agent agent : agentList) {
+            if (agent.getAgentNo().equalsIgnoreCase(AgentNo)) {
+                return agent;
+            }
+        }
+        return null;
     }
 }

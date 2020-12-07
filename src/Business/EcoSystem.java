@@ -15,20 +15,34 @@ import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
 import Business.Cleaner.CleanerDirectory;
+import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.Electrician.ElectricianDirectory;
 import Business.ElectricianRequest.ElectricianRequestDirectory;
+import Business.Employee.Employee;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
 import Business.InspectRequest.InspectRequestDirectory;
+import Business.AgentRequest.AgentRequestDirectory;
+import Business.BuilderRequest.BuilderRequestDirectory;
+import Business.ManagerRequest.ManagerRequestDirectory;
 import Business.Organization.OrganizationDirectory;
+import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
+import Business.PhotographerRequest.PhotographerRequestDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequestDirectory;
 
 import Business.Property.PropertyDirectory;
+import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -56,9 +70,12 @@ public class EcoSystem extends Organization {
     private InspectRequestDirectory inspectRequestDirectory;
     private PlumbingRequestDirectory plumbingRequestDirectory;
     private ElectricianRequestDirectory electricianRequestDirectory;
-    
-    
-    
+    private AgentRequestDirectory agentRequestDirectory;
+    private CleaningRequestDirectory cleaningRequestDirectory;
+    private PackerRequestDirectory packerRequestDirectory;
+    private BuilderRequestDirectory builderRequestDirectory;
+    private PhotographerRequestDirectory photographerRequestDirectory;
+    private ManagerRequestDirectory managerRequestDirectory;
 
     public ElectricianRequestDirectory getElectricianRequestDirectory() {
         return electricianRequestDirectory;
@@ -83,7 +100,11 @@ public class EcoSystem extends Organization {
         }
         return business;
     }
-
+    
+    public static void setInstance(EcoSystem system) {
+        business = system;
+    }
+    
     public Network createAndAddNetwork() {
         Network network = new Network();
         networkList.add(network);
@@ -128,6 +149,31 @@ public class EcoSystem extends Organization {
         this.buyerDirectory = buyerDirectory;
     }
 
+    public BuilderRequestDirectory getBuilderRequestDirectory() {
+        return builderRequestDirectory;
+    }
+
+    public void setBuilderRequestDirectory(BuilderRequestDirectory builderRequestDirectory) {
+        this.builderRequestDirectory = builderRequestDirectory;
+    }
+
+    public PhotographerRequestDirectory getPhotographerRequestDirectory() {
+        return photographerRequestDirectory;
+    }
+
+    public void setPhotographerRequestDirectory(PhotographerRequestDirectory photographerRequestDirectory) {
+        this.photographerRequestDirectory = photographerRequestDirectory;
+    }
+
+    public ManagerRequestDirectory getManagerRequestDirectory() {
+        return managerRequestDirectory;
+    }
+
+    public void setManagerRequestDirectory(ManagerRequestDirectory managerRequestDirectory) {
+        this.managerRequestDirectory = managerRequestDirectory;
+    }
+
+    
     public boolean checkIfUserIsUnique(String userName) {
         if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
             return false;
@@ -150,6 +196,23 @@ public class EcoSystem extends Organization {
         return orderDirectory;
     }
 
+    public CleaningRequestDirectory getCleaningRequestDirectory() {
+        return cleaningRequestDirectory;
+    }
+
+    public void setCleaningRequestDirectory(CleaningRequestDirectory cleaningRequestDirectory) {
+        this.cleaningRequestDirectory = cleaningRequestDirectory;
+    }
+
+    public PackerRequestDirectory getPackerRequestDirectory() {
+        return packerRequestDirectory;
+    }
+
+    public void setPackerRequestDirectory(PackerRequestDirectory packerRequestDirectory) {
+        this.packerRequestDirectory = packerRequestDirectory;
+    }
+
+    
     public void setOrderDirectory(InspectRequestDirectory orderDirectory) {
         this.orderDirectory = orderDirectory;
     }
@@ -162,7 +225,6 @@ public class EcoSystem extends Organization {
         this.plumbingRequestDirectory = plumbingRequestDirectory;
     }
 
-    
     public PhotographerDirectory getPhotographerDirectory() {
         return photographerDirectory;
     }
@@ -257,6 +319,61 @@ public class EcoSystem extends Organization {
 
     public void setInspectRequestDirectory(InspectRequestDirectory inspectRequestDirectory) {
         this.inspectRequestDirectory = inspectRequestDirectory;
+    }
+
+    public AgentRequestDirectory getAgentRequestDirectory() {
+        return agentRequestDirectory;
+    }
+
+    public void setAgentRequestDirectory(AgentRequestDirectory agentRequestDirectory) {
+        this.agentRequestDirectory = agentRequestDirectory;
+    }
+    
+    public Boolean checkValidPhoneFormat(String phoneNo) {
+        Pattern pattern;
+        Matcher matcher;
+        String PHONE_PATTERN = "^[0-9]{10}$";
+        pattern = Pattern.compile(PHONE_PATTERN);
+        matcher = pattern.matcher(phoneNo);
+        return matcher.matches();
+    }
+
+    public Boolean checkValidEmailFormat(String email) {
+        Pattern pattern;
+        Matcher matcher;
+        String EMAIL_PATTERN
+                = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    public boolean checkValidPasswordFormat(String password) {
+        Pattern p1;
+        p1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = p1.matcher(password);
+        boolean b1 = m1.matches();
+        return b1;
+    }
+
+    public void setValidationAlert(JLabel lblName, JTextField txtBoxName, String validationMsg, Boolean flag) {
+        if (flag) {
+            lblName.setForeground(Color.red);
+            txtBoxName.setBorder(BorderFactory.createLineBorder(Color.RED));
+            JOptionPane.showMessageDialog(null, validationMsg);
+        } else {
+            lblName.setForeground(Color.BLACK);
+            txtBoxName.setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+    }
+    
+    public boolean checkExistingNetwork(String name){
+        for(Network network : networkList){
+            if(network.getName().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

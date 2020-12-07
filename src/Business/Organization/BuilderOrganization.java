@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class BuilderOrganization extends Organization{
 
-    public BuilderOrganization() {
-        super(Type.Builder.getValue());
+    public BuilderOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,9 @@ public class BuilderOrganization extends Organization{
         roles.add(new BuilderRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Builder;
+    }  
      
 }

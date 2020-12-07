@@ -73,8 +73,18 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePackBtn.setText("Hire Packers/Movers");
 
         hirePhotoBtn.setText("Hire Photographer");
+        hirePhotoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hirePhotoBtnActionPerformed(evt);
+            }
+        });
 
         hireCleanBtn.setText("Hire Cleaner");
+        hireCleanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireCleanBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,10 +128,24 @@ public class HireServiceJPanel extends javax.swing.JPanel {
 
     private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
         HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer, property, buyer,system);
-        userProcessContainer.add("plumbeWorkAreaJPanel", hireService);
+        userProcessContainer.add("plumberWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePlumBtnActionPerformed
+
+    private void hireCleanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtnActionPerformed
+       HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer, property, buyer,system);
+        userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_hireCleanBtnActionPerformed
+
+    private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
+        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer, property, buyer,system);
+        userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_hirePhotoBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

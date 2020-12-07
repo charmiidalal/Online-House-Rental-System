@@ -35,4 +35,12 @@ public class CleanerDirectory {
         return "Cleaner" + (cleanerList.size() + 1);
     }
 
+      public Cleaner fetchCleaner(String CleanerNo) {
+        for (Cleaner cleaner : cleanerList) {
+            if (cleaner.getCleanerNo().equalsIgnoreCase(CleanerNo)) {
+                return cleaner;
+            }
+        }
+        return null;
+    }
 }

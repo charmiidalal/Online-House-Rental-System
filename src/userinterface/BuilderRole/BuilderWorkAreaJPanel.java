@@ -5,9 +5,15 @@
  */
 package userinterface.BuilderRole;
 
+import Business.BuilderRequest.BuilderRequestDirectory;
+import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Property.PropertyDirectory;
+import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import userinterface.BuyerRole.ManageBuilderActivity;
 
 /**
  *
@@ -16,20 +22,26 @@ import javax.swing.JPanel;
 public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
 
     
-    private JPanel userProcessContainer;
+     private JPanel userProcessContainer;
     private EcoSystem system;
- 
-    private UserAccount account;
-    /**
-     * Creates new form CreateBuilderJPanel
-     */
+    private UserAccount userAccount;
+    private BuilderRequestDirectory builderRequestDirectory;
+    private SellerDirectory sellerDirectory;
+    private PropertyDirectory propertyDirectory;
+    private BuyerDirectory buyerDirectory;
+    
 
-    public BuilderWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    /** Creates new form AdminWorkAreaJPanel */
+   public BuilderWorkAreaJPanel(JPanel userProcessContainer,EcoSystem system,UserAccount userAccount ) {
         initComponents();
-        this.userProcessContainer= userProcessContainer;
-        this.account=account;
-        this.system= system;
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
+        this.userAccount=userAccount;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        this.builderRequestDirectory = (system.getBuilderRequestDirectory()== null) ? new BuilderRequestDirectory(): system.getBuilderRequestDirectory();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,131 +52,64 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        nameTxt = new javax.swing.JTextField();
-        userNameTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        passwordTxt = new javax.swing.JTextField();
-        submitBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        phoneTxt = new javax.swing.JTextField();
+        btnManageProfile = new javax.swing.JButton();
+        btnViewJob = new javax.swing.JButton();
 
-        jLabel2.setText("Name:");
-
-        nameTxt.setText(" ");
-
-        userNameTxt.addActionListener(new java.awt.event.ActionListener() {
+        btnManageProfile.setText("Manage Profile");
+        btnManageProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameTxtActionPerformed(evt);
+                btnManageProfileActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("User Name:");
-
-        jLabel4.setText("Password:");
-
-        submitBtn.setText("Submit");
-        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnViewJob.setText("View Jobs");
+        btnViewJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBtnActionPerformed(evt);
+                btnViewJobActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Phone No:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(312, 312, 312)
-                .addComponent(submitBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userNameTxt)
-                    .addComponent(passwordTxt)
-                    .addComponent(nameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                    .addComponent(phoneTxt))
-                .addGap(263, 263, 263))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(16, 16, 16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(submitBtn)
-                .addGap(93, 93, 93))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 747, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(265, 265, 265)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewJob, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(btnManageProfile)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewJob)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTxtActionPerformed
+    private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userNameTxtActionPerformed
+        ManageBuilderJPanel manageBuilderJPanel = new ManageBuilderJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("ManageBuilderJPanel", manageBuilderJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageProfileActionPerformed
 
-    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-        String name = nameTxt.getText();
-        String userName = userNameTxt.getText();
-        String password = passwordTxt.getText();
-        String phone = phoneTxt.getText();
-
-    }//GEN-LAST:event_submitBtnActionPerformed
+    private void btnViewJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewJobActionPerformed
+        // TODO add your handling code here:
+        ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("viewJobsJPanel", viewJobsJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewJobActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField nameTxt;
-    private javax.swing.JTextField passwordTxt;
-    private javax.swing.JTextField phoneTxt;
-    private javax.swing.JButton submitBtn;
-    private javax.swing.JTextField userNameTxt;
+    private javax.swing.JButton btnManageProfile;
+    private javax.swing.JButton btnViewJob;
     // End of variables declaration//GEN-END:variables
 }

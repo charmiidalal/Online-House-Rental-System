@@ -6,8 +6,8 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -31,7 +31,11 @@ public abstract class Role {
         PackersMovers("Movers & Packers"),
         Photographer("Photographer"),
         Plumbing("Plumbing"),
-        GovermentEmployee("Goverment Employee");
+        GovermentEmployee("Goverment Employee"),
+        QAadmin("Quality Assuarance Admin"),
+        BrokerAdmin("Broker Admin"),
+        ServiceProviderAdmin("Service Provider Admin"),
+        PropertyAdmin("Property Admin");
         
         private String value;
         private RoleType(String value){
@@ -49,11 +53,11 @@ public abstract class Role {
     }
     
    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
-            UserAccount account,
+            UserAccount account, 
             Organization organization, 
-            Enterprise enterprise, 
+            Enterprise enterprise,
+            Network network,
             EcoSystem business);
-    
 
     @Override
     public String toString() {

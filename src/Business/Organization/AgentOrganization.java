@@ -13,16 +13,21 @@ import java.util.ArrayList;
  * @author raunak
  */
 public class AgentOrganization extends Organization{
-
-    public AgentOrganization() {
-        super(Type.Agent.getValue());
+    
+    
+    public AgentOrganization(String name) {
+        super(name);
     }
     
-    @Override
+  @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new AgentRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Agent;
+    }  
      
 }

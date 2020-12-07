@@ -59,7 +59,7 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
         Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
         for (InspectRequest inspectRequest : inspectRequestDirectory.getInspectRequestDirectory()) {
             if (inspectRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[10];
+                Object[] row = new Object[11];
                 row[0] = inspectRequest.getRequestID();
                 row[1] = inspectRequest.getInspector().getInspectorName();
                 row[2] = inspectRequest.getSeller().getName();
@@ -70,6 +70,7 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
                 row[7] = inspectRequest.getStatus();
                 row[8] = inspectRequest.getBuyerNote();
                 row[9] = inspectRequest.getInspectorNote();
+                row[10] =inspectRequest.getQuote();
                 model.addRow(row);
             }
         }
@@ -103,11 +104,11 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message"
+                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -133,20 +134,19 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
                 .addGap(133, 133, 133)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(46, 46, 46)
-                                .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(btnCompleteJob)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBack)
-                        .addGap(213, 213, 213))
+                        .addComponent(jLabel1)
+                        .addGap(46, 46, 46)
+                        .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(160, Short.MAX_VALUE))))
+                        .addGap(53, 53, 53)
+                        .addComponent(btnCompleteJob)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 426, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(213, 213, 213))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +164,7 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addComponent(btnCompleteJob)))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

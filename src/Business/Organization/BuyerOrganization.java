@@ -1,21 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package Business.Organization;
-import Business.UserAccount.UserAccountDirectory;
+
 import Business.Role.BuyerRole;
 import Business.Role.Role;
+import Business.Role.SellerRole;
 import java.util.ArrayList;
 
 /**
  *
- * @author anush
+ * @author raunak
  */
-public class BuyerOrganization extends Organization {
-    public BuyerOrganization() {
-        super(Type.Buyer.getValue());
+public class BuyerOrganization extends Organization{
+
+    public BuyerOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,4 +25,9 @@ public class BuyerOrganization extends Organization {
         roles.add(new BuyerRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Buyer;
+    } 
+     
 }

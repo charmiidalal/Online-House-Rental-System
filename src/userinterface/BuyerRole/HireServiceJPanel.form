@@ -78,11 +78,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Hire Photographer"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hirePhotoBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="hireCleanBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hire Cleaner"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hireCleanBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

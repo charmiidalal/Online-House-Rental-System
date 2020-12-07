@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class PlumbingOrganization extends Organization{
 
-    public PlumbingOrganization() {
-        super(Type.Plumbing.getValue());
+    public PlumbingOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,9 @@ public class PlumbingOrganization extends Organization{
         roles.add(new PlumbingRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Plumbing;
+    }  
      
 }

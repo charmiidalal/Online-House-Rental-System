@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class PropertyManagerOrganization extends Organization{
 
-    public PropertyManagerOrganization() {
-        super(Type.PropertyManager.getValue());
+    public PropertyManagerOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,9 @@ public class PropertyManagerOrganization extends Organization{
         roles.add(new PropertyManagerRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.PropertyManager;
+    } 
      
 }

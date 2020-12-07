@@ -31,7 +31,16 @@ public class PropertyManagerDirectory {
     }
 
     public String generatePropertyManagerID() {
-        return "PropertyManager" + (propertyManagerList.size() + 1);
+        return "PropertyManager " + (propertyManagerList.size() + 1);
     }
 
+     
+    public PropertyManager fetchPropertyManager(String ManagerNo) {
+        for (PropertyManager manager : propertyManagerList) {
+            if (manager.getPropertyNo().equalsIgnoreCase(ManagerNo)) {
+                return manager;
+            }
+        }
+        return null;
+    }
 }

@@ -34,9 +34,7 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
     private BuyerDirectory buyerDirectory;
     private ElectricianDirectory electricianDirectory;
 
-    /**
-     * Creates new form BuyerWorkAreaJpanel
-     */
+  
     public ManageElectricianJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcess;

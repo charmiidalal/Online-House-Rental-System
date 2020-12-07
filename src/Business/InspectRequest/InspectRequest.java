@@ -26,6 +26,7 @@ import Business.WorkQueue.WorkRequest;
      private String buyerNote;
     private String status;
     private String requestedDate;
+   
 
     public String getRequestID() {
         return requestID;
