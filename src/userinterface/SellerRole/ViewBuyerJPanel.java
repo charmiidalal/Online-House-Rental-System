@@ -258,7 +258,7 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
         try {
             url = new URL(buyer.getIdDoc());
             File f = new File(buyer.getIdDoc());
-        org.apache.commons.io.FileUtils.copyURLToFile(url, f); 
+        //org.apache.commons.io.FileUtils.copyURLToFile(url, f); 
         } catch (MalformedURLException ex) {
             Logger.getLogger(ViewBuyerJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
