@@ -13,6 +13,7 @@ import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Role.BuilderRole;
 import Business.Role.PropertyManagerRole;
+import Business.Role.SellerRole;
 import Business.UserAccount.UserAccount;
 import Business.Utils.HeaderColors;
 import Business.WorkQueue.UserRegistrationRequest;
@@ -179,6 +180,11 @@ public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
                 Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
                 Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
                 UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new BuilderRole());
+            } 
+           else if (request.getOrgType() == Organization.Type.Seller) {
+                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new SellerRole());
             } 
 
             request.setStatus("Completed");
