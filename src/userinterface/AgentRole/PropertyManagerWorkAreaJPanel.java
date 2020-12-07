@@ -1,6 +1,6 @@
 
 
-package userinterface.PropertyManagerRole;
+package userinterface.InspectorRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author  Dinesh
+ * @author  raunak
  */
-public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
+public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
@@ -24,7 +24,7 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
     Network network;
     UserAccount account;
     /** Creates new form AdminWorkAreaJPanel */
-    public PropertyManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system, Organization organization, Network network,UserAccount account) {
+    public InspectorWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system, Organization organization, Network network,UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -100,6 +100,7 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         manageRequest.setBackground(new java.awt.Color(215, 81, 81));
         manageRequest.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         manageRequest.setText("Manage Requests");
+        manageRequest.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageRequest.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageRequestMousePressed(evt);
@@ -120,12 +121,10 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         manageRequestPanelLayout.setVerticalGroup(
             manageRequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageRequestPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(manageRequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(manageRequestPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(manageRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(manageRequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
 
@@ -136,8 +135,8 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 280, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("PROPERTY MANAGER MANAGEMENT");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel3.setText("BUILDER MANAGEMENT");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -157,6 +156,7 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         manageSceneLabel.setBackground(new java.awt.Color(215, 81, 81));
         manageSceneLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageSceneLabel.setText("Manage Profile");
+        manageSceneLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageSceneLabel.setPreferredSize(new java.awt.Dimension(115, 16));
         manageSceneLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
