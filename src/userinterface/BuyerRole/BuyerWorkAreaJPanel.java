@@ -355,10 +355,10 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_builderBtnActionPerformed
 
     private void vireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vireBtnActionPerformed
-      viewJobsJPanel manageInspectorActivity = new viewJobsJPanel(userProcessContainer, system, userAccount);
-        userProcessContainer.add("manageInspectorActivity", manageInspectorActivity);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+//      viewJobsJPanel manageInspectorActivity = new viewJobsJPanel(userProcessContainer, system, userAccount);
+//        userProcessContainer.add("manageInspectorActivity", manageInspectorActivity);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+       // layout.next(userProcessContainer);
     }//GEN-LAST:event_vireBtnActionPerformed
 
     private void managerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerBtn1ActionPerformed

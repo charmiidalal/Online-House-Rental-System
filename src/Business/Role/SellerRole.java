@@ -23,7 +23,11 @@ public class SellerRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
          return new SellerWorkAreaJPanel(userProcessContainer,account,business);
     }
-   
+    
+    @Override
+    public String toString(){
+        return (RoleType.Seller.getValue());
+    }
 
    
 }

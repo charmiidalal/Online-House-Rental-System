@@ -65,6 +65,10 @@ public class OrganizationDirectory {
             organization = new GovermentOrganization(name);
             organizationList.add(organization);
         }
+        else if (type.getValue().equals(Type.Seller.getValue())) {
+            organization = new SellerOrganization(name);
+            organizationList.add(organization);
+        }
 
         return organization;
     }
