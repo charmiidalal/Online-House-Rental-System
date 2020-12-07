@@ -113,8 +113,11 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         hirePhotoBtn1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         quoteTxt = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         houseTable1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         hireElecBtn.setText("Hire Electrician");
         hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -178,6 +181,8 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 .addContainerGap(209, Short.MAX_VALUE))
         );
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -196,66 +201,104 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 900, 300));
+
+        brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setText("Take Job");
+        brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnTakeJobActionPerformed(evt);
             }
         });
+        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 690, -1, -1));
 
+        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnBack.setText("Back");
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 730, 83, -1));
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setText("Feedback:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 710, -1, -1));
 
+        txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 710, 138, -1));
+
+        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
+        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
             }
         });
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 750, -1, -1));
 
+        hirePlumBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         hirePlumBtn1.setText("Hire Plumber");
+        hirePlumBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hirePlumBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hirePlumBtn1ActionPerformed(evt);
             }
         });
+        add(hirePlumBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 140, -1));
 
+        hireCleanBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         hireCleanBtn1.setText("Hire Cleaner");
+        hireCleanBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hireCleanBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hireCleanBtn1ActionPerformed(evt);
             }
         });
+        add(hireCleanBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 140, -1));
 
+        hirePackBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         hirePackBtn1.setText("Hire Packers/Movers");
+        hirePackBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(hirePackBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 140, -1));
 
+        hireElecBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         hireElecBtn1.setText("Hire Electrician");
+        hireElecBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hireElecBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hireElecBtn1ActionPerformed(evt);
             }
         });
+        add(hireElecBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 140, -1));
 
+        hirePhotoBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         hirePhotoBtn1.setText("Hire Photographer");
+        hirePhotoBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hirePhotoBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hirePhotoBtn1ActionPerformed(evt);
             }
         });
+        add(hirePhotoBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 140, -1));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Update Quote: ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 680, -1, -1));
 
+        quoteTxt.setBackground(new java.awt.Color(153, 204, 255));
         quoteTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quoteTxtActionPerformed(evt);
             }
         });
+        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 680, 140, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 690, 550));
 
         houseTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,92 +318,37 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnBack, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(brnTakeJob, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(quoteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(hireElecBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(hirePlumBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(hireCleanBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(hirePackBtn1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(hirePhotoBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addGap(33, 33, 33)
-                                .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCompleteJob)
-                                .addGap(167, 167, 167))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE))
-                        .addContainerGap(53, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brnTakeJob)
-                    .addComponent(quoteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(hirePlumBtn1)
-                    .addComponent(hireCleanBtn1)
-                    .addComponent(hirePackBtn1)
-                    .addComponent(hirePhotoBtn1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(hireElecBtn1)
-                    .addComponent(btnCompleteJob)
-                    .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap())
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 900, 300));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel3.setText("PROPERTY MANAGER WORK REQUEST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 140, 164));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
-
+            String feedback = txtFeedback.getText();
             String jobID = (String) houseTable.getValueAt(selectedRow, 0);
             ManagerRequest managerRequest = managerRequestDirectory.fetchManagerRequest(jobID);
             if (!"Job Taken".equals(managerRequest.getStatus())) {
+                if (!"".equals(feedback)) {
                 managerRequest.setStatus("Job Taken");
                 PropertyManager manager = propertyManagerDirectory.fetchPropertyManager(userAccount.getEmployee().getName());
                 manager.setStatus("Occupied");
                 manager.setCharge(quoteTxt.getText());
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-            } else {
+            }   else {
+                JOptionPane.showMessageDialog(null, "Please enter feedback!");
+            }
+            }
+                else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
         } else {
@@ -478,6 +466,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private javax.swing.JTable houseTable1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
