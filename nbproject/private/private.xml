@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/BuyerRegistrationFormJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerWorkAreaJPanel.java</file>
             <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ManageHouseJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Property/Property.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ViewBuyerJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ManageBuyerJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Buyer/Buyer.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/BuyerRegistrationFormJPanel.java</file>
             <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/CreateAdvertiseJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/ViewHouseDetailsJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ViewBuyerJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Property/Property.java</file>
         </group>
     </open-files>
 </project-private>
