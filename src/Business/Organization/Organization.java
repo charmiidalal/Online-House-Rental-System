@@ -37,6 +37,7 @@ public abstract class Organization {
         Agent("Agent Organization"),
         Goverment("Goverment Organization"),
         Photographer("Photographer Organization"),
+        Buyer("Buyer Organization"),
         Seller("Seller Organization");
 
         private String value;

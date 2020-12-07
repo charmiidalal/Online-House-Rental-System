@@ -153,8 +153,8 @@ public class BrokerEntWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MANAGE VOLUNTEER UNIT WORK REQUEST");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 41, 431, -1));
+        jLabel1.setText("MANAGE BROKER ENTERPRISE SIGNUP REQUESTS");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 460, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/VolunteerOPaque512x.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 520, -1));

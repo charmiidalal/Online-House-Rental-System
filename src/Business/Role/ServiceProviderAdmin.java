@@ -10,7 +10,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.AgentRole.AgentWorkAreaJPanel;
+import userinterface.AdministrativeRole.ServiceProviderAdminWorkAreaJPanel;
 
 /**
  *
@@ -20,7 +20,7 @@ public class ServiceProviderAdmin extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
-        return new AgentWorkAreaJPanel(userProcessContainer, business,account);
+        return new ServiceProviderAdminWorkAreaJPanel(userProcessContainer, account,organization, enterprise, network, business);
     }
 
     

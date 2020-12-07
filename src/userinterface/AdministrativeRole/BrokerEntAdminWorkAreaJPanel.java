@@ -252,7 +252,7 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 280, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("BROKER UNIT SYSTEM");
+        jLabel3.setText("BROKER ENTERPRISE ");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));

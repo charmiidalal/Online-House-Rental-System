@@ -10,7 +10,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.InspectorRole.InspectorWorkAreaJPanel;
+import userinterface.InspectorRole.InspectorWorkAreaJPanel1;
 
 /**
  *
@@ -20,7 +20,7 @@ public class InspectorRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
-        return new InspectorWorkAreaJPanel(userProcessContainer,business, account);
+        return new InspectorWorkAreaJPanel1(userProcessContainer,business, account);
     }
 
     

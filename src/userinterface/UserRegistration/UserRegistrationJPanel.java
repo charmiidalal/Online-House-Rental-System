@@ -16,13 +16,9 @@ import Business.Organization.BuilderOrganization;
 import Business.Organization.PropertyManagerOrganization;
 import Business.Organization.Organization;
 import Business.Role.BuyerRole;
-import Business.Role.SellerRole;
-import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.UserRegistrationRequest;
-//import Business.WorkQueue.UserRegistrationRequest;
 import Business.WorkQueue.WorkQueue;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.Properties;
 import javax.mail.Message;
@@ -34,17 +30,6 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-//import userinterface.GoogleMAP.OrganizationLocationJPanel;
-//import Business.Utils.Validation;
-import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.Duration;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javafx.animation.PauseTransition;
-import javax.swing.JTextField;
-import javax.swing.Timer;
 
 /**
  *
@@ -54,7 +39,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem system;
-    private ActionListener eventListener;
+    //private ActionListener eventListener;
     private boolean emailValid;
     private boolean contactValid;
     private boolean userUnique;
@@ -86,8 +71,8 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         orgCombo.addItem(Organization.Type.PropertyManager);
         orgCombo.addItem(Organization.Type.Builder);
         orgCombo.addItem(Organization.Type.Inspector);
-        orgCombo.addItem("Buyer");
-        orgCombo.addItem("Seller");
+        orgCombo.addItem(Organization.Type.Buyer);
+        orgCombo.addItem(Organization.Type.Seller);
 
     }
 
@@ -303,43 +288,53 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                     orgCombo.addItem(Organization.Type.Builder);
                 } else if (o instanceof PropertyManagerOrganization) {
                     orgCombo.addItem(Organization.Type.PropertyManager);
-                } 
+                }
             }
         }
     }//GEN-LAST:event_stateComboActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
-            Network network = (Network) stateCombo.getSelectedItem();
-            Organization.Type type = (Organization.Type) orgCombo.getSelectedItem();
-            String emailAddress = txtEmail.getText();
-            String username = txtUsername.getText();
-            String name = txtName.getText();
-            String password = txtPassword.getText();
-            String phone = txtContact.getText();
-            String city = txtCity.getText();
-            for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
-                if (ua.getUsername().equals(username)) {
-                    JOptionPane.showMessageDialog(null, "Username should be unique. UserName is already in use.");
-                    return;
+        Network network = (Network) stateCombo.getSelectedItem();
+        Organization.Type type = (Organization.Type) orgCombo.getSelectedItem();
+        String emailAddress = txtEmail.getText();
+        String username = txtUsername.getText();
+        String name = txtName.getText();
+        String password = txtPassword.getText();
+        String phone = txtContact.getText();
+        String city = txtCity.getText();
+        for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
+            if (ua.getUsername().equals(username)) {
+                JOptionPane.showMessageDialog(null, "Username should be unique. UserName is already in use.");
+                return;
+            }
+        }
+        if (!system.checkValidEmailFormat(emailAddress)) {
+            system.setValidationAlert(UsrNameLabel, txtEmail, "Username should be in the format of xx_xx@xx.xx", true);
+        } else {
+            system.setValidationAlert(UsrNameLabel, txtEmail, "", false);
+        }
+        if (!system.checkValidPhoneFormat(phone)) {
+            system.setValidationAlert(lblPhone, txtContact, "Please enter correct form for phone number!", true);
+        } else {
+            system.setValidationAlert(lblPhone, txtContact, "", false);
+        }
+        if (!system.checkValidPasswordFormat(password)) {
+            system.setValidationAlert(passwordLabel, txtPassword, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.", true);
+        } else {
+            system.setValidationAlert(passwordLabel, txtPassword, "", false);
+        }
+        if (Organization.Type.Buyer == type) {
+            for (Network network1 : system.getNetworkList()) {
+                for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
+                        Organization org = enterprise.getOrganizationDirectory().createOrganization(type, name);
+                        Employee emp = org.getEmployeeDirectory().createEmployee(name);
+                        UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(username, password, emp, new BuyerRole());
+                    }
                 }
             }
-            if (!system.checkValidEmailFormat(emailAddress)) {
-                system.setValidationAlert(UsrNameLabel, txtEmail, "Username should be in the format of xx_xx@xx.xx", true);
-            } else {
-                system.setValidationAlert(UsrNameLabel, txtEmail, "", false);
-            }
-            if (!system.checkValidPhoneFormat(phone)) {
-                system.setValidationAlert(lblPhone, txtContact, "Please enter correct form for phone number!", true);
-            } else {
-                system.setValidationAlert(lblPhone, txtContact, "", false);
-            }
-            if (!system.checkValidPasswordFormat(password)) {
-                system.setValidationAlert(passwordLabel, txtPassword, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.", true);
-            } else {
-                system.setValidationAlert(passwordLabel, txtPassword, "", false);
-            }
-            
+        } else {
             UserRegistrationRequest registrationRequest = new UserRegistrationRequest();
             registrationRequest.setName(name);
             registrationRequest.setUserName(username);
@@ -360,18 +355,17 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                             enterprise.setWorkQueue(new WorkQueue());
                         }
                         enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
-                    }else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
+                    } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
                         if (enterprise.getWorkQueue() == null) {
                             enterprise.setWorkQueue(new WorkQueue());
                         }
                         enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
-                    }else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+                    } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
                         if (enterprise.getWorkQueue() == null) {
                             enterprise.setWorkQueue(new WorkQueue());
                         }
                         enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
-                    }
-                    else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
+                    } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
                         if (enterprise.getWorkQueue() == null) {
                             enterprise.setWorkQueue(new WorkQueue());
                         }
@@ -379,13 +373,14 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-            JOptionPane.showMessageDialog(null, "You have been registered succesfully!");
-            txtName.setText("");
-            txtUsername.setText("");
-            txtPassword.setText("");
-            txtEmail.setText("");
-            txtCity.setText("");
-            txtContact.setText("");
+        }
+        JOptionPane.showMessageDialog(null, "You have been registered succesfully!");
+        txtName.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtEmail.setText("");
+        txtCity.setText("");
+        txtContact.setText("");
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -558,7 +553,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Invalid email id");
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UsrNameLabel;
     private javax.swing.JButton btnRegister;

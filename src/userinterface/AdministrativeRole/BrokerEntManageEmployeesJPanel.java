@@ -100,7 +100,7 @@ public class BrokerEntManageEmployeesJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(25, 56, 82));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("MANAGE VOLUNTARY UNIT EMPLOYEES");
+        jLabel5.setText("MANAGE BROKER ENTERPRISE EMPLOYEES");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 35, 492, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
