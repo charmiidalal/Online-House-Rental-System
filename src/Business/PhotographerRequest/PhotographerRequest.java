@@ -25,6 +25,7 @@ public class PhotographerRequest extends WorkRequest{
      private String buyerNote;
     private String status;
     private String requestedDate;
+    
 
     public String getRequestID() {
         return requestID;

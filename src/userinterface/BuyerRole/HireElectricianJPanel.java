@@ -86,6 +86,8 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         houseTable = new javax.swing.JTable();
         brnHireInspector = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        commentTxxt = new javax.swing.JTextField();
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,6 +121,8 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText("Comment:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,6 +135,10 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                         .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(brnHireInspector)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69))))
@@ -143,7 +151,10 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(brnHireInspector)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -152,6 +163,8 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String electricianID = (String) houseTable.getValueAt(selectedRow, 0);
+         String comment = commentTxxt.getText();
+        
         if (count == 1) {
             Electrician electrician = electricianDirectory.fetchElectrician(electricianID);
             if ("Available".equals(electrician.getStatus())) {
@@ -161,13 +174,13 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                 er.setElectrician(electrician);
                 er.setSeller(property.getSeller());
                 er.setStatus("Requested");
-                er.setMessage("Inspect House");
+                er.setBuyerNote(comment);
                 er.setProperty(property);
                 electricianRequestDirectory.addElectricianRequest(er);
                 system.setElectricianRequestDirectory(electricianRequestDirectory);
                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
             } else {
-                JOptionPane.showMessageDialog(null, "Sorry! This inspector is already Occupied");
+                JOptionPane.showMessageDialog(null, "Sorry! This Electrician is already Occupied");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
@@ -185,7 +198,9 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnHireInspector;
     private javax.swing.JButton btnBack;
+    private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

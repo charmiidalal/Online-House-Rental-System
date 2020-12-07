@@ -19,7 +19,7 @@ public class BuilderRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new BuilderWorkAreaJPanel(userProcessContainer, account,business);
+        return new BuilderWorkAreaJPanel(userProcessContainer,business, account);
     }
 
     

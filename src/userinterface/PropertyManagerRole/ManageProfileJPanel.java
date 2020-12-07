@@ -25,7 +25,7 @@ public class ManageProfileJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageProfileJPanel
      */
-      private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
