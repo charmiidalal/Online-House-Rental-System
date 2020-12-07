@@ -85,6 +85,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         brnTakeJob = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
         btnCompleteJob = new javax.swing.JButton();
@@ -93,13 +94,24 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         quoteTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
+        setBackground(null);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        brnTakeJob.setBackground(null);
+        brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setText("Take Job");
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnTakeJobActionPerformed(evt);
             }
         });
+        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/inspectJob.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 470, 530));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,79 +131,52 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 844, 300));
+
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
             }
         });
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 470, 150, -1));
 
+        txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 420, 120, -1));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setText("Feedback:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, -1, -1));
 
+        btnBack.setBackground(null);
+        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Update Quote: ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 110, 20));
 
+        quoteTxt.setBackground(new java.awt.Color(153, 204, 255));
         quoteTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quoteTxtActionPerformed(evt);
             }
         });
+        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 380, 120, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(brnTakeJob)
-                        .addGap(108, 108, 108)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(quoteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(46, 46, 46)
-                        .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(194, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCompleteJob)
-                .addGap(254, 254, 254))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brnTakeJob)
-                    .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(quoteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCompleteJob)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(btnBack)
-                        .addGap(67, 67, 67))))
-        );
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel3.setText("INSPECTOR WORK REQUEST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/detective (1).png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 145, 164));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
@@ -202,6 +187,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
             String jobID = (String) houseTable.getValueAt(selectedRow, 0);
             InspectRequest inspectRequest = inspectRequestDirectory.fetchInspectorRequest(jobID);
             if (!"Job Taken".equals(inspectRequest.getStatus())) {
+                if (!"".equals(feedback)){
                 inspectRequest.setStatus("Job Taken");
                 inspectRequest.setQuote(quoteTxt.getText());
                 Inspector inspector = inspectorDirectory.fetchInspector(userAccount.getEmployee().getName());
@@ -210,7 +196,11 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 inspector.setStatus("Occupied");
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-            } else {
+            }else{
+                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                }
+            }
+            else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
         } else {
@@ -262,6 +252,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField quoteTxt;
     private javax.swing.JTextField txtFeedback;

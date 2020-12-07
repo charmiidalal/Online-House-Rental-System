@@ -49,6 +49,7 @@ public class CleaningWorkAreaJPanel extends javax.swing.JPanel {
 
         btnViewJob = new javax.swing.JButton();
         btnManageProfile = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -67,6 +68,7 @@ public class CleaningWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewJobActionPerformed
@@ -89,6 +91,7 @@ public class CleaningWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageProfile;
     private javax.swing.JButton btnViewJob;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     
 }

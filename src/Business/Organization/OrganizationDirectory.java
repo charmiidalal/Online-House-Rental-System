@@ -55,11 +55,13 @@ public class OrganizationDirectory {
         } else if (type.getValue().equals(Type.Goverment.getValue())) {
             organization = new GovermentOrganization(name);
             organizationList.add(organization);
-        } else if (type.getValue().equals(Type.Seller.getValue())) {
-            organization = new GovermentOrganization(name);
+        }
+        else if (type.getValue().equals(Type.Buyer.getValue())) {
+            organization = new BuyerOrganization(name);
             organizationList.add(organization);
-        } else if (type.getValue().equals(Type.Buyer.getValue())) {
-            organization = new GovermentOrganization(name);
+        }
+        else if (type.getValue().equals(Type.Seller.getValue())) {
+            organization = new SellerOrganization(name);
             organizationList.add(organization);
         }
         return organization;

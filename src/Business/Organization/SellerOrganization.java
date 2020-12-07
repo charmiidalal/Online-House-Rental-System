@@ -27,6 +27,6 @@ public class SellerOrganization extends Organization{
        @Override
     public Type getType() {
         return Organization.Type.Seller;
-    } 
+    }  
      
 }

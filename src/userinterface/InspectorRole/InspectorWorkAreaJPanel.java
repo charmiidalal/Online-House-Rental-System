@@ -158,6 +158,11 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
         manageSceneLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageSceneLabel.setText("Manage Profile");
         manageSceneLabel.setPreferredSize(new java.awt.Dimension(115, 16));
+        manageSceneLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageSceneLabelMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout manageScenePanelLayout = new javax.swing.GroupLayout(manageScenePanel);
         manageScenePanel.setLayout(manageScenePanelLayout);
@@ -174,7 +179,7 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
             manageScenePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageScenePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(manageSceneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -191,7 +196,7 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
         systemAdminPanelLayout.setHorizontalGroup(
             systemAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(systemAdminPanelLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rightSystemAdminPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1052, Short.MAX_VALUE))
         );
@@ -217,6 +222,11 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
        manageRequest();
     }//GEN-LAST:event_manageScenePanelMousePressed
+
+    private void manageSceneLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageSceneLabelMousePressed
+        // TODO add your handling code here:
+        manageRequest();
+    }//GEN-LAST:event_manageSceneLabelMousePressed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

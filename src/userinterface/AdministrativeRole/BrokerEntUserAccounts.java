@@ -145,7 +145,6 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         createUsername.setForeground(new java.awt.Color(25, 56, 82));
         add(createUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 468, 378, -1));
 
-        selectRole.setBackground(new java.awt.Color(255, 255, 255));
         selectRole.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectRole.setForeground(new java.awt.Color(25, 56, 82));
         selectRole.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +154,6 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         });
         add(selectRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 418, 378, -1));
 
-        selectEmployee.setBackground(new java.awt.Color(255, 255, 255));
         selectEmployee.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectEmployee.setForeground(new java.awt.Color(25, 56, 82));
         selectEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +163,6 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         });
         add(selectEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 368, 378, -1));
 
-        selectOrganization.setBackground(new java.awt.Color(255, 255, 255));
         selectOrganization.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectOrganization.setForeground(new java.awt.Color(25, 56, 82));
         selectOrganization.addActionListener(new java.awt.event.ActionListener() {

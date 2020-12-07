@@ -71,19 +71,19 @@ public class PackersMoversWorkAreaJPanel extends javax.swing.JPanel {
         add(btnViewJobs, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, 130, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
-        ManagePackerJPanel managePackerJPanel = new ManagePackerJPanel(userProcessContainer, system, userAccount);
-        userProcessContainer.add("ManagePackerJPanel", managePackerJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnManageProfileActionPerformed
-
     private void btnViewJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewJobsActionPerformed
         ViewDetailsJPanel viewJobsJPanel = new ViewDetailsJPanel(userProcessContainer, system, userAccount);
         userProcessContainer.add("ViewDetailsJPanel", viewJobsJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewJobsActionPerformed
+
+    private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
+        ManagePackerJPanel managePackerJPanel = new ManagePackerJPanel(userProcessContainer, system, userAccount);
+        userProcessContainer.add("ManagePackerJPanel", managePackerJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageProfileActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

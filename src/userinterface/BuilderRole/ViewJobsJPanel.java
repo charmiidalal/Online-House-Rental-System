@@ -177,14 +177,15 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brnTakeJob)
-                    .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnBack)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(quoteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(quoteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(brnTakeJob)
+                        .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addComponent(btnBack)))
                 .addGap(18, 18, 18)
                 .addComponent(btnCompleteJob)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -220,6 +221,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
             String jobID = (String) houseTable.getValueAt(selectedRow, 0);
             BuilderRequest builderRequest = builderRequestDirectory.fetchBuilderRequest(jobID);
             if (!"Job Taken".equals(builderRequest.getStatus())) {
+                if(!"".equals(feedback)){
                 builderRequest.setStatus("Job Taken");
                  builderRequest.setInspectorNote(feedback);
                 builderRequest.setQuote(quoteTxt.getText());
@@ -228,6 +230,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 builder.setStatus("Occupied");
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                }else {
+                     JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
