@@ -100,7 +100,11 @@ public class EcoSystem extends Organization {
         }
         return business;
     }
-
+    
+    public static void setInstance(EcoSystem system) {
+        business = system;
+    }
+    
     public Network createAndAddNetwork() {
         Network network = new Network();
         networkList.add(network);
@@ -326,25 +330,22 @@ public class EcoSystem extends Organization {
     }
     
     public Boolean checkValidPhoneFormat(String phoneNo) {
-        String regex = "^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
-        Pattern pattern = Pattern.compile(regex);
-
-        Matcher matcher = pattern.matcher(phoneNo);
-        if (matcher.matches()) {
-            return true;
-        }
-        return false;
+        Pattern pattern;
+        Matcher matcher;
+        String PHONE_PATTERN = "^[0-9]{10}$";
+        pattern = Pattern.compile(PHONE_PATTERN);
+        matcher = pattern.matcher(phoneNo);
+        return matcher.matches();
     }
 
     public Boolean checkValidEmailFormat(String email) {
-        String regex = "^(.+)@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
-
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()) {
-            return true;
-        }
-        return false;
+        Pattern pattern;
+        Matcher matcher;
+        String EMAIL_PATTERN
+                = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
     public boolean checkValidPasswordFormat(String password) {
@@ -366,5 +367,13 @@ public class EcoSystem extends Organization {
         }
     }
     
+    public boolean checkExistingNetwork(String name){
+        for(Network network : networkList){
+            if(network.getName().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

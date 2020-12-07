@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package Business.Enterprise;
+import Business.Role.BuilderRole;
+import Business.Role.PropertyManagerRole;
 import Business.Role.Role;
+import Business.Role.SellerRole;
 import java.util.ArrayList;
 
 /**
@@ -16,9 +19,15 @@ public class PropertyEnterprise extends Enterprise {
     public PropertyEnterprise(String name){
         super(name,EnterpriseType.Property);
     }
+    
     @Override
+
     public ArrayList<Role> getSupportedRole() {
-        return null;
+        roles = new ArrayList<Role>();
+        roles.add(new BuilderRole());
+        roles.add(new PropertyManagerRole());
+        roles.add(new SellerRole());
+        return roles;
     }
     
 }

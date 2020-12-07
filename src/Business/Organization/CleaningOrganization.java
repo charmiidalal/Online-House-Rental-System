@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class CleaningOrganization extends Organization{
 
-    public CleaningOrganization() {
-        super(Type.Cleaning.getValue());
+    public CleaningOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,10 @@ public class CleaningOrganization extends Organization{
         roles.add(new CleaningRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Cleaning;
+    }  
+     
      
 }

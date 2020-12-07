@@ -7,7 +7,6 @@ package Business.CleaningRequest;
 
 import Business.Buyer.Buyer;
 import Business.Cleaner.Cleaner;
-import static Business.Organization.Organization.Type.Buyer;
 import Business.Property.Property;
 import Business.Seller.Seller;
 import Business.WorkQueue.WorkRequest;

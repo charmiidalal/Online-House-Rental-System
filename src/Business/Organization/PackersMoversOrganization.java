@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class PackersMoversOrganization extends Organization{
 
-    public PackersMoversOrganization() {
-        super(Type.PackersMovers.getValue());
+    public PackersMoversOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,10 @@ public class PackersMoversOrganization extends Organization{
         roles.add(new PackersMoversRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.PackersMovers;
+    }  
+     
      
 }

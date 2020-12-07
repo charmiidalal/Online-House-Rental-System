@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class GovermentOrganization extends Organization{
 
-    public GovermentOrganization() {
-        super(Type.Builder.getValue());
+    public GovermentOrganization(String name) {
+        super(name);
     }
     
     @Override
@@ -24,5 +24,9 @@ public class GovermentOrganization extends Organization{
         roles.add(new GovermentEmployeeRole());
         return roles;
     }
+       @Override
+    public Type getType() {
+        return Organization.Type.Goverment;
+    }  
      
 }
