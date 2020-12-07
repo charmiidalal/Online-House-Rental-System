@@ -23,10 +23,13 @@ import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
 import Business.InspectRequest.InspectRequestDirectory;
 import Business.AgentRequest.AgentRequestDirectory;
+import Business.BuilderRequest.BuilderRequestDirectory;
+import Business.ManagerRequest.ManagerRequestDirectory;
 import Business.Organization.OrganizationDirectory;
 import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
+import Business.PhotographerRequest.PhotographerRequestDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
@@ -70,6 +73,9 @@ public class EcoSystem extends Organization {
     private AgentRequestDirectory agentRequestDirectory;
     private CleaningRequestDirectory cleaningRequestDirectory;
     private PackerRequestDirectory packerRequestDirectory;
+    private BuilderRequestDirectory builderRequestDirectory;
+    private PhotographerRequestDirectory photographerRequestDirectory;
+    private ManagerRequestDirectory managerRequestDirectory;
 
     public ElectricianRequestDirectory getElectricianRequestDirectory() {
         return electricianRequestDirectory;
@@ -139,6 +145,31 @@ public class EcoSystem extends Organization {
         this.buyerDirectory = buyerDirectory;
     }
 
+    public BuilderRequestDirectory getBuilderRequestDirectory() {
+        return builderRequestDirectory;
+    }
+
+    public void setBuilderRequestDirectory(BuilderRequestDirectory builderRequestDirectory) {
+        this.builderRequestDirectory = builderRequestDirectory;
+    }
+
+    public PhotographerRequestDirectory getPhotographerRequestDirectory() {
+        return photographerRequestDirectory;
+    }
+
+    public void setPhotographerRequestDirectory(PhotographerRequestDirectory photographerRequestDirectory) {
+        this.photographerRequestDirectory = photographerRequestDirectory;
+    }
+
+    public ManagerRequestDirectory getManagerRequestDirectory() {
+        return managerRequestDirectory;
+    }
+
+    public void setManagerRequestDirectory(ManagerRequestDirectory managerRequestDirectory) {
+        this.managerRequestDirectory = managerRequestDirectory;
+    }
+
+    
     public boolean checkIfUserIsUnique(String userName) {
         if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
             return false;
