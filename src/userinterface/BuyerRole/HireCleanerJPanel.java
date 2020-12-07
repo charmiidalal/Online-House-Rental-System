@@ -146,12 +146,13 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                 .addGap(59, 59, 59)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brnHireInspector)
-                    .addComponent(btnBack)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(brnHireInspector)
+                        .addComponent(btnBack)))
                 .addGap(41, 41, 41))
         );
 
@@ -183,7 +184,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                 cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
                 cr.setBuyer(buyer);
                 cr.setCleaner(cleaner);
-                cr.setSeller(property.getSeller());
+               // cr.setSeller(property.getSeller());
                 cr.setStatus("Requested");
                 cr.setBuyerNote(comment);
                 cr.setProperty(property);

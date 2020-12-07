@@ -10,23 +10,24 @@ import Business.Buyer.Buyer;
 import Business.Cleaner.Cleaner;
 import Business.Property.Property;
 import Business.Seller.Seller;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 
 /**
  *
  * @author Dinesh
  */
-public class BuilderRequest extends WorkRequest{
-     private String requestID;
-    private Seller seller;
-    private Buyer buyer;
-    private Builder builder;
+public class BuilderRequest extends WorkRequest {
+
+    private String requestID;
+    private UserAccount seller;
+    private UserAccount buyer;
+    private UserAccount builder;
     private Property property;
     private String inspectorNote;
     private String buyerNote;
     private String status;
     private String requestedDate;
-    
 
     public String getRequestID() {
         return requestID;
@@ -36,27 +37,27 @@ public class BuilderRequest extends WorkRequest{
         this.requestID = requestID;
     }
 
-    public Seller getSeller() {
+    public UserAccount getSeller() {
         return seller;
     }
 
-    public void setSeller(Seller seller) {
+    public void setSeller(UserAccount seller) {
         this.seller = seller;
     }
 
-    public Buyer getBuyer() {
+    public UserAccount getBuyer() {
         return buyer;
     }
 
-    public void setBuyer(Buyer buyer) {
+    public void setBuyer(UserAccount buyer) {
         this.buyer = buyer;
     }
 
-    public Builder getBuilder() {
+    public UserAccount getBuilder() {
         return builder;
     }
 
-    public void setBuilder(Builder builder) {
+    public void setBuilder(UserAccount builder) {
         this.builder = builder;
     }
 
@@ -99,6 +100,5 @@ public class BuilderRequest extends WorkRequest{
     public void setRequestedDate(String requestedDate) {
         this.requestedDate = requestedDate;
     }
-    
-    
+
 }

@@ -181,7 +181,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                 pr.setRequestID(managerRequestDirectory.generateManagerRequestID());
                 pr.setBuyer(buyer);
                 pr.setPropertyManager(manager);
-                pr.setSeller(property.getSeller());
+               // pr.setSeller(property.getSeller());
                 pr.setStatus("Requested");
                 pr.setBuyerNote(comment);
                 pr.setProperty(property);

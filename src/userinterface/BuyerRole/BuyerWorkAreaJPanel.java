@@ -61,7 +61,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             row[7] = property.getBathroom();
             row[8] = property.getPrice();
             row[9] = property.getStatus();
-            row[10] = property.getSeller().getSellerNo();
+            row[10] = property.getSeller().getEmployee().getName();
             row[11] = property.getSeller().getName();
             model.addRow(row);
         }
