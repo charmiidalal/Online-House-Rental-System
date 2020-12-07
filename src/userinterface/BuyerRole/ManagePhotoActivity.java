@@ -56,7 +56,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
         Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
         for (PhotographerRequest photoRequest : photographerRequestDirectory.getPhotoRequestList()) {
             if (photoRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[10];
+                Object[] row = new Object[11];
                 row[0] = photoRequest.getRequestID();
                 row[1] = photoRequest.getPhotographer().getPhotographerName();
                 row[2] = photoRequest.getSeller().getName();
@@ -67,6 +67,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
                 row[7] = photoRequest.getStatus();
                 row[8] = photoRequest.getBuyerNote();
                 row[9] = photoRequest.getInspectorNote();
+                row[10] =photoRequest.getQuote();
                 model.addRow(row);
             }
         }
@@ -101,11 +102,11 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Photographer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Photographer Message"
+                "JobID", "Photographer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Photographer Message", "Charge"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -131,20 +132,19 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
                 .addGap(133, 133, 133)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(46, 46, 46)
+                        .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(46, 46, 46)
-                                .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(btnCompleteJob)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 426, Short.MAX_VALUE)
-                        .addComponent(btnBack)
-                        .addGap(213, 213, 213))))
+                        .addGap(53, 53, 53)
+                        .addComponent(btnCompleteJob)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 426, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(213, 213, 213))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +162,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addComponent(btnCompleteJob)))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -178,7 +178,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

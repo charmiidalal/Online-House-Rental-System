@@ -92,6 +92,8 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         txtFeedback = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnCompleteJob = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        quoteTxt = new javax.swing.JTextField();
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,6 +136,14 @@ public class ViewJobJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Update Quote: ");
+
+        quoteTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quoteTxtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,6 +154,10 @@ public class ViewJobJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(brnTakeJob)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(quoteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnBack)
                             .addGap(166, 166, 166)
@@ -170,7 +184,10 @@ public class ViewJobJPanel extends javax.swing.JPanel {
                     .addComponent(brnTakeJob)
                     .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(quoteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(btnCompleteJob)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -186,8 +203,10 @@ public class ViewJobJPanel extends javax.swing.JPanel {
             PlumbingRequest plumbingRequest = plumbingRequestDirectory.fetchPlumbingRequest(jobID);
             if (!"Job Taken".equals(plumbingRequest.getStatus())) {
                 plumbingRequest.setStatus("Job Taken");
+                plumbingRequest.setQuote(quoteTxt.getText());
                 Plumber plumber = plumberDirectory.fetchPlumber(userAccount.getEmployee().getName());
                 plumber.setStatus("Occupied");
+                
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
             } else {
@@ -228,6 +247,10 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
+    private void quoteTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quoteTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quoteTxtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
@@ -235,7 +258,9 @@ public class ViewJobJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField quoteTxt;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables
 }

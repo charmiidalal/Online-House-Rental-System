@@ -33,6 +33,7 @@ public class AgentRequest extends WorkRequest {
     private String zipcode;
     private String rent;
     ArrayList<String> propertyList = new ArrayList<>();
+    
 
     public String getRequestID() {
         return requestID;

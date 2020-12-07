@@ -39,7 +39,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public HireInspectorJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system) {
+    public HireInspectorJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -84,6 +84,8 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
         btnBuyHouse1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        commentTxxt = new javax.swing.JTextField();
 
         brnHireInspector.setText("Hire Inspector");
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +119,8 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText("Comment:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,6 +130,10 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(brnHireInspector)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBuyHouse1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,9 +145,13 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                 .addGap(73, 73, 73)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuyHouse1)
-                    .addComponent(brnHireInspector))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBuyHouse1)
+                        .addComponent(brnHireInspector)))
                 .addContainerGap(232, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -148,6 +160,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String inspectorID = (String) houseTable.getValueAt(selectedRow, 0);
+         String comment = commentTxxt.getText();
         if (count == 1) {
             Inspector inspector = inspectorDirectory.fetchInspector(inspectorID);
             if ("Available".equals(inspector.getStatus())) {
@@ -157,7 +170,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                 ir.setInspector(inspector);
                 ir.setSeller(property.getSeller());
                 ir.setStatus("Requested");
-                ir.setMessage("Inspect House");
+                ir.setBuyerNote(comment);
                 ir.setProperty(property);
                 inspectRequestDirectory.addInspectRequest(ir);
                 system.setInspectRequestDirectory(inspectRequestDirectory);
@@ -183,7 +196,9 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnHireInspector;
     private javax.swing.JButton btnBuyHouse1;
+    private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

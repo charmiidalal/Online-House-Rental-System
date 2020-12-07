@@ -57,7 +57,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
         for (ElectricianRequest electricianRequest : electricianRequestDirectory.getElectricianRequestList()) {
             if (electricianRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[10];
+                Object[] row = new Object[11];
                 row[0] = electricianRequest.getRequestID();
                 row[1] = electricianRequest.getElectrician().getElectricianName();
                 row[2] = electricianRequest.getSeller().getName();
@@ -68,6 +68,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
                 row[7] = electricianRequest.getStatus();
                 row[8] = electricianRequest.getBuyerNote();
                 row[9] = electricianRequest.getInspectorNote();
+                row[10] =electricianRequest.getQuote();
                 model.addRow(row);
             }
         }
@@ -94,11 +95,11 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Electrician", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Electrician Message"
+                "JobID", "Electrician", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Electrician Message", "Charge"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -130,38 +131,36 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(46, 46, 46)
-                                .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(btnCompleteJob)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBack)
-                        .addGap(189, 189, 189)))
-                .addGap(46, 46, 46))
+                        .addComponent(jLabel1)
+                        .addGap(46, 46, 46)
+                        .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(btnCompleteJob)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(235, 235, 235))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                    .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addComponent(btnCompleteJob)))
-                .addGap(21, 21, 21))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

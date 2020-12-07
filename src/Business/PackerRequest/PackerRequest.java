@@ -25,6 +25,7 @@ public class PackerRequest extends WorkRequest {
     private String buyerNote;
     private String status;
     private String requestedDate;
+    
 
     public String getRequestID() {
         return requestID;

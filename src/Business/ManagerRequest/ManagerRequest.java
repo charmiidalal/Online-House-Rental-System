@@ -27,6 +27,7 @@ public class ManagerRequest extends WorkRequest {
      private String buyerNote;
     private String status;
     private String requestedDate;
+    
 
     public String getRequestID() {
         return requestID;
