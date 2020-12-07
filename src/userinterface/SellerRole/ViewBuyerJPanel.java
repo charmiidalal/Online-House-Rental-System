@@ -106,6 +106,8 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
         btnDownload = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Name:");

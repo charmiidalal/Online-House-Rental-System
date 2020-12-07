@@ -93,6 +93,8 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(51, 102, 255));
+
         jtblBuyers.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jtblBuyers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
