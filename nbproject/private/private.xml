@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/AdministrativeRole/BrokerEntManageEmployeesJPanel.java</file>
             <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/AdministrativeRole/ServiceProviderEntManageEmployeesJPanel.java</file>
             <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/MainJFrame.java</file>
@@ -16,6 +17,56 @@
             <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/BuyerRegistrationFormJPanel.java</file>
             <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/UserRegistration/UserRegistrationJPanel.java</file>
             <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/PlumberRole/ManagePlumberJPanel.java</file>
+=======
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ManageHouseJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ManageBuyerJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Buyer/Buyer.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/BuyerRegistrationFormJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/CreateAdvertiseJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ViewBuyerJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerWorkAreaJPanel.java</file>
+<<<<<<< HEAD
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Property/Property.java</file>
+=======
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/ViewHouseDetailsJPanel.java</file>
+            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SellerRole/ManageHouseJPanel.java</file>
+<<<<<<< HEAD
+=======
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>src/Business/EcoSystem.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>src/userinterface/SystemAdminWorkArea/CreateSystemUsersJPanel.java</url>
+            <bookmark id="2">
+                <name/>
+                <line>65</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
+        <group>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerWorkAreaJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/SellerWorkAreaJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/InspectorRole/InspectorWorkAreaJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/AddBuyerJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/inspector/InspectorJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/ManageInspectorJPanel.java</file>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/SellerRole/ManageHouseJPanel.java</file>
+>>>>>>> 14c436efbbf6a9d28793254f5a84e619c0780490
+=======
+>>>>>>> e5a2423cc4c145598635d18f6dec4ae38e7f569f
+>>>>>>> 3e96a79eff1601edf644dbd35954e099819b81a3
+>>>>>>> fc74595eaa47d6ef103520d0a9b1537fe5579cec
         </group>
     </open-files>
 </project-private>
