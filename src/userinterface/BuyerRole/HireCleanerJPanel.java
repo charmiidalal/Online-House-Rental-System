@@ -201,9 +201,9 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
             if ("Available".equals(ua.getStatus())) {
                 CleaningRequest cr = new CleaningRequest();
                 cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
-                cr.setBuyer(buyer);
-                cr.setCleaner((Cleaner) userAccount);
-                cr.setSeller((Seller) property.getSeller());
+                cr.setBuyer(userAccount);
+                cr.setCleaner(ua);
+                cr.setSeller(property.getSeller());
                 cr.setStatus("Requested");
                 cr.setBuyerNote(comment);
                 cr.setProperty(property);
