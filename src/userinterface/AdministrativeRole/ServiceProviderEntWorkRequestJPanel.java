@@ -11,8 +11,14 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Role.BuyerRole;
+import Business.Role.CleaningRole;
+import Business.Role.ElectricianRole;
 import Business.Role.InspectorRole;
+import Business.Role.PackersMoversRole;
 import Business.Role.PhotographerRole;
+import Business.Role.PlumbingRole;
+import Business.Role.SellerRole;
 import Business.UserAccount.UserAccount;
 import Business.Utils.HeaderColors;
 import Business.WorkQueue.UserRegistrationRequest;
@@ -180,7 +186,36 @@ public class ServiceProviderEntWorkRequestJPanel extends javax.swing.JPanel {
                 Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
                 UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new InspectorRole());
             } 
-
+            else if (request.getOrgType() == Organization.Type.Cleaning) {
+                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new CleaningRole());
+            } 
+            else if (request.getOrgType() == Organization.Type.Plumbing) {
+                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new PlumbingRole());
+            } 
+            else if (request.getOrgType() == Organization.Type.Electrician) {
+                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new ElectricianRole());
+            } 
+             else if (request.getOrgType() == Organization.Type.PackersMovers) {
+                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new PackersMoversRole());
+            } 
+             else if (request.getOrgType() == Organization.Type.Buyer) {
+                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new BuyerRole());
+            } 
+             else if (request.getOrgType() == Organization.Type.Seller) {
+                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new SellerRole());
+            } 
             request.setStatus("Completed");
             JOptionPane.showMessageDialog(null, "User account has been activated successfully");
             populateTable();

@@ -83,7 +83,8 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
             row[5] = ua.getZipcode();
             row[6] = ua.getStatus();
             row[7] = ua.getCharge();
-            row[8]=ua.getUserOrganizationList().getName();
+            //row[8]=ua.getUserOrganizationList().getName();
+            row[8]=org.getName();
             model.addRow(row);
         }
         }
