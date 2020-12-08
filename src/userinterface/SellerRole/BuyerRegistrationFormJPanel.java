@@ -289,7 +289,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
            property.setBuyer(buyer);
          ArrayList<Buyer> RegisteredBuyer = new ArrayList<>();
         RegisteredBuyer.add(buyer);
-        property.setRegisteredBuyer(RegisteredBuyer);
+       // property.setRegisteredBuyer(RegisteredBuyer);
         system.getPropertyDirectory().getPropertyList().set(propertyDirectory.getPropertyList().indexOf(property), property);
         //system.getPropertyDirectory().addProperty(property);
        system.setPropertyDirectory(propertyDirectory);

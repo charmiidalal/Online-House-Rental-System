@@ -7,6 +7,7 @@ package userinterface.PackersMoversRole;
 
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMovers;
 import Business.PackersMovers.PackersMoversDirectory;
@@ -23,39 +24,34 @@ import javax.swing.JPanel;
  */
 public class ManagePackerJPanel extends javax.swing.JPanel {
 
-     private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private PackersMoversDirectory packersMoversDirectory;
+    private Enterprise enterprise;
 
     /**
-     * Creates new form ManagePlumberJPanel
+     * Creates new form ManageElectricianJPanel
      */
-    public ManagePackerJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+   public ManagePackerJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.packersMoversDirectory = (system.getPackersMoversDirectory()== null) ? new PackersMoversDirectory(): system.getPackersMoversDirectory();
+        this.userAccount = useraccount;
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
-        PackersMovers packer = packersMoversDirectory.fetchPacker(userAccount.getEmployee().getName());
-        txtName.setText(packer.getPackersMoversName());
-        txtCharge.setText(packer.getCharge());
-        txtCity.setText(packer.getCity());
-        txtStatus.setText(packer.getState());
-        txtZipcode.setText(packer.getZipcode());
-        txtStreet.setText(packer.getStreet());
-        txtEmail.setText(packer.getEmail());
-        txtPhone.setText(packer.getPhone());
-        txtStatus.setText(packer.getStatus());
+        txtName.setText(userAccount.getName());
+        txtCharge.setText(userAccount.getCharge());
+        txtCity.setText(userAccount.getCity());
+        txtStatus.setText(userAccount.getState());
+        txtZipcode.setText(userAccount.getZipcode());
+        txtStreet.setText(userAccount.getStreet());
+        txtEmail.setText(userAccount.getEmail());
+        txtPhone.setText(userAccount.getPhone());
+        txtStatus.setText(userAccount.getStatus());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,11 +79,12 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
         txtZipcode = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtCharge = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         txtState = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Name:");
@@ -134,15 +131,7 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
 
         txtCharge.setBackground(new java.awt.Color(153, 204, 255));
 
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
+        btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -166,17 +155,8 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSave)
-                .addGap(134, 134, 134)
-                .addComponent(btnBack)
-                .addGap(342, 342, 342))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(367, 367, 367)
-                        .addComponent(jLabel11))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,8 +193,13 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
                         .addGap(608, 608, 608)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtZipcode, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(txtEmail))))
-                .addContainerGap(183, Short.MAX_VALUE))
+                            .addComponent(txtEmail)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(367, 367, 367)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSave)
+                            .addComponent(jLabel11))))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,21 +237,16 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnSave))
-                .addGap(74, 74, 74))
+                .addGap(48, 48, 48)
+                .addComponent(btnSave)
+                .addGap(68, 68, 68))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,31 +258,22 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        PackersMovers packer = packersMoversDirectory.fetchPacker(userAccount.getEmployee().getName());
-        packer.setPackersMoversName(txtName.getText());
-        packer.setCharge(txtCharge.getText());
-        packer.setCity(txtCity.getText());
-        packer.setStatus(txtStatus.getText());
-        packer.setZipcode(txtZipcode.getText());
-        packer.setStreet(txtStreet.getText());
-        packer.setEmail(txtEmail.getText());
-        packer.setPhone(txtPhone.getText());
-        packer.setState(txtState.getText());
+       userAccount.setName(txtName.getText());
+        userAccount.setCharge(txtCharge.getText());
+        userAccount.setCity(txtCity.getText());
+        userAccount.setStatus(txtStatus.getText());
+        userAccount.setZipcode(txtZipcode.getText());
+        userAccount.setStreet(txtStreet.getText());
+        userAccount.setEmail(txtEmail.getText());
+        userAccount.setPhone(txtPhone.getText());
+        userAccount.setState(txtState.getText());
         JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

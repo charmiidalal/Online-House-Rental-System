@@ -7,6 +7,7 @@ package userinterface.PackersMoversRole;
 
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.PackerRequest.PackerRequest;
 import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMovers;
@@ -14,6 +15,7 @@ import Business.PackersMovers.PackersMoversDirectory;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,48 +33,40 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private PackerRequestDirectory packerRequestDirectory;
-    private PackersMoversDirectory packersMoversDirectory;
+    private Enterprise enterprise;
 
-  
-     public ViewDetailsJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ViewDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.packerRequestDirectory = (system.getPackerRequestDirectory()== null) ? new PackerRequestDirectory(): system.getPackerRequestDirectory();
-        this.packersMoversDirectory = (system.getPackersMoversDirectory()== null) ? new PackersMoversDirectory(): system.getPackersMoversDirectory();
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        PackersMovers packers = packersMoversDirectory.fetchPacker(userAccount.getEmployee().getName());
-        for (PackerRequest packerRequest : packerRequestDirectory.getPackerRequestList()) {
-            if (packerRequest.getPackers().getPackersMoversNo().equals(packers.getPackersMoversNo())) {
-                Object[] row = new Object[10];
-                row[0] = packerRequest.getRequestID();
-                row[1] = packerRequest.getBuyer().getBuyerName();
-                row[2] = packerRequest.getSeller().getName();
-                row[3] = packerRequest.getProperty().getStreet();
-                row[4] = packerRequest.getProperty().getCity();
-                row[5] = packerRequest.getProperty().getState();
-                row[6] = packerRequest.getProperty().getPincode();
-                row[7] = packerRequest.getStatus();
-                row[8] = packerRequest.getBuyerNote();
-                row[9] = packerRequest.getInspectorNote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof PackerRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((PackerRequest) workRequest).getBuyer().getName();
+                row[2] = ((PackerRequest) workRequest).getSeller().getName();
+                row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
+                row[4] = ((PackerRequest) workRequest).getProperty().getCity();
+                row[5] = ((PackerRequest) workRequest).getProperty().getState();
+                row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
+                row[7] = ((PackerRequest) workRequest).getStatus();
+                row[8] = ((PackerRequest) workRequest).getBuyerNote();
+                row[9] = ((PackerRequest) workRequest).getInspectorNote();
 
                 model.addRow(row);
             }
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,29 +179,27 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+        if (selectedRow >= 0) {
+            PackerRequest packerRequest = (PackerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            PackerRequest packerRequest = packerRequestDirectory.fetchPackerRequest(jobID);
             if (!"Job Taken".equals(packerRequest.getStatus())) {
                 if (!"".equals(feedback)) {
-                packerRequest.setStatus("Job Taken");
-                packerRequest.setQuote(quoteTxt.getText());
-                PackersMovers packer = packersMoversDirectory.fetchPacker(userAccount.getEmployee().getName());
-                packer.setStatus("Occupied");
+                    packerRequest.setStatus("Job Taken");
+                    packerRequest.setQuote(quoteTxt.getText());
                 
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-            }else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
                 }
-            }    else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
+
     }//GEN-LAST:event_brnTakeJobActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -219,22 +211,19 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+      int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            PackerRequest packerRequest = (PackerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                PackerRequest packerRequest = packerRequestDirectory.fetchPackerRequest(jobID);
                 packerRequest.setStatus("Completed");
                 packerRequest.setInspectorNote(feedback);
                 populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+                userAccount.setStatus("Available");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter feedback!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }

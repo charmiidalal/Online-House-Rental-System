@@ -78,7 +78,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         btnCompleteJob = new javax.swing.JButton();
         txtFeedback = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         quoteTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -134,16 +133,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setText("Feedback:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, -1, -1));
-
-        btnBack.setBackground(null);
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Update Quote: ");
@@ -211,13 +200,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void quoteTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quoteTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_quoteTxtActionPerformed
@@ -225,7 +207,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
