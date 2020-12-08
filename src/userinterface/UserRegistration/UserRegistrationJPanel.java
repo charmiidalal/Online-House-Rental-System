@@ -290,8 +290,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                 } else if (o instanceof PropertyManagerOrganization) {
                     orgCombo.addItem(Organization.Type.PropertyManager);
                 }
-               
-                
+
             }
         }
     }//GEN-LAST:event_stateComboActionPerformed
@@ -334,6 +333,9 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                         Organization org = enterprise.getOrganizationDirectory().createOrganization(type, name);
                         Employee emp = org.getEmployeeDirectory().createEmployee(name);
                         UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(username, password, emp, new BuyerRole());
+                        String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account is activated. Happy Housing!";
+                        sendEmailMessage(emailAddress, bodyMsg);
+                        SendSMS sendSMS = new SendSMS(phone, bodyMsg);
                     }
                 }
             }
@@ -348,9 +350,9 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
             registrationRequest.setOrgType(type);
             registrationRequest.setStatus("Requested");
             registrationRequest.setUserContact(phone);
-            sendEmailMessage(emailAddress,username);
-            String bodyMsg = "Hello "+username+", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.";
-            SendSMS sendSMS = new SendSMS(phone,bodyMsg);
+            String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.";
+            sendEmailMessage(emailAddress, bodyMsg);
+            SendSMS sendSMS = new SendSMS(phone, bodyMsg);
             for (Network network1 : system.getNetworkList()) {
                 for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
                     if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Broker) {
@@ -453,11 +455,11 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_orgComboActionPerformed
 
-    public static void sendEmailMessage(String emailId, String username) {
+    public static void sendEmailMessage(String emailId, String body) {
         String to = emailId;
         String from = "doneverevereply@gmail.com";
         String pass = "Hello@123";
-        
+
         Properties properties = System.getProperties();
         String host = "smtp.gmail.com";
         properties.put("mail.smtp.starttls.enable", "true");
@@ -472,7 +474,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject("New User Registration");
-            message.setText("Hello "+username+", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.");
+            message.setText(body);
             Transport transport = session.getTransport("smtp");
             transport.connect(host, from, pass);
             transport.sendMessage(message, message.getAllRecipients());
