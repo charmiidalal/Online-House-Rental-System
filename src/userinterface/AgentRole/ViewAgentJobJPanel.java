@@ -11,8 +11,10 @@ import Business.AgentRequest.AgentRequest;
 import Business.AgentRequest.AgentRequestDirectory;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,42 +29,65 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private AgentRequestDirectory agentRequestDirectory;
-    private AgentDirectory agentDirectory;
+    private Enterprise enterprise;
 
     /**
      * Creates new form ViewJobJPanel
      */
-    public ViewAgentJobJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ViewAgentJobJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.agentRequestDirectory = (system.getAgentRequestDirectory() == null) ? new AgentRequestDirectory() : system.getAgentRequestDirectory();
-        this.agentDirectory = (system.getAgentDirectory() == null) ? new AgentDirectory() : system.getAgentDirectory();
+        this.enterprise = enterprise;
         populateRequestTable();
+        populateStatusComboBox();
+    }
+
+    public void populateStatusComboBox() {
+        populateStatus.removeAllItems();
+        populateStatus.addItem("Pending");
+        populateStatus.addItem("Completed");
+        populateStatus.addItem("In Progress");
+    }
+
+    public void populateRequestTableFilter(String status) {
+        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
+        model.setRowCount(0);
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+            if (((AgentRequest) workRequest).getStatus().equals(status)) {
+                if (workRequest instanceof AgentRequest) {
+                    Object[] row = new Object[9];
+                    row[0] = ((AgentRequest) workRequest).getRequestID();
+                    row[1] = ((AgentRequest) workRequest).getBuyer().getName();
+                    row[2] = ((AgentRequest) workRequest).getCity();
+                    row[3] = ((AgentRequest) workRequest).getZipcode();
+                    row[4] = ((AgentRequest) workRequest).getBhk();
+                    row[5] = ((AgentRequest) workRequest).getBathroom();
+                    row[6] = ((AgentRequest) workRequest).getStatus();
+                    row[7] = ((AgentRequest) workRequest).getBuyerNote();
+                    row[8] = ((AgentRequest) workRequest).getAgentNote();
+                    model.addRow(row);
+                }
+            }
+        }
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Agent agent = agentDirectory.fetchAgent(userAccount.getEmployee().getName());
-        for (AgentRequest agentRequest : agentRequestDirectory.getAgentRequestList()) {
-            if (agentRequest.getAgent().getAgentNo().equals(agent.getAgentNo())) {
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+            if (workRequest instanceof AgentRequest) {
                 Object[] row = new Object[9];
-                row[0] = agentRequest.getRequestID();
-                row[1] = agentRequest.getBuyer().getBuyerName();
-                row[2] = agentRequest.getCity();
-                row[3] = agentRequest.getZipcode();
-                row[4] = agentRequest.getBhk();
-                row[5] = agentRequest.getBathroom();
-                row[6] = agentRequest.getStatus();
-                row[7] = agentRequest.getBuyerNote();
-                row[8] = agentRequest.getAgentNote();
+                row[0] = ((AgentRequest) workRequest).getRequestID();
+                row[1] = ((AgentRequest) workRequest).getBuyer().getName();
+                row[2] = ((AgentRequest) workRequest).getCity();
+                row[3] = ((AgentRequest) workRequest).getZipcode();
+                row[4] = ((AgentRequest) workRequest).getBhk();
+                row[5] = ((AgentRequest) workRequest).getBathroom();
+                row[6] = ((AgentRequest) workRequest).getStatus();
+                row[7] = ((AgentRequest) workRequest).getBuyerNote();
+                row[8] = ((AgentRequest) workRequest).getAgentNote();
                 model.addRow(row);
             }
         }
@@ -87,12 +112,17 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         btnSuggestProperty = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        clearBtn = new javax.swing.JButton();
+        populateStatus = new javax.swing.JComboBox();
+        quoteTxt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENTO.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 660, 440));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,11 +155,11 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 138, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 410, 138, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, -1, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
@@ -139,7 +169,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 430, -1, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 470, -1, -1));
 
         btnSuggestProperty.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnSuggestProperty.setText("Suggest Property");
@@ -158,21 +188,61 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENT.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 145, 164));
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel6.setText("Serach By Status");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+
+        clearBtn.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        clearBtn.setText("Clear");
+        clearBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        clearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBtnActionPerformed(evt);
+            }
+        });
+        add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 90, -1));
+
+        populateStatus.setBackground(new java.awt.Color(255, 255, 255));
+        populateStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        populateStatus.setForeground(new java.awt.Color(25, 56, 82));
+        populateStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                populateStatusActionPerformed(evt);
+            }
+        });
+        populateStatus.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                populateStatusPropertyChange(evt);
+            }
+        });
+        add(populateStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 140, -1));
+
+        quoteTxt.setBackground(new java.awt.Color(153, 204, 255));
+        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 138, -1));
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setText("Update Quote: ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
-
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            AgentRequest agentRequest = agentRequestDirectory.fetchAgentRequest(jobID);
-            if (!"Job Taken".equals(agentRequest.getStatus())) {
-                agentRequest.setStatus("Job Taken");
-                Agent agent = agentDirectory.fetchAgent(userAccount.getEmployee().getName());
-                agent.setStatus("Occupied");
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+        if (selectedRow >= 0) {
+            AgentRequest builderRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
+            String feedback = txtFeedback.getText();
+            if (!"Job Taken".equals(builderRequest.getStatus())) {
+                if (!"".equals(feedback)) {
+                    builderRequest.setStatus("Job Taken");
+                    builderRequest.setQuote(quoteTxt.getText());
+                    //inspector.getCharge();
+                    // inspector.setCharge(quoteTxt.getText());
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
@@ -182,23 +252,19 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_brnTakeJobActionPerformed
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
-        // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+        if (selectedRow >= 0) {
+            AgentRequest builderRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                AgentRequest agentRequest = agentRequestDirectory.fetchAgentRequest(jobID);
-                agentRequest.setStatus("Completed");
-                agentRequest.setAgentNote(feedback);
+                builderRequest.setStatus("Completed");
+                builderRequest.setAgentNote(feedback);
                 populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+                userAccount.setStatus("Available");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter feedback!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -209,8 +275,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            AgentRequest agentRequest = agentRequestDirectory.fetchAgentRequest(jobID);
+            AgentRequest agentRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
             AssignPropetyJPanel assignPropetyJPanel = new AssignPropetyJPanel(userProcessContainer, userAccount, system, agentRequest);
             userProcessContainer.add("assignPropetyJPanel", assignPropetyJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -220,17 +285,39 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSuggestPropertyActionPerformed
 
+    private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
+        // TODO add your handling code here:
+        populateRequestTable();
+    }//GEN-LAST:event_clearBtnActionPerformed
+
+    private void populateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_populateStatusActionPerformed
+        // TODO add your handling code here:
+        String status = (String) populateStatus.getSelectedItem();
+        if (status != null) {
+            populateRequestTableFilter(status);
+        }
+    }//GEN-LAST:event_populateStatusActionPerformed
+
+    private void populateStatusPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_populateStatusPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_populateStatusPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JButton btnSuggestProperty;
+    private javax.swing.JButton clearBtn;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox populateStatus;
+    private javax.swing.JTextField quoteTxt;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables
 }

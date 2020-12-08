@@ -8,6 +8,7 @@ package Business.AgentRequest;
 import Business.Agent.Agent;
 import Business.Buyer.Buyer;
 import Business.Property.Property;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.util.ArrayList;
 
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 public class AgentRequest extends WorkRequest {
 
     private String requestID;
-    private Buyer buyer;
-    private Agent agent;
+    private UserAccount buyer;
+    private UserAccount agent;
     private Property property;
     private String inspectorNote;
     private String buyerNote;
@@ -43,7 +44,7 @@ public class AgentRequest extends WorkRequest {
         this.requestID = requestID;
     }
 
-    public Buyer getBuyer() {
+    public UserAccount getBuyer() {
         return buyer;
     }
 
@@ -59,7 +60,7 @@ public class AgentRequest extends WorkRequest {
         this.property = property;
     }
 
-    public Agent getAgent() {
+    public UserAccount getAgent() {
         return agent;
     }
 
