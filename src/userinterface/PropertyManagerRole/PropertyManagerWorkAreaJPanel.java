@@ -6,6 +6,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Property.Property;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -23,6 +24,7 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
     Network network;
     UserAccount account;
     Organization organization;
+    Property property;
 
     /**
      * Creates new form AdminWorkAreaJPanel
@@ -35,6 +37,7 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         this.network = network;
         this.enterprise = enterprise;
         this.organization = organization;
+        this.property=property;
         manageAdvertise();
 
     }
@@ -42,7 +45,7 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void manageAdvertise() {
         manageRequest.setBackground(new Color(236, 113, 107));
         manageScenePanel.setBackground(new Color(215, 81, 81));
-        ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(rightSystemAdminPanel, enterprise, account, system);
+        ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(rightSystemAdminPanel,organization,network, enterprise, property,account, system);
         rightSystemAdminPanel.add("viewJobsJPanel",viewJobsJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);

@@ -53,9 +53,10 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
+        //Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
+        for(UserAccount ua:system.getUserAccountDirectory().getUserAccountList()){
         for (CleaningRequest cleaningRequest : cleaningRequestDirectory.getCleaningRequestList()) {
-            if (cleaningRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
+            if (cleaningRequest.getBuyer().getBuyerNo().equals(ua.getUsername())) {
                 Object[] row = new Object[11];
                 row[0] = cleaningRequest.getRequestID();
                 row[1] = cleaningRequest.getCleaner().getCleanerName();
@@ -69,7 +70,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
                 row[9] = cleaningRequest.getInspectorNote();
                 row[10] =cleaningRequest.getQuote();
                 model.addRow(row);
-            }
+            }}
         }
     }
 

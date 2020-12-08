@@ -39,7 +39,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-<<<<<<< HEAD
+
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
@@ -53,17 +53,16 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewJobsJPanel
      */
-     public ViewJobsJPanel(JPanel userProcess, EcoSystem system, Property property, Buyer buyer, UserAccount userAccount) {
-=======
-    private Enterprise enterprise;
+   
 
-    public ViewJobsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
->>>>>>> 93b9df0a54f608fb61ce05ae87b2832205101c98
+
+    public ViewJobsJPanel(JPanel userProcessContainer,Organization organization,Network network,Enterprise enterprise,Property property,  UserAccount useraccount,EcoSystem system) {
+
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-<<<<<<< HEAD
+
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
         this.managerRequestDirectory = (system.getManagerRequestDirectory()== null) ? new ManagerRequestDirectory(): system.getManagerRequestDirectory();
@@ -74,10 +73,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.organization = organization;
         
-=======
+
         this.enterprise = enterprise;
->>>>>>> 93b9df0a54f608fb61ce05ae87b2832205101c98
-        populateRequestTable();
+
     }
 
     public void populateRequestTable() {
@@ -384,11 +382,11 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
     private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
-<<<<<<< HEAD
+
         HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,organization,network,enterprise, property, userAccount,system);
-=======
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,system);
->>>>>>> 93b9df0a54f608fb61ce05ae87b2832205101c98
+
+      
+
         userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
