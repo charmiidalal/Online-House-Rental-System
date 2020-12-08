@@ -16,6 +16,7 @@ import Business.Organization.BuilderOrganization;
 import Business.Organization.PropertyManagerOrganization;
 import Business.Organization.Organization;
 import Business.Role.BuyerRole;
+import Business.SendSMS.SendSMS;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.UserRegistrationRequest;
 import Business.WorkQueue.WorkQueue;
@@ -345,9 +346,9 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
             registrationRequest.setOrgType(type);
             registrationRequest.setStatus("Requested");
             registrationRequest.setUserContact(phone);
-            String contact = "";
-            //sendEmailMessage(emailAddress);
-            //sendTextMessage(phone);
+            sendEmailMessage(emailAddress,username);
+            String bodyMsg = "Hello "+username+", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.";
+            SendSMS sendSMS = new SendSMS(phone,bodyMsg);
             for (Network network1 : system.getNetworkList()) {
                 for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
                     if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Broker) {
@@ -450,109 +451,36 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_orgComboActionPerformed
 
-    public static void sendEmailMessage(String emailId) {
-// Recipient's email ID needs to be mentioned.
+    public static void sendEmailMessage(String emailId, String username) {
         String to = emailId;
-        String from = "donotreplyers@gmail.com";
-        String pass = "devhuskies";
-// Assuming you are sending email from localhost
-// String host = "192.168.0.16";
-
-// Get system properties
+        String from = "doneverevereply@gmail.com";
+        String pass = "Hello@123";
+        
         Properties properties = System.getProperties();
         String host = "smtp.gmail.com";
-
         properties.put("mail.smtp.starttls.enable", "true");
-
         properties.put("mail.smtp.ssl.trust", host);
         properties.put("mail.smtp.user", from);
-// properties.put("mail.smtp.password", pass);
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth", "true");
 
-// Setup mail server
-// properties.setProperty("mail.smtp.host", host);
-// properties.put("mail.smtp.starttls.enable", "true");
-// Get the default Session object.
         Session session = Session.getDefaultInstance(properties);
-
         try {
-// Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
-
-// Set From: header field of the header.
             message.setFrom(new InternetAddress(from));
-
-// Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-// Set Subject: header field
-            message.setSubject("Volunteer Registration");
-            message.setText("Thank you for registering with us. Your account will be activated within 24 hours. We will keep you posted in case of emergencies.");
-// Send message
+            message.setSubject("New User Registration");
+            message.setText("Hello "+username+", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.");
             Transport transport = session.getTransport("smtp");
             transport.connect(host, from, pass);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
-            mex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Invalid email id");
+            JOptionPane.showMessageDialog(null, "Invalid Email Address");
         }
     }
 
-    public static void sendTextMessage(String contact) {
-        // Recipient's email ID needs to be mentioned.
-        String to = contact;
-        System.out.println(contact);
-        String from = "donotreplyers@gmail.com";
-        String pass = "devhuskies";
-        // Assuming you are sending email from localhost
-        // String host = "192.168.0.16";
-        // Get system properties
-        Properties properties = System.getProperties();
-        String host = "smtp.gmail.com";
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.ssl.trust", host);
-        properties.put("mail.smtp.user", from);
-        // properties.put("mail.smtp.password", pass);
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.auth", "true");
-        // Setup mail server
-        // properties.setProperty("mail.smtp.host", host);
-        //  properties.put("mail.smtp.starttls.enable", "true");
-        // Get the default Session object.
-        Session session = Session.getDefaultInstance(properties);
-        //       final PasswordAuthentication auth = new PasswordAuthentication(from, pass);
-//Session session = Session.getDefaultInstance(properties, new Authenticator() {
-//    @Override
-//    protected PasswordAuthentication getPasswordAuthentication() { return auth; }
-//});
-//Session session = Session.getInstance(properties);
-        try {
-            // Create a default MimeMessage object.
-            MimeMessage message = new MimeMessage(session);
-
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
-
-            // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-            // Set Subject: header field
-            message.setSubject("Volunteer Registration");
-            message.setText("Thank you for registering with us. Your account will be activated within 24 hours. We will keep you posted in case of emergencies.");
-            // Send message
-            Transport transport = session.getTransport("smtp");
-            transport.connect(host, from, pass);
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
-            System.out.println("Sent message successfully....");
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Invalid email id");
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UsrNameLabel;
