@@ -181,37 +181,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
         if (count == 1) {
-<<<<<<< HEAD
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
-        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
-        {
-       
-         
-            //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
-        for(UserAccount ua:org.getUserAccountDirectory().getUserAccountList())
-        {
-            if(ua.getUsername().equalsIgnoreCase(cleanerID))
-            //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
-          // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
-            {
-            if ("Available".equals(ua.getStatus())) {
-                CleaningRequest cr = new CleaningRequest();
-                cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
-                cr.setBuyer(userAccount);
-                cr.setCleaner(ua);
-                cr.setSeller(property.getSeller());
-                cr.setStatus("Requested");
-                cr.setBuyerNote(comment);
-                cr.setProperty(property);
-                cleaningRequestDirectory.addCleaningRequest(cr);
-                system.setCleaningRequestDirectory(cleaningRequestDirectory);
-                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-            } 
-            else {
-                JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");
-            
-            
-=======
+
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
 
@@ -223,9 +193,9 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                             if ("Available".equals(ua.getStatus())) {
                                 CleaningRequest cr = new CleaningRequest();
                                 cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
-                                cr.setBuyer(buyer);
-                                cr.setCleaner((Cleaner) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
+                                cr.setBuyer(userAccount);
+                                cr.setCleaner(ua);
+                                cr.setSeller(property.getSeller());
                                 cr.setStatus("Requested");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
@@ -239,7 +209,6 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                         }
                     }
                 }
->>>>>>> bd24255e7fdd7c6026d568171835043a89f55245
             }
 
         } else {
