@@ -85,6 +85,8 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         priceTxt = new javax.swing.JTextField();
         imgupload = new javax.swing.JLabel();
         zipcodeTxt = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtCharge = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -163,8 +165,14 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         jLabel13.setText("Price:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, -1));
         jPanel1.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 180, -1));
-        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, 290, 110));
+        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 250, 160, 100));
         jPanel1.add(zipcodeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 180, -1));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel1.setText("Charge");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, -1));
+        jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 400, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -265,6 +273,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField bhkTxt;
     private javax.swing.JTextField cityTxt;
     private javax.swing.JLabel imgupload;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -280,6 +289,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField priceTxt;
     private javax.swing.JTextField stateTxt;
     private javax.swing.JButton submitBtn;
+    private javax.swing.JTextField txtCharge;
     private javax.swing.JButton uploadBtn;
     private javax.swing.JTextField zipcodeTxt;
     // End of variables declaration//GEN-END:variables
