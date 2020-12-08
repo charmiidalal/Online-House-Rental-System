@@ -5,16 +5,9 @@
  */
 package userinterface.PlumberRole;
 
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.Electrician.Electrician;
-import Business.Electrician.ElectricianDirectory;
-import Business.Plumber.Plumber;
-import Business.Plumber.PlumberDirectory;
-import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
+import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,40 +17,39 @@ import javax.swing.JPanel;
  */
 public class ManagePlumberJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
-    private EcoSystem system;
-    private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private PlumberDirectory plumberDirectory;
-
     /**
      * Creates new form ManagePlumberJPanel
      */
-    public ManagePlumberJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount userAccount;
+    private Enterprise enterprise;
+
+    /**
+     * Creates new form ManageElectricianJPanel
+     */
+   public ManagePlumberJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.plumberDirectory = (system.getPlumberDirectory()== null) ? new PlumberDirectory(): system.getPlumberDirectory();
+        this.userAccount = useraccount;
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
-        Plumber plumber = plumberDirectory.fetchPlumber(userAccount.getEmployee().getName());
-        txtName.setText(plumber.getPlumberName());
-        txtCharge.setText(plumber.getCharge());
-        txtCity.setText(plumber.getCity());
-        txtStatus.setText(plumber.getState());
-        txtZipcode.setText(plumber.getZipcode());
-        txtStreet.setText(plumber.getStreet());
-        txtEmail.setText(plumber.getEmail());
-        txtPhone.setText(plumber.getPhone());
-        txtStatus.setText(plumber.getStatus());
+        txtName.setText(userAccount.getName());
+        txtCharge.setText(userAccount.getCharge());
+        txtCity.setText(userAccount.getCity());
+        txtStatus.setText(userAccount.getState());
+        txtZipcode.setText(userAccount.getZipcode());
+        txtStreet.setText(userAccount.getStreet());
+        txtEmail.setText(userAccount.getEmail());
+        txtPhone.setText(userAccount.getPhone());
+        txtStatus.setText(userAccount.getStatus());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,51 +59,64 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtStreet = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtCity = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtStatus = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
         txtZipcode = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         txtCharge = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         txtState = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        txtStatus = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        txtStreet = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/BUILDING.png"))); // NOI18N
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel11.setText("PLUMBER PROFILE");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
+
+        txtName.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 84, 149, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Name:");
-
-        txtName.setBackground(new java.awt.Color(153, 204, 255));
-
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel3.setText("Street");
-
-        txtStreet.setBackground(new java.awt.Color(153, 204, 255));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 86, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel4.setText("City:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
         txtCity.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 149, -1));
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel5.setText("State");
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel7.setText("Email:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 158, -1, -1));
 
-        txtStatus.setBackground(new java.awt.Color(153, 204, 255));
+        txtEmail.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 156, 149, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel6.setText("Phone:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 86, -1, -1));
 
         txtPhone.setBackground(new java.awt.Color(153, 204, 255));
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
@@ -119,31 +124,37 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
                 txtPhoneActionPerformed(evt);
             }
         });
-
-        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel7.setText("Email:");
-
-        txtEmail.setBackground(new java.awt.Color(153, 204, 255));
-
-        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel8.setText("Zipcode:");
+        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 84, 149, -1));
 
         txtZipcode.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 233, 149, -1));
+
+        txtCharge.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 322, 149, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel9.setText("Charge:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 324, -1, -1));
 
-        txtCharge.setBackground(new java.awt.Color(153, 204, 255));
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel8.setText("Zipcode:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 235, -1, -1));
 
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
+        txtState.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 149, -1));
 
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel5.setText("State");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel10.setText("Status");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
+
+        txtStatus.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 149, -1));
+
+        btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -152,177 +163,44 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, -1, -1));
 
-        txtState.setBackground(new java.awt.Color(153, 204, 255));
+        txtStreet.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 150, -1));
 
-        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel10.setText("Status");
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel3.setText("Street");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, 60));
 
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel11.setText("PLUMBER PROFILE");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSave)
-                .addGap(135, 135, 135)
-                .addComponent(btnBack)
-                .addGap(476, 476, 476))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addGap(71, 71, 71)
-                                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(83, 83, 83)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel5))
-                                .addGap(162, 162, 162)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel9)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtCharge, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addGap(71, 71, 71)
-                                            .addComponent(txtZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addGap(71, 71, 71))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addGap(75, 75, 75)))
-                                        .addGap(9, 9, 9)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                            .addComponent(txtEmail)))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(411, 411, 411)
-                        .addComponent(jLabel11)))
-                .addGap(317, 317, 317))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel11)))
-                .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtCharge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnSave))
-                .addGap(74, 74, 74))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1074, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumber_op.png"))); // NOI18N
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 700, 320));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Plumber plumber = plumberDirectory.fetchPlumber(userAccount.getEmployee().getName());
-        plumber.setPlumberName(txtName.getText());
-        plumber.setCharge(txtCharge.getText());
-        plumber.setCity(txtCity.getText());
-        plumber.setStatus(txtStatus.getText());
-        plumber.setZipcode(txtZipcode.getText());
-        plumber.setStreet(txtStreet.getText());
-        plumber.setEmail(txtEmail.getText());
-        plumber.setPhone(txtPhone.getText());
-        plumber.setState(txtState.getText());
+       userAccount.setName(txtName.getText());
+        userAccount.setCharge(txtCharge.getText());
+        userAccount.setCity(txtCity.getText());
+        userAccount.setStatus(txtStatus.getText());
+        userAccount.setZipcode(txtZipcode.getText());
+        userAccount.setStreet(txtStreet.getText());
+        userAccount.setEmail(txtEmail.getText());
+        userAccount.setPhone(txtPhone.getText());
+        userAccount.setState(txtState.getText());
         JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -331,7 +209,6 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtCharge;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtEmail;

@@ -10,7 +10,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.PropertyManagerRole.PropertyManagerWorkAreaJPanel11;
+import userinterface.PropertyManagerRole.PropertyManagerWorkAreaJPanel;
 
 /**
  *
@@ -20,7 +20,7 @@ public class PropertyManagerRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
-        return new PropertyManagerWorkAreaJPanel11(userProcessContainer, business,account);
+        return new PropertyManagerWorkAreaJPanel(userProcessContainer,account,organization,enterprise,network,business);
     }
     
     @Override

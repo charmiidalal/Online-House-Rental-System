@@ -11,9 +11,11 @@ import Business.BuilderRequest.BuilderRequest;
 import Business.BuilderRequest.BuilderRequestDirectory;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,51 +29,53 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJobsJPanel
-     */
   private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private BuilderDirectory builderDirectory;
-    private BuilderRequestDirectory builderRequestDirectory;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
+    private Enterprise enterprise;
 
-   
-     public ViewJobsJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+* 
+    /**
+     * Creates new form BuyerWorkAreaJpanel
+     */
+      private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount userAccount;
+    private Enterprise enterprise;
+
+    public ViewJobsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.builderRequestDirectory = (system.getBuilderRequestDirectory()== null) ? new BuilderRequestDirectory(): system.getBuilderRequestDirectory();
-        this.builderDirectory = (system.getBuilderDirectory()== null) ? new BuilderDirectory(): system.getBuilderDirectory();
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Builder builder = builderDirectory.fetchBuilder(userAccount.getEmployee().getName());
-        for (BuilderRequest builderReuqest : builderRequestDirectory.getBuilderRequestList()) {
-//            if (builderReuqest.getBuilder().getBuilderNo().equals(builder.getBuilderNo())) {
-//                Object[] row = new Object[10];
-//                row[0] = builderReuqest.getRequestID();
-//                row[1] = builderReuqest.getBuyer().getBuyerName();
-//                row[2] = builderReuqest.getSeller().getName();
-//                row[3] = builderReuqest.getProperty().getStreet();
-//                row[4] = builderReuqest.getProperty().getCity();
-//                row[5] = builderReuqest.getProperty().getState();
-//                row[6] = builderReuqest.getProperty().getPincode();
-//                row[7] = builderReuqest.getStatus();
-//                row[8] = builderReuqest.getBuyerNote();
-//                row[9] = builderReuqest.getInspectorNote();
-//
-//                model.addRow(row);
-//            }
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof BuilderRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((BuilderRequest) workRequest).getBuyer().getName();
+                row[2] = ((BuilderRequest) workRequest).getSeller().getName();
+                row[3] = ((BuilderRequest) workRequest).getProperty().getStreet();
+                row[4] = ((BuilderRequest) workRequest).getProperty().getCity();
+                row[5] = ((BuilderRequest) workRequest).getProperty().getState();
+                row[6] = ((BuilderRequest) workRequest).getProperty().getPincode();
+                row[7] = ((BuilderRequest) workRequest).getStatus();
+                row[8] = ((BuilderRequest) workRequest).getBuyerNote();
+                row[9] = ((BuilderRequest) workRequest).getInspectorNote();
+
+                model.addRow(row);
+            }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +92,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         quoteTxt = new javax.swing.JTextField();
         txtFeedback = new javax.swing.JTextField();
         brnTakeJob = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         btnCompleteJob = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -146,16 +149,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, -1, -1));
 
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, -1, -1));
-
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -184,24 +177,21 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+     int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            BuilderRequest builderRequest = (BuilderRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            BuilderRequest builderRequest = builderRequestDirectory.fetchBuilderRequest(jobID);
             if (!"Job Taken".equals(builderRequest.getStatus())) {
-                if(!"".equals(feedback)){
-                builderRequest.setStatus("Job Taken");
-                 builderRequest.setInspectorNote(feedback);
-                builderRequest.setQuote(quoteTxt.getText());
-                Builder builder = builderDirectory.fetchBuilder(userAccount.getEmployee().getName());
-                
-                builder.setStatus("Occupied");
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-                }else {
-                     JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                if (!"".equals(feedback)) {
+                    builderRequest.setStatus("Job Taken");
+                    builderRequest.setQuote(quoteTxt.getText());
+                    //inspector.getCharge();
+                    // inspector.setCharge(quoteTxt.getText());
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
@@ -211,31 +201,21 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_brnTakeJobActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+       int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            BuilderRequest builderRequest = (BuilderRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                BuilderRequest builderRequest = builderRequestDirectory.fetchBuilderRequest(jobID);
                 builderRequest.setStatus("Completed");
                 builderRequest.setInspectorNote(feedback);
                 populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+                userAccount.setStatus("Available");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter feedback!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -248,7 +228,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;

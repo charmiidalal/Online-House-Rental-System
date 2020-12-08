@@ -81,7 +81,6 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
         brnTakeJob = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         txtFeedback = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnCompleteJob = new javax.swing.JButton();
@@ -124,16 +123,6 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
             }
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
-
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 138, -1));
@@ -192,13 +181,6 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_brnTakeJobActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
@@ -241,7 +223,6 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JButton btnSuggestProperty;
     private javax.swing.JTable houseTable;

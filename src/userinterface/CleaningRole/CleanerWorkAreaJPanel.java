@@ -1,6 +1,6 @@
 
 
-package userinterface.BuilderRole;
+package userinterface.CleaningRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author  charmi
+ * @author  Dinesh
  */
-public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
+public class CleanerWorkAreaJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     Enterprise enterprise;
@@ -27,7 +27,7 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public BuilderWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
+    public CleanerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
@@ -42,7 +42,7 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
     private void manageAdvertise() {
         manageOrganizationPanel.setBackground(new Color(236, 113, 107));
         manageEmployee.setBackground(new Color(215, 81, 81));
-        ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(rightSystemAdminPanel, enterprise, account, system);
+        ViewDetailsJPanel viewJobsJPanel = new ViewDetailsJPanel(rightSystemAdminPanel, enterprise, account, system);
         rightSystemAdminPanel.add("viewJobsJPanel",viewJobsJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
@@ -51,8 +51,8 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
     private void manageBuyers() {
         manageEmployee.setBackground(new Color(236, 113, 107));
         manageOrganizationPanel.setBackground(new Color(215, 81, 81));
-        ManageBuilderJPanel managebuilderJPanel = new ManageBuilderJPanel(rightSystemAdminPanel, enterprise, account, system);
-        rightSystemAdminPanel.add("manageInspectorProfileJPanel", managebuilderJPanel);
+        ManageCleaningJPanel managecleanerJPanel = new ManageCleaningJPanel(rightSystemAdminPanel, enterprise, account, system);
+        rightSystemAdminPanel.add("manageInspectorProfileJPanel", managecleanerJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
@@ -120,19 +120,17 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(manageOrganizationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(manageEmployeeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         manageOrganizationPanelLayout.setVerticalGroup(
             manageOrganizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manageOrganizationPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageOrganizationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(manageOrganizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(manageOrganizationPanelLayout.createSequentialGroup()
-                        .addComponent(manageEmployeeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(manageOrganizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(manageEmployeeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -166,26 +164,28 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
         manageEmployeeLayout.setHorizontalGroup(
             manageEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageEmployeeLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(manageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(manageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         manageEmployeeLayout.setVerticalGroup(
             manageEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-            .addComponent(manageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(manageEmployeeLayout.createSequentialGroup()
+                .addComponent(manageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel3.add(manageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 280, 40));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 162, 280, 70));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 280, 70));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("BUILDER MANAGEMENT");
+        jLabel3.setText("CLEANER MANAGEMENT");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));

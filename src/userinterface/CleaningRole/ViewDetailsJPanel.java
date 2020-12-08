@@ -11,10 +11,12 @@ import Business.Cleaner.CleanerDirectory;
 import Business.CleaningRequest.CleaningRequest;
 import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -32,42 +34,35 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private CleanerDirectory cleanerDirectory;
-    private CleaningRequestDirectory cleaningRequestDirectory;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
+    private Enterprise enterprise;
 
-   
-     public ViewDetailsJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ViewDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.cleaningRequestDirectory = (system.getCleaningRequestDirectory()== null) ? new CleaningRequestDirectory(): system.getCleaningRequestDirectory();
-        this.cleanerDirectory = (system.getCleanerDirectory()== null) ? new CleanerDirectory(): system.getCleanerDirectory();
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Cleaner cleaner = cleanerDirectory.fetchCleaner(userAccount.getEmployee().getName());
-        for (CleaningRequest cleanerRequest : cleaningRequestDirectory.getCleaningRequestList()) {
-            if (cleanerRequest.getCleaner().getCleanerNo().equals(cleaner.getCleanerNo())) {
-                Object[] row = new Object[10];
-                row[0] = cleanerRequest.getRequestID();
-                row[1] = cleanerRequest.getBuyer().getBuyerName();
-                row[2] = cleanerRequest.getSeller().getName();
-                row[3] = cleanerRequest.getProperty().getStreet();
-                row[4] = cleanerRequest.getProperty().getCity();
-                row[5] = cleanerRequest.getProperty().getState();
-                row[6] = cleanerRequest.getProperty().getPincode();
-                row[7] = cleanerRequest.getStatus();
-                row[8] = cleanerRequest.getBuyerNote();
-                row[9] = cleanerRequest.getInspectorNote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof CleaningRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((CleaningRequest) workRequest).getBuyer().getName();
+                row[2] = ((CleaningRequest) workRequest).getSeller().getName();
+                row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
+                row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
+                row[5] = ((CleaningRequest) workRequest).getProperty().getState();
+                row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
+                row[7] = ((CleaningRequest) workRequest).getStatus();
+                row[8] = ((CleaningRequest) workRequest).getBuyerNote();
+                row[9] = ((CleaningRequest) workRequest).getInspectorNote();
 
                 model.addRow(row);
             }
@@ -88,7 +83,6 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         quoteTxt = new javax.swing.JTextField();
         brnTakeJob = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         btnCompleteJob = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtFeedback = new javax.swing.JTextField();
@@ -143,16 +137,6 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, -1));
 
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
-
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -186,54 +170,40 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+       int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            CleaningRequest cleaningRequest = (CleaningRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                CleaningRequest cleaningRequest = cleaningRequestDirectory.fetchCleaningRequest(jobID);
                 cleaningRequest.setStatus("Completed");
                 cleaningRequest.setInspectorNote(feedback);
                 populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+                userAccount.setStatus("Available");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter feedback!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+        if (selectedRow >= 0) {
+            CleaningRequest cleaningRequest = (CleaningRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            CleaningRequest cleaningRequest = cleaningRequestDirectory.fetchCleaningRequest(jobID);
             if (!"Job Taken".equals(cleaningRequest.getStatus())) {
+                if (!"".equals(feedback)) {
+                    cleaningRequest.setStatus("Job Taken");
+                    cleaningRequest.setQuote(quoteTxt.getText());
                 
-                 if (!"".equals(feedback)) {
-                     cleaningRequest.setStatus("Job Taken");
-                cleaningRequest.setInspectorNote(feedback);
-                 cleaningRequest.setQuote(quoteTxt.getText());
-                Cleaner cleaner = cleanerDirectory.fetchCleaner(userAccount.getEmployee().getName());
-                cleaner.setStatus("Occupied");
-                 populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-                 } else{
-                     JOptionPane.showMessageDialog(null, "Please enter feedback!");
-                 }
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
@@ -245,7 +215,6 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
