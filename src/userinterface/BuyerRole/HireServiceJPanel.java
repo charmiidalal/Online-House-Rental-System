@@ -50,16 +50,43 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        hireElecBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        manageRequestPanel = new javax.swing.JPanel();
         hirePlumBtn = new javax.swing.JButton();
-        hirePackBtn = new javax.swing.JButton();
-        hirePhotoBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        manageScenePanel = new javax.swing.JPanel();
         hireCleanBtn = new javax.swing.JButton();
+        hirePackBtn = new javax.swing.JButton();
+        hireElecBtn = new javax.swing.JButton();
+        hirePhotoBtn = new javax.swing.JButton();
 
-        hireElecBtn.setText("Hire Electrician");
-        hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireElecBtnActionPerformed(evt);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 189, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 448, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
+        jPanel3.setPreferredSize(new java.awt.Dimension(280, 148));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        manageRequestPanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageRequestPanel.setToolTipText("");
+        manageRequestPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageRequestPanelMousePressed(evt);
             }
         });
 
@@ -70,12 +97,37 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             }
         });
 
-        hirePackBtn.setText("Hire Packers/Movers");
+        javax.swing.GroupLayout manageRequestPanelLayout = new javax.swing.GroupLayout(manageRequestPanel);
+        manageRequestPanel.setLayout(manageRequestPanelLayout);
+        manageRequestPanelLayout.setHorizontalGroup(
+            manageRequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageRequestPanelLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(hirePlumBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        manageRequestPanelLayout.setVerticalGroup(
+            manageRequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageRequestPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(hirePlumBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-        hirePhotoBtn.setText("Hire Photographer");
-        hirePhotoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hirePhotoBtnActionPerformed(evt);
+        jPanel3.add(manageRequestPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 280, 40));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("SERVICE MANAGEMENT");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 210, 20));
+
+        manageScenePanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageScenePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageScenePanelMousePressed(evt);
             }
         });
 
@@ -86,37 +138,45 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(hirePhotoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hirePackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hireElecBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(hirePlumBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hireCleanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(327, Short.MAX_VALUE))
+        javax.swing.GroupLayout manageScenePanelLayout = new javax.swing.GroupLayout(manageScenePanel);
+        manageScenePanel.setLayout(manageScenePanelLayout);
+        manageScenePanelLayout.setHorizontalGroup(
+            manageScenePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageScenePanelLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(hireCleanBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hireElecBtn)
-                    .addComponent(hirePlumBtn))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hirePackBtn)
-                    .addComponent(hireCleanBtn))
-                .addGap(52, 52, 52)
-                .addComponent(hirePhotoBtn)
-                .addContainerGap(209, Short.MAX_VALUE))
+        manageScenePanelLayout.setVerticalGroup(
+            manageScenePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageScenePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(hireCleanBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        jPanel3.add(manageScenePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 280, 40));
+
+        hirePackBtn.setText("Hire Packers/Movers");
+        jPanel3.add(hirePackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 210, 30));
+
+        hireElecBtn.setText("Hire Electrician");
+        hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireElecBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(hireElecBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 210, 30));
+
+        hirePhotoBtn.setText("Hire Photographer");
+        hirePhotoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hirePhotoBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(hirePhotoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 210, 30));
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 442));
     }// </editor-fold>//GEN-END:initComponents
 
     private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
@@ -147,6 +207,16 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePhotoBtnActionPerformed
 
+    private void manageRequestPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageRequestPanelMousePressed
+        // TODO add your handling code here:
+        manageProfile();
+    }//GEN-LAST:event_manageRequestPanelMousePressed
+
+    private void manageScenePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageScenePanelMousePressed
+        // TODO add your handling code here:
+        manageRequest();
+    }//GEN-LAST:event_manageScenePanelMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton hireCleanBtn;
@@ -154,5 +224,19 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JButton hirePackBtn;
     private javax.swing.JButton hirePhotoBtn;
     private javax.swing.JButton hirePlumBtn;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JPanel manageRequestPanel;
+    private javax.swing.JPanel manageScenePanel;
     // End of variables declaration//GEN-END:variables
+
+    private void manageProfile() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void manageRequest() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

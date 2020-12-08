@@ -76,32 +76,25 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnViewHouseDetails = new javax.swing.JButton();
-        btnBuyHouse = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        btnViewHouseDetails = new javax.swing.JButton();
         btnViewSellerDetails = new javax.swing.JButton();
+        vireBtn = new javax.swing.JButton();
+        managerBtn = new javax.swing.JButton();
+        hireSPBtn = new javax.swing.JButton();
+        managerBtn1 = new javax.swing.JButton();
+        builderBtn = new javax.swing.JButton();
+        btnBuyHouse = new javax.swing.JButton();
         btnRequestNegotiation = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        hireSPBtn = new javax.swing.JButton();
-        managerBtn = new javax.swing.JButton();
-        builderBtn = new javax.swing.JButton();
-        vireBtn = new javax.swing.JButton();
-        managerBtn1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        btnViewHouseDetails.setText("View House Details");
-        btnViewHouseDetails.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewHouseDetailsActionPerformed(evt);
-            }
-        });
-
-        btnBuyHouse.setText("Buy House");
-        btnBuyHouse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuyHouseActionPerformed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,6 +114,21 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 72, 735, 271));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnViewHouseDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewHouseDetails.setForeground(new java.awt.Color(0, 0, 51));
+        btnViewHouseDetails.setText("View House Details");
+        btnViewHouseDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewHouseDetailsActionPerformed(evt);
+            }
+        });
+
+        btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewSellerDetails.setForeground(new java.awt.Color(0, 0, 51));
         btnViewSellerDetails.setText("View Seller Details");
         btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,41 +136,8 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRequestNegotiation.setText("Request Negotiation");
-        btnRequestNegotiation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRequestNegotiationActionPerformed(evt);
-            }
-        });
-
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
-        hireSPBtn.setText("Hire Service Providers");
-        hireSPBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireSPBtnActionPerformed(evt);
-            }
-        });
-
-        managerBtn.setText("Hire Property Manager");
-        managerBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                managerBtnActionPerformed(evt);
-            }
-        });
-
-        builderBtn.setText("Hire Builder");
-        builderBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                builderBtnActionPerformed(evt);
-            }
-        });
-
+        vireBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        vireBtn.setForeground(new java.awt.Color(0, 0, 51));
         vireBtn.setText("View Job Requests");
         vireBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +145,26 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        managerBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        managerBtn.setForeground(new java.awt.Color(0, 0, 51));
+        managerBtn.setText("Hire Property Manager");
+        managerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managerBtnActionPerformed(evt);
+            }
+        });
+
+        hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        hireSPBtn.setForeground(new java.awt.Color(0, 0, 51));
+        hireSPBtn.setText("Hire Service Providers");
+        hireSPBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireSPBtnActionPerformed(evt);
+            }
+        });
+
+        managerBtn1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        managerBtn1.setForeground(new java.awt.Color(0, 0, 51));
         managerBtn1.setText("Hire Inspector");
         managerBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,63 +172,96 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBack)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(managerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(vireBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(builderBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(hireSPBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(managerBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(109, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnViewHouseDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
-                        .addComponent(btnBuyHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addComponent(btnRequestNegotiation, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(btnViewSellerDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 251, Short.MAX_VALUE))))
+        builderBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        builderBtn.setForeground(new java.awt.Color(0, 0, 51));
+        builderBtn.setText("Hire Builder");
+        builderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                builderBtnActionPerformed(evt);
+            }
+        });
+
+        btnBuyHouse.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnBuyHouse.setForeground(new java.awt.Color(0, 0, 51));
+        btnBuyHouse.setText("Buy House");
+        btnBuyHouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuyHouseActionPerformed(evt);
+            }
+        });
+
+        btnRequestNegotiation.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnRequestNegotiation.setForeground(new java.awt.Color(0, 0, 51));
+        btnRequestNegotiation.setText("Registeration Form");
+        btnRequestNegotiation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRequestNegotiationActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRequestNegotiation, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnBuyHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(builderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(managerBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(hireSPBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(managerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(vireBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnViewSellerDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnViewHouseDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(managerBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(managerBtn1)
-                        .addGap(47, 47, 47)
-                        .addComponent(hireSPBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(builderBtn)
-                        .addGap(29, 29, 29)
-                        .addComponent(vireBtn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(109, 109, 109)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewHouseDetails)
-                    .addComponent(btnBuyHouse)
-                    .addComponent(btnRequestNegotiation)
-                    .addComponent(btnViewSellerDetails))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(btnViewHouseDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnViewSellerDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(vireBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(managerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(btnBack)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addComponent(managerBtn1)
+                .addGap(33, 33, 33)
+                .addComponent(builderBtn)
+                .addGap(31, 31, 31)
+                .addComponent(hireSPBtn)
+                .addGap(34, 34, 34)
+                .addComponent(btnBuyHouse)
+                .addGap(29, 29, 29)
+                .addComponent(btnRequestNegotiation)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 42, -1, -1));
+
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 11, 30, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aed_final_project/src/icon_new/buyerimg1.jpg"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 349, 735, -1));
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setText("BUYER WORKREQUESTS");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 27, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/buyerimg1.jpg"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 720, 320));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewHouseDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHouseDetailsActionPerformed
@@ -387,6 +415,10 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton builderBtn;
     private javax.swing.JButton hireSPBtn;
     private javax.swing.JTable houseTable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton managerBtn;
     private javax.swing.JButton managerBtn1;

@@ -86,13 +86,18 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         btnBuyHouse1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         brnHireInspector.setText("Hire Inspector");
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnHireInspectorActionPerformed(evt);
             }
         });
+        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, 20));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,48 +117,23 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        btnBuyHouse1.setText("<< Back");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 900, 310));
+
+        btnBuyHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBuyHouse1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuyHouse1ActionPerformed(evt);
             }
         });
+        add(btnBuyHouse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 20, 30, 30));
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Comment:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
+        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 410, 220, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(brnHireInspector)
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuyHouse1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(170, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnBuyHouse1)
-                        .addComponent(brnHireInspector)))
-                .addContainerGap(232, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/MedicalWorkAreaOpaque.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
@@ -199,6 +179,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
