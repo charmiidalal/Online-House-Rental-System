@@ -186,8 +186,19 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
          String comment = commentTxxt.getText();
         if (count == 1) {
-            UserAccount userAccount = cleanerDirectory.fetchCleaner(cleanerID);
-            if ("Available".equals(userAccount.getStatus())) {
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
+        {
+       
+         
+            //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
+        for(UserAccount ua:org.getUserAccountDirectory().getUserAccountList())
+        {
+            if(ua.getUsername().equalsIgnoreCase(cleanerID))
+            //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
+          // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+            {
+            if ("Available".equals(ua.getStatus())) {
                 CleaningRequest cr = new CleaningRequest();
                 cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
                 cr.setBuyer(buyer);
@@ -199,10 +210,15 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                 cleaningRequestDirectory.addCleaningRequest(cr);
                 system.setCleaningRequestDirectory(cleaningRequestDirectory);
                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-            } else {
+            } 
+            else {
                 JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");
+            
+            
             }
-        } else {
+        }}}}
+        
+        }else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_brnHireInspectorActionPerformed

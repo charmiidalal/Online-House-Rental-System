@@ -195,7 +195,7 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-      userAccount.setName(txtName.getText());
+        userAccount.setName(txtName.getText());
         userAccount.setCharge(txtCharge.getText());
         userAccount.setCity(txtCity.getText());
         userAccount.setStatus(txtStatus.getText());
