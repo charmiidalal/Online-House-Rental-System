@@ -136,7 +136,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
         jPanel1.add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 690, 309, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/manager1.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 770, 240));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 770, 240));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

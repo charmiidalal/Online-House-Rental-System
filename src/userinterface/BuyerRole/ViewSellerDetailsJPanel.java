@@ -126,7 +126,7 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("SELLER PROFILE");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 51));
@@ -147,7 +147,7 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 160, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/seller1.jpg"))); // NOI18N
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 330, 370));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 330, 370));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

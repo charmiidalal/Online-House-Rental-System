@@ -191,7 +191,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/HOUSE1.jpg"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 70, 570, 690));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 781));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 781));
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
