@@ -34,7 +34,9 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
         initComponents();
         this.system = system;
         this.userAccount = userAccount;
-        this.seller = seller;
+       
+        seller = system.getSellerDirectory().fetchSeller(userAccount.getEmployee().getName());
+         this.seller = seller;
         this.userProcessContainer = userProcessContainer;
         populateRequestTable();
     }

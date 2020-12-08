@@ -45,6 +45,11 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewDetailsJPanel
+     * @param userProcessContainer
+     * @param property
+     * @param propertyDirectory
+     * @param system
+     * @param userAccount
      */
     public ViewHouseDetailJPanel(JPanel userProcessContainer, Property property, PropertyDirectory propertyDirectory, EcoSystem system, UserAccount userAccount) {
         initComponents();
@@ -57,19 +62,18 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }
    private void populateRequestTable() {
-        txtName.setText(property.getPropertyName());
-        txtCity.setText(property.getCity());
-        txtAddress.setText(property.getStreet());
-        txtPincode.setText(property.getPincode());
-        txtState.setText(property.getState());
-        txtPrice.setText(Double.toString(property.getPrice()));
-        txtBHK.setText(Integer.toString(property.getBhk()));
-        txtBathroom.setText(Double.toString(property.getBathroom()));
-        txtImage.setIcon(property.getUploadImg());
+        nameTxt.setText(property.getPropertyName());
+        cityTxt.setText(property.getCity());
+        addressTxt.setText(property.getStreet());
+        pinTxt.setText(property.getPincode());
+        stateTxt.setText(property.getState());
+        priceTxt.setText(Double.toString(property.getPrice()));
+        bhkTxt.setText(Integer.toString(property.getBhk()));
+        bathroomTxt.setText(Double.toString(property.getBathroom()));
+        ImageIcon propertyImg = (ImageIcon) property.getUploadImg();
+        imgupload.setIcon(propertyImg);
 
-        ImageIcon propertyImg = property.getUploadImg();
-
-        lblimage.setIcon(propertyImg);
+      
 
     }
 
@@ -116,6 +120,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel1.setText("Name:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, -1));
 
+        nameTxt.setEnabled(false);
         nameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTxtActionPerformed(evt);
@@ -127,18 +132,24 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
         jLabel2.setText("Address:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
+
+        addressTxt.setEnabled(false);
         jPanel1.add(addressTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 188, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setText("City:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, -1, -1));
+
+        cityTxt.setEnabled(false);
         jPanel1.add(cityTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 188, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 51));
         jLabel4.setText("State:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
+
+        stateTxt.setEnabled(false);
         jPanel1.add(stateTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 188, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -155,9 +166,14 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(0, 0, 51));
         jLabel7.setText("Price:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 670, -1, -1));
+
+        pinTxt.setEnabled(false);
         jPanel1.add(pinTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 188, -1));
+
+        priceTxt.setEnabled(false);
         jPanel1.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 660, 188, -1));
 
+        bathroomTxt.setEnabled(false);
         bathroomTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bathroomTxtActionPerformed(evt);
@@ -170,6 +186,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel10.setText("Bathroom:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 600, -1, -1));
 
+        bhkTxt.setEnabled(false);
         bhkTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bhkTxtActionPerformed(evt);
@@ -197,9 +214,9 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 260, 170));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/HOUSE1.jpg"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 30, 540, 690));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 30, 540, 690));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 781));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 790));
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
