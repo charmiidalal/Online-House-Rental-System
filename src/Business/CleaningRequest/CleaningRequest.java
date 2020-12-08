@@ -9,6 +9,7 @@ import Business.Buyer.Buyer;
 import Business.Cleaner.Cleaner;
 import Business.Property.Property;
 import Business.Seller.Seller;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 
 /**
@@ -17,9 +18,9 @@ import Business.WorkQueue.WorkRequest;
  */
 public class CleaningRequest extends WorkRequest {
     private String requestID;
-    private Seller seller;
-    private Buyer buyer;
-    private Cleaner cleaner;
+    private UserAccount seller;
+    private UserAccount buyer;
+    private UserAccount cleaner;
     private Property property;
     private String inspectorNote;
     private String buyerNote;
@@ -35,29 +36,33 @@ public class CleaningRequest extends WorkRequest {
         this.requestID = requestID;
     }
 
-    public Seller getSeller() {
+    public UserAccount getSeller() {
         return seller;
     }
 
-    public void setSeller(Seller seller) {
+    public void setSeller(UserAccount seller) {
         this.seller = seller;
     }
 
-    public Buyer getBuyer() {
+    public UserAccount getBuyer() {
         return buyer;
     }
 
-    public void setBuyer(Buyer buyer) {
+    public void setBuyer(UserAccount buyer) {
         this.buyer = buyer;
     }
 
-    public Cleaner getCleaner() {
+    public UserAccount getCleaner() {
         return cleaner;
     }
 
-    public void setCleaner(Cleaner cleaner) {
+    public void setCleaner(UserAccount cleaner) {
         this.cleaner = cleaner;
     }
+
+
+
+  
 
     public Property getProperty() {
         return property;
