@@ -175,10 +175,10 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        // ManageHouseJPanel houseJPanel = new ManageHouseJPanel(userProcessContainer,enterprise, useraccount,sellerDirectory,system);
-        // userProcessContainer.add("ManageHouseJPanel", houseJPanel);
-        // CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        // layout.next(userProcessContainer);
+         ManageHouseJPanel houseJPanel = new ManageHouseJPanel(userProcessContainer,enterprise, useraccount,system);
+        userProcessContainer.add("ManageHouseJPanel", houseJPanel);
+         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed

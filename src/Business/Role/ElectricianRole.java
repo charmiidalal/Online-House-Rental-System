@@ -23,6 +23,9 @@ public class ElectricianRole extends Role{
         return new ElectricianWorkAreaJPanel(userProcessContainer,business, account);
     }
 
-    
+    @Override
+    public String toString(){
+        return (RoleType.Electrician.getValue());
+    }
     
 }

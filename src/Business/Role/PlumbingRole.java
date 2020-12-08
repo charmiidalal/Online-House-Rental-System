@@ -23,6 +23,9 @@ public class PlumbingRole extends Role{
         return new PlumberWorkAreaJPanel(userProcessContainer, business,account);
     }
 
-    
+     @Override
+    public String toString(){
+        return (Role.RoleType.Plumbing.getValue());
+    }
     
 }

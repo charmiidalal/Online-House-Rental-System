@@ -1,7 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
+ 
 package Business.Role;
 
 import Business.EcoSystem;
@@ -22,7 +20,10 @@ public class PackersMoversRole extends Role{
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
         return new PackersMoversWorkAreaJPanel(userProcessContainer,business, account);
     }
-
+ @Override
+    public String toString(){
+        return (Role.RoleType.PackersMovers.getValue());
+    }
     
     
 }

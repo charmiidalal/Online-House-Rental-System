@@ -53,9 +53,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         this.propertyDirectory = propertyDirectory;
         this.userAccount = userAccount;
         this.system = system;
-        this.enterprise=enterprise;
-        this.network=network;
-        this.organization=organization;
+      
         populateRequestTable();
     }
    private void populateRequestTable() {
@@ -199,7 +197,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 260, 170));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/HOUSE1.jpg"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 70, 570, 690));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 30, 540, 690));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 781));
     }// </editor-fold>//GEN-END:initComponents

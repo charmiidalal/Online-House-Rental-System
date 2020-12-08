@@ -23,6 +23,9 @@ public class CleaningRole extends Role{
         return new CleaningWorkAreaJPanel(userProcessContainer,business, account);
     }
 
-    
+    @Override
+    public String toString(){
+        return (RoleType.Cleaning.getValue());
+    } 
     
 }
