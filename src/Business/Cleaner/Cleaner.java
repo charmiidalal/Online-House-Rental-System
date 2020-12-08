@@ -5,13 +5,15 @@
  */
 package Business.Cleaner;
 
+import Business.UserAccount.UserAccount;
+
 
 
 /**
  *
  * @author Dinesh
  */
-public class Cleaner {
+public class Cleaner  extends UserAccount{
 
     private String cleanerNo;
     private String cleanerName;

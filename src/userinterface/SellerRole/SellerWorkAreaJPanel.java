@@ -53,10 +53,10 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageAdvertisePanel.setBackground(new Color(215, 81, 81));
         manageUserProfile.setBackground(new Color(215, 81, 81));
         manageHousesPanel.setBackground(new Color(215, 81, 81));
-//        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer, enterprise, account, system);
-//        userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+       //ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer, enterprise, account, system);
+      // userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
+       CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
     }
 
     private void manageUsers() {
@@ -75,10 +75,10 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageUserProfile.setBackground(new Color(215, 81, 81));
         manageAdvertisePanel.setBackground(new Color(215, 81, 81));
         manageBuyer.setBackground(new Color(215, 81, 81));
-//        ManageSellerProfileJPanel manageSellerProfileJPanel = new ManageSellerProfileJPanel(userProcessContainer, system, useraccount);
-//        userProcessContainer.add("ManageInspectorJPanel", manageSellerProfileJPanel);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+    ManageSellerProfileJPanel manageSellerProfileJPanel = new ManageSellerProfileJPanel(userProcessContainer, system, account);
+      userProcessContainer.add("ManageInspectorJPanel", manageSellerProfileJPanel);
+       CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
     }
 
     /**

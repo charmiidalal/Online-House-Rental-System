@@ -8,10 +8,13 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.InspectRequest.InspectRequest;
 import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
@@ -36,6 +39,9 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
+       private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
 
     /**
      * Creates new form BuyerWorkAreaJpanel
@@ -47,6 +53,9 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
+        this.enterprise=enterprise;
+        this.network=network;
+        this.organization=organization;
         this.inspectorDirectory = (system.getInspectorDirectory() == null) ? new InspectorDirectory() : system.getInspectorDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
         this.inspectRequestDirectory = (system.getInspectRequestDirectory() == null) ? new InspectRequestDirectory() : system.getInspectRequestDirectory();
@@ -166,7 +175,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
 
     private void btnBuyHouse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyHouse1ActionPerformed
         // TODO add your handling code here:
-        BuyerWorkAreaJPanel buyerWorkAreaJPanel = new BuyerWorkAreaJPanel(userProcessContainer, system, userAccount);
+        BuyerWorkAreaJPanel buyerWorkAreaJPanel = new BuyerWorkAreaJPanel(userProcessContainer,userAccount,organization,enterprise, network, system);
         userProcessContainer.add("BuyerWorkAreaJPanel", buyerWorkAreaJPanel);
         buyerWorkAreaJPanel.populateRequestTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

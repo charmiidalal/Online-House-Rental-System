@@ -5,11 +5,13 @@
  */
 package Business.Builder;
 
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author Charmi Dalal
  */
-public class Builder {
+public class Builder extends UserAccount {
 
     private String builderNo;
     private String builderName;

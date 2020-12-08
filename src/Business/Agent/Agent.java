@@ -5,11 +5,13 @@
  */
 package Business.Agent;
 
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author Charmi Dalal
  */
-public class Agent {
+public class Agent extends UserAccount {
 
     private String agentNo;
     private String agentName;

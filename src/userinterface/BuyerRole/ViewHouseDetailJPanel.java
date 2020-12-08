@@ -6,6 +6,9 @@
 package userinterface.BuyerRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
@@ -29,12 +32,16 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewHouseJPanel
      */
-       private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private Seller seller;
     private PropertyDirectory propertyDirectory;
     private Property property;
     private EcoSystem system;
     private UserAccount userAccount;
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
+
 
     /**
      * Creates new form ViewDetailsJPanel
@@ -46,6 +53,9 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         this.propertyDirectory = propertyDirectory;
         this.userAccount = userAccount;
         this.system = system;
+        this.enterprise=enterprise;
+        this.network=network;
+        this.organization=organization;
         populateRequestTable();
     }
    private void populateRequestTable() {
@@ -208,7 +218,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        BuyerWorkAreaJPanel buyerJPanel = new BuyerWorkAreaJPanel(userProcessContainer,system, userAccount);
+        BuyerWorkAreaJPanel buyerJPanel = new BuyerWorkAreaJPanel(userProcessContainer,userAccount, organization,  enterprise, network,  system);
         userProcessContainer.add("BuyerWorkAreaJPanel", buyerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

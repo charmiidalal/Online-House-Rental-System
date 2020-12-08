@@ -8,7 +8,10 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.InspectRequest.InspectRequest;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
@@ -32,13 +35,19 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
 
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerWorkAreaJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public BuyerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
+        this.network = network;
+        this.enterprise = enterprise;
+        this.organization = organization;
         this.system = system;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
@@ -271,12 +280,12 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
             if (selectedRow >= 0) {
-//                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//                String Id = (String) houseTable.getValueAt(selectedRow, 0);
-//                Property property = propertyDirectory.fetchProperty(Id);
-//                ViewHouseDetailsJPanel viewJPanel = new ViewHouseDetailsJPanel(userProcessContainer, property, propertyDirectory, system, userAccount);
-//                userProcessContainer.add(viewJPanel);
-//                layout.next(userProcessContainer);
+               CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+               String Id = (String) houseTable.getValueAt(selectedRow, 0);
+                Property property = propertyDirectory.fetchProperty(Id);
+               ViewHouseDetailJPanel viewJPanel = new ViewHouseDetailJPanel(userProcessContainer, property, propertyDirectory, system, userAccount);
+               userProcessContainer.add(viewJPanel);
+                layout.next(userProcessContainer);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select a Row!!");
@@ -296,19 +305,16 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             populateRequestTable();*/
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to buy the house? Please fill the Property Registration Form first! If you have completed and got it approved please click yes!", "Warning", dialogButton);
-          if (dialogResult == JOptionPane.YES_OPTION) {
-            Property property = propertyDirectory.fetchProperty(propertyID);
-            property.setStatus("Sold");
-            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            property.setBuyer(buyer);
-            populateRequestTable();
-        } 
-          else
-          {
-              JOptionPane.showMessageDialog(null, "Please click on Registration Form to buy the house!");
-          }
-        }
-         else {
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Property property = propertyDirectory.fetchProperty(propertyID);
+                property.setStatus("Sold");
+                Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
+                property.setBuyer(buyer);
+                populateRequestTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Please click on Registration Form to buy the house!");
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnBuyHouseActionPerformed
@@ -330,27 +336,27 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
 
     private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
-   int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
             String status = (String) houseTable.getValueAt(selectedRow, 9);
-            if(!"sold".equalsIgnoreCase(status)){
-            String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
-            Property property = propertyDirectory.fetchProperty(propertyID);
-            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-        
-        BuyerRegistrationFormJPanel regBuyerPanel = new BuyerRegistrationFormJPanel(userProcessContainer,property,buyer,system,userAccount);
-        userProcessContainer.add("BuyerRegistrationFormJPanel", regBuyerPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);}
-        else
-            {
+            if (!"sold".equalsIgnoreCase(status)) {
+                String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
+                Property property = propertyDirectory.fetchProperty(propertyID);
+                Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
+
+                BuyerRegistrationFormJPanel regBuyerPanel = new BuyerRegistrationFormJPanel(userProcessContainer, property, buyer, system, userAccount);
+                userProcessContainer.add("BuyerRegistrationFormJPanel", regBuyerPanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else {
                 JOptionPane.showMessageDialog(null, "Sorry the selected house is sold! Choose other vacant houses!.");
-            }}        // TODO add your handling code here:
+            }
+        } // TODO add your handling code here:
         else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
-        
+
     }//GEN-LAST:event_btnRegistrationActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -361,21 +367,21 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void hireSPBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireSPBtnActionPerformed
-         int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-        HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer,property, buyer, system, userAccount);
-        userProcessContainer.add("manageInspectorActivity", hireServiceJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        }else {
+            HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer, property, buyer, system, userAccount);
+            userProcessContainer.add("manageInspectorActivity", hireServiceJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_hireSPBtnActionPerformed
-    
+
     private void managerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerBtnActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
@@ -383,10 +389,10 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-        HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer,property, buyer, system, userAccount);
-        userProcessContainer.add("managerActivity", hireServiceJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+            HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer, property, buyer, system, userAccount);
+            userProcessContainer.add("managerActivity", hireServiceJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -396,32 +402,32 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String status = (String) houseTable.getValueAt(selectedRow, 8);
-        
-        if (count == 1 ) {
+
+        if (count == 1) {
             //need to do
-            
+
         }
-            if( "Sold".equals(status)){
-            
+        if ("Sold".equals(status)) {
+
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-        HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer,property, buyer, system, userAccount);
-        userProcessContainer.add("managerActivity", hireServiceJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+            HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer, property, buyer, system, userAccount);
+            userProcessContainer.add("managerActivity", hireServiceJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
-            
-        
+
+
     }//GEN-LAST:event_builderBtnActionPerformed
 
     private void vireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vireBtnActionPerformed
 //      viewJobsJPanel manageInspectorActivity = new viewJobsJPanel(userProcessContainer, system, userAccount);
 //        userProcessContainer.add("manageInspectorActivity", manageInspectorActivity);
 //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-       // layout.next(userProcessContainer);
+        // layout.next(userProcessContainer);
     }//GEN-LAST:event_vireBtnActionPerformed
 
     private void managerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerBtn1ActionPerformed
@@ -431,15 +437,15 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-        HireInspectorJPanel hireServiceJPanel = new HireInspectorJPanel(userProcessContainer,property, buyer, system, userAccount);
-        userProcessContainer.add("managerActivity", hireServiceJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+            HireInspectorJPanel hireServiceJPanel = new HireInspectorJPanel(userProcessContainer, property, buyer, system, userAccount);
+            userProcessContainer.add("managerActivity", hireServiceJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_managerBtn1ActionPerformed
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

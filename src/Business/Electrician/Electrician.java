@@ -5,12 +5,14 @@
  */
 package Business.Electrician;
 
+import Business.UserAccount.UserAccount;
+
 
 /**
  *
  * @author Charmi Dalal
  */
-public class Electrician {
+public class Electrician extends UserAccount {
     private String electricianNo;
     private String electricianName;
     private String street;
