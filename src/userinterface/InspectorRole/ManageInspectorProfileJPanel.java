@@ -5,22 +5,13 @@
  */
 package userinterface.InspectorRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
+
 import Business.EcoSystem;
-import Business.InspectRequest.InspectRequest;
-import Business.InspectRequest.InspectRequestDirectory;
-import Business.Inspector.Inspector;
+import Business.Enterprise.Enterprise;
 import Business.Inspector.InspectorDirectory;
-import Business.Property.Property;
-import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,36 +22,31 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private InspectorDirectory inspectorDirectory;
+    private Enterprise enterprise;
 
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public ManageInspectorProfileJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ManageInspectorProfileJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.inspectorDirectory = (system.getInspectorDirectory() == null) ? new InspectorDirectory() : system.getInspectorDirectory();
+        this.userAccount = useraccount;
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
-        Inspector inspector = inspectorDirectory.fetchInspector(userAccount.getEmployee().getName());
-        txtName.setText(inspector.getInspectorName());
-        txtCharge.setText(inspector.getCharge());
-        txtCity.setText(inspector.getCity());
-        txtStatus.setText(inspector.getState());
-        txtZipcode.setText(inspector.getZipcode());
-        txtStreet.setText(inspector.getStreet());
-        txtEmail.setText(inspector.getEmail());
-        txtPhone.setText(inspector.getPhone());
-        txtStatus.setText(inspector.getStatus());
+        txtName.setText(userAccount.getName());
+        txtCharge.setText(userAccount.getCharge());
+        txtCity.setText(userAccount.getCity());
+        txtStatus.setText(userAccount.getState());
+        txtZipcode.setText(userAccount.getZipcode());
+        txtStreet.setText(userAccount.getStreet());
+        txtEmail.setText(userAccount.getEmail());
+        txtPhone.setText(userAccount.getPhone());
+        txtStatus.setText(userAccount.getStatus());
     }
 
     /**
@@ -88,36 +74,45 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         txtZipcode = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtCharge = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         txtState = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 89, -1, -1));
 
         txtName.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 84, 149, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel3.setText("Street");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         txtStreet.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 155, 149, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel4.setText("City:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 221, -1, -1));
 
         txtCity.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 211, 149, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel5.setText("State");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 295, -1, -1));
 
         txtStatus.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 354, 149, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel6.setText("Phone:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 89, -1, -1));
 
         txtPhone.setBackground(new java.awt.Color(153, 204, 255));
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
@@ -125,31 +120,28 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
                 txtPhoneActionPerformed(evt);
             }
         });
+        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 84, 158, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel7.setText("Email:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 160, -1, -1));
 
         txtEmail.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 155, 158, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel8.setText("Zipcode:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 216, -1, -1));
 
         txtZipcode.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 211, 158, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel9.setText("Charge:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 295, -1, -1));
 
         txtCharge.setBackground(new java.awt.Color(153, 204, 255));
-
-        btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
+        add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 290, 158, -1));
 
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
@@ -160,108 +152,20 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, -1, -1));
 
         txtState.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 290, 149, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel10.setText("Status");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 359, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(25, 56, 82));
         jLabel11.setText("INSPECTOR PROFILE");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 327, Short.MAX_VALUE)
-                .addComponent(btnSave)
-                .addGap(135, 135, 135)
-                .addComponent(btnBack)
-                .addGap(476, 476, 476))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel10))
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(162, 162, 162)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                            .addComponent(txtPhone)
-                            .addComponent(txtZipcode)
-                            .addComponent(txtCharge)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(387, 387, 387)
-                        .addComponent(jLabel11)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel11)))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8)
-                        .addComponent(txtZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBack)
-                            .addComponent(btnSave))
-                        .addGap(74, 74, 74))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtCharge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 6, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
@@ -270,29 +174,20 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Inspector inspector = inspectorDirectory.fetchInspector(userAccount.getEmployee().getName());
-        inspector.setInspectorName(txtName.getText());
-        inspector.setCharge(txtCharge.getText());
-        inspector.setCity(txtCity.getText());
-        inspector.setStatus(txtStatus.getText());
-        inspector.setZipcode(txtZipcode.getText());
-        inspector.setStreet(txtStreet.getText());
-        inspector.setEmail(txtEmail.getText());
-        inspector.setPhone(txtPhone.getText());
-        inspector.setState(txtState.getText());
+        userAccount.setName(txtName.getText());
+        userAccount.setCharge(txtCharge.getText());
+        userAccount.setCity(txtCity.getText());
+        userAccount.setStatus(txtStatus.getText());
+        userAccount.setZipcode(txtZipcode.getText());
+        userAccount.setStreet(txtStreet.getText());
+        userAccount.setEmail(txtEmail.getText());
+        userAccount.setPhone(txtPhone.getText());
+        userAccount.setState(txtState.getText());
         JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

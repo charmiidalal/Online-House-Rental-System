@@ -19,13 +19,18 @@ public class UserAccount {
 
     private String username;
     private String password;
-    private String email;
     private String name;
-    private String roleName;
-    private Boolean isApproved = true;
+    private String status;
     public Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private String Phone;
+    private String Street;
+    private String Zipcode;
+    private String Email;
+    private String City;
+    private String State;
+    private String Charge;
     private Enterprise userEnterpriseList;
     private Organization userOrganizationList;
 
@@ -85,13 +90,7 @@ public class UserAccount {
         this.userOrganizationList = userOrganizationList;
     }
 
-    public Boolean getIsApproved() {
-        return isApproved;
-    }
-
-    public void setIsApproved(Boolean isApproved) {
-        this.isApproved = isApproved;
-    }
+    
 
     @Override
     public String toString() {
@@ -102,13 +101,7 @@ public class UserAccount {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    
 
     public String getName() {
         return name;
@@ -118,12 +111,70 @@ public class UserAccount {
         this.name = name;
     }
 
-    public String getRoleName() {
-        return roleName;
+    
+
+    public String getStatus() {
+        return status;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
+    }
+
+    public String getStreet() {
+        return Street;
+    }
+
+    public void setStreet(String Street) {
+        this.Street = Street;
+    }
+
+    public String getZipcode() {
+        return Zipcode;
+    }
+
+    public void setZipcode(String Zipcode) {
+        this.Zipcode = Zipcode;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String City) {
+        this.City = City;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String State) {
+        this.State = State;
+    }
+
+    public String getCharge() {
+        return Charge;
+    }
+
+    public void setCharge(String Charge) {
+        this.Charge = Charge;
     }
     
     

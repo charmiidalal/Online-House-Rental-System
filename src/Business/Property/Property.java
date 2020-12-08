@@ -4,12 +4,7 @@
  * and open the template in the editor.
  */
 package Business.Property;
-
-import Business.Buyer.Buyer;
-
-import Business.Seller.Seller;
-import java.io.File;
-
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -28,22 +23,21 @@ public class Property {
     private String pincode;
     private String status;
     private double price;
-    
     private int bhk;
     private double bathroom;
-    private Seller seller;
-    private Buyer buyer;
-   
+    private UserAccount seller;
+    private UserAccount buyer;
+
     ArrayList<ImageIcon> images = new ArrayList<>();
 
-    public ArrayList<Buyer> getRegisteredBuyer() {
+    public ArrayList<UserAccount> getRegisteredBuyer() {
         return RegisteredBuyer;
     }
 
-    public void setRegisteredBuyer(ArrayList<Buyer> RegisteredBuyer) {
+    public void setRegisteredBuyer(ArrayList<UserAccount> RegisteredBuyer) {
         this.RegisteredBuyer = RegisteredBuyer;
     }
-    ArrayList<Buyer> RegisteredBuyer = new ArrayList<>();
+    ArrayList<UserAccount> RegisteredBuyer = new ArrayList<>();
 
     public ArrayList<ImageIcon> getImages() {
         return images;
@@ -52,7 +46,7 @@ public class Property {
     public void setImages(ArrayList<ImageIcon> images) {
         this.images = images;
     }
-    ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
+    ArrayList<UserAccount> buyerList = new ArrayList<UserAccount>();
 
     public String getStatus() {
         return status;
@@ -62,14 +56,13 @@ public class Property {
         this.status = status;
     }
 
-    public ArrayList<Buyer> getBuyerList() {
+    public ArrayList<UserAccount> getBuyerList() {
         return buyerList;
     }
 
-    public void setBuyerList(ArrayList<Buyer> buyerList) {
+    public void setBuyerList(ArrayList<UserAccount> buyerList) {
         this.buyerList = buyerList;
     }
-    
 
     public String getPropertyName() {
         return propertyName;
@@ -111,8 +104,6 @@ public class Property {
         this.price = price;
     }
 
-    
-
     public int getBhk() {
         return bhk;
     }
@@ -153,25 +144,22 @@ public class Property {
         this.PropertyID = PropertyID;
     }
 
-    public Seller getSeller() {
+    public UserAccount getSeller() {
         return seller;
     }
 
-    public void setSeller(Seller seller) {
+    public void setSeller(UserAccount seller) {
         this.seller = seller;
     }
 
-    public Buyer getBuyer() {
+    public UserAccount getBuyer() {
         return buyer;
     }
 
-    public void setBuyer(Buyer buyer) {
+    public void setBuyer(UserAccount buyer) {
         this.buyer = buyer;
     }
 
-   
-    
-    
     @Override
     public String toString() {
         return propertyName;

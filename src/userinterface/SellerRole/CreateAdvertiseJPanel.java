@@ -9,15 +9,11 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -26,30 +22,36 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author anusha
+ * @author Dinesh
  */
 public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
     JFileChooser imgChooser;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
     BufferedImage img;
     private JPanel userProcessContainer;
-    private final Enterprise enterprise;
+    private Enterprise enterprise;
     private PropertyDirectory propertyDirectory;
 
     /**
      * Creates new form CreateAdvertiseJPanel
      */
-    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory,EcoSystem system) {
-        initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
-        this.userAccount = useraccount;
-        this.sellerDirectory = sellerDirectory;
-        this.system = system;
+    public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
+            initComponents();
+            this.userProcessContainer = userProcessContainer;
+            this.enterprise = enterprise;
+            this.userAccount = useraccount;
+            this.system = system;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+    }
+
+    public ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(imgupload.getWidth(), imgupload.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
     }
 
     /**
@@ -61,60 +63,100 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        nameTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        addressTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cityTxt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        stateTxt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        addressTxt = new javax.swing.JTextField();
+        stateTxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        uploadBtn = new javax.swing.JButton();
-        pinTxt = new javax.swing.JTextField();
-        priceTxt = new javax.swing.JTextField();
-        submitBtn = new javax.swing.JButton();
-        bathroomTxt = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        bhkTxt = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
-        imgupload = new javax.swing.JLabel();
-        nameTxt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        txtCharge = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtState = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        bathroomTxt = new javax.swing.JTextField();
+        submitBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        uploadBtn = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        bhkTxt = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        priceTxt = new javax.swing.JTextField();
+        imgupload = new javax.swing.JLabel();
+        zipcodeTxt = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(204, 204, 204));
-        setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, -1));
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel1.setText("Name:");
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setText("Name:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 99, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel2.setText("House Address:");
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel3.setText("City");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 172, -1, -1));
+        jPanel1.add(cityTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 180, -1));
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel3.setText("City:");
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel6.setText("House Address:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 99, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel4.setText("State:");
+        addressTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addressTxtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(addressTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 94, 180, -1));
+        jPanel1.add(stateTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 167, 180, -1));
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel5.setText("Pincode:");
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel7.setText("State");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 172, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel6.setText("Upload Image:");
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel8.setText("Upload Image:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 260, -1, -1));
+        jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 336, 180, -1));
 
-        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel7.setText("Price:");
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel9.setText("Charge:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 341, -1, -1));
+        jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 336, 180, -1));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel5.setText("State");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 341, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel10.setText("BHK:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 430, -1, -1));
+        jPanel1.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 425, 180, -1));
+
+        submitBtn.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        submitBtn.setText("Save");
+        submitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 550, 105, -1));
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel4.setText("Pincode:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 260, -1, -1));
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel11.setText("HOUSE ADVERTISEMENT");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 24, -1, -1));
 
         uploadBtn.setBackground(new java.awt.Color(255, 255, 255));
         uploadBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -124,184 +166,43 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 uploadBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(uploadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 254, -1, -1));
 
-        submitBtn.setBackground(new java.awt.Color(255, 255, 255));
-        submitBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        submitBtn.setText("Submit");
-        submitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBtnActionPerformed(evt);
-            }
-        });
+        jLabel12.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel12.setText("Bathroom:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 430, -1, -1));
+        jPanel1.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 425, 180, -1));
 
-        bathroomTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bathroomTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel10.setText("Bathroom:");
-
-        bhkTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bhkTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel11.setText("BHK:");
-
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel9.setText("HOUSE ADVERTISEMENT");
-
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aed_final_project/src/icon/back.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
-        nameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aed_final_project/src/icon/41-512.png"))); // NOI18N
-        jLabel8.setFocusable(false);
+        jLabel13.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel13.setText("Price:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 514, -1, -1));
+        jPanel1.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 509, 180, -1));
+        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(943, 299, 151, 63));
+        jPanel1.add(zipcodeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(499, 499, 499)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addGap(33, 33, 33))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jLabel8)
-                .addGap(111, 111, 111)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel7))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(cityTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                                .addComponent(stateTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(pinTxt, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(uploadBtn)
-                                                .addGap(26, 26, 26)
-                                                .addComponent(imgupload, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(bathroomTxt)
-                                            .addComponent(bhkTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                            .addComponent(priceTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))))
-                                .addGap(0, 73, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameTxt)
-                                    .addComponent(addressTxt))))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(submitBtn)
-                        .addGap(30, 30, 30))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBack)
-                            .addComponent(jLabel9))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(stateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(pinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(uploadBtn))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(imgupload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(bhkTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(bathroomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(priceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)))
-                .addComponent(submitBtn)
-                .addGap(181, 181, 181))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTxtActionPerformed
 
     private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
 
         JFileChooser biofilechooser = new JFileChooser();
         biofilechooser.setDialogTitle("Choose Your File");
         biofilechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        // below code selects the file 
+        // below code selects the file
         int returnvalbio = biofilechooser.showOpenDialog(this);
         if (returnvalbio == JFileChooser.APPROVE_OPTION) {
             File fileBio = biofilechooser.getSelectedFile();
@@ -317,20 +218,18 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_uploadBtnActionPerformed
-    public ImageIcon ResizeImage(String ImagePath) {
-        ImageIcon MyImage = new ImageIcon(ImagePath);
-        Image img = MyImage.getImage();
-        Image newImg = img.getScaledInstance(imgupload.getWidth(), imgupload.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon image = new ImageIcon(newImg);
-        return image;
-    }
-    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
 
+    private void addressTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addressTxtActionPerformed
+
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
         String name = nameTxt.getText();
         String address = addressTxt.getText();
         String city = cityTxt.getText();
         String state = stateTxt.getText();
-        String pincode = pinTxt.getText();
+        String pincode = zipcodeTxt.getText();
 
         ImageIcon img = (ImageIcon) imgupload.getIcon();
         //blBioId.setIcon(personBioId);
@@ -344,7 +243,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         if (name.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty() || price == 0.0 || img == null || bathroom == 0.0) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
         } else {
-            String sellerID = this.userAccount.getEmployee().getName();
+            String sellerName = this.userAccount.getEmployee().getName();
             Property property = new Property();
             property.setPropertyName(name);
             property.setStreet(address);
@@ -356,67 +255,37 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             property.setPrice(price);
             property.setStatus("Vacant");
             property.setUploadImg((ImageIcon) imgupload.getIcon());
-            property.setSeller(sellerDirectory.fetchSeller(sellerID));
+            property.setSeller(userAccount);
             property.setPropertyID(propertyDirectory.generatePropertyID());
             propertyDirectory.addProperty(property);
             system.setPropertyDirectory(propertyDirectory);
-            JOptionPane.showMessageDialog(null, "Advertisement Added for " + sellerID + "seller!");
-
+            JOptionPane.showMessageDialog(null, "Advertisement Added!");
+            emptyAllFields();
         }
     }//GEN-LAST:event_submitBtnActionPerformed
+    
+     public void emptyAllFields(){
+        nameTxt.setText("");
+        addressTxt.setText("");
+        cityTxt.setText("");
+        stateTxt.setText("");
+        zipcodeTxt.setText("");
+        imgupload.setText("");
+        priceTxt.setText("");
+        bhkTxt.setText("");
+        bathroomTxt.setText("");
+     }
 
-    private void bathroomTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathroomTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bathroomTxtActionPerformed
-
-    private void bhkTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhkTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bhkTxtActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-       // SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, userAccount,system);
-       // userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
- ArrayList<File> images = new ArrayList<>();
- int selectedImageIndex =0;
-public void setImage(int index){
-
-  if (index<images.size()) {
-        File imageFile = images.get(index);
-        selectedImageIndex = index;
-        //read the file and set the image
-   }else{
-      System.out.println("no image found");
-  }
-
-}
-
-public void goToNextImages(){
-    ++selectedImageIndex;
-    setImage(selectedImageIndex);
-}
-
-public void goToPreviousImage(){
-    --selectedImageIndex;
-    setImage(selectedImageIndex);
-}
-
-public void startProgram(int index){
-    setImage(index);
-}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTxt;
     private javax.swing.JTextField bathroomTxt;
     private javax.swing.JTextField bhkTxt;
-    private javax.swing.JButton btnBack;
     private javax.swing.JTextField cityTxt;
     private javax.swing.JLabel imgupload;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -425,11 +294,14 @@ public void startProgram(int index){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameTxt;
-    private javax.swing.JTextField pinTxt;
     private javax.swing.JTextField priceTxt;
     private javax.swing.JTextField stateTxt;
     private javax.swing.JButton submitBtn;
+    private javax.swing.JTextField txtCharge;
+    private javax.swing.JTextField txtState;
     private javax.swing.JButton uploadBtn;
+    private javax.swing.JTextField zipcodeTxt;
     // End of variables declaration//GEN-END:variables
 }

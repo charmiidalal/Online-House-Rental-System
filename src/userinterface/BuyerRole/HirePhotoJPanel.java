@@ -159,6 +159,7 @@ public class HirePhotoJPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(390, 390, 390)
@@ -176,6 +177,19 @@ public class HirePhotoJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(commentTxxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(brnHireInspector)
+                        .addComponent(btnBuyHouse1)))
+                .addContainerGap(118, Short.MAX_VALUE))
+>>>>>>> 3c8d73e83988432cab6b8c84ae0a430f829a1b59
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -40, -1, -1));
@@ -193,7 +207,7 @@ public class HirePhotoJPanel extends javax.swing.JPanel {
                 pr.setRequestID(photographerRequestDirectory.generatePhotoRequestID());
                 pr.setBuyer(buyer);
                 pr.setPhotographer(photo);
-                pr.setSeller(property.getSeller());
+              //  pr.setSeller(property.getSeller());
                 pr.setStatus("Requested");
                 pr.setBuyerNote(comment);
                 pr.setProperty(property);

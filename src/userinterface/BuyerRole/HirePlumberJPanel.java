@@ -145,7 +145,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
                 er.setRequestID(plumbingRequestDirectory.generatePlumbingRequestID());
                 er.setBuyer(buyer);
                 er.setPlumber(plumber);
-                er.setSeller(property.getSeller());
+              //  er.setSeller(property.getSeller());
                 er.setStatus("Requested");
                 er.setBuyerNote(comment);
                 er.setProperty(property);

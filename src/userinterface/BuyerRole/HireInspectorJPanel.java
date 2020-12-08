@@ -148,7 +148,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                 ir.setRequestID(inspectRequestDirectory.generateInspectorRequestID());
                 ir.setBuyer(buyer);
                 ir.setInspector(inspector);
-                ir.setSeller(property.getSeller());
+                //ir.setSeller(property.getSeller());
                 ir.setStatus("Requested");
                 ir.setBuyerNote(comment);
                 ir.setProperty(property);

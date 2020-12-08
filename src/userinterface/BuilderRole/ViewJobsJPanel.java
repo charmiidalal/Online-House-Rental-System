@@ -55,21 +55,21 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         Builder builder = builderDirectory.fetchBuilder(userAccount.getEmployee().getName());
         for (BuilderRequest builderReuqest : builderRequestDirectory.getBuilderRequestList()) {
-            if (builderReuqest.getBuilder().getBuilderNo().equals(builder.getBuilderNo())) {
-                Object[] row = new Object[10];
-                row[0] = builderReuqest.getRequestID();
-                row[1] = builderReuqest.getBuyer().getBuyerName();
-                row[2] = builderReuqest.getSeller().getName();
-                row[3] = builderReuqest.getProperty().getStreet();
-                row[4] = builderReuqest.getProperty().getCity();
-                row[5] = builderReuqest.getProperty().getState();
-                row[6] = builderReuqest.getProperty().getPincode();
-                row[7] = builderReuqest.getStatus();
-                row[8] = builderReuqest.getBuyerNote();
-                row[9] = builderReuqest.getInspectorNote();
-
-                model.addRow(row);
-            }
+//            if (builderReuqest.getBuilder().getBuilderNo().equals(builder.getBuilderNo())) {
+//                Object[] row = new Object[10];
+//                row[0] = builderReuqest.getRequestID();
+//                row[1] = builderReuqest.getBuyer().getBuyerName();
+//                row[2] = builderReuqest.getSeller().getName();
+//                row[3] = builderReuqest.getProperty().getStreet();
+//                row[4] = builderReuqest.getProperty().getCity();
+//                row[5] = builderReuqest.getProperty().getState();
+//                row[6] = builderReuqest.getProperty().getPincode();
+//                row[7] = builderReuqest.getStatus();
+//                row[8] = builderReuqest.getBuyerNote();
+//                row[9] = builderReuqest.getInspectorNote();
+//
+//                model.addRow(row);
+//            }
         }
     }
     /**

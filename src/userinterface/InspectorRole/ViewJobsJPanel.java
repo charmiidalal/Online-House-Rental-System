@@ -5,18 +5,11 @@
  */
 package userinterface.InspectorRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.InspectRequest.InspectRequest;
-import Business.InspectRequest.InspectRequestDirectory;
-import Business.Inspector.Inspector;
-import Business.Inspector.InspectorDirectory;
-import Business.Property.Property;
-import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
+import Business.Enterprise.Enterprise;
+import Business.WorkQueue.InspectRequest;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,44 +24,38 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private InspectRequestDirectory inspectRequestDirectory;
-    private InspectorDirectory inspectorDirectory;
+    private Enterprise enterprise;
 
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public ViewJobsJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ViewJobsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.inspectRequestDirectory = (system.getInspectRequestDirectory() == null) ? new InspectRequestDirectory() : system.getInspectRequestDirectory();
-        this.inspectorDirectory = (system.getInspectorDirectory() == null) ? new InspectorDirectory() : system.getInspectorDirectory();
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Inspector inspector = inspectorDirectory.fetchInspector(userAccount.getEmployee().getName());
-        for (InspectRequest inspectRequest : inspectRequestDirectory.getInspectRequestDirectory()) {
-            if (inspectRequest.getInspector().getInspectorNo().equals(inspector.getInspectorNo())) {
-                Object[] row = new Object[10];
-                row[0] = inspectRequest.getRequestID();
-                row[1] = inspectRequest.getBuyer().getBuyerName();
-                row[2] = inspectRequest.getSeller().getName();
-                row[3] = inspectRequest.getProperty().getStreet();
-                row[4] = inspectRequest.getProperty().getCity();
-                row[5] = inspectRequest.getProperty().getState();
-                row[6] = inspectRequest.getProperty().getPincode();
-                row[7] = inspectRequest.getStatus();
-                row[8] = inspectRequest.getBuyerNote();
-                row[9] = inspectRequest.getInspectorNote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof InspectRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((InspectRequest) workRequest).getBuyer().getName();
+                row[2] = ((InspectRequest) workRequest).getSeller().getName();
+                row[3] = ((InspectRequest) workRequest).getProperty().getStreet();
+                row[4] = ((InspectRequest) workRequest).getProperty().getCity();
+                row[5] = ((InspectRequest) workRequest).getProperty().getState();
+                row[6] = ((InspectRequest) workRequest).getProperty().getPincode();
+                row[7] = ((InspectRequest) workRequest).getStatus();
+                row[8] = ((InspectRequest) workRequest).getBuyerNote();
+                row[9] = ((InspectRequest) workRequest).getInspectorNote();
 
                 model.addRow(row);
             }
@@ -131,7 +118,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 844, 300));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 840, 300));
 
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
@@ -181,26 +168,22 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+        if (selectedRow >= 0) {
+            InspectRequest inspectRequest = (InspectRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            InspectRequest inspectRequest = inspectRequestDirectory.fetchInspectorRequest(jobID);
             if (!"Job Taken".equals(inspectRequest.getStatus())) {
-                if (!"".equals(feedback)){
-                inspectRequest.setStatus("Job Taken");
-                inspectRequest.setQuote(quoteTxt.getText());
-                Inspector inspector = inspectorDirectory.fetchInspector(userAccount.getEmployee().getName());
-                //inspector.getCharge();
-               // inspector.setCharge(quoteTxt.getText());
-                inspector.setStatus("Occupied");
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-            }else{
+                if (!"".equals(feedback)) {
+                    inspectRequest.setStatus("Job Taken");
+                    inspectRequest.setQuote(quoteTxt.getText());
+                    //inspector.getCharge();
+                    // inspector.setCharge(quoteTxt.getText());
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
                     JOptionPane.showMessageDialog(null, "Please enter feedback!");
                 }
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
         } else {
@@ -211,23 +194,18 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+        if (selectedRow >= 0) {
+            InspectRequest inspectRequest = (InspectRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                InspectRequest inspectRequest = inspectRequestDirectory.fetchInspectorRequest(jobID);
                 inspectRequest.setStatus("Completed");
                 inspectRequest.setInspectorNote(feedback);
                 populateRequestTable();
-                Inspector inspector = inspectorDirectory.fetchInspector(userAccount.getEmployee().getName());
-                inspector.setStatus("Available");
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+                userAccount.setStatus("Available");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter feedback!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }

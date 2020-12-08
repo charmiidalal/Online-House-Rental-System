@@ -6,33 +6,39 @@
 package Business.WorkQueue;
 
 import Business.Buyer.Buyer;
+import Business.Enterprise.Enterprise;
 import Business.Inspector.Inspector;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Seller.Seller;
+import Business.UserAccount.UserAccount;
 
 /**
  *
  * @author Dinesh
  */
-
-    public class InspectRequest extends WorkRequest{
+public class InspectRequest extends WorkRequest {
+    private Network network;
+    private Enterprise enterprise;
+    private Organization.Type orgType;
     private String requestID;
-    private Seller seller;
-    private Buyer buyer;
-    private Inspector inspector;
+    private UserAccount seller;
+    private UserAccount buyer;
+    private UserAccount inspector;
     private Property property;
     private String inspectorNote;
-     private String buyerNote;
+    private String buyerNote;
     private String status;
     private String requestedDate;
-     int min = 100;
+    int min = 100;
     int max = 999;
 
     public InspectRequest() {
-        int randomNum = (int)(Math.random() * (max - min + 1) + min);
-        requestID = "Request"+randomNum;
+        int randomNum = (int) (Math.random() * (max - min + 1) + min);
+        requestID = "Request" + randomNum;
     }
-    
+
     public String getRequestID() {
         return requestID;
     }
@@ -41,29 +47,71 @@ import Business.Seller.Seller;
         this.requestID = requestID;
     }
 
-    public Seller getSeller() {
+    public UserAccount getSeller() {
         return seller;
     }
 
-    public void setSeller(Seller seller) {
+    public void setSeller(UserAccount seller) {
         this.seller = seller;
     }
 
-    public Buyer getBuyer() {
+    public UserAccount getBuyer() {
         return buyer;
     }
 
-    public void setBuyer(Buyer buyer) {
+    public void setBuyer(UserAccount buyer) {
         this.buyer = buyer;
     }
 
-    public Inspector getInspector() {
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public Organization.Type getOrgType() {
+        return orgType;
+    }
+
+    public void setOrgType(Organization.Type orgType) {
+        this.orgType = orgType;
+    }
+
+    public UserAccount getInspector() {
         return inspector;
     }
 
-    public void setInspector(Inspector inspector) {
+    public void setInspector(UserAccount inspector) {
         this.inspector = inspector;
     }
+
+  
 
     public String getInspectorNote() {
         return inspectorNote;
@@ -81,7 +129,6 @@ import Business.Seller.Seller;
         this.buyerNote = buyerNote;
     }
 
-    
     public String getStatus() {
         return status;
     }
@@ -105,7 +152,5 @@ import Business.Seller.Seller;
     public void setProperty(Property property) {
         this.property = property;
     }
-
-    
 
 }

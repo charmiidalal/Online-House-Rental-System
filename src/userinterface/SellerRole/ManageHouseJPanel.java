@@ -5,14 +5,10 @@
  */
 package userinterface.SellerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -28,7 +24,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem business;
-    private SellerDirectory sellerDirectory;
     /**
      * Creates new form ManageHouseJPanel
      */
@@ -37,12 +32,11 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     private PropertyDirectory propertyDirectory;
     private EcoSystem system;
 
-    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, SellerDirectory sellerDirectory, EcoSystem system) {
+    public ManageHouseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.useraccount = useraccount;
-        this.sellerDirectory = sellerDirectory;
         this.system = system;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         populateTable();
@@ -54,17 +48,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         for (Property property : propertyDirectory.getPropertyList()) {
             if (property.getSeller().getUsername().equals(useraccount.getUsername())) {
-                // String buyername=(property.getBuyer().getBuyerName())==null ? "null": property.getBuyer().getBuyerName();
-                /*  try {
-            if ((property.getBuyer().getBuyerName())!=null ) {
-                  System.out.println("no exception");
-                }
-            }
-
-        catch (NullPointerException e) {
-          
-            System.out.println("NullPointerException thrown!");
-        }*/
                 Object[] row = new Object[11];
                 row[0] = property;
                 row[1] = property.getPropertyName();
@@ -76,15 +59,15 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 row[7] = property.getBathroom();
                 row[8] = property.getPrice();
                 row[9] = property.getStatus();
-                try {
-                    if (property.getBuyer().getBuyerName() != null) {
-                        row[10] = property.getBuyer().getBuyerName();
-                    } else {
-                        row[10] = "";
-                    }
-                } catch (NullPointerException ex) {
-                    System.out.println("userinterface.SellerRole.ManageHouseJPanel.populateTable()");
-                }
+//                try {
+//                    if (property.getBuyer().getBuyerName() != null) {
+//                        row[10] = property.getBuyer().getBuyerName();
+//                    } else {
+//                        row[10] = "";
+//                    }
+//                } catch (NullPointerException ex) {
+//                    System.out.println("userinterface.SellerRole.ManageHouseJPanel.populateTable()");
+//                }
                 dtm.addRow(row);
             }
         }
@@ -104,9 +87,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnDeleteHouse = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         btnBuyers = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanelHouse = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -131,6 +112,9 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         txtSoldTo = new javax.swing.JTextField();
         jbtnUpdate = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jtblHouse.setAutoCreateRowSorter(true);
         jtblHouse.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jtblHouse.setModel(new javax.swing.table.DefaultTableModel(
@@ -152,9 +136,12 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         jtblHouse.setSelectionBackground(new java.awt.Color(0, 0, 51));
         jScrollPane1.setViewportView(jtblHouse);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 1030, 127));
+
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("LIST OF HOUSES");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
 
         btnDeleteHouse.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnDeleteHouse.setForeground(new java.awt.Color(0, 0, 51));
@@ -164,6 +151,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 btnDeleteHouseActionPerformed(evt);
             }
         });
+        add(btnDeleteHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
 
         btnEdit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnEdit.setForeground(new java.awt.Color(0, 0, 51));
@@ -173,15 +161,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
-
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack.setBorderPainted(false);
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
 
         btnBuyers.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnBuyers.setForeground(new java.awt.Color(0, 0, 51));
@@ -191,20 +171,13 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 btnBuyersActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        add(btnBuyers, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/opacitycitybig.png"))); // NOI18N
         jLabel2.setOpaque(true);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 494, 490));
+
+        jPanelHouse.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
@@ -282,51 +255,52 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHouseLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelHouseLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelHouseLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(stateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(86, 86, 86)
-                .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
-                        .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bhkTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bathroomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jbtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanelHouseLayout.createSequentialGroup()
-                            .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel12))
-                            .addGap(42, 42, 42)
-                            .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtSoldTo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(priceTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE))))))
-                .addGap(10, 75, Short.MAX_VALUE))
+                        .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanelHouseLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelHouseLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(stateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(86, 86, 86)
+                        .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
+                                .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bhkTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bathroomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHouseLayout.createSequentialGroup()
+                                .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel12))
+                                .addGap(42, 42, 42)
+                                .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSoldTo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(priceTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBoxStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE)))))))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanelHouseLayout.setVerticalGroup(
             jPanelHouseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,72 +335,12 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                     .addComponent(pinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(txtSoldTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jbtnUpdate)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1095, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnEdit)
-                        .addGap(110, 110, 110)
-                        .addComponent(btnDeleteHouse)
-                        .addGap(98, 98, 98)
-                        .addComponent(btnBuyers)
-                        .addGap(176, 176, 176))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(559, 559, 559)
-                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanelHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(49, 49, 49))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btnBack)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEdit)
-                            .addComponent(btnDeleteHouse)
-                            .addComponent(btnBuyers))
-                        .addGap(75, 75, 75)
-                        .addComponent(jPanelHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1026, 1026, 1026))
-        );
+        add(jPanelHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 350, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteHouseActionPerformed
@@ -447,14 +361,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a house to be deleted");
         }
     }//GEN-LAST:event_btnDeleteHouseActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        //SellerWorkAreaJPanel sellerJPanel = new SellerWorkAreaJPanel(userProcessContainer, useraccount, system);
-        //userProcessContainer.add("SellerWorkAreaJPanel", sellerJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
@@ -502,33 +408,31 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         if (count == 1) {
             if (selectedRow >= 0) {
 
-                String name = (String) jtblHouse.getValueAt(selectedRow,1);
+                String name = (String) jtblHouse.getValueAt(selectedRow, 1);
                 Property property = propertyDirectory.searchPropertyName(name);
-               
-                    ArrayList<Buyer> buyers = property.getRegisteredBuyer();
-                    try{
+
+                ArrayList<UserAccount> buyers = property.getRegisteredBuyer();
+                try {
                     if (!buyers.isEmpty() || buyers != null) {
 
-                    
-                            ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer, enterprise, useraccount, property, system);
-                            userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
-                            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                            layout.next(userProcessContainer);
+                        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer, enterprise, useraccount, property, system);
+                        userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
+                        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                        layout.next(userProcessContainer);
 
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Sorry,No interested buyer for this property!!");
-                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Sorry,No interested buyer for this property!!");
                     }
-                 catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     System.out.println("NullPointerException thrown!");
                     JOptionPane.showMessageDialog(null, "Sorry,No interested buyer for this property!!");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Please select a Row!!");
-            }}
-else {
-                JOptionPane.showMessageDialog(null, "Please select a Row!!");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
 
     }//GEN-LAST:event_btnBuyersActionPerformed
 
@@ -567,14 +471,14 @@ else {
         String statusget = String.valueOf(jComboBoxStatus.getSelectedItem());
         property.setStatus(statusget);
         //property.setBuyer(buyer);
-        try {
-            if (txtSoldTo.getText() != null) {
-                property.getBuyer().setBuyerName(txtSoldTo.getText());
-            }
-
-        } catch (NullPointerException e) {
-            System.out.println("NullPointerException thrown!");
-        }
+//        try {
+//            if (txtSoldTo.getText() != null) {
+//                property.getBuyer().setBuyerName(txtSoldTo.getText());
+//            }
+//
+//        } catch (NullPointerException e) {
+//            System.out.println("NullPointerException thrown!");
+//        }
 
         DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
         dtm.setRowCount(0);
@@ -593,7 +497,7 @@ else {
         row[10] = property.getBuyer();
         dtm.addRow(row);
 
-        property.setSeller(sellerDirectory.fetchSeller(sellerID));
+        property.setSeller(useraccount);
 
         system.setPropertyDirectory(propertyDirectory);
         JOptionPane.showMessageDialog(null, "House details Updated!");
@@ -619,7 +523,6 @@ else {
     private javax.swing.JTextField addressTxt;
     private javax.swing.JTextField bathroomTxt;
     private javax.swing.JTextField bhkTxt;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBuyers;
     private javax.swing.JButton btnDeleteHouse;
     private javax.swing.JButton btnEdit;
@@ -637,7 +540,6 @@ else {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelHouse;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnUpdate;
