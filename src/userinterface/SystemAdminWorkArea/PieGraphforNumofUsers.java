@@ -1,0 +1,184 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package userinterface.SystemAdminWorkArea;
+
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Role.AgentRole;
+import Business.Role.BuilderRole;
+import Business.Role.BuyerRole;
+import Business.Role.CleaningRole;
+import Business.Role.ElectricianRole;
+import Business.Role.InspectorRole;
+import Business.Role.PackersMoversRole;
+import Business.Role.PhotographerRole;
+import Business.Role.SellerRole;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+
+/**
+ *
+ * @author Mayank
+ */
+public class PieGraphforNumofUsers extends javax.swing.JPanel {
+    
+    JPanel userProcessContainer;
+    EcoSystem system;
+    JFreeChart pieChart;
+    /**
+     * Creates new form ViewScenesGraph
+     */
+    public PieGraphforNumofUsers(JPanel userProcessContainer, EcoSystem system) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
+        populateBarGraph();
+    }
+    
+    public void populateBarGraph() {
+        pieChart = ChartFactory.createPieChart(
+         "Number of Scenes Created across Networks",                     
+         createDataset(),          
+         true, true, false);
+        ChartPanel chartPanel = new ChartPanel( pieChart );   
+        jPanel1.removeAll();
+        jPanel1.add(chartPanel, BorderLayout.CENTER);
+        jPanel1.validate();
+    }
+    
+    private PieDataset createDataset() {
+       
+        int BuyerCount = 0, SellerCount = 0, AgentCount = 0, InspectorCount = 0, CleanerCount = 0,
+                BuilderCount = 0, ElectricianCount = 0, PhotographerCount = 0, PackersMoversCount = 0;
+        DefaultPieDataset result = new DefaultPieDataset();
+
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getRole() instanceof BuyerRole) {
+                            BuyerCount++;
+                        } else if (ua.getRole() instanceof SellerRole) {
+                            SellerCount++;
+                        } else if (ua.getRole() instanceof AgentRole) {
+                            AgentCount++;
+                        } else if (ua.getRole() instanceof InspectorRole) {
+                            InspectorCount++;
+                        } else if (ua.getRole() instanceof CleaningRole) {
+                            CleanerCount++;
+                        } else if (ua.getRole() instanceof BuilderRole) {
+                            BuilderCount++;
+                        } else if (ua.getRole() instanceof ElectricianRole) {
+                            ElectricianCount++;
+                        } else if (ua.getRole() instanceof PhotographerRole) {
+                            PhotographerCount++;
+                        } else if (ua.getRole() instanceof PackersMoversRole) {
+                            PackersMoversCount++;
+                        }
+                    }
+                }
+            }
+        }
+        result.setValue("Buyer", BuyerCount);
+        result.setValue("Seller", SellerCount);
+        result.setValue("Agent", AgentCount);
+        result.setValue("Inspector", InspectorCount);
+        result.setValue("Cleaner", CleanerCount);
+        result.setValue("Builder", BuilderCount);
+        result.setValue("Electrician", ElectricianCount);
+        result.setValue("Photographer", PhotographerCount);
+        result.setValue("PackersMovers", PackersMoversCount);
+
+        return result;
+   }
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1058, 840));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 860, 600));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(25, 56, 82));
+        jButton1.setText("Download Graph");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("NUMBER OF USERS BY ROLES");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 16, 594, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/bar-chart.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            int width = 640;    /* Width of the image */
+            int height = 480;   /* Height of the image */
+            File BarChart = new File( "BarChart.jpeg" );
+            ChartUtilities.saveChartAsJPEG( BarChart , pieChart , width , height );
+            JOptionPane.showMessageDialog(null, "A JPEG image file named BarChart.jpeg is downloaded in your current directory.");
+        } catch (IOException ex) {
+            Logger.getLogger(PieGraphforNumofUsers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    // End of variables declaration//GEN-END:variables
+}

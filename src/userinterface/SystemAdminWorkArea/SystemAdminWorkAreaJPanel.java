@@ -126,12 +126,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEnterpriseLabel = new javax.swing.JLabel();
         manageEnterpriseAdmin = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        manageEnterpriseAdminLabel = new javax.swing.JLabel();
+        manageEnterpriseAdminLabel1 = new javax.swing.JLabel();
         lblSelectedNode1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jSeparator2 = new javax.swing.JSeparator();
+        viewWorkRequests = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        manageUserTraffic = new javax.swing.JLabel();
         rightSystemAdminPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 229, 180));
@@ -239,9 +242,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/administrator.png"))); // NOI18N
 
-        manageEnterpriseAdminLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageEnterpriseAdminLabel.setText("Manage Enterprise Admin");
-        manageEnterpriseAdminLabel.setPreferredSize(new java.awt.Dimension(115, 16));
+        manageEnterpriseAdminLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        manageEnterpriseAdminLabel1.setText("Manage Enterprise Admin");
+        manageEnterpriseAdminLabel1.setPreferredSize(new java.awt.Dimension(115, 16));
 
         javax.swing.GroupLayout manageEnterpriseAdminLayout = new javax.swing.GroupLayout(manageEnterpriseAdmin);
         manageEnterpriseAdmin.setLayout(manageEnterpriseAdminLayout);
@@ -250,20 +253,24 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(manageEnterpriseAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(manageEnterpriseAdminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+                .addContainerGap(237, Short.MAX_VALUE))
+            .addGroup(manageEnterpriseAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(manageEnterpriseAdminLayout.createSequentialGroup()
+                    .addGap(59, 59, 59)
+                    .addComponent(manageEnterpriseAdminLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                    .addGap(12, 12, 12)))
         );
         manageEnterpriseAdminLayout.setVerticalGroup(
             manageEnterpriseAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageEnterpriseAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(manageEnterpriseAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageEnterpriseAdminLayout.createSequentialGroup()
-                        .addComponent(manageEnterpriseAdminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(manageEnterpriseAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageEnterpriseAdminLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageEnterpriseAdminLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         jPanel3.add(manageEnterpriseAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 88, 280, 40));
@@ -290,6 +297,30 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jSeparator2.setBackground(new java.awt.Color(0, 51, 51));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 280, -1));
+
+        viewWorkRequests.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        viewWorkRequests.setText("View Work Requests");
+        viewWorkRequests.setPreferredSize(new java.awt.Dimension(115, 16));
+        viewWorkRequests.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                viewWorkRequestsMousePressed(evt);
+            }
+        });
+        jPanel3.add(viewWorkRequests, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 209, 37));
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/administrator.png"))); // NOI18N
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 37, 37));
+
+        manageUserTraffic.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        manageUserTraffic.setText("View User Traffic");
+        manageUserTraffic.setPreferredSize(new java.awt.Dimension(115, 16));
+        manageUserTraffic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageUserTrafficMousePressed(evt);
+            }
+        });
+        jPanel3.add(manageUserTraffic, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 209, 37));
 
         rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
@@ -343,12 +374,30 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTree1ValueChanged
 
+    private void viewWorkRequestsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewWorkRequestsMousePressed
+        // TODO add your handling code here:
+        BarGraphforStatusofWR pgou = new BarGraphforStatusofWR(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("PieGraphforNumofUsers",pgou);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+    }//GEN-LAST:event_viewWorkRequestsMousePressed
+
+    private void manageUserTrafficMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUserTrafficMousePressed
+        // TODO add your handling code here:
+        PieGraphforNumofUsers pgou = new PieGraphforNumofUsers(rightSystemAdminPanel, ecosystem);
+        rightSystemAdminPanel.add("PieGraphforNumofUsers",pgou);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+        
+    }//GEN-LAST:event_manageUserTrafficMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
@@ -356,11 +405,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblSelectedNode1;
     private javax.swing.JPanel manageEnterprise;
     private javax.swing.JPanel manageEnterpriseAdmin;
-    private javax.swing.JLabel manageEnterpriseAdminLabel;
+    private javax.swing.JLabel manageEnterpriseAdminLabel1;
     private javax.swing.JLabel manageEnterpriseLabel;
     private javax.swing.JLabel manageNetwork;
     private javax.swing.JPanel manageNetworkPanel;
+    private javax.swing.JLabel manageUserTraffic;
     private javax.swing.JPanel rightSystemAdminPanel;
     private javax.swing.JPanel systemAdminPanel;
+    private javax.swing.JLabel viewWorkRequests;
     // End of variables declaration//GEN-END:variables
 }

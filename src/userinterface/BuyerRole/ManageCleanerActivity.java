@@ -15,6 +15,10 @@ import Business.ElectricianRequest.ElectricianRequest;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+<<<<<<< HEAD
+=======
+import Business.Property.Property;
+>>>>>>> bd24255e7fdd7c6026d568171835043a89f55245
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -37,31 +41,42 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     private BuyerDirectory buyerDirectory;
     private CleaningRequestDirectory cleaningRequestDirectory;
     private CleanerDirectory cleanerDirectory;
+<<<<<<< HEAD
      private Enterprise enterprise;
     private Network network;
     private Organization organization;
+=======
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
+
+>>>>>>> bd24255e7fdd7c6026d568171835043a89f55245
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManageCleanerActivity(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ManageCleanerActivity(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
+<<<<<<< HEAD
          this.enterprise=enterprise;
         this.network=network;
         this.organization=organization;
+=======
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
+>>>>>>> bd24255e7fdd7c6026d568171835043a89f55245
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.cleaningRequestDirectory = (system.getCleaningRequestDirectory()== null) ? new CleaningRequestDirectory(): system.getCleaningRequestDirectory();
-        this.cleanerDirectory = (system.getCleanerDirectory()== null) ? new CleanerDirectory(): system.getCleanerDirectory();
+        this.cleaningRequestDirectory = (system.getCleaningRequestDirectory() == null) ? new CleaningRequestDirectory() : system.getCleaningRequestDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
+<<<<<<< HEAD
         //Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList())
         {
@@ -87,6 +102,26 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
                 row[10] =cleaningRequest.getQuote();
                 model.addRow(row);
             }}
+=======
+        for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
+            for (CleaningRequest cleaningRequest : cleaningRequestDirectory.getCleaningRequestList()) {
+                if (cleaningRequest.getBuyer().getBuyerNo().equals(ua.getUsername())) {
+                    Object[] row = new Object[11];
+                    row[0] = cleaningRequest.getRequestID();
+                    row[1] = cleaningRequest.getCleaner().getCleanerName();
+                    row[2] = cleaningRequest.getSeller().getName();
+                    row[3] = cleaningRequest.getProperty().getStreet();
+                    row[4] = cleaningRequest.getProperty().getCity();
+                    row[5] = cleaningRequest.getProperty().getState();
+                    row[6] = cleaningRequest.getProperty().getPincode();
+                    row[7] = cleaningRequest.getStatus();
+                    row[8] = cleaningRequest.getBuyerNote();
+                    row[9] = cleaningRequest.getInspectorNote();
+                    row[10] = cleaningRequest.getQuote();
+                    model.addRow(row);
+                }
+            }
+>>>>>>> bd24255e7fdd7c6026d568171835043a89f55245
         }
         }
         }

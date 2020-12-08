@@ -32,8 +32,8 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HireCleanerJPanel
      */
-    private  JPanel userProcessContainer;
-    private  EcoSystem system;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
     private UserAccount userAccount;
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
@@ -43,53 +43,48 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
-    
-  
-    public HireCleanerJPanel(JPanel userProcess,Organization organization,Network network,Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
+
+    public HireCleanerJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
-        this.enterprise=enterprise;
-        this.network=network;
-        this.organization=organization;
-        this.cleanerDirectory = (system.getCleanerDirectory()== null) ? new CleanerDirectory(): system.getCleanerDirectory();
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
+        this.cleanerDirectory = (system.getCleanerDirectory() == null) ? new CleanerDirectory() : system.getCleanerDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.cleaningRequestDirectory = (system.getCleaningRequestDirectory()== null) ? new CleaningRequestDirectory(): system.getCleaningRequestDirectory();
+        this.cleaningRequestDirectory = (system.getCleaningRequestDirectory() == null) ? new CleaningRequestDirectory() : system.getCleaningRequestDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-     
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
-        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
-        {
-        for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList())
-        {
-            String role=ua.getRole().toString();
-           if("Cleaning".equals(role)){
-//            if ("Available".equals(inspector.getStatus())) {
-           
-            Object[] row = new Object[13];
-            row[0] = ua.getUsername();
-            row[1] = ua.getName();
-            row[2] = ua.getStreet();
-            row[3] = ua.getCity();
-            row[4] = ua.getState();
-            row[5] = ua.getZipcode();
-            row[6] = ua.getStatus();
-            row[7] = ua.getCharge();
-            //row[8]=ua.getUserOrganizationList().getName();
-            row[8]=org.getName();
-            model.addRow(row);
+
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    String role = ua.getRole().toString();
+                    if ("Cleaning".equals(role)) {
+                        Object[] row = new Object[13];
+                        row[0] = ua.getUsername();
+                        row[1] = ua.getName();
+                        row[2] = ua.getStreet();
+                        row[3] = ua.getCity();
+                        row[4] = ua.getState();
+                        row[5] = ua.getZipcode();
+                        row[6] = ua.getStatus();
+                        row[7] = ua.getCharge();
+                        //row[8]=ua.getUserOrganizationList().getName();
+                        row[8] = org.getName();
+                        model.addRow(row);
+                    }
+                }
+            }
         }
-        }
-       }
-     }
     }
 
     /**
@@ -184,8 +179,9 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
-         String comment = commentTxxt.getText();
+        String comment = commentTxxt.getText();
         if (count == 1) {
+<<<<<<< HEAD
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
         for(Organization org:e.getOrganizationDirectory().getOrganizationList())
         {
@@ -215,10 +211,38 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");
             
             
+=======
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+
+                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
+                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        {
+                            if ("Available".equals(ua.getStatus())) {
+                                CleaningRequest cr = new CleaningRequest();
+                                cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
+                                cr.setBuyer(buyer);
+                                cr.setCleaner((Cleaner) userAccount);
+                                cr.setSeller((Seller) property.getSeller());
+                                cr.setStatus("Requested");
+                                cr.setBuyerNote(comment);
+                                cr.setProperty(property);
+                                cleaningRequestDirectory.addCleaningRequest(cr);
+                                system.setCleaningRequestDirectory(cleaningRequestDirectory);
+                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");
+
+                            }
+                        }
+                    }
+                }
+>>>>>>> bd24255e7fdd7c6026d568171835043a89f55245
             }
-        }}}}
-        
-        }else {
+
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_brnHireInspectorActionPerformed
