@@ -8,10 +8,12 @@ package userinterface.PhotographerRole;
 import userinterface.PlumberRole.*;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.InspectRequest.InspectRequest;
 import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
+import Business.PhotographerRequest.PhotographerRequest;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequest;
@@ -19,6 +21,7 @@ import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,44 +36,35 @@ public class ViewJobJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private PlumbingRequestDirectory plumbingRequestDirectory;
-    private PlumberDirectory plumberDirectory;
+    private Enterprise enterprise;
 
-    /**
-     * Creates new form ViewJobJPanel
-     */
-     public ViewJobJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ViewJobJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.plumbingRequestDirectory = (system.getPlumbingRequestDirectory()== null) ? new PlumbingRequestDirectory(): system.getPlumbingRequestDirectory();
-        this.plumberDirectory = (system.getPlumberDirectory()== null) ? new PlumberDirectory(): system.getPlumberDirectory();
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Plumber plumber = plumberDirectory.fetchPlumber(userAccount.getEmployee().getName());
-        for (PlumbingRequest plumberRequest : plumbingRequestDirectory.getPlumbingRequestList()) {
-            if (plumberRequest.getPlumber().getPlumberNo().equals(plumber.getPlumberNo())) {
-                Object[] row = new Object[10];
-                row[0] = plumberRequest.getRequestID();
-                row[1] = plumberRequest.getBuyer().getBuyerName();
-                row[2] = plumberRequest.getSeller().getName();
-                row[3] = plumberRequest.getProperty().getStreet();
-                row[4] = plumberRequest.getProperty().getCity();
-                row[5] = plumberRequest.getProperty().getState();
-                row[6] = plumberRequest.getProperty().getPincode();
-                row[7] = plumberRequest.getStatus();
-                row[8] = plumberRequest.getBuyerNote();
-                row[9] = plumberRequest.getInspectorNote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof PhotographerRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((PhotographerRequest) workRequest).getBuyer().getName();
+                row[2] = ((PhotographerRequest) workRequest).getSeller().getName();
+                row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
+                row[4] = ((PhotographerRequest) workRequest).getProperty().getCity();
+                row[5] = ((PhotographerRequest) workRequest).getProperty().getState();
+                row[6] = ((PhotographerRequest) workRequest).getProperty().getPincode();
+                row[7] = ((PhotographerRequest) workRequest).getStatus();
+                row[8] = ((PhotographerRequest) workRequest).getBuyerNote();
+                row[9] = ((PhotographerRequest) workRequest).getInspectorNote();
 
                 model.addRow(row);
             }
@@ -87,7 +81,6 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
         jLabel5 = new javax.swing.JLabel();
         brnTakeJob = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         txtFeedback = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnCompleteJob = new javax.swing.JButton();
@@ -113,15 +106,6 @@ public class ViewJobJPanel extends javax.swing.JPanel {
             }
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, -1, -1));
-
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, 138, -1));
@@ -185,24 +169,21 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+        if (selectedRow >= 0) {
+            PhotographerRequest photographerRequest = (PhotographerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            PlumbingRequest plumbingRequest = plumbingRequestDirectory.fetchPlumbingRequest(jobID);
-            if (!"Job Taken".equals(plumbingRequest.getStatus())) {
-                 if (!"".equals(feedback)) {
-                plumbingRequest.setStatus("Job Taken");
-                plumbingRequest.setQuote(quoteTxt.getText());
-                Plumber plumber = plumberDirectory.fetchPlumber(userAccount.getEmployee().getName());
-                plumber.setStatus("Occupied");
+            if (!"Job Taken".equals(photographerRequest.getStatus())) {
+                if (!"".equals(feedback)) {
+                    photographerRequest.setStatus("Job Taken");
+                    photographerRequest.setQuote(quoteTxt.getText());
                 
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-             } else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
-            }}
-                 else {
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                }
+            } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
         } else {
@@ -210,31 +191,21 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_brnTakeJobActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+       int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            PhotographerRequest photographerRequest = (PhotographerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                PlumbingRequest plumberRequest = plumbingRequestDirectory.fetchPlumbingRequest(jobID);
-                plumberRequest.setStatus("Completed");
-                plumberRequest.setInspectorNote(feedback);
+                photographerRequest.setStatus("Completed");
+                photographerRequest.setInspectorNote(feedback);
                 populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+                userAccount.setStatus("Available");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter feedback!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -247,7 +218,6 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;

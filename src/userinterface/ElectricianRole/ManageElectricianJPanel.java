@@ -9,6 +9,7 @@ import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Electrician.Electrician;
 import Business.Electrician.ElectricianDirectory;
+import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -22,43 +23,35 @@ import javax.swing.JPanel;
  */
 public class ManageElectricianJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ManageElectricianJPanel
-     */
-   
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private ElectricianDirectory electricianDirectory;
+    private Enterprise enterprise;
 
-  
-    public ManageElectricianJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    /**
+     * Creates new form ManageElectricianJPanel
+     */
+   public ManageElectricianJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.electricianDirectory = (system.getElectricianDirectory()== null) ? new ElectricianDirectory(): system.getElectricianDirectory();
+        this.userAccount = useraccount;
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
-        Electrician electrician = electricianDirectory.fetchElectrician(userAccount.getEmployee().getName());
-        txtName.setText(electrician.getElectricianName());
-        txtCharge.setText(electrician.getCharge());
-        txtCity.setText(electrician.getCity());
-        txtStatus.setText(electrician.getState());
-        txtZipcode.setText(electrician.getZipcode());
-        txtStreet.setText(electrician.getStreet());
-        txtEmail.setText(electrician.getEmail());
-        txtPhone.setText(electrician.getPhone());
-        txtStatus.setText(electrician.getStatus());
+        txtName.setText(userAccount.getName());
+        txtCharge.setText(userAccount.getCharge());
+        txtCity.setText(userAccount.getCity());
+        txtStatus.setText(userAccount.getState());
+        txtZipcode.setText(userAccount.getZipcode());
+        txtStreet.setText(userAccount.getStreet());
+        txtEmail.setText(userAccount.getEmail());
+        txtPhone.setText(userAccount.getPhone());
+        txtStatus.setText(userAccount.getStatus());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,7 +73,6 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
         txtZipcode = new javax.swing.JTextField();
         txtCharge = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
         txtState = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -89,21 +81,28 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
         txtCity = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtName.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 77, 180, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 79, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel3.setText("Street");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 158, -1, -1));
 
         txtStreet.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 156, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel6.setText("Phone:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 81, -1, -1));
 
         txtPhone.setBackground(new java.awt.Color(153, 204, 255));
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
@@ -111,41 +110,44 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
                 txtPhoneActionPerformed(evt);
             }
         });
+        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 87, 180, -1));
 
         txtEmail.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 143, 180, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel7.setText("Email:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 143, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel8.setText("Zipcode:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 217, -1, -1));
 
         txtZipcode.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 215, 180, -1));
 
         txtCharge.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 313, 180, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel9.setText("Charge:");
-
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 315, -1, -1));
 
         txtState.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 313, 180, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel5.setText("State");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 315, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel10.setText("Status");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 415, -1, -1));
 
         txtStatus.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 413, 180, -1));
 
+        btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -154,6 +156,7 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, -1, -1));
 
         txtCity.setBackground(new java.awt.Color(153, 204, 255));
         txtCity.addActionListener(new java.awt.event.ActionListener() {
@@ -161,136 +164,37 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
                 txtCityActionPerformed(evt);
             }
         });
+        add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 215, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel4.setText("City");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 217, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(25, 56, 82));
         jLabel11.setText("ELECTRICIAN PROFILE");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 28, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(txtState, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCity, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(txtEmail)
-                            .addComponent(txtZipcode)
-                            .addComponent(txtCharge))
-                        .addGap(164, 164, 164))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(btnSave)
-                        .addGap(114, 114, 114)
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(335, 335, 335)
-                        .addComponent(jLabel11)))
-                .addGap(0, 342, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel11)
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(76, 76, 76))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtCharge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnBack))
-                .addGap(40, 40, 40))
-        );
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/electrician1.png"))); // NOI18N
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 660, 440));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Electrician electrician = electricianDirectory.fetchElectrician(userAccount.getEmployee().getName());
-        electrician.setElectricianName(txtName.getText());
-        electrician.setCharge(txtCharge.getText());
-        electrician.setCity(txtCity.getText());
-        electrician.setStatus(txtStatus.getText());
-        electrician.setZipcode(txtZipcode.getText());
-        electrician.setStreet(txtStreet.getText());
-        electrician.setEmail(txtEmail.getText());
-        electrician.setPhone(txtPhone.getText());
-        electrician.setState(txtState.getText());
+       userAccount.setName(txtName.getText());
+        userAccount.setCharge(txtCharge.getText());
+        userAccount.setCity(txtCity.getText());
+        userAccount.setStatus(txtStatus.getText());
+        userAccount.setZipcode(txtZipcode.getText());
+        userAccount.setStreet(txtStreet.getText());
+        userAccount.setEmail(txtEmail.getText());
+        userAccount.setPhone(txtPhone.getText());
+        userAccount.setState(txtState.getText());
         JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -300,10 +204,10 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

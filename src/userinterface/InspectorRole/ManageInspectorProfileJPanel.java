@@ -78,6 +78,7 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         txtState = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -152,7 +153,7 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, -1, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, -1, -1));
 
         txtState.setBackground(new java.awt.Color(153, 204, 255));
         add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 290, 149, -1));
@@ -166,6 +167,9 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         jLabel11.setForeground(new java.awt.Color(25, 56, 82));
         jLabel11.setText("INSPECTOR PROFILE");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 6, -1, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/inspector1.png"))); // NOI18N
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 660, 440));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
@@ -191,6 +195,7 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

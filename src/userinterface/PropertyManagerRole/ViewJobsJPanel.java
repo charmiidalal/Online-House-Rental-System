@@ -8,6 +8,7 @@ package userinterface.PropertyManagerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.ManagerRequest.ManagerRequest;
 import Business.ManagerRequest.ManagerRequestDirectory;
 import Business.Property.Property;
@@ -16,6 +17,7 @@ import Business.PropertyManager.PropertyManager;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,52 +33,39 @@ import userinterface.BuyerRole.HirePlumberJPanel;
  */
 public class ViewJobsJPanel extends javax.swing.JPanel {
 
-   private EcoSystem system;
+  
     private JPanel userProcessContainer;
+    private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private ManagerRequestDirectory managerRequestDirectory;
-    private PropertyManagerDirectory propertyManagerDirectory;
-     private Property property;
-    private Buyer buyer;
+    private Enterprise enterprise;
 
-    /**
-     * Creates new form ViewJobsJPanel
-     */
-     public ViewJobsJPanel(JPanel userProcess, EcoSystem system, Property property, Buyer buyer, UserAccount userAccount) {
+    public ViewJobsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.managerRequestDirectory = (system.getManagerRequestDirectory()== null) ? new ManagerRequestDirectory(): system.getManagerRequestDirectory();
-        this.propertyManagerDirectory = (system.getPropertyManagerDirectory()== null) ? new PropertyManagerDirectory(): system.getPropertyManagerDirectory();
-        this.property = property;
-        this.buyer=buyer;
-        
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        PropertyManager manager = propertyManagerDirectory.fetchPropertyManager(userAccount.getEmployee().getName());
-        for (ManagerRequest managerRequest : managerRequestDirectory.getmanagerRequestList()) {
-            if (managerRequest.getPropertyManager().getPropertyNo().equals(manager.getPropertyNo())) {
-                Object[] row = new Object[10];
-                row[0] = managerRequest.getRequestID();
-                row[1] = managerRequest.getBuyer().getBuyerName();
-                row[2] = managerRequest.getSeller().getName();
-                row[3] = managerRequest.getProperty().getStreet();
-                row[4] = managerRequest.getProperty().getCity();
-                row[5] = managerRequest.getProperty().getState();
-                row[6] = managerRequest.getProperty().getPincode();
-                row[7] = managerRequest.getStatus();
-                row[8] = managerRequest.getBuyerNote();
-                row[9] = managerRequest.getInspectorNote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof ManagerRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((ManagerRequest) workRequest).getBuyer().getName();
+                row[2] = ((ManagerRequest) workRequest).getSeller().getName();
+                row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
+                row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
+                row[5] = ((ManagerRequest) workRequest).getProperty().getState();
+                row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
+                row[7] = ((ManagerRequest) workRequest).getStatus();
+                row[8] = ((ManagerRequest) workRequest).getBuyerNote();
+                row[9] = ((ManagerRequest) workRequest).getInspectorNote();
 
                 model.addRow(row);
             }
@@ -102,7 +91,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
         brnTakeJob = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtFeedback = new javax.swing.JTextField();
         btnCompleteJob = new javax.swing.JButton();
@@ -213,16 +201,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 690, -1, -1));
 
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 730, 83, -1));
-
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setText("Feedback:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 710, -1, -1));
@@ -331,24 +309,21 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+        if (selectedRow >= 0) {
+            ManagerRequest managerRequest = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            ManagerRequest managerRequest = managerRequestDirectory.fetchManagerRequest(jobID);
             if (!"Job Taken".equals(managerRequest.getStatus())) {
                 if (!"".equals(feedback)) {
-                managerRequest.setStatus("Job Taken");
-                PropertyManager manager = propertyManagerDirectory.fetchPropertyManager(userAccount.getEmployee().getName());
-                manager.setStatus("Occupied");
-                manager.setCharge(quoteTxt.getText());
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-            }   else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
-            }
-            }
-                else {
+                    managerRequest.setStatus("Job Taken");
+                    managerRequest.setQuote(quoteTxt.getText());
+                
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                }
+            } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
         } else {
@@ -356,39 +331,28 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_brnTakeJobActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+         int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            ManagerRequest managerRequest = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                ManagerRequest managerRequest = managerRequestDirectory.fetchManagerRequest(jobID);
                 managerRequest.setStatus("Completed");
-                managerRequest.setQuote(quoteTxt.getText());
                 managerRequest.setInspectorNote(feedback);
                 populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+                userAccount.setStatus("Available");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter feedback!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
     private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer, property, buyer,system);
+        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,system);
         userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -450,7 +414,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JButton hireCleanBtn;
     private javax.swing.JButton hireCleanBtn1;

@@ -17,40 +17,44 @@ import javax.swing.JPanel;
  */
 public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
     
-    JPanel userProcessContainer;
+   JPanel userProcessContainer;
     Enterprise enterprise;
     EcoSystem system;
-    Organization organization;
     Network network;
     UserAccount account;
-    /** Creates new form AdminWorkAreaJPanel */
-    public PropertyManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system, Organization organization, Network network,UserAccount account) {
+    Organization organization;
+
+    /**
+     * Creates new form AdminWorkAreaJPanel
+     */
+    public PropertyManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
-        this.system = system;
-        this.organization = organization;
-        this.network = network;
         this.account = account;
-        manageRequest();
-        //valueLabel.setText(enterprise.getName());
+        this.system = business;
+        this.network = network;
+        this.enterprise = enterprise;
+        this.organization = organization;
+        manageAdvertise();
+
     }
-    private void manageRequest(){
-//        manageScenePanel.setBackground(new Color(236,113,107));
-//        manageRequestPanel.setBackground(new Color(215,81,81));
-//        
-//        InspectorWorkRequestJPanel muajp = new InspectorWorkRequestJPanel(rightSystemAdminPanel,account,organization, enterprise,network,system);
-//        rightSystemAdminPanel.add("InspectorWorkRequestJPanel", muajp);
-//        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
-//        layout.next(rightSystemAdminPanel);
+
+    private void manageAdvertise() {
+        manageRequest.setBackground(new Color(236, 113, 107));
+        manageScenePanel.setBackground(new Color(215, 81, 81));
+        ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(rightSystemAdminPanel, enterprise, account, system);
+        rightSystemAdminPanel.add("viewJobsJPanel",viewJobsJPanel);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
     }
-     private void manageProfile(){
-//        manageRequestPanel.setBackground(new Color(236,113,107));
-//        manageScenePanel.setBackground(new Color(215,81,81));
-//        ManageInspectorProfileJPanel muajp = new ManageInspectorProfileJPanel(rightSystemAdminPanel, enterprise, system, organization, network,account);
-//        rightSystemAdminPanel.add("ManageInspectorProfileJPanel", muajp);
-//        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
-//        layout.next(rightSystemAdminPanel);
+
+    private void manageBuyers() {
+        manageSceneLabel.setBackground(new Color(236, 113, 107));
+        manageRequestPanel.setBackground(new Color(215, 81, 81));
+        ManageProfileJPanel manageInspectorProfileJPanel = new ManageProfileJPanel(rightSystemAdminPanel, enterprise, account, system);
+        rightSystemAdminPanel.add("manageInspectorProfileJPanel", manageInspectorProfileJPanel);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -64,13 +68,13 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         manageRequestPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        manageRequest = new javax.swing.JLabel();
+        manageSceneLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         manageScenePanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        manageSceneLabel = new javax.swing.JLabel();
+        manageRequest = new javax.swing.JLabel();
         rightSystemAdminPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(215, 81, 81));
@@ -97,12 +101,14 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/management.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
-        manageRequest.setBackground(new java.awt.Color(215, 81, 81));
-        manageRequest.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageRequest.setText("Manage Requests");
-        manageRequest.addMouseListener(new java.awt.event.MouseAdapter() {
+        manageSceneLabel.setBackground(new java.awt.Color(215, 81, 81));
+        manageSceneLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        manageSceneLabel.setText("Manage Profile");
+        manageSceneLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manageSceneLabel.setPreferredSize(new java.awt.Dimension(115, 16));
+        manageSceneLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageRequestMousePressed(evt);
+                manageSceneLabelMousePressed(evt);
             }
         });
 
@@ -113,20 +119,19 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(manageRequestPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(manageRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(manageSceneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         manageRequestPanelLayout.setVerticalGroup(
             manageRequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageRequestPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(manageRequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(manageRequestPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(manageRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
+            .addGroup(manageRequestPanelLayout.createSequentialGroup()
+                .addComponent(manageSceneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel3.add(manageRequestPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 280, 40));
@@ -154,13 +159,13 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/request.png"))); // NOI18N
 
-        manageSceneLabel.setBackground(new java.awt.Color(215, 81, 81));
-        manageSceneLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        manageSceneLabel.setText("Manage Profile");
-        manageSceneLabel.setPreferredSize(new java.awt.Dimension(115, 16));
-        manageSceneLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        manageRequest.setBackground(new java.awt.Color(215, 81, 81));
+        manageRequest.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        manageRequest.setText("Manage Jobs");
+        manageRequest.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manageRequest.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageSceneLabelMousePressed(evt);
+                manageRequestMousePressed(evt);
             }
         });
 
@@ -169,19 +174,22 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         manageScenePanelLayout.setHorizontalGroup(
             manageScenePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageScenePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(manageSceneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(manageRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         manageScenePanelLayout.setVerticalGroup(
             manageScenePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageScenePanelLayout.createSequentialGroup()
+            .addGroup(manageScenePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(manageScenePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(manageScenePanelLayout.createSequentialGroup()
+                        .addComponent(manageRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(manageSceneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel3.add(manageScenePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 280, 40));
@@ -210,22 +218,22 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageRequestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageRequestMousePressed
-       manageProfile();
+       manageAdvertise();
     }//GEN-LAST:event_manageRequestMousePressed
 
     private void manageRequestPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageRequestPanelMousePressed
         // TODO add your handling code here:
-      manageProfile();
+      manageBuyers();
     }//GEN-LAST:event_manageRequestPanelMousePressed
 
     private void manageScenePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageScenePanelMousePressed
         // TODO add your handling code here:
-       manageRequest();
+       manageAdvertise();
     }//GEN-LAST:event_manageScenePanelMousePressed
 
     private void manageSceneLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageSceneLabelMousePressed
         // TODO add your handling code here:
-        manageRequest();
+        manageBuyers();
     }//GEN-LAST:event_manageSceneLabelMousePressed
     
     

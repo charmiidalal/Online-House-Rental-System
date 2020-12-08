@@ -11,6 +11,7 @@ import Business.Electrician.Electrician;
 import Business.Electrician.ElectricianDirectory;
 import Business.ElectricianRequest.ElectricianRequest;
 import Business.ElectricianRequest.ElectricianRequestDirectory;
+import Business.Enterprise.Enterprise;
 import Business.InspectRequest.InspectRequest;
 import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
@@ -19,6 +20,7 @@ import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -36,42 +38,35 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private ElectricianDirectory electricianDirectory;
-    private ElectricianRequestDirectory electricianRequestDirectory;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
+    private Enterprise enterprise;
 
-   
-     public ViewElectricianJobsJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ViewElectricianJobsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcess;
+        this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.electricianRequestDirectory = (system.getElectricianRequestDirectory()== null) ? new ElectricianRequestDirectory(): system.getElectricianRequestDirectory();
-        this.electricianDirectory = (system.getElectricianDirectory()== null) ? new ElectricianDirectory(): system.getElectricianDirectory();
+        this.enterprise = enterprise;
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Electrician electrician = electricianDirectory.fetchElectrician(userAccount.getEmployee().getName());
-        for (ElectricianRequest electricianRequest : electricianRequestDirectory.getElectricianRequestList()) {
-            if (electricianRequest.getElectrician().getElectricianNo().equals(electrician.getElectricianNo())) {
-                Object[] row = new Object[10];
-                row[0] = electricianRequest.getRequestID();
-                row[1] = electricianRequest.getBuyer().getBuyerName();
-                row[2] = electricianRequest.getSeller().getName();
-                row[3] = electricianRequest.getProperty().getStreet();
-                row[4] = electricianRequest.getProperty().getCity();
-                row[5] = electricianRequest.getProperty().getState();
-                row[6] = electricianRequest.getProperty().getPincode();
-                row[7] = electricianRequest.getStatus();
-                row[8] = electricianRequest.getBuyerNote();
-                row[9] = electricianRequest.getInspectorNote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof ElectricianRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((ElectricianRequest) workRequest).getBuyer().getName();
+                row[2] = ((ElectricianRequest) workRequest).getSeller().getName();
+                row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();
+                row[4] = ((ElectricianRequest) workRequest).getProperty().getCity();
+                row[5] = ((ElectricianRequest) workRequest).getProperty().getState();
+                row[6] = ((ElectricianRequest) workRequest).getProperty().getPincode();
+                row[7] = ((ElectricianRequest) workRequest).getStatus();
+                row[8] = ((ElectricianRequest) workRequest).getBuyerNote();
+                row[9] = ((ElectricianRequest) workRequest).getInspectorNote();
 
                 model.addRow(row);
             }
@@ -92,7 +87,6 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
         brnTakeJob = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         txtFeedback = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnCompleteJob = new javax.swing.JButton();
@@ -137,16 +131,6 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, -1, -1));
 
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, -1, -1));
-
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 410, 138, -1));
 
@@ -187,59 +171,45 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
-
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+      int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            ElectricianRequest electricianRequest = (ElectricianRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            ElectricianRequest electricianRequest = electricianRequestDirectory.fetchElectricianRequest(jobID);
             if (!"Job Taken".equals(electricianRequest.getStatus())) {
-                electricianRequest.setStatus("Job Taken");
-                electricianRequest.setQuote(quoteTxt.getText());
                 if (!"".equals(feedback)) {
-                electricianRequest.setInspectorNote(feedback);
-                }else{
+                    electricianRequest.setStatus("Job Taken");
+                    electricianRequest.setQuote(quoteTxt.getText());
+                
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
                     JOptionPane.showMessageDialog(null, "Please enter feedback!");
                 }
-                Electrician electrician = electricianDirectory.fetchElectrician(userAccount.getEmployee().getName());
-                electrician.setStatus("Occupied");
-                
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
             } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
-    }//GEN-LAST:event_brnTakeJobActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
+    }//GEN-LAST:event_brnTakeJobActionPerformed
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+        if (selectedRow >= 0) {
+            ElectricianRequest electricianRequest = (ElectricianRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
 
             if (!"".equals(feedback)) {
-                ElectricianRequest electricianRequest = electricianRequestDirectory.fetchElectricianRequest(jobID);
                 electricianRequest.setStatus("Completed");
                 electricianRequest.setInspectorNote(feedback);
                 populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Job Completed Successfully!");
+                userAccount.setStatus("Available");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter feedback!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -252,7 +222,6 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;

@@ -87,7 +87,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         txtZipcode = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtCharge = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         txtState = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -158,16 +157,7 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         txtCharge.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 319, 149, -1));
 
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 441, -1, -1));
-
+        btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -176,7 +166,7 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 441, -1, -1));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
 
         txtState.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 319, 149, -1));
@@ -189,35 +179,26 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(25, 56, 82));
         jLabel11.setText("AGENT PROFILE");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/backgorunfnew.png"))); // NOI18N
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 190, 750, 400));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/builder2.png"))); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 750, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
@@ -236,7 +217,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
