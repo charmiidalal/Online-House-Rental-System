@@ -14,6 +14,7 @@ import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
+import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -148,7 +149,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                 ir.setRequestID(inspectRequestDirectory.generateInspectorRequestID());
                 ir.setBuyer(buyer);
                 ir.setInspector(inspector);
-                //ir.setSeller(property.getSeller());
+                ir.setSeller((Seller) property.getSeller());
                 ir.setStatus("Requested");
                 ir.setBuyerNote(comment);
                 ir.setProperty(property);

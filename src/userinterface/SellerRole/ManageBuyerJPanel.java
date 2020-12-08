@@ -123,16 +123,16 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
                 btnAddBuyerActionPerformed(evt);
             }
         });
-        add(btnAddBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 296, -1, -1));
+        add(btnAddBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
 
         btnBack.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aed_final_project/src/icon/back.png"))); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(716, 22, -1, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(751, 22, 30, 30));
 
         btnView.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnView.setText("View Buyers");
@@ -141,15 +141,15 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
                 btnViewActionPerformed(evt);
             }
         });
-        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 296, -1, -1));
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("INTERESTED BUYERS");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 59, -1, 19));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aed_final_project/src/icon/Buy_a_home.png"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 369, 746, 363));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Buy_a_home.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 230, 746, 550));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddBuyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBuyerActionPerformed

@@ -18,6 +18,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.SellerRole.BuyerRegistrationFormJPanel;
 
 /**
  *
@@ -61,7 +62,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             row[7] = property.getBathroom();
             row[8] = property.getPrice();
             row[9] = property.getStatus();
-            row[10] = property.getSeller().getEmployee().getName();
+            row[10] = property.getSeller().getUsername();
             row[11] = property.getSeller().getName();
             model.addRow(row);
         }
@@ -87,7 +88,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         managerBtn1 = new javax.swing.JButton();
         builderBtn = new javax.swing.JButton();
         btnBuyHouse = new javax.swing.JButton();
-        btnRequestNegotiation = new javax.swing.JButton();
+        btnRegistration = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -190,12 +191,12 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRequestNegotiation.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnRequestNegotiation.setForeground(new java.awt.Color(0, 0, 51));
-        btnRequestNegotiation.setText("Registeration Form");
-        btnRequestNegotiation.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistration.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnRegistration.setForeground(new java.awt.Color(0, 0, 51));
+        btnRegistration.setText("Registeration Form");
+        btnRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRequestNegotiationActionPerformed(evt);
+                btnRegistrationActionPerformed(evt);
             }
         });
 
@@ -206,7 +207,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRequestNegotiation, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnBuyHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(builderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,7 +239,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addComponent(btnBuyHouse)
                 .addGap(29, 29, 29)
-                .addComponent(btnRequestNegotiation)
+                .addComponent(btnRegistration)
                 .addContainerGap(90, Short.MAX_VALUE))
         );
 
@@ -288,12 +289,26 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
+            /*Property property = propertyDirectory.fetchProperty(propertyID);
+            property.setStatus("Sold");
+            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
+            property.setBuyer(buyer);
+            populateRequestTable();*/
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to buy the house? Please fill the Property Registration Form first! If you have completed and got it approved please click yes!", "Warning", dialogButton);
+          if (dialogResult == JOptionPane.YES_OPTION) {
             Property property = propertyDirectory.fetchProperty(propertyID);
             property.setStatus("Sold");
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
             property.setBuyer(buyer);
             populateRequestTable();
-        } else {
+        } 
+          else
+          {
+              JOptionPane.showMessageDialog(null, "Please click on Registration Form to buy the house!");
+          }
+        }
+         else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnBuyHouseActionPerformed
@@ -314,9 +329,29 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
 
-    private void btnRequestNegotiationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestNegotiationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRequestNegotiationActionPerformed
+    private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
+   int selectedRow = houseTable.getSelectedRow();
+        int count = houseTable.getSelectedRowCount();
+        if (count == 1) {
+            String status = (String) houseTable.getValueAt(selectedRow, 9);
+            if(!"sold".equalsIgnoreCase(status)){
+            String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
+            Property property = propertyDirectory.fetchProperty(propertyID);
+            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
+        
+        BuyerRegistrationFormJPanel regBuyerPanel = new BuyerRegistrationFormJPanel(userProcessContainer,property,buyer,system,userAccount);
+        userProcessContainer.add("BuyerRegistrationFormJPanel", regBuyerPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);}
+        else
+            {
+                JOptionPane.showMessageDialog(null, "Sorry the selected house is sold! Choose other vacant houses!.");
+            }}        // TODO add your handling code here:
+        else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+        
+    }//GEN-LAST:event_btnRegistrationActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -409,7 +444,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBuyHouse;
-    private javax.swing.JButton btnRequestNegotiation;
+    private javax.swing.JButton btnRegistration;
     private javax.swing.JButton btnViewHouseDetails;
     private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JButton builderBtn;

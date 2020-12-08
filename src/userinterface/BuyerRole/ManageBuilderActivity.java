@@ -55,21 +55,21 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
         model.setRowCount(0);
         Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
         for (BuilderRequest builderRequest : builderRequestDirectory.getBuilderRequestList()) {
-//            if (builderRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-//                Object[] row = new Object[11];
-//                row[0] = builderRequest.getRequestID();
-//                row[1] = builderRequest.getBuilder().getBuilderName();
-//                row[2] = builderRequest.getSeller().getName();
-//                row[3] = builderRequest.getProperty().getStreet();
-//                row[4] = builderRequest.getProperty().getCity();
-//                row[5] = builderRequest.getProperty().getState();
-//                row[6] = builderRequest.getProperty().getPincode();
-//                row[7] = builderRequest.getStatus();
-//                row[8] = builderRequest.getBuyerNote();
-//                row[9] = builderRequest.getInspectorNote();
-//                row[10]=builderRequest.getQuote();
-//                model.addRow(row);
-//            }
+            if (builderRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
+                Object[] row = new Object[11];
+                row[0] = builderRequest.getRequestID();
+                row[1] = builderRequest.getBuilder().getBuilderName();
+                row[2] = builderRequest.getSeller().getName();
+                row[3] = builderRequest.getProperty().getStreet();
+                row[4] = builderRequest.getProperty().getCity();
+                row[5] = builderRequest.getProperty().getState();
+                row[6] = builderRequest.getProperty().getPincode();
+                row[7] = builderRequest.getStatus();
+                row[8] = builderRequest.getBuyerNote();
+                row[9] = builderRequest.getInspectorNote();
+                row[10]=builderRequest.getQuote();
+                model.addRow(row);
+            }
         }
     }
 

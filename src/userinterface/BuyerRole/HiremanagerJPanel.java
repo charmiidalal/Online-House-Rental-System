@@ -13,6 +13,7 @@ import Business.ManagerRequest.ManagerRequestDirectory;
 import Business.Property.Property;
 import Business.PropertyManager.PropertyManager;
 import Business.PropertyManager.PropertyManagerDirectory;
+import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -166,7 +167,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                 pr.setRequestID(managerRequestDirectory.generateManagerRequestID());
                 pr.setBuyer(buyer);
                 pr.setPropertyManager(manager);
-               // pr.setSeller(property.getSeller());
+                pr.setSeller((Seller) property.getSeller());
                 pr.setStatus("Requested");
                 pr.setBuyerNote(comment);
                 pr.setProperty(property);

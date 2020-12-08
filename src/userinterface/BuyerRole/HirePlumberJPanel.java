@@ -13,6 +13,7 @@ import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequest;
 import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.Property;
+import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -145,7 +146,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
                 er.setRequestID(plumbingRequestDirectory.generatePlumbingRequestID());
                 er.setBuyer(buyer);
                 er.setPlumber(plumber);
-              //  er.setSeller(property.getSeller());
+                er.setSeller((Seller) property.getSeller());
                 er.setStatus("Requested");
                 er.setBuyerNote(comment);
                 er.setProperty(property);

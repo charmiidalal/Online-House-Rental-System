@@ -136,7 +136,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         jtblHouse.setSelectionBackground(new java.awt.Color(0, 0, 51));
         jScrollPane1.setViewportView(jtblHouse);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 1030, 127));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 1030, 127));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -173,9 +173,10 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         });
         add(btnBuyers, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/opacitycitybig.png"))); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house seller.jpg"))); // NOI18N
         jLabel2.setOpaque(true);
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 494, 490));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 410, 280));
 
         jPanelHouse.setBackground(new java.awt.Color(255, 255, 255));
 

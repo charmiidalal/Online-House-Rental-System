@@ -173,7 +173,8 @@ public class HireBuilder extends javax.swing.JPanel {
                 BuilderRequest br = new BuilderRequest();
                 br.setRequestID(builderRequestDirectory.generateBuilderRequestID());
                 br.setBuyer(buyer);
-               // br.setBuilder(builder);
+                //br.setBuilder(builder);
+                br.setBuilder(userAccount);
                 br.setSeller(property.getSeller());
                 br.setStatus("Requested");
                 br.setBuyerNote(comment);

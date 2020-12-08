@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Business.Property;
+import Business.Buyer.Buyer;
 import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -30,6 +31,10 @@ public class Property {
 
     ArrayList<ImageIcon> images = new ArrayList<>();
 
+   
+   
+    ArrayList<UserAccount> RegisteredBuyer = new ArrayList<UserAccount>();
+
     public ArrayList<UserAccount> getRegisteredBuyer() {
         return RegisteredBuyer;
     }
@@ -37,8 +42,8 @@ public class Property {
     public void setRegisteredBuyer(ArrayList<UserAccount> RegisteredBuyer) {
         this.RegisteredBuyer = RegisteredBuyer;
     }
-    ArrayList<UserAccount> RegisteredBuyer = new ArrayList<>();
 
+   
     public ArrayList<ImageIcon> getImages() {
         return images;
     }
@@ -164,4 +169,6 @@ public class Property {
     public String toString() {
         return propertyName;
     }
+
+   
 }
