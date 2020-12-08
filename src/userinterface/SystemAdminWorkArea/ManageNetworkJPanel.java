@@ -6,9 +6,6 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
 import Business.Network.Network;
-import java.awt.CardLayout;
-import java.awt.Component;
-import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -32,7 +29,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-networkJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
+        networkJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         populateNetworkTable();
     }
 
@@ -145,20 +142,19 @@ networkJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
 
     private void submitButton() {
         String name = nameJTextField.getText().trim();
-        if(!name.isEmpty()){
-            if(system.checkExistingNetwork(name)){
+        if (!name.isEmpty()) {
+            if (system.checkExistingNetwork(name)) {
                 Network network = system.createAndAddNetwork();
                 network.setName(name);
                 JOptionPane.showMessageDialog(null, "Network Successfully Created");
                 nameJTextField.setText("");
-            } else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Network Already Exits");
             }
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, "Enter city name");
         }
-        
-        
+
         populateNetworkTable();
     }
 
