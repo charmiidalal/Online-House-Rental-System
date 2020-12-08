@@ -8,6 +8,9 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.PackerRequest.PackerRequest;
 import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMovers;
@@ -37,16 +40,22 @@ public class HirePackersJPanel extends javax.swing.JPanel {
     private Property property;
     private PackersMoversDirectory packersMoversDirectory;
     private PackerRequestDirectory packerRequestDirectory;
+     private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
     
     
   
-    public HirePackersJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system) {
+    public HirePackersJPanel(JPanel userProcess,Organization organization,Network network,Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
+         this.enterprise=enterprise;
+        this.network=network;
+        this.organization=organization;
         this.packersMoversDirectory = (system.getPackersMoversDirectory()== null) ? new PackersMoversDirectory(): system.getPackersMoversDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
         this.packerRequestDirectory = (system.getPackerRequestDirectory()== null) ? new PackerRequestDirectory(): system.getPackerRequestDirectory();
@@ -56,20 +65,28 @@ public class HirePackersJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (PackersMovers packer : packersMoversDirectory.getPackersMoversList()) {
+        //for (PackersMovers packer : packersMoversDirectory.getPackersMoversList()) {
 //            if ("Available".equals(inspector.getStatus())) {
-            Object[] row = new Object[12];
-            row[0] = packer.getPackersMoversNo();
-            row[1] = packer.getPackersMoversName();
-            row[2] = packer.getStreet();
-            row[3] = packer.getCity();
-            row[4] = packer.getState();
-            row[5] = packer.getZipcode();
-            row[6] = packer.getStatus();
-            row[7] = packer.getCharge();
+for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
+        {
+        for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList())
+        {
+            String role=ua.getRole().toString();
+           if("Movers & Packers".equals(role)){
+            Object[] row = new Object[13];
+            row[0] = ua.getUsername();
+            row[1] = ua.getName();
+            row[2] = ua.getStreet();
+            row[3] = ua.getCity();
+            row[4] = ua.getState();
+            row[5] = ua.getZipcode();
+            row[6] = ua.getStatus();
+            row[7] = ua.getCharge();
+             row[8]=ua.getUserOrganizationList().getName();
             model.addRow(row);
 //            }
-        }
+        }}}}
     }
 
     /**
@@ -98,11 +115,11 @@ public class HirePackersJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "PackerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
+                "PackerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge", "Organisation Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

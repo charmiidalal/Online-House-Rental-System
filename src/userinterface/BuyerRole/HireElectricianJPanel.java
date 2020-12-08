@@ -12,10 +12,13 @@ import Business.Electrician.Electrician;
 import Business.Electrician.ElectricianDirectory;
 import Business.ElectricianRequest.ElectricianRequest;
 import Business.ElectricianRequest.ElectricianRequestDirectory;
+import Business.Enterprise.Enterprise;
 import Business.InspectRequest.InspectRequest;
 import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
@@ -30,48 +33,61 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HireElectricianJPanel extends javax.swing.JPanel {
 
-   private  JPanel userProcessContainer;
-    private  EcoSystem system;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
     private UserAccount userAccount;
-    private  ElectricianDirectory electricianDirectory;
-    private  ElectricianRequestDirectory electricianRequestDirectory;
+    private ElectricianDirectory electricianDirectory;
+    private ElectricianRequestDirectory electricianRequestDirectory;
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
-
+ private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public HireElectricianJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system) {
+    public HireElectricianJPanel(JPanel userProcess,Organization organization,Network network,Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
-        this.electricianDirectory = (system.getElectricianDirectory()== null) ? new ElectricianDirectory(): system.getElectricianDirectory();
+         this.enterprise=enterprise;
+        this.network=network;
+        this.organization=organization;
+        this.electricianDirectory = (system.getElectricianDirectory() == null) ? new ElectricianDirectory() : system.getElectricianDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.electricianRequestDirectory = (system.getElectricianRequestDirectory()== null) ? new ElectricianRequestDirectory(): system.getElectricianRequestDirectory();
+        this.electricianRequestDirectory = (system.getElectricianRequestDirectory() == null) ? new ElectricianRequestDirectory() : system.getElectricianRequestDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Electrician electrician : electricianDirectory.getElectricianList()) {
+        //for (UserAccount userAccount: electricianDirectory.getElectricianList()) {
 //            if ("Available".equals(inspector.getStatus())) {
-            Object[] row = new Object[12];
-            row[0] = electrician.getElectricianNo();
-            row[1] = electrician.getElectricianName();
-            row[2] = electrician.getStreet();
-            row[3] = electrician.getCity();
-            row[4] = electrician.getState();
-            row[5] = electrician.getZipcode();
-            row[6] = electrician.getStatus();
-            row[7] = electrician.getCharge();
+for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
+        {
+        for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList())
+        {
+            String role=ua.getRole().toString();
+           if("Electrician".equals(role)){
+            Object[] row = new Object[13];
+            row[0] = ua.getUsername();
+            row[1] = ua.getName();
+            row[2] = ua.getStreet();
+            row[3] = ua.getCity();
+            row[4] = ua.getState();
+            row[5] = ua.getZipcode();
+            row[6] = ua.getStatus();
+            row[7] = ua.getCharge();
+             row[8]=ua.getUserOrganizationList().getName();
             model.addRow(row);
 //            }
-        }
+        }}}}
     }
 
     /**
@@ -99,11 +115,11 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ElectricianID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
+                "ElectricianID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge", "Organisation Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -144,15 +160,15 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String electricianID = (String) houseTable.getValueAt(selectedRow, 0);
-         String comment = commentTxxt.getText();
-        
+        String comment = commentTxxt.getText();
+
         if (count == 1) {
-            Electrician electrician = electricianDirectory.fetchElectrician(electricianID);
-            if ("Available".equals(electrician.getStatus())) {
+            UserAccount userAccount = electricianDirectory.fetchElectrician(electricianID);
+            if ("Available".equals(userAccount.getStatus())) {
                 ElectricianRequest er = new ElectricianRequest();
                 er.setRequestID(electricianRequestDirectory.generateElectricianRequestID());
                 er.setBuyer(buyer);
-                er.setElectrician(electrician);
+                er.setElectrician((Electrician) userAccount);
                 er.setSeller((Seller) property.getSeller());
                 er.setStatus("Requested");
                 er.setBuyerNote(comment);

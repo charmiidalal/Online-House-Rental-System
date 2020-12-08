@@ -55,10 +55,10 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
         model.setRowCount(0);
         Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
         for (BuilderRequest builderRequest : builderRequestDirectory.getBuilderRequestList()) {
-            if (builderRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
+            if (builderRequest.getBuyer().getUsername().equals(buyer.getBuyerNo())) {
                 Object[] row = new Object[11];
                 row[0] = builderRequest.getRequestID();
-                row[1] = builderRequest.getBuilder().getBuilderName();
+                row[1] = builderRequest.getBuilder().getUsername();
                 row[2] = builderRequest.getSeller().getName();
                 row[3] = builderRequest.getProperty().getStreet();
                 row[4] = builderRequest.getProperty().getCity();

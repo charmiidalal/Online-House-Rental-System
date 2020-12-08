@@ -8,6 +8,9 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
@@ -30,15 +33,20 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Property property;
     private Buyer buyer;
+       private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
     
    
 
-    HireServiceJPanel(JPanel userProcessContainer, Property property, Buyer buyer, EcoSystem system, UserAccount userAccount) {
+    HireServiceJPanel(JPanel userProcessContainer,Organization organization,Network network,Enterprise enterprise, Property property, EcoSystem system, UserAccount userAccount) {
        initComponents();
         this.userProcessContainer=userProcessContainer;
         this.userAccount=userAccount;
         this.system=system;
-        this.buyer = buyer;
+ this.network = network;
+        this.enterprise = enterprise;
+        this.organization = organization;
         this.property = property;
     }
 
@@ -64,22 +72,17 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         manageRequestPanel = new javax.swing.JPanel();
         plumberPanel = new javax.swing.JPanel();
-        manageAdvertise = new javax.swing.JLabel();
+        managePlumber = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         manageScenePanel1 = new javax.swing.JPanel();
-        manageAdvertise1 = new javax.swing.JLabel();
+        manageElect = new javax.swing.JLabel();
         manageScenePanel2 = new javax.swing.JPanel();
-        manageAdvertise2 = new javax.swing.JLabel();
+        managePacker = new javax.swing.JLabel();
         manageScenePanel3 = new javax.swing.JPanel();
-        manageAdvertise3 = new javax.swing.JLabel();
+        managePhoto = new javax.swing.JLabel();
         cleanerPanel = new javax.swing.JPanel();
-        manageAdvertise4 = new javax.swing.JLabel();
-        hirePlumBtn = new javax.swing.JButton();
-        hireCleanBtn = new javax.swing.JButton();
-        hirePackBtn = new javax.swing.JButton();
-        hireElecBtn = new javax.swing.JButton();
-        hirePhotoBtn = new javax.swing.JButton();
+        manageCleaner = new javax.swing.JLabel();
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -189,12 +192,12 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageAdvertise.setBackground(new java.awt.Color(215, 81, 81));
-        manageAdvertise.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageAdvertise.setText("Hire Plumber");
-        manageAdvertise.addMouseListener(new java.awt.event.MouseAdapter() {
+        managePlumber.setBackground(new java.awt.Color(215, 81, 81));
+        managePlumber.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        managePlumber.setText("Hire Plumber");
+        managePlumber.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageAdvertiseMousePressed(evt);
+                managePlumberMousePressed(evt);
             }
         });
 
@@ -204,14 +207,14 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             plumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plumberPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(manageAdvertise, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(managePlumber, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addGap(24, 24, 24))
         );
         plumberPanelLayout.setVerticalGroup(
             plumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plumberPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(manageAdvertise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(managePlumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
@@ -248,12 +251,12 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageAdvertise1.setBackground(new java.awt.Color(215, 81, 81));
-        manageAdvertise1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageAdvertise1.setText("Hire Electrician");
-        manageAdvertise1.addMouseListener(new java.awt.event.MouseAdapter() {
+        manageElect.setBackground(new java.awt.Color(215, 81, 81));
+        manageElect.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        manageElect.setText("Hire Electrician");
+        manageElect.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageAdvertise1MousePressed(evt);
+                manageElectMousePressed(evt);
             }
         });
 
@@ -263,18 +266,18 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             manageScenePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageScenePanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(manageAdvertise1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(manageElect, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addContainerGap())
         );
         manageScenePanel1Layout.setVerticalGroup(
             manageScenePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageScenePanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(manageAdvertise1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(manageElect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
-        jPanel3.add(manageScenePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 280, 40));
+        jPanel3.add(manageScenePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 290, 40));
 
         manageScenePanel2.setBackground(new java.awt.Color(215, 81, 81));
         manageScenePanel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -283,12 +286,12 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageAdvertise2.setBackground(new java.awt.Color(215, 81, 81));
-        manageAdvertise2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageAdvertise2.setText("Hire Packers/Movers");
-        manageAdvertise2.addMouseListener(new java.awt.event.MouseAdapter() {
+        managePacker.setBackground(new java.awt.Color(215, 81, 81));
+        managePacker.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        managePacker.setText("Hire Packers/Movers");
+        managePacker.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageAdvertise2MousePressed(evt);
+                managePackerMousePressed(evt);
             }
         });
 
@@ -298,18 +301,18 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             manageScenePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageScenePanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(manageAdvertise2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(managePacker, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
         manageScenePanel2Layout.setVerticalGroup(
             manageScenePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageScenePanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(manageAdvertise2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(managePacker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
-        jPanel3.add(manageScenePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 280, 40));
+        jPanel3.add(manageScenePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 280, 40));
 
         manageScenePanel3.setBackground(new java.awt.Color(215, 81, 81));
         manageScenePanel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -318,12 +321,12 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageAdvertise3.setBackground(new java.awt.Color(215, 81, 81));
-        manageAdvertise3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageAdvertise3.setText("Hire Photographer");
-        manageAdvertise3.addMouseListener(new java.awt.event.MouseAdapter() {
+        managePhoto.setBackground(new java.awt.Color(215, 81, 81));
+        managePhoto.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        managePhoto.setText("Hire Photographer");
+        managePhoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageAdvertise3MousePressed(evt);
+                managePhotoMousePressed(evt);
             }
         });
 
@@ -333,18 +336,18 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             manageScenePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageScenePanel3Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(manageAdvertise3, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(managePhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
         manageScenePanel3Layout.setVerticalGroup(
             manageScenePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageScenePanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(manageAdvertise3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(managePhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
-        jPanel3.add(manageScenePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 280, 40));
+        jPanel3.add(manageScenePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 290, 40));
 
         cleanerPanel.setBackground(new java.awt.Color(215, 81, 81));
         cleanerPanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -353,12 +356,12 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageAdvertise4.setBackground(new java.awt.Color(215, 81, 81));
-        manageAdvertise4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageAdvertise4.setText("Hire Cleaner");
-        manageAdvertise4.addMouseListener(new java.awt.event.MouseAdapter() {
+        manageCleaner.setBackground(new java.awt.Color(215, 81, 81));
+        manageCleaner.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        manageCleaner.setText("Hire Cleaner");
+        manageCleaner.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageAdvertise4MousePressed(evt);
+                manageCleanerMousePressed(evt);
             }
         });
 
@@ -368,64 +371,25 @@ public class HireServiceJPanel extends javax.swing.JPanel {
             cleanerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cleanerPanelLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(manageAdvertise4, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(manageCleaner, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addContainerGap())
         );
         cleanerPanelLayout.setVerticalGroup(
             cleanerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cleanerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(manageAdvertise4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(manageCleaner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
-        jPanel3.add(cleanerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 280, 40));
+        jPanel3.add(cleanerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 290, 40));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 442));
-
-        hirePlumBtn.setText("Hire Plumber");
-        hirePlumBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hirePlumBtnActionPerformed(evt);
-            }
-        });
-        add(hirePlumBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 213, -1));
-
-        hireCleanBtn.setText("Hire Cleaner");
-        hireCleanBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireCleanBtnActionPerformed(evt);
-            }
-        });
-        add(hireCleanBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 211, -1));
-
-        hirePackBtn.setText("Hire Packers/Movers");
-        hirePackBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hirePackBtnActionPerformed(evt);
-            }
-        });
-        add(hirePackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 210, 30));
-
-        hireElecBtn.setText("Hire Electrician");
-        hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireElecBtnActionPerformed(evt);
-            }
-        });
-        add(hireElecBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 210, 30));
-
-        hirePhotoBtn.setText("Hire Photographer");
-        hirePhotoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hirePhotoBtnActionPerformed(evt);
-            }
-        });
-        add(hirePhotoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 210, 30));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 470));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageRequestPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageRequestPanelMousePressed
         // TODO add your handling code here:
+        plumber();
 
     }//GEN-LAST:event_manageRequestPanelMousePressed
 
@@ -435,77 +399,49 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_plumberPanelMousePressed
 
     
-    private void manageAdvertise1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageAdvertise1MousePressed
+    private void manageElectMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageElectMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageAdvertise1MousePressed
+        electrician();
+    }//GEN-LAST:event_manageElectMousePressed
 
     private void manageScenePanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageScenePanel1MousePressed
         // TODO add your handling code here:
         electrician();
     }//GEN-LAST:event_manageScenePanel1MousePressed
 
-    private void manageAdvertise2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageAdvertise2MousePressed
+    private void managePackerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managePackerMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageAdvertise2MousePressed
+         packerMover();
+    }//GEN-LAST:event_managePackerMousePressed
 
     private void manageScenePanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageScenePanel2MousePressed
         // TODO add your handling code here:
         packerMover();
     }//GEN-LAST:event_manageScenePanel2MousePressed
 
-    private void manageAdvertise3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageAdvertise3MousePressed
+    private void managePhotoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managePhotoMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageAdvertise3MousePressed
+         photograher();
+    }//GEN-LAST:event_managePhotoMousePressed
 
     private void manageScenePanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageScenePanel3MousePressed
         // TODO add your handling code here:
         photograher();
     }//GEN-LAST:event_manageScenePanel3MousePressed
 
-    private void manageAdvertise4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageAdvertise4MousePressed
+    private void manageCleanerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageCleanerMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageAdvertise4MousePressed
+         clearner();
+    }//GEN-LAST:event_manageCleanerMousePressed
 
     private void cleanerPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cleanerPanelMousePressed
         // TODO add your handling code here:
         clearner();
     }//GEN-LAST:event_cleanerPanelMousePressed
 
-    private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
-        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer, property, buyer,system);
-        userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hirePhotoBtnActionPerformed
-
-    private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer, property, buyer,system);
-        userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hireElecBtnActionPerformed
-
-    private void hirePackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePackBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hirePackBtnActionPerformed
-
-    private void hireCleanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtnActionPerformed
-        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer, property, buyer,system);
-        userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hireCleanBtnActionPerformed
-
-    private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
-        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer, property, buyer,system);
-        userProcessContainer.add("plumberWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hirePlumBtnActionPerformed
-
-    private void manageAdvertiseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageAdvertiseMousePressed
+    private void managePlumberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managePlumberMousePressed
        
-    }//GEN-LAST:event_manageAdvertiseMousePressed
+    }//GEN-LAST:event_managePlumberMousePressed
 
    private void plumber()
    {
@@ -514,7 +450,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         manageScenePanel1.setBackground(new Color(215, 81, 81));
         manageScenePanel2.setBackground(new Color(215, 81, 81));
         manageScenePanel3.setBackground(new Color(215, 81, 81));
-       HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer, property, buyer,system);
+       HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property, userAccount,system);
         userProcessContainer.add("plumberWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -526,7 +462,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         manageScenePanel1.setBackground(new Color(215, 81, 81));
         manageScenePanel2.setBackground(new Color(215, 81, 81));
         manageScenePanel3.setBackground(new Color(215, 81, 81));
-       HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer, property, buyer,system);
+       HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer, organization,network,enterprise,property, userAccount,system);
         userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -538,7 +474,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         manageScenePanel1.setBackground(new Color(215, 81, 81));
         manageScenePanel2.setBackground(new Color(215, 81, 81));
         manageScenePanel3.setBackground(new Color(215, 81, 81));
-        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer, property, buyer,system);
+        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property, userAccount,system);
         userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -550,6 +486,10 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         manageScenePanel1.setBackground(new Color(215, 81, 81));
         manageScenePanel2.setBackground(new Color(215, 81, 81));
         manageScenePanel3.setBackground(new Color(215, 81, 81));
+        HirePackersJPanel hireService = new HirePackersJPanel(userProcessContainer, organization,network,enterprise,property, userAccount,system);
+        userProcessContainer.add("HirePackersJPanel", hireService);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
    }
    private void photograher()
    {
@@ -558,18 +498,13 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         manageScenePanel1.setBackground(new Color(215, 81, 81));
         manageScenePanel2.setBackground(new Color(215, 81, 81));
         manageScenePanel3.setBackground(new Color(215, 81, 81));
-        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer, property, buyer,system);
+        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer, organization,network,enterprise,property, userAccount,system);
         userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel cleanerPanel;
-    private javax.swing.JButton hireCleanBtn;
-    private javax.swing.JButton hireElecBtn;
-    private javax.swing.JButton hirePackBtn;
-    private javax.swing.JButton hirePhotoBtn;
-    private javax.swing.JButton hirePlumBtn;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -582,11 +517,11 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel manageAdvertise;
-    private javax.swing.JLabel manageAdvertise1;
-    private javax.swing.JLabel manageAdvertise2;
-    private javax.swing.JLabel manageAdvertise3;
-    private javax.swing.JLabel manageAdvertise4;
+    private javax.swing.JLabel manageCleaner;
+    private javax.swing.JLabel manageElect;
+    private javax.swing.JLabel managePacker;
+    private javax.swing.JLabel managePhoto;
+    private javax.swing.JLabel managePlumber;
     private javax.swing.JPanel manageRequestPanel;
     private javax.swing.JPanel manageScenePanel1;
     private javax.swing.JPanel manageScenePanel2;

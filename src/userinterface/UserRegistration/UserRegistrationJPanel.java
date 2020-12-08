@@ -289,6 +289,8 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                 } else if (o instanceof PropertyManagerOrganization) {
                     orgCombo.addItem(Organization.Type.PropertyManager);
                 }
+               
+                
             }
         }
     }//GEN-LAST:event_stateComboActionPerformed

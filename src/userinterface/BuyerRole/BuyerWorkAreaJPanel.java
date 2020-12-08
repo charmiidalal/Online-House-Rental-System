@@ -42,7 +42,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem system) {
+    public BuyerWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, Network network, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.network = network;
@@ -370,12 +370,14 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         if (count == 1) {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
-            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer, property, buyer, system, userAccount);
+            //Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
+      
+            HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer,organization,network,enterprise, property,system, userAccount);
             userProcessContainer.add("manageInspectorActivity", hireServiceJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-        } else {
+        
+        }else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_hireSPBtnActionPerformed

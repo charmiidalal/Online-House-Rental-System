@@ -31,6 +31,7 @@ public class UserAccount {
     private String City;
     private String State;
     private String Charge;
+    private boolean  isApproved;
     private Enterprise userEnterpriseList;
     private Organization userOrganizationList;
 
@@ -177,21 +178,21 @@ public class UserAccount {
         this.Charge = Charge;
     }
 
-    public void setIsApproved(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isIsApproved() {
+        return isApproved;
     }
 
-    public Object getBuyerNo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setIsApproved(boolean isApproved) {
+        this.isApproved = isApproved;
     }
 
-    public Object getBuilderName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
-    public Object getRoleName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+
+    
+
+    
     
     
 }

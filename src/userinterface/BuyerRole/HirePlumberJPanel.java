@@ -8,6 +8,9 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
 import Business.PlumbingRequest.PlumbingRequest;
@@ -34,16 +37,22 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
+     private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
     /**
      * Creates new form HirePlumberJPanel
      */
-    public HirePlumberJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system) {
+    public HirePlumberJPanel(JPanel userProcess,Organization organization,Network network,Enterprise enterprise, Property property,UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
+         this.enterprise=enterprise;
+        this.network=network;
+        this.organization=organization;
         this.plumberDirectory = (system.getPlumberDirectory()== null) ? new PlumberDirectory(): system.getPlumberDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
         this.plumbingRequestDirectory = (system.getPlumbingRequestDirectory()== null) ? new PlumbingRequestDirectory(): system.getPlumbingRequestDirectory();
@@ -53,19 +62,29 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Plumber plumber : plumberDirectory.getPlumberist()) {
+        //for (Plumber plumber : plumberDirectory.getPlumberist()) {
 //            if ("Available".equals(inspector.getStatus())) {
-            Object[] row = new Object[12];
-            row[0] = plumber.getPlumberNo();
-            row[1] = plumber.getPlumberName();
-            row[2] = plumber.getStreet();
-            row[3] = plumber.getCity();
-            row[4] = plumber.getState();
-            row[5] = plumber.getZipcode();
-            row[6] = plumber.getStatus();
-            row[7] = plumber.getCharge();
+  for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
+        {
+        for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList())
+        {
+             if(ua.getRole().equals("Plumber")){
+            Object[] row = new Object[13];
+            row[0] = ua.getUsername();
+            row[1] = ua.getName();
+            row[2] = ua.getStreet();
+            row[3] = ua.getCity();
+            row[4] = ua.getState();
+            row[5] = ua.getZipcode();
+            row[6] = ua.getStatus();
+            row[7] = ua.getCharge();
+             row[8]=ua.getUserOrganizationList().getName();
             model.addRow(row);
 //            }
+             }
+        }
+        }
         }
     }
     /**
@@ -93,11 +112,11 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "PlumberID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
+                "PlumberID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge", "Organization Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

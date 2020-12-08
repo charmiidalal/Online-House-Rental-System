@@ -48,7 +48,7 @@ public class ManageSystemUsersJPanel extends javax.swing.JPanel {
             row[1] = ua.getName();
             row[2] = ua.getUsername();
             row[3] = ua.getEmail();
-            row[4] = ua.getRoleName();
+            row[4] = ua.getRole();
             model.addRow(row);
         }
     }

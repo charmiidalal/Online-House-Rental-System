@@ -12,6 +12,9 @@ import Business.Cleaner.CleanerDirectory;
 import Business.CleaningRequest.CleaningRequest;
 import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
@@ -37,16 +40,21 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     private Property property;
     private CleanerDirectory cleanerDirectory;
     private CleaningRequestDirectory cleaningRequestDirectory;
-    
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
     
   
-    public HireCleanerJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system) {
+    public HireCleanerJPanel(JPanel userProcess,Organization organization,Network network,Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
+        this.enterprise=enterprise;
+        this.network=network;
+        this.organization=organization;
         this.cleanerDirectory = (system.getCleanerDirectory()== null) ? new CleanerDirectory(): system.getCleanerDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
         this.cleaningRequestDirectory = (system.getCleaningRequestDirectory()== null) ? new CleaningRequestDirectory(): system.getCleaningRequestDirectory();
@@ -56,20 +64,31 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Cleaner cleaner : cleanerDirectory.getCleanerList()) {
+     
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
+        {
+        for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList())
+        {
+            String role=ua.getRole().toString();
+           if("Cleaning".equals(role)){
 //            if ("Available".equals(inspector.getStatus())) {
-            Object[] row = new Object[12];
-            row[0] = cleaner.getCleanerNo();
-            row[1] = cleaner.getCleanerName();
-            row[2] = cleaner.getStreet();
-            row[3] = cleaner.getCity();
-            row[4] = cleaner.getState();
-            row[5] = cleaner.getZipcode();
-            row[6] = cleaner.getStatus();
-            row[7] = cleaner.getCharge();
+           
+            Object[] row = new Object[13];
+            row[0] = ua.getUsername();
+            row[1] = ua.getName();
+            row[2] = ua.getStreet();
+            row[3] = ua.getCity();
+            row[4] = ua.getState();
+            row[5] = ua.getZipcode();
+            row[6] = ua.getStatus();
+            row[7] = ua.getCharge();
+            row[8]=ua.getUserOrganizationList().getName();
             model.addRow(row);
-//            }
         }
+        }
+       }
+     }
     }
 
     /**
@@ -100,11 +119,11 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CleanerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
+                "CleanerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge", "OrganizationName"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -166,12 +185,12 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
          String comment = commentTxxt.getText();
         if (count == 1) {
-            Cleaner cleaner = cleanerDirectory.fetchCleaner(cleanerID);
-            if ("Available".equals(cleaner.getStatus())) {
+            UserAccount userAccount = cleanerDirectory.fetchCleaner(cleanerID);
+            if ("Available".equals(userAccount.getStatus())) {
                 CleaningRequest cr = new CleaningRequest();
                 cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
                 cr.setBuyer(buyer);
-                cr.setCleaner(cleaner);
+                cr.setCleaner((Cleaner) userAccount);
                 cr.setSeller((Seller) property.getSeller());
                 cr.setStatus("Requested");
                 cr.setBuyerNote(comment);
