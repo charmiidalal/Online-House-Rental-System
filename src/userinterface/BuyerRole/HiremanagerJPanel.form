@@ -61,12 +61,12 @@
                   <Table columnCount="8" rowCount="0">
                     <Column editable="true" title="ManagerID" type="java.lang.Object"/>
                     <Column editable="false" title="Name" type="java.lang.Object"/>
-                    <Column editable="false" title="Address" type="java.lang.Object"/>
                     <Column editable="false" title="City" type="java.lang.Object"/>
                     <Column editable="false" title="State" type="java.lang.Object"/>
-                    <Column editable="false" title="Zipcode" type="java.lang.Object"/>
                     <Column editable="false" title="Status" type="java.lang.Object"/>
-                    <Column editable="false" title="Charge" type="java.lang.Object"/>
+                    <Column editable="false" title="Rate" type="java.lang.Object"/>
+                    <Column editable="false" title="Organization" type="java.lang.Object"/>
+                    <Column editable="true" title="Network" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

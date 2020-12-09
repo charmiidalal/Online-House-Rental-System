@@ -105,7 +105,6 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         bhkTxt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
         imgupload = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -203,14 +202,6 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(0, 0, 51));
         jLabel9.setText("HOUSE DETAILS");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
-
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 30, 30));
         jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 260, 170));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/HOUSE1.jpg"))); // NOI18N
@@ -231,14 +222,6 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bhkTxtActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        BuyerScreenJPanel buyerJPanel = new BuyerScreenJPanel(userProcessContainer,userAccount,  enterprise,  system);
-        userProcessContainer.add("BuyerWorkAreaJPanel", buyerJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     // Variables declaration - do not modify                     
   
    
@@ -258,7 +241,6 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField addressTxt;
     private javax.swing.JTextField bathroomTxt;
     private javax.swing.JTextField bhkTxt;
-    private javax.swing.JButton btnBack;
     private javax.swing.JTextField cityTxt;
     private javax.swing.JLabel imgupload;
     private javax.swing.JLabel jLabel1;

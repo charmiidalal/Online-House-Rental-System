@@ -16,6 +16,7 @@ import Business.Inspector.InspectorDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
+import Business.Role.ElectricianRole;
 import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -34,28 +35,29 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private UserAccount userAccount;
     private ElectricianDirectory electricianDirectory;
-   
+
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
- private Enterprise enterprise;
+    private Enterprise enterprise;
     private Network network;
     private Organization organization;
+
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public HireElectricianJPanel(JPanel userProcess,Organization organization,Network network,Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
+    public HireElectricianJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
-         this.enterprise=enterprise;
-        this.network=network;
-        this.organization=organization;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
         this.electricianDirectory = (system.getElectricianDirectory() == null) ? new ElectricianDirectory() : system.getElectricianDirectory();
-       
+
         populateRequestTable();
     }
 
@@ -64,27 +66,27 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         //for (UserAccount userAccount: electricianDirectory.getElectricianList()) {
 //            if ("Available".equals(inspector.getStatus())) {
-for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
-        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
-        {
-        for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList())
-        {
-            String role=ua.getRole().toString();
-           if("Electrician".equals(role)){
-            Object[] row = new Object[13];
-            row[0] = ua.getUsername();
-            row[1] = ua.getName();
-            row[2] = ua.getStreet();
-            row[3] = ua.getCity();
-            row[4] = ua.getState();
-            row[5] = ua.getZipcode();
-            row[6] = ua.getStatus();
-            row[7] = ua.getCharge();
-             //row[8]=ua.getUserOrganizationList().getName();
-              row[8]=org.getName();
-            model.addRow(row);
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    String role = ua.getRole().toString();
+                    if (ua.getRole() instanceof ElectricianRole) {
+                        Object[] row = new Object[9];
+                        row[0] = ua.getEmployee().getName();
+                        row[1] = ua.getUsername();
+                        row[2] = ua.getCity();
+                        row[3] = ua.getState();
+                        row[4] = ua.getStatus();
+                        row[5] = ua.getCharge();
+                        row[6] = org.getName();
+                        row[7] = network.getName();
+                        row[8] = ua.getPhone();
+                        model.addRow(row);
 //            }
-        }}}}
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -154,7 +156,7 @@ for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-          int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
@@ -176,7 +178,7 @@ for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
                                 cr.setStatus("Requested");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
-                               
+
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Electrician is already Occupied");

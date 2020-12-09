@@ -194,7 +194,6 @@ public class BarGraphforStatusofWR extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -207,44 +206,18 @@ public class BarGraphforStatusofWR extends javax.swing.JPanel {
         jPanel1.setLayout(new java.awt.BorderLayout());
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 860, 600));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(25, 56, 82));
-        jButton1.setText("Download Graph");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
-
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(25, 56, 82));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("WORK-REQUEST ANALYSIS PER USER ROLE");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 16, 594, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 594, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/bar-chart.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/bar-chart-big.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            int width = 640;
-            /* Width of the image */
-            int height = 480;
-            /* Height of the image */
-            File BarChart = new File("BarChart.jpeg");
-            ChartUtilities.saveChartAsJPEG(BarChart, barChart, width, height);
-            JOptionPane.showMessageDialog(null, "A JPEG image file named BarChart.jpeg is downloaded in your current directory.");
-        } catch (IOException ex) {
-            Logger.getLogger(BarGraphforStatusofWR.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
