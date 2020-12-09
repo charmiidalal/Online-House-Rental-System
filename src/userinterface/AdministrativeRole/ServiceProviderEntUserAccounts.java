@@ -11,7 +11,6 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
-import Business.Utils.HeaderColors;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,7 +37,6 @@ public class ServiceProviderEntUserAccounts extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.ecosystem = system;
         this.organization = organization;
-         tblUserDetails.getTableHeader().setDefaultRenderer(new HeaderColors());
          populateVoluntaryOrganizationComboBox();
          populateData();
     }
@@ -239,7 +237,6 @@ public class ServiceProviderEntUserAccounts extends javax.swing.JPanel {
     }
 
     public void populateData() {
-        tblUserDetails.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) tblUserDetails.getModel();
 
         model.setRowCount(0);

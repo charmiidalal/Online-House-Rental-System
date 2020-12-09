@@ -9,7 +9,6 @@ import Business.Network.Network;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import Business.Utils.HeaderColors;
 
 /**
  *
@@ -29,12 +28,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        networkJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         populateNetworkTable();
     }
 
     private void populateNetworkTable() {
-        networkJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) networkJTable.getModel();
 
         model.setRowCount(0);

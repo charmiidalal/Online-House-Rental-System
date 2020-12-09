@@ -11,7 +11,6 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
-import Business.Utils.HeaderColors;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -40,7 +39,6 @@ public class ServiceProviderEntManageOrganizationsJPanel extends javax.swing.JPa
         this.enterprise = enterprise;
         this.network = network;
         this.system = system;
-        tblVoluntaryOrg.getTableHeader().setDefaultRenderer(new HeaderColors());
         volPopulate();
         populateOrganizationTypeComboBox();
 
@@ -56,7 +54,6 @@ public class ServiceProviderEntManageOrganizationsJPanel extends javax.swing.JPa
     }
 
     public void volPopulate() {
-        tblVoluntaryOrg.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) tblVoluntaryOrg.getModel();
 
         model.setRowCount(0);

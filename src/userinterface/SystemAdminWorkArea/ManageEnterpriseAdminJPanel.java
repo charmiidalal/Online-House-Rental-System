@@ -16,7 +16,7 @@ import Business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import Business.Utils.HeaderColors;
+
 
 /**
  *
@@ -35,13 +35,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        enterpriseJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         populateTable();
         populateNetworkComboBox();
     }
 
     private void populateTable() {
-        enterpriseJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
 
         model.setRowCount(0);

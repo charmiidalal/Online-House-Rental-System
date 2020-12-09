@@ -38,7 +38,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
     private Network network;
     private Organization organization;
 
-    public HiremanagerJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
+    public HiremanagerJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise,  UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -55,7 +55,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
+ for (Network network : system.getNetworkList()) {
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
             for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
@@ -77,6 +77,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                 }
             }
         }
+    }
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -384,7 +384,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
 
         jPanel3.add(cleanerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 290, 40));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 470));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 290, 470));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageRequestPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageRequestPanelMousePressed

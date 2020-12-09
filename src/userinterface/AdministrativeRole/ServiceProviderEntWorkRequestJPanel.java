@@ -20,7 +20,6 @@ import Business.Role.PhotographerRole;
 import Business.Role.PlumbingRole;
 import Business.Role.SellerRole;
 import Business.UserAccount.UserAccount;
-import Business.Utils.HeaderColors;
 import Business.WorkQueue.UserRegistrationRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;
@@ -51,12 +50,10 @@ public class ServiceProviderEntWorkRequestJPanel extends javax.swing.JPanel {
         this.network = network;
         this.business = business;
         this.organizationDirectory = enterprise.getOrganizationDirectory();
-        workRequestJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         populateTable();
     }
 
     public void populateTable() {
-        workRequestJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
         model.setRowCount(0);

@@ -12,7 +12,6 @@ import Business.Organization.AgentOrganization;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
-import Business.Utils.HeaderColors;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -41,7 +40,6 @@ public class BrokerEntManageOrganizationsJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.system = system;
-        tblVoluntaryOrg.getTableHeader().setDefaultRenderer(new HeaderColors());
         volPopulate();
         populateOrganizationTypeComboBox();
 
@@ -54,7 +52,6 @@ public class BrokerEntManageOrganizationsJPanel extends javax.swing.JPanel {
     }
 
     public void volPopulate() {
-        tblVoluntaryOrg.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) tblVoluntaryOrg.getModel();
 
         model.setRowCount(0);

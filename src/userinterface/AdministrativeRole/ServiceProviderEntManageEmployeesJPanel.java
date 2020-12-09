@@ -10,7 +10,6 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
-import Business.Utils.HeaderColors;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -34,7 +33,6 @@ public class ServiceProviderEntManageEmployeesJPanel extends javax.swing.JPanel 
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
-        organizationJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         populateOrganizationComboBox();
         populateOrganizationEmployeeComboBox();
     }
@@ -56,7 +54,6 @@ public class ServiceProviderEntManageEmployeesJPanel extends javax.swing.JPanel 
     }
 
     private void populateTable(Organization organization) {
-        organizationJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
 
         model.setRowCount(0);

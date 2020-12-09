@@ -383,7 +383,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer,organization,network,enterprise, property, userAccount,system);
+            HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer,organization,network,enterprise, userAccount,system);
             userProcessContainer.add("managerActivity", hireServiceJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
