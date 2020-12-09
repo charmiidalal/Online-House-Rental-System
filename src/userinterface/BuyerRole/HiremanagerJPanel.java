@@ -5,16 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
-import Business.PropertyManager.PropertyManager;
 import Business.Role.PropertyManagerRole;
-import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -31,7 +27,6 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private Buyer buyer;
     private Property property;
     private Enterprise enterprise;
     private Network network;
@@ -41,7 +36,6 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
@@ -94,8 +88,9 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -126,7 +121,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                 brnHireInspectorActionPerformed(evt);
             }
         });
-        jPanel1.add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 690, -1, -1));
+        jPanel1.add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, -1));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -139,17 +134,21 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Comment:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 690, 80, 20));
-        jPanel1.add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 690, 309, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 80, 20));
+        jPanel1.add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 309, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/manager1.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 770, 240));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property_manager.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 540, 450));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("PROPERTY MANAGER LIST");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 912, Short.MAX_VALUE)
+            .addGap(0, 980, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -165,36 +164,31 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-
-                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
-                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
-                        {
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) {
                             if ("Available".equals(ua.getStatus())) {
                                 ManagerRequest cr = new ManagerRequest();
                                 cr.setRequestID();
-                                cr.setBuyer(buyer);
-                                cr.setManager((PropertyManager) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
+                                cr.setBuyer(userAccount);
+                                cr.setManager(serviceAcc);
+                                cr.setSeller(property.getSeller());
                                 cr.setStatus("Requested");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
-
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
-                                JOptionPane.showMessageDialog(null, "Sorry! This Photographer is already Occupied");
+                                JOptionPane.showMessageDialog(null, "Sorry! This Property Manager is already Occupied");
 
                             }
                         }
                     }
                 }
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -215,6 +209,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

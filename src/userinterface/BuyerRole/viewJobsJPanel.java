@@ -5,11 +5,9 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -26,9 +24,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
      private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
     private Enterprise enterprise; 
 
     /**
@@ -41,8 +37,6 @@ public class viewJobsJPanel extends javax.swing.JPanel {
          this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
        
     }
 
@@ -64,6 +58,10 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewCleaner = new javax.swing.JButton();
         btnViewManager = new javax.swing.JButton();
         btnViewBuilder = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(241, 241, 242));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnHireInspector1.setText("View Inspector Jobs");
         btnHireInspector1.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +69,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnHireInspector1ActionPerformed(evt);
             }
         });
+        add(btnHireInspector1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 174, -1));
 
         btnViewElectrician.setText("View Electrician Jobs");
         btnViewElectrician.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +77,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewElectricianActionPerformed(evt);
             }
         });
+        add(btnViewElectrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 174, -1));
 
         btnViewPlumber.setText("View Plumber Jobs");
         btnViewPlumber.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +85,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewPlumberActionPerformed(evt);
             }
         });
+        add(btnViewPlumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 174, -1));
 
         btnViewPacker.setText("View Packer Jobs");
         btnViewPacker.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +93,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewPackerActionPerformed(evt);
             }
         });
+        add(btnViewPacker, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 174, -1));
 
         btnViewPhoto.setText("View Photographer Jobs");
         btnViewPhoto.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +101,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewPhotoActionPerformed(evt);
             }
         });
+        add(btnViewPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 190, -1));
 
         btnViewCleaner.setText("View Cleaner Jobs");
         btnViewCleaner.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +109,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewCleanerActionPerformed(evt);
             }
         });
+        add(btnViewCleaner, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 190, -1));
 
         btnViewManager.setText("View Property Manager Jobs");
         btnViewManager.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +117,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewManagerActionPerformed(evt);
             }
         });
+        add(btnViewManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, 200, -1));
 
         btnViewBuilder.setText("View Builder Jobs");
         btnViewBuilder.addActionListener(new java.awt.event.ActionListener() {
@@ -120,51 +125,10 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewBuilderActionPerformed(evt);
             }
         });
+        add(btnViewBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 190, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnViewElectrician, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(btnHireInspector1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnViewBuilder, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewManager, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewCleaner, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewPacker, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewPlumber, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(436, 436, 436))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(btnHireInspector1)
-                .addGap(18, 18, 18)
-                .addComponent(btnViewElectrician)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnViewPlumber)
-                .addGap(12, 12, 12)
-                .addComponent(btnViewPacker)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnViewPhoto)
-                .addGap(13, 13, 13)
-                .addComponent(btnViewCleaner)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnViewManager)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnViewBuilder)
-                .addContainerGap(106, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/jobs.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHireInspector1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireInspector1ActionPerformed
@@ -234,5 +198,6 @@ public class viewJobsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnViewPacker;
     private javax.swing.JButton btnViewPhoto;
     private javax.swing.JButton btnViewPlumber;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

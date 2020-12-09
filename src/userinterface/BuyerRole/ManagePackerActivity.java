@@ -5,14 +5,10 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.PackersMovers.PackersMoversDirectory;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -36,9 +32,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
       private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -104,6 +98,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         btnCompleteJob = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -132,8 +127,8 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
-        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 250, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
+        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, 250, -1));
 
         btnCompleteJob.setBackground(new java.awt.Color(204, 204, 204));
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -144,10 +139,10 @@ public class ManagePackerActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, -1, -1));
+        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delivery-truck.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 150, 230));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 150, 230));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -157,17 +152,26 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         });
         jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 30, 30));
 
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("VIEW JOB LIST");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1089, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(506, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(479, 479, 479))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1089, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(477, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
         );
@@ -209,6 +213,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
