@@ -197,6 +197,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 .addContainerGap(209, Short.MAX_VALUE))
         );
 
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
