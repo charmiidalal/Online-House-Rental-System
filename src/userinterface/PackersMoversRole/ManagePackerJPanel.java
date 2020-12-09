@@ -83,7 +83,7 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Name:");

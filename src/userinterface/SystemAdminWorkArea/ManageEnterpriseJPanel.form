@@ -100,9 +100,6 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="JComboBoxNetwork">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="12" style="1"/>
         </Property>
@@ -176,9 +173,6 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="JComboBoxEnterpriseType">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="12" style="1"/>
         </Property>
