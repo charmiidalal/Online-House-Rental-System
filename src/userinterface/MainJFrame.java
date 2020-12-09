@@ -323,7 +323,11 @@ public class MainJFrame extends javax.swing.JFrame {
         String userName = userNameJTextField.getText();
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
-
+       if(userName.isEmpty() || password.isEmpty())
+       {
+        JOptionPane.showMessageDialog(null, "Enter valid user credentials to login!");
+       }
+       else{
         userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
         inEnterprise = null;
         inOrganization = null;
@@ -366,7 +370,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
         if (userAccount == null) {
-            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            JOptionPane.showMessageDialog(null, "Invalid user credentials,Try again!");
             return;
         } else {
             loginJPanel.setVisible(false);
@@ -378,7 +382,7 @@ public class MainJFrame extends javax.swing.JFrame {
             passwordField.setText("");
             changePanel1(userAccount);
         }
-
+       }
     }//GEN-LAST:event_loginButtonMousePressed
 
     private void cancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMousePressed
@@ -389,7 +393,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnRegisterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMousePressed
         // TODO add your handling code here:
         UserRegistrationJPanel panel = new UserRegistrationJPanel(container, system);
-        greetingUserLabel.setText("WELCOME NEW VOLUNTEER ORGANIZATION REGISTRATION!!!");
+        greetingUserLabel.setText("WELCOME TO NEW HOUSERENTAL ORGANIZATION REGISTRATION!!!");
         loginJPanel.setVisible(false);
         container.setVisible(true);
         leftPanel.setVisible(true);
