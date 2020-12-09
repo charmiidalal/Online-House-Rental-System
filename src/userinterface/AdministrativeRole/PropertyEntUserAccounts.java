@@ -64,10 +64,10 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         selectEmployee = new javax.swing.JComboBox();
         selectOrganization = new javax.swing.JComboBox();
         createUserJButton = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setMinimumSize(new java.awt.Dimension(1058, 840));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,8 +75,8 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(25, 56, 82));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("MANAGE VOLUNTARY UNIT USERS ACCOUNT");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 638, -1));
+        jLabel5.setText("MANAGE PROPERTY ENTERPRISE USERS ACCOUNT");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 638, -1));
 
         jScrollPane1.setForeground(new java.awt.Color(0, 102, 255));
 
@@ -108,7 +108,7 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         tblUserDetails.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(tblUserDetails);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 121, 638, 179));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 638, 179));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(25, 56, 82));
@@ -143,7 +143,6 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         createUsername.setForeground(new java.awt.Color(25, 56, 82));
         add(createUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 468, 378, -1));
 
-        selectRole.setBackground(new java.awt.Color(255, 255, 255));
         selectRole.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectRole.setForeground(new java.awt.Color(25, 56, 82));
         selectRole.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +152,6 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         });
         add(selectRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 418, 378, -1));
 
-        selectEmployee.setBackground(new java.awt.Color(255, 255, 255));
         selectEmployee.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectEmployee.setForeground(new java.awt.Color(25, 56, 82));
         selectEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +161,6 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         });
         add(selectEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 368, 378, -1));
 
-        selectOrganization.setBackground(new java.awt.Color(255, 255, 255));
         selectOrganization.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectOrganization.setForeground(new java.awt.Color(25, 56, 82));
         selectOrganization.addActionListener(new java.awt.event.ActionListener() {
@@ -184,11 +181,11 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         });
         add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 569, 145, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser128x.png"))); // NOI18N
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/userAccount.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 570, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/userImageOpaque.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 400, -1));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/group.png"))); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectRoleActionPerformed

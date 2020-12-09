@@ -5,17 +5,10 @@
  */
 package userinterface.AdministrativeRole;
 
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
-import Business.Organization.PropertyManagerOrganization;
-import Business.Organization.BuilderOrganization;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,20 +20,11 @@ public class PropertyEntManageOrganizationsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form VoluntaryOperatingUnitOrganizationJPanel
      */
-    private OrganizationDirectory directory;
-    private JPanel userProcessContainer;
-    private Enterprise enterprise;
-    private Network network;
-    private EcoSystem system;
-    private int index = -1;
+    private final OrganizationDirectory directory;
 
-    public PropertyEntManageOrganizationsJPanel(JPanel userProcessContainer, OrganizationDirectory directory, Enterprise enterprise, Network network, EcoSystem system) {
+    public PropertyEntManageOrganizationsJPanel(OrganizationDirectory directory) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
         this.directory = directory;
-        this.enterprise = enterprise;
-        this.network = network;
-        this.system = system;
         volPopulate();
         populateOrganizationTypeComboBox();
 
@@ -91,7 +75,7 @@ public class PropertyEntManageOrganizationsJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setMinimumSize(new java.awt.Dimension(1058, 840));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -124,32 +108,31 @@ public class PropertyEntManageOrganizationsJPanel extends javax.swing.JPanel {
         tblVoluntaryOrg.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(tblVoluntaryOrg);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 595, 203));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 595, 203));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("MANAGE VOLUNTARY UNIT ORGANIZATION");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 595, -1));
+        jLabel2.setText("MANAGE PROPERTY ORGANIZATIONS");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 595, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
         jLabel1.setText("Organization Type ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, -1));
 
-        OrganizationTypeComboBox.setBackground(new java.awt.Color(255, 255, 255));
         OrganizationTypeComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         OrganizationTypeComboBox.setForeground(new java.awt.Color(25, 56, 82));
-        add(OrganizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 171, -1));
+        add(OrganizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 171, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("Organization Name");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
 
         organizationName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationName.setForeground(new java.awt.Color(25, 56, 82));
-        add(organizationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 171, -1));
+        add(organizationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, 171, -1));
 
         addJButton.setBackground(new java.awt.Color(255, 255, 255));
         addJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -160,13 +143,13 @@ public class PropertyEntManageOrganizationsJPanel extends javax.swing.JPanel {
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 490, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/department128x.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/organization.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/OrganizationIncident600xOpaque.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Organization_back.png"))); // NOI18N
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 660, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed

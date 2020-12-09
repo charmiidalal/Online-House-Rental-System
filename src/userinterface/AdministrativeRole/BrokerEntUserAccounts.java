@@ -11,7 +11,6 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -25,20 +24,18 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
     /**
      * Creates new form VoluntaryOperatingUnitManageUserJPanel
      */
-    private JPanel userProcessContainer;
-    private Enterprise enterprise;
-    private EcoSystem ecosystem;
+    private final Enterprise enterprise;
+    private final EcoSystem ecosystem;
     Organization organization;
-    
-    public BrokerEntUserAccounts(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system, Organization organization) {
-       
+
+    public BrokerEntUserAccounts(Enterprise enterprise, EcoSystem system, Organization organization) {
+
         initComponents();
-         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.ecosystem = system;
         this.organization = organization;
-         populateVoluntaryOrganizationComboBox();
-         populateData();
+        populateVoluntaryOrganizationComboBox();
+        populateData();
     }
 
     /**
@@ -67,7 +64,7 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setMinimumSize(new java.awt.Dimension(1058, 840));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,7 +73,7 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(25, 56, 82));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("MANAGE BROKER ENTERPRISE USERS ACCOUNT");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 638, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 638, -1));
 
         jScrollPane1.setForeground(new java.awt.Color(0, 102, 255));
 
@@ -108,40 +105,40 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         tblUserDetails.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(tblUserDetails);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 121, 638, 179));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 638, 179));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(25, 56, 82));
         jLabel6.setText("Organization");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 318, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("Employee");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 368, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setText("Role");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 418, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
         jLabel1.setText("User Name");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 468, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setText("Password");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 518, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, -1));
 
         createPassword.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         createPassword.setForeground(new java.awt.Color(25, 56, 82));
-        add(createPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 518, 378, -1));
+        add(createPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 260, -1));
 
         createUsername.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         createUsername.setForeground(new java.awt.Color(25, 56, 82));
-        add(createUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 468, 378, -1));
+        add(createUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 468, 260, -1));
 
         selectRole.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectRole.setForeground(new java.awt.Color(25, 56, 82));
@@ -150,7 +147,7 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
                 selectRoleActionPerformed(evt);
             }
         });
-        add(selectRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 418, 378, -1));
+        add(selectRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 260, -1));
 
         selectEmployee.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectEmployee.setForeground(new java.awt.Color(25, 56, 82));
@@ -159,7 +156,7 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
                 selectEmployeeActionPerformed(evt);
             }
         });
-        add(selectEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 368, 378, -1));
+        add(selectEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, 260, -1));
 
         selectOrganization.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectOrganization.setForeground(new java.awt.Color(25, 56, 82));
@@ -168,7 +165,7 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
                 selectOrganizationActionPerformed(evt);
             }
         });
-        add(selectOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 318, 378, -1));
+        add(selectOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 260, -1));
 
         createUserJButton.setBackground(new java.awt.Color(255, 255, 255));
         createUserJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -179,13 +176,13 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
                 createUserJButtonActionPerformed(evt);
             }
         });
-        add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 569, 145, -1));
+        add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 570, 145, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser128x.png"))); // NOI18N
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/group.png"))); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/userImageOpaque.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 400, -1));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/userAccount.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 600, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectRoleActionPerformed
@@ -207,14 +204,14 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
         String userName = createUsername.getText();
         String password = createPassword.getText();
-        
-        if("".equals(userName)) {
+
+        if ("".equals(userName)) {
             JOptionPane.showMessageDialog(null, "Please enter username");
-        }else if(!ecosystem.checkIfUserIsUnique(userName)) {
+        } else if (!ecosystem.checkIfUserIsUnique(userName)) {
             JOptionPane.showMessageDialog(null, "Please enter unique username");
-        }else if("".equals(password)) {
+        } else if ("".equals(password)) {
             JOptionPane.showMessageDialog(null, "Please enter password");
-        }else{
+        } else {
             Organization organization = (Organization) selectOrganization.getSelectedItem();
             Employee employee = (Employee) selectEmployee.getSelectedItem();
             Role role = (Role) selectRole.getSelectedItem();
@@ -225,7 +222,7 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "User created successfully");
         }
     }//GEN-LAST:event_createUserJButtonActionPerformed
-    
+
     public void populateVoluntaryOrganizationComboBox() {
         selectOrganization.removeAllItems();
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
@@ -247,8 +244,7 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
             }
         }
     }
-        
-        
+
     public void populateVolunteerEmployeeComboBox(Organization organization) {
         selectEmployee.removeAllItems();
 

@@ -13,7 +13,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.PropertyManager.PropertyManager;
-import Business.PropertyManager.PropertyManagerDirectory;
+import Business.Role.PropertyManagerRole;
 import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -21,24 +21,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.WorkQueue.ManagerRequest;
+
 /**
  *
  * @author Dinesh
  */
 public class HiremanagerJPanel extends javax.swing.JPanel {
 
-     private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
-   
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
 
-    public HiremanagerJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise,  UserAccount userAccount, EcoSystem system) {
+    public HiremanagerJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -48,37 +47,36 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-      
+
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
- for (Network network : system.getNetworkList()) {
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    String role = ua.getRole().toString();
-                    if ("PropertyManager".equals(role)) {
-                        Object[] row = new Object[13];
-                        row[0] = ua.getUsername();
-                        row[1] = ua.getName();
-                        row[2] = ua.getStreet();
-                        row[3] = ua.getCity();
-                        row[4] = ua.getState();
-                        row[5] = ua.getZipcode();
-                        row[6] = ua.getStatus();
-                        row[7] = ua.getCharge();
-                        //row[8]=ua.getUserOrganizationList().getName();
-                        row[8] = org.getName();
-                        model.addRow(row);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getRole() instanceof PropertyManagerRole) {
+                            Object[] row = new Object[9];
+                            row[0] = ua.getEmployee().getName();
+                            row[1] = ua.getUsername();
+                            row[2] = ua.getCity();
+                            row[3] = ua.getState();
+                            row[4] = ua.getStatus();
+                            row[5] = ua.getCharge();
+                            row[6] = org.getName();
+                            row[7] = network.getName();
+                            row[8] = ua.getPhone();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
         }
     }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,11 +103,11 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ManagerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
+                "ManagerID", "Name", "City", "State", "Status", "Rate", "Organization", "Network"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -164,7 +162,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-         int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
@@ -186,7 +184,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                                 cr.setStatus("Requested");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
-                               
+
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Photographer is already Occupied");
