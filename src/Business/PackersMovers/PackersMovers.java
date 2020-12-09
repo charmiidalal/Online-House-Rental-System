@@ -5,12 +5,14 @@
  */
 package Business.PackersMovers;
 
+import Business.UserAccount.UserAccount;
+
 
 /**
  *
  * @author Dinesh
  */
-public class PackersMovers {
+public class PackersMovers extends UserAccount{
 
     private String packersMoversNo;
     private String packersMoversName;

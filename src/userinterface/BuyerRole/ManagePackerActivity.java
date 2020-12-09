@@ -8,8 +8,8 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.PackerRequest.PackerRequest;
-import Business.PackerRequest.PackerRequestDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
@@ -18,6 +18,11 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.Organization.Organization;
+import Business.Property.Property;
+import Business.WorkQueue.PackerRequest;
+import Business.WorkQueue.WorkRequest;
+
 
 /**
  *
@@ -28,46 +33,56 @@ public class ManagePackerActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewPackerJobs
      */
-    private JPanel userProcessContainer;
+      private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private PackerRequestDirectory packerRequestDirectory;
-    private PackersMoversDirectory packersMoversDirectory;
-    
-    public ManagePackerActivity(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
+
+    /**
+     * Creates new form ViewCleanerJobs
+     */
+    public ManagePackerActivity(JPanel userProcess,  UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.packerRequestDirectory = (system.getPackerRequestDirectory()== null) ? new PackerRequestDirectory(): system.getPackerRequestDirectory();
-        this.packersMoversDirectory = (system.getPackersMoversDirectory()== null) ? new PackersMoversDirectory(): system.getPackersMoversDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
+         
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (PackerRequest packerRequest : packerRequestDirectory.getPackerRequestList()) {
-            if (packerRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[11];
-                row[0] = packerRequest.getRequestID();
-                row[1] = packerRequest.getPackers().getPackersMoversName();
-                row[2] = packerRequest.getSeller().getName();
-                row[3] = packerRequest.getProperty().getStreet();
-                row[4] = packerRequest.getProperty().getCity();
-                row[5] = packerRequest.getProperty().getState();
-                row[6] = packerRequest.getProperty().getPincode();
-                row[7] = packerRequest.getStatus();
-                row[8] = packerRequest.getBuyerNote();
-                row[9] = packerRequest.getInspectorNote();
-                row[10] =packerRequest.getQuote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof PackerRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((PackerRequest) workRequest).getRequestID();
+                row[2] = ((PackerRequest) workRequest).getPacker().getName();
+                row[3] = ((PackerRequest) workRequest).getSeller().getName();
+                row[4] = ((PackerRequest) workRequest).getProperty().getStreet();
+                row[5] = ((PackerRequest) workRequest).getProperty().getCity();
+                row[6] = ((PackerRequest) workRequest).getProperty().getState();
+                row[7] = ((PackerRequest) workRequest).getProperty().getPincode();
+                row[8] = ((PackerRequest) workRequest).getStatus();
+                row[9] = ((PackerRequest) workRequest).getBuyerNote();
+                row[10] = ((PackerRequest) workRequest).getInspectorNote();
+                row[11] = ((PackerRequest) workRequest).getPacker().getCharge();
+                row[12] = ((PackerRequest) workRequest).getQuote();
+                row[13] = ((PackerRequest) workRequest).getOrgType();
+                
+
                 model.addRow(row);
             }
         }
@@ -98,11 +113,11 @@ public class ManagePackerActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Packer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Packer Message", "Charge"
+                "JobID", "Packer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Packer Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -111,7 +126,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 690, 230));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 790, 230));
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -146,35 +161,30 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1087, Short.MAX_VALUE)
+            .addGap(0, 1089, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(75, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1089, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 532, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(64, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(65, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+       
+        if (selectedRow >= 0) {
+            PackerRequest br = (PackerRequest)houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+            
 
             if (!"".equals(feedback)) {
-                PackerRequest packerRequest = packerRequestDirectory.fetchPackerRequest(jobID);
-                packerRequest.setBuyerNote(feedback);
+              
+                br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
             } else {

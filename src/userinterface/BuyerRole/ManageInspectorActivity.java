@@ -8,10 +8,11 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.InspectRequest.InspectRequest;
-import Business.InspectRequest.InspectRequestDirectory;
+import Business.Enterprise.Enterprise;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
@@ -21,6 +22,8 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.InspectRequest;
+import Business.WorkQueue.WorkRequest;
 
 /**
  *
@@ -34,43 +37,50 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private InspectRequestDirectory inspectRequestDirectory;
-    private InspectorDirectory inspectorDirectory;
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
 
     /**
-     * Creates new form BuyerWorkAreaJpanel
+     * Creates new form ViewCleanerJobs
      */
-    public ManageInspectorActivity(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ManageInspectorActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.inspectRequestDirectory = (system.getInspectRequestDirectory() == null) ? new InspectRequestDirectory() : system.getInspectRequestDirectory();
-        this.inspectorDirectory = (system.getInspectorDirectory() == null) ? new InspectorDirectory() : system.getInspectorDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
+         
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (InspectRequest inspectRequest : inspectRequestDirectory.getInspectRequestDirectory()) {
-            if (inspectRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[11];
-                row[0] = inspectRequest.getRequestID();
-                row[1] = inspectRequest.getInspector().getInspectorName();
-                row[2] = inspectRequest.getSeller().getName();
-                row[3] = inspectRequest.getProperty().getStreet();
-                row[4] = inspectRequest.getProperty().getCity();
-                row[5] = inspectRequest.getProperty().getState();
-                row[6] = inspectRequest.getProperty().getPincode();
-                row[7] = inspectRequest.getStatus();
-                row[8] = inspectRequest.getBuyerNote();
-                row[9] = inspectRequest.getInspectorNote();
-                row[10] =inspectRequest.getQuote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof InspectRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((InspectRequest) workRequest).getRequestID();
+                row[2] = ((InspectRequest) workRequest).getInspector().getName();
+                row[3] = ((InspectRequest) workRequest).getSeller().getName();
+                row[4] = ((InspectRequest) workRequest).getProperty().getStreet();
+                row[5] = ((InspectRequest) workRequest).getProperty().getCity();
+                row[6] = ((InspectRequest) workRequest).getProperty().getState();
+                row[7] = ((InspectRequest) workRequest).getProperty().getPincode();
+                row[8] = ((InspectRequest) workRequest).getStatus();
+                row[9] = ((InspectRequest) workRequest).getBuyerNote();
+                row[10] = ((InspectRequest) workRequest).getInspectorNote();
+                row[11] = ((InspectRequest) workRequest).getInspector().getCharge();
+                row[12] = ((InspectRequest) workRequest).getQuote();
+                row[13] = ((InspectRequest) workRequest).getOrgType();
+                
+
                 model.addRow(row);
             }
         }
@@ -101,11 +111,11 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge"
+                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -114,7 +124,7 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 740, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 740, 270));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -147,14 +157,15 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+       
+        if (selectedRow >= 0) {
+            InspectRequest br = (InspectRequest)houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+            
 
             if (!"".equals(feedback)) {
-                InspectRequest inspectRequest = inspectRequestDirectory.fetchInspectorRequest(jobID);
-                inspectRequest.setBuyerNote(feedback);
+              
+                br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
             } else {

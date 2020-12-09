@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author shivibhatt
+ * @author charmi
  */
 public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.JPanel {
 

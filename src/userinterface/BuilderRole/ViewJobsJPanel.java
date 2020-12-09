@@ -5,10 +5,7 @@
  */
 package userinterface.BuilderRole;
 
-import Business.Builder.Builder;
-import Business.Builder.BuilderDirectory;
-import Business.BuilderRequest.BuilderRequest;
-import Business.BuilderRequest.BuilderRequestDirectory;
+import Business.WorkQueue.BuilderRequest;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -106,7 +103,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 287, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/BUILDING.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 660, 440));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

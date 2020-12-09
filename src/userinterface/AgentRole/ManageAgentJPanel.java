@@ -12,6 +12,7 @@ import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Electrician.Electrician;
 import Business.Electrician.ElectricianDirectory;
+import Business.Enterprise.Enterprise;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
 import Business.Property.PropertyDirectory;
@@ -34,14 +35,16 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
     private AgentDirectory agentDirectory;
+    private Enterprise enterprise;
 
     /**
      * Creates new form ManagePlumberJPanel
      */
-    public ManageAgentJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ManageAgentJPanel(JPanel userProcess, EcoSystem system,Enterprise enterprise, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
+        this.enterprise=enterprise;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();

@@ -8,11 +8,9 @@ package userinterface.CleaningRole;
 import Business.Buyer.BuyerDirectory;
 import Business.Cleaner.Cleaner;
 import Business.Cleaner.CleanerDirectory;
-import Business.CleaningRequest.CleaningRequest;
-import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-
+import Business.WorkQueue.CleaningRequest;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -161,7 +159,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaning-staff.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 145, 164));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 145, 164));
     }// </editor-fold>//GEN-END:initComponents
 
     private void quoteTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quoteTxtActionPerformed

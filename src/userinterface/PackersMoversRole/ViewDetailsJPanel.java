@@ -8,8 +8,6 @@ package userinterface.PackersMoversRole;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.PackerRequest.PackerRequest;
-import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMovers;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Property.PropertyDirectory;
@@ -20,6 +18,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.PackerRequest;
 
 /**
  *

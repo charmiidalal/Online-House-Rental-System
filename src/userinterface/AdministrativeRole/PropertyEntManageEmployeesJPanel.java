@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author shivibhatt
+ * @author charmi
  */
 public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
 

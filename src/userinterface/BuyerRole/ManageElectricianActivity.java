@@ -9,8 +9,10 @@ import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Electrician.ElectricianDirectory;
-import Business.ElectricianRequest.ElectricianRequest;
-import Business.ElectricianRequest.ElectricianRequestDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -18,6 +20,8 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.ElectricianRequest;
+import Business.WorkQueue.WorkRequest;
 
 /**
  *
@@ -34,46 +38,54 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private ElectricianRequestDirectory electricianRequestDirectory;
-    private ElectricianDirectory electricianDirectory;
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
 
-  
-    public ManageElectricianActivity(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    /**
+     * Creates new form ViewCleanerJobs
+     */
+    public ManageElectricianActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.electricianRequestDirectory = (system.getElectricianRequestDirectory()== null) ? new ElectricianRequestDirectory(): system.getElectricianRequestDirectory();
-        this.electricianDirectory = (system.getElectricianDirectory()== null) ? new ElectricianDirectory(): system.getElectricianDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
+         
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (ElectricianRequest electricianRequest : electricianRequestDirectory.getElectricianRequestList()) {
-            if (electricianRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[11];
-                row[0] = electricianRequest.getRequestID();
-                row[1] = electricianRequest.getElectrician().getElectricianName();
-                row[2] = electricianRequest.getSeller().getName();
-                row[3] = electricianRequest.getProperty().getStreet();
-                row[4] = electricianRequest.getProperty().getCity();
-                row[5] = electricianRequest.getProperty().getState();
-                row[6] = electricianRequest.getProperty().getPincode();
-                row[7] = electricianRequest.getStatus();
-                row[8] = electricianRequest.getBuyerNote();
-                row[9] = electricianRequest.getInspectorNote();
-                row[10] =electricianRequest.getQuote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof ElectricianRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((ElectricianRequest) workRequest).getRequestID();
+                row[2] = ((ElectricianRequest) workRequest).getElectrician().getName();
+                row[3] = ((ElectricianRequest) workRequest).getSeller().getName();
+                row[4] = ((ElectricianRequest) workRequest).getProperty().getStreet();
+                row[5] = ((ElectricianRequest) workRequest).getProperty().getCity();
+                row[6] = ((ElectricianRequest) workRequest).getProperty().getState();
+                row[7] = ((ElectricianRequest) workRequest).getProperty().getPincode();
+                row[8] = ((ElectricianRequest) workRequest).getStatus();
+                row[9] = ((ElectricianRequest) workRequest).getBuyerNote();
+                row[10] = ((ElectricianRequest) workRequest).getInspectorNote();
+                row[11] = ((ElectricianRequest) workRequest).getElectrician().getCharge();
+                row[12] = ((ElectricianRequest) workRequest).getQuote();
+                row[13] = ((ElectricianRequest) workRequest).getOrgType();
+                
+
                 model.addRow(row);
             }
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,11 +111,11 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Electrician", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Electrician Message", "Charge"
+                "JobID", "Electrician", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Electrician Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -112,7 +124,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 560, 250));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 700, 280));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -131,7 +143,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 140, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/electrician.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 140, 164));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 164));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -144,15 +156,16 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+         int selectedRow = houseTable.getSelectedRow();
+       
+        if (selectedRow >= 0) {
+            ElectricianRequest br = (ElectricianRequest)houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+            
 
             if (!"".equals(feedback)) {
-                ElectricianRequest electricianRequest = electricianRequestDirectory.fetchElectricianRequest(jobID);
-                electricianRequest.setBuyerNote(feedback);
+              
+                br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
             } else {

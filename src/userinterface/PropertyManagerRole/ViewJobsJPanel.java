@@ -9,8 +9,6 @@ import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.ManagerRequest.ManagerRequest;
-import Business.ManagerRequest.ManagerRequestDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
@@ -28,6 +26,7 @@ import userinterface.BuyerRole.HireCleanerJPanel;
 import userinterface.BuyerRole.HireElectricianJPanel;
 import userinterface.BuyerRole.HirePhotoJPanel;
 import userinterface.BuyerRole.HirePlumberJPanel;
+import Business.WorkQueue.ManagerRequest;
 
 /**
  *
@@ -43,7 +42,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private ManagerRequestDirectory managerRequestDirectory;
     private PropertyManagerDirectory propertyManagerDirectory;
      private Property property;
     private Buyer buyer;
@@ -65,7 +63,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.managerRequestDirectory = (system.getManagerRequestDirectory()== null) ? new ManagerRequestDirectory(): system.getManagerRequestDirectory();
+
         this.propertyManagerDirectory = (system.getPropertyManagerDirectory()== null) ? new PropertyManagerDirectory(): system.getPropertyManagerDirectory();
         this.property = property;
         this.buyer=buyer;

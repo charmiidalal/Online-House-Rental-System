@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author shivibhatt
+ * @author charmi
  */
 public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
 

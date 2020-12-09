@@ -223,7 +223,7 @@ public class PhotographerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageOrganizationPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageOrganizationPanelMousePressed
         // TODO add your handling code here:
-        manageAdvertise();
+       manageBuyers();
     }//GEN-LAST:event_manageOrganizationPanelMousePressed
 
     private void manageEmployeeLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageEmployeeLabelMousePressed
@@ -232,7 +232,7 @@ public class PhotographerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageEmployeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageEmployeeMousePressed
         // TODO add your handling code here:
-       
+        manageAdvertise();
     }//GEN-LAST:event_manageEmployeeMousePressed
     
     

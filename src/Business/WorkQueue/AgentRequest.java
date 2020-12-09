@@ -15,7 +15,7 @@ import Business.UserAccount.UserAccount;
  *
  * @author Dinesh
  */
-public class AgentRequest extends WorkQueue{
+public class AgentRequest extends WorkRequest{
     private Network network;
     private Enterprise enterprise;
     private Organization.Type orgType;
@@ -32,8 +32,8 @@ public class AgentRequest extends WorkQueue{
     int max = 999;
 
     public AgentRequest() {
-        int randomNum = (int) (Math.random() * (max - min + 1) + min);
-        requestID = "Request" + randomNum;
+//        int randomNum = (int) (Math.random() * (max - min + 1) + min);
+//        requestID = "Request" + randomNum;
     }
 
     public Network getNetwork() {
@@ -64,8 +64,9 @@ public class AgentRequest extends WorkQueue{
         return requestID;
     }
 
-    public void setRequestID(String requestID) {
-        this.requestID = requestID;
+    public void setRequestID() {
+        int randomNum = (int) (Math.random() * (max - min + 1) + min);
+        this.requestID = "Request" + randomNum;
     }
 
     public UserAccount getSeller() {

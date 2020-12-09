@@ -149,7 +149,7 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 160, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/seller1.jpg"))); // NOI18N
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 330, 370));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 380, 370));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

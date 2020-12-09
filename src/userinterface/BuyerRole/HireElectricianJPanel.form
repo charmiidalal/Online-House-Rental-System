@@ -29,7 +29,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="420" y="110" width="781" height="300"/>
+          <AbsoluteConstraints x="180" y="70" width="781" height="300"/>
         </Constraint>
       </Constraints>
 
@@ -118,14 +118,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="460" y="440" width="-1" height="-1"/>
+          <AbsoluteConstraints x="80" y="460" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/aed_final_project/src/icon/back.png"/>
+          <Image iconType="3" name="/icon_new/management.png"/>
         </Property>
       </Properties>
       <Events>
@@ -133,7 +133,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1220" y="10" width="35" height="-1"/>
+          <AbsoluteConstraints x="1205" y="10" width="50" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -146,14 +146,14 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="660" y="440" width="-1" height="-1"/>
+          <AbsoluteConstraints x="410" y="460" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="commentTxxt">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="740" y="440" width="460" height="-1"/>
+          <AbsoluteConstraints x="540" y="460" width="460" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -165,7 +165,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="58" width="386" height="-1"/>
+          <AbsoluteConstraints x="10" y="50" width="386" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

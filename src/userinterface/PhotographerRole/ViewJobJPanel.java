@@ -9,15 +9,10 @@ import userinterface.PlumberRole.*;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.InspectRequest.InspectRequest;
-import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
-import Business.PhotographerRequest.PhotographerRequest;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
-import Business.PlumbingRequest.PlumbingRequest;
-import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -26,6 +21,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.PhotographerRequest;
 
 /**
  *

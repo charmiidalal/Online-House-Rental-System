@@ -5,11 +5,13 @@
  */
 package Business.Photographer;
 
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author Charmi Dalal
  */
-public class Photographer {
+public class Photographer extends UserAccount{
 
     private String photographerNo;
     private String photographerName;
@@ -22,9 +24,7 @@ public class Photographer {
     private String email;
     private String phone;
 
-    public String getRole() {
-        return "Photographer";
-    }
+    
 
     public String getPhotographerNo() {
         return photographerNo;

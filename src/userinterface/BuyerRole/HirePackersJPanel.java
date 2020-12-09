@@ -11,8 +11,6 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.PackerRequest.PackerRequest;
-import Business.PackerRequest.PackerRequestDirectory;
 import Business.PackersMovers.PackersMovers;
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Property.Property;
@@ -22,7 +20,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
+import Business.WorkQueue.PackerRequest;
 /**
  *
  * @author Dinesh
@@ -32,62 +30,57 @@ public class HirePackersJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HirePackersJPanel
      */
-    private  JPanel userProcessContainer;
-    private  EcoSystem system;
+   
+    private JPanel userProcessContainer;
+    private EcoSystem system;
     private UserAccount userAccount;
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
-    private PackersMoversDirectory packersMoversDirectory;
-    private PackerRequestDirectory packerRequestDirectory;
-     private Enterprise enterprise;
+   
+    private Enterprise enterprise;
     private Network network;
     private Organization organization;
-    
-    
-  
-    public HirePackersJPanel(JPanel userProcess,Organization organization,Network network,Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
+
+    public HirePackersJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
-         this.enterprise=enterprise;
-        this.network=network;
-        this.organization=organization;
-        this.packersMoversDirectory = (system.getPackersMoversDirectory()== null) ? new PackersMoversDirectory(): system.getPackersMoversDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.packerRequestDirectory = (system.getPackerRequestDirectory()== null) ? new PackerRequestDirectory(): system.getPackerRequestDirectory();
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
+      
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        //for (PackersMovers packer : packersMoversDirectory.getPackersMoversList()) {
-//            if ("Available".equals(inspector.getStatus())) {
-for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
-        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
-        {
-        for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList())
-        {
-            String role=ua.getRole().toString();
-           if("Movers & Packers".equals(role)){
-            Object[] row = new Object[13];
-            row[0] = ua.getUsername();
-            row[1] = ua.getName();
-            row[2] = ua.getStreet();
-            row[3] = ua.getCity();
-            row[4] = ua.getState();
-            row[5] = ua.getZipcode();
-            row[6] = ua.getStatus();
-            row[7] = ua.getCharge();
-             //row[8]=ua.getUserOrganizationList().getName();
-              row[8]=org.getName();
-            model.addRow(row);
-//            }
-        }}}}
+
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    String role = ua.getRole().toString();
+                    if ("PackersMovers".equals(role)) {
+                        Object[] row = new Object[13];
+                        row[0] = ua.getUsername();
+                        row[1] = ua.getName();
+                        row[2] = ua.getStreet();
+                        row[3] = ua.getCity();
+                        row[4] = ua.getState();
+                        row[5] = ua.getZipcode();
+                        row[6] = ua.getStatus();
+                        row[7] = ua.getCharge();
+                        //row[8]=ua.getUserOrganizationList().getName();
+                        row[8] = org.getName();
+                        model.addRow(row);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -177,25 +170,37 @@ for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String packerID = (String) houseTable.getValueAt(selectedRow, 0);
-         String comment = commentTxxt.getText();
+        String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
+        String comment = commentTxxt.getText();
         if (count == 1) {
-            PackersMovers packers = packersMoversDirectory.fetchPacker(packerID);
-            if ("Available".equals(packers.getStatus())) {
-                PackerRequest pr = new PackerRequest();
-                pr.setRequestID(packerRequestDirectory.generatePackersRequestID());
-                pr.setBuyer(buyer);
-                pr.setPackers(packers);
-                pr.setSeller((Seller) property.getSeller());
-                pr.setStatus("Requested");
-                pr.setBuyerNote(comment);
-                pr.setProperty(property);
-                packerRequestDirectory.addPackerRequest(pr);
-                system.setPackerRequestDirectory(packerRequestDirectory);
-                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Sorry! This Packer is already Occupied");
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+
+                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
+                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        {
+                            if ("Available".equals(ua.getStatus())) {
+                                PackerRequest cr = new PackerRequest();
+                                cr.setRequestID();
+                                cr.setBuyer(buyer);
+                                cr.setPacker((PackersMovers) userAccount);
+                                cr.setSeller((Seller) property.getSeller());
+                                cr.setStatus("Requested");
+                                cr.setBuyerNote(comment);
+                                cr.setProperty(property);
+                               
+                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Sorry! This Packer is already Occupied");
+
+                            }
+                        }
+                    }
+                }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }

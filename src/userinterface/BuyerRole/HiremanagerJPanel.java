@@ -8,8 +8,9 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.ManagerRequest.ManagerRequest;
-import Business.ManagerRequest.ManagerRequestDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.PropertyManager.PropertyManager;
 import Business.PropertyManager.PropertyManagerDirectory;
@@ -19,58 +20,64 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.ManagerRequest;
 /**
  *
  * @author Dinesh
  */
 public class HiremanagerJPanel extends javax.swing.JPanel {
 
-     private  JPanel userProcessContainer;
-    private  EcoSystem system;
+     private JPanel userProcessContainer;
+    private EcoSystem system;
     private UserAccount userAccount;
-    private  PropertyManagerDirectory propertyManagerDirectory;
-    private  ManagerRequestDirectory managerRequestDirectory;
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
-    
-    /**
-     * Creates new form HiremanagerJPanel
-     */
    
-    public HiremanagerJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system, UserAccount userAccount) {
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
+
+    public HiremanagerJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
-        this.propertyManagerDirectory = (system.getPropertyManagerDirectory()== null) ? new PropertyManagerDirectory(): system.getPropertyManagerDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.managerRequestDirectory = (system.getManagerRequestDirectory()== null) ? new ManagerRequestDirectory(): system.getManagerRequestDirectory();
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
+      
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (PropertyManager manager : propertyManagerDirectory.getPropertyManagerList()) {
-//            if ("Available".equals(inspector.getStatus())) {
-            Object[] row = new Object[12];
-            row[0] = manager.getPropertyNo();
-            row[1] = manager.getPropertyName();
-            row[2] = manager.getStreet();
-            row[3] = manager.getCity();
-            row[4] = manager.getState();
-            row[5] = manager.getZipcode();
-            row[6] = manager.getStatus();
-            row[7] = manager.getCharge();
-            
-            model.addRow(row);
-//            }
+
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    String role = ua.getRole().toString();
+                    if ("PropertyManager".equals(role)) {
+                        Object[] row = new Object[13];
+                        row[0] = ua.getUsername();
+                        row[1] = ua.getName();
+                        row[2] = ua.getStreet();
+                        row[3] = ua.getCity();
+                        row[4] = ua.getState();
+                        row[5] = ua.getZipcode();
+                        row[6] = ua.getStatus();
+                        row[7] = ua.getCharge();
+                        //row[8]=ua.getUserOrganizationList().getName();
+                        row[8] = org.getName();
+                        model.addRow(row);
+                    }
+                }
+            }
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,27 +163,39 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
+         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String packerID = (String) houseTable.getValueAt(selectedRow, 0);
+        String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
         if (count == 1) {
-            PropertyManager manager = propertyManagerDirectory.fetchPropertyManager(packerID);
-            if ("Available".equals(manager.getStatus())) {
-                ManagerRequest pr = new ManagerRequest();
-                pr.setRequestID(managerRequestDirectory.generateManagerRequestID());
-                pr.setBuyer(buyer);
-                pr.setPropertyManager(manager);
-                pr.setSeller((Seller) property.getSeller());
-                pr.setStatus("Requested");
-                pr.setBuyerNote(comment);
-                pr.setProperty(property);
-                managerRequestDirectory.addManagerRequest(pr);
-                system.setManagerRequestDirectory(managerRequestDirectory);
-                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Sorry! This inspector is already Occupied");
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+
+                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
+                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        {
+                            if ("Available".equals(ua.getStatus())) {
+                                ManagerRequest cr = new ManagerRequest();
+                                cr.setRequestID();
+                                cr.setBuyer(buyer);
+                                cr.setManager((PropertyManager) userAccount);
+                                cr.setSeller((Seller) property.getSeller());
+                                cr.setStatus("Requested");
+                                cr.setBuyerNote(comment);
+                                cr.setProperty(property);
+                               
+                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Sorry! This Photographer is already Occupied");
+
+                            }
+                        }
+                    }
+                }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }

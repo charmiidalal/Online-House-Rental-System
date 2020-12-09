@@ -5,11 +5,13 @@
  */
 package Business.PropertyManager;
 
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author Charmi Dalal
  */
-public class PropertyManager {
+public class PropertyManager extends UserAccount{
     private String propertyNo;
     private String propertyName;
     private String street;

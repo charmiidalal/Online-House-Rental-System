@@ -35,16 +35,17 @@ public class InspectRequest extends WorkRequest {
     int max = 999;
 
     public InspectRequest() {
-        int randomNum = (int) (Math.random() * (max - min + 1) + min);
-        requestID = "Request" + randomNum;
+//        int randomNum = (int) (Math.random() * (max - min + 1) + min);
+//        requestID = "Request" + randomNum;
     }
 
     public String getRequestID() {
         return requestID;
     }
 
-    public void setRequestID(String requestID) {
-        this.requestID = requestID;
+    public void setRequestID() {
+        int randomNum = (int) (Math.random() * (max - min + 1) + min);
+        this.requestID = "Request" + randomNum;
     }
 
     public UserAccount getSeller() {
