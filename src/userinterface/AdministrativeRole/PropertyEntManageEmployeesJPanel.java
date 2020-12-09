@@ -11,6 +11,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Utils.HeaderColors;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -24,8 +25,8 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form VoluntaryOperatingUnitManageEmployeeJPanel
      */
-    private final JPanel userProcessContainer;
-    private final OrganizationDirectory organizationDirectory;
+    private JPanel userProcessContainer;
+    private OrganizationDirectory organizationDirectory;
     private Enterprise enterprise;
     private EcoSystem system;
 
@@ -34,8 +35,16 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
         organizationJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
-        populateTable();
+        populateOrganizationComboBox();
         populateOrganizationEmployeeComboBox();
+    }
+
+    public void populateOrganizationComboBox() {
+        organizationJComboBox.removeAllItems();
+
+        for (Organization organization : organizationDirectory.getOrganizationList()) {
+            organizationJComboBox.addItem(organization);
+        }
     }
 
     public void populateOrganizationEmployeeComboBox() {
@@ -46,20 +55,18 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         }
     }
 
-    private void populateTable() {
+    private void populateTable(Organization organization) {
         organizationJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
 
         model.setRowCount(0);
-        for (Organization org : organizationDirectory.getOrganizationList()) {
-            for (Employee employee : org.getEmployeeDirectory().getEmployeeList()) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = employee.getId();
-                row[1] = employee.getName();
-                model.addRow(row);
-            }
-        }
 
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+            Object[] row = new Object[model.getColumnCount()];
+            row[0] = employee.getId();
+            row[1] = employee.getName();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -72,6 +79,8 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        organizationJComboBox = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -93,6 +102,21 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("MANAGE VOLUNTARY UNIT EMPLOYEES");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 35, 492, -1));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel1.setText("Organization");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 133, -1, -1));
+
+        organizationJComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        organizationJComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        organizationJComboBox.setForeground(new java.awt.Color(25, 56, 82));
+        organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationJComboBoxActionPerformed(evt);
+            }
+        });
+        add(organizationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 128, 168, -1));
 
         organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationJTable.setForeground(new java.awt.Color(25, 56, 82));
@@ -125,13 +149,13 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         organizationJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(organizationJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 445, 137));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 169, 445, 137));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CREATE AN EMPLOYEE");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 465, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 342, 465, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
@@ -175,6 +199,14 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
+
+        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        if (organization != null) {
+            populateTable(organization);
+        }
+    }//GEN-LAST:event_organizationJComboBoxActionPerformed
+
     private void employeeNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_employeeNameKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_employeeNameKeyPressed
@@ -185,7 +217,7 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
             String name = employeeName.getText();
             organization.getEmployeeDirectory().createEmployee(name);
             JOptionPane.showMessageDialog(null, "Employee Added Successfully");
-            populateTable();
+            populateTable(organization);
             employeeName.setText("");
         } else {
             JOptionPane.showMessageDialog(null, "Enter value", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -196,6 +228,7 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
     private javax.swing.JTextField employeeName;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -204,6 +237,7 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox organizationEmpJComboBox;
+    private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JTable organizationJTable;
     // End of variables declaration//GEN-END:variables
 }

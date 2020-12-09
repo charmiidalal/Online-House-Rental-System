@@ -12,9 +12,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-
 import Business.Property.Property;
-
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -39,13 +37,9 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
     private CleanerDirectory cleanerDirectory;
-
-     private Enterprise enterprise;
+    private Enterprise enterprise;
     private Network network;
     private Organization organization;
-
-
-
 
     /**
      * Creates new form ViewCleanerJobs
@@ -55,11 +49,9 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
-
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         populateRequestTable();
     }
@@ -69,7 +61,6 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
-<<<<<<< HEAD
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
 
             if (workRequest instanceof CleaningRequest) {
@@ -92,36 +83,6 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
                 model.addRow(row);
             }
-=======
-        //Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList())
-        {
-        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
-        {
-            //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
-        for(UserAccount ua:org.getUserAccountDirectory().getUserAccountList())
-        {
-       
-        for (CleaningRequest cleaningRequest : cleaningRequestDirectory.getCleaningRequestList()) {
-            if (cleaningRequest.getBuyer().getUsername().equals(ua.getUsername())) {
-                Object[] row = new Object[11];
-                row[0] = cleaningRequest.getRequestID();
-                row[1] = cleaningRequest.getCleaner().getName();
-                row[2] = cleaningRequest.getSeller().getName();
-                row[3] = cleaningRequest.getProperty().getStreet();
-                row[4] = cleaningRequest.getProperty().getCity();
-                row[5] = cleaningRequest.getProperty().getState();
-                row[6] = cleaningRequest.getProperty().getPincode();
-                row[7] = cleaningRequest.getStatus();
-                row[8] = cleaningRequest.getBuyerNote();
-                row[9] = cleaningRequest.getInspectorNote();
-                row[10] =cleaningRequest.getQuote();
-                model.addRow(row);
-            }}
-     
-        }
-        }
->>>>>>> 7921124624ec369cccbc9452249fbdffdb7c1aeb
         }
     }
 

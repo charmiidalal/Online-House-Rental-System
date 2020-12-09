@@ -176,7 +176,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house seller.jpg"))); // NOI18N
         jLabel2.setOpaque(true);
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 410, 280));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 410, 280));
 
         jPanelHouse.setBackground(new java.awt.Color(255, 255, 255));
         jPanelHouse.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
