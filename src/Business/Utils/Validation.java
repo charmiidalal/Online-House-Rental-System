@@ -20,10 +20,10 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author shivibhatt
+ * @author anush
  */
 public class Validation {
-    public static boolean nameValidator(String name) {
+    public  boolean nameValidator(String name) {
         Pattern pattern;
         Matcher matcher;
         String NAME_PATTERN = "^[A-Za-z]{1,}[\\s]{0,1}[A-Za-z]{0,}$";
@@ -32,7 +32,7 @@ public class Validation {
         return matcher.matches();
     }
     
-        public static boolean userNameValidator(String name) {
+        public  boolean userNameValidator(String name) {
         Pattern pattern;
         Matcher matcher;
         String NAME_PATTERN = "^[A-Za-z\\s]+$";
@@ -42,27 +42,27 @@ public class Validation {
     }
         
         
-           public static boolean emailValidator(String email) {
+       public  boolean emailValidator(String email) {
         Pattern pattern;
         Matcher matcher;
-        String EMAIL_PATTERN
+       String EMAIL_PATTERN
                 = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(email);
         return matcher.matches();
     }
 
-    public static boolean passwordValidator(String passwordValue) {
+    public  boolean passwordValidator(String passwordValue) {
         Pattern pattern;
         Matcher matcher;
-        String PASSWORD_PATTERN
-                = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=~|?])(?=\\S+$).{8,}$";
+        String PASSWORD_PATTERN="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$";
+              //  = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=~|?])(?=\\S+$).{8,}$";
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(passwordValue);
         return matcher.matches();
     }
 
-    public static boolean phoneNumberValidator(String contact) {
+    public  boolean phoneNumberValidator(String contact) {
         Pattern pattern;
         Matcher matcher;
         String PHONE_PATTERN = "^[0-9]{10}$";
@@ -71,7 +71,7 @@ public class Validation {
         return matcher.matches();
     }
 
-    public static void stringValidator(KeyEvent evt, JTextField field) {
+    public  void stringValidator(KeyEvent evt, JTextField field) {
         char c = evt.getKeyChar();
         if (!((c >= 'A') && (c <= 'Z') || (c >= 'a') && (c <= 'z') || (c == evt.VK_SPACE)
                 || (c == evt.VK_BACK_SPACE)
@@ -82,7 +82,7 @@ public class Validation {
         }
     }
 
-    public static void integerValidator(KeyEvent evt, JTextField field) {
+    public  void integerValidator(KeyEvent evt, JTextField field) {
         char c = evt.getKeyChar();
         if (!((c >= '0') && (c <= '9')
                 || (c == evt.VK_BACK_SPACE)
@@ -94,7 +94,7 @@ public class Validation {
         }
     }
     
-    public static void sendEmailMessage(String emailId, String subject, String text) {
+    public  void sendEmailMessage(String emailId, String subject, String text) {
         String to = emailId;
         String from = "donotreplyers@gmail.com";
         String pass = "devhuskies";

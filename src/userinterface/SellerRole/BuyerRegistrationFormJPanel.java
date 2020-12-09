@@ -185,7 +185,11 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         String idDoc=uploadlbl.getText();
         
      // Buyer buyer = (this.buyerDirectory.getBuyer(name)) == null ? new Buyer() : this.buyerDirectory.getBuyer(name);
-
+ if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || zipcode.isEmpty() || nationalId.isEmpty() ||email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
+        }
+ else
+ {
         buyer.setBuyerName(name);
         buyer.setBuyerPhone(phone);
         buyer.setBuyerEmail(email);
@@ -204,7 +208,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
       // this.buyerDirectory.setBuyerList(RegisteredBuyer);
         //system.setBuyerDirectory(buyerDirectory);
         JOptionPane.showMessageDialog(this, "Thank you for submitting the form!");
-
+ }
     }//GEN-LAST:event_btnsubmitActionPerformed
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
