@@ -6,11 +6,14 @@
 package userinterface.BuyerRole;
 
 import Business.Builder.BuilderDirectory;
-import Business.BuilderRequest.BuilderRequest;
-import Business.BuilderRequest.BuilderRequestDirectory;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
+import Business.Cleaner.CleanerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -18,6 +21,8 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.BuilderRequest;
+import Business.WorkQueue.WorkRequest;
 
 /**
  *
@@ -34,45 +39,55 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private BuilderRequestDirectory builderRequestDirectory;
-    private BuilderDirectory builderDirectory;
-    
-    public ManageBuilderActivity(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    private CleanerDirectory cleanerDirectory;
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
+
+    /**
+     * Creates new form ViewCleanerJobs
+     */
+    public ManageBuilderActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.builderRequestDirectory = (system.getBuilderRequestDirectory()== null) ? new BuilderRequestDirectory(): system.getBuilderRequestDirectory();
-        this.builderDirectory = (system.getBuilderDirectory()== null) ? new BuilderDirectory(): system.getBuilderDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
+         
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (BuilderRequest builderRequest : builderRequestDirectory.getBuilderRequestList()) {
-            if (builderRequest.getBuyer().getUsername().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[11];
-                row[0] = builderRequest.getRequestID();
-                row[1] = builderRequest.getBuilder().getUsername();
-                row[2] = builderRequest.getSeller().getName();
-                row[3] = builderRequest.getProperty().getStreet();
-                row[4] = builderRequest.getProperty().getCity();
-                row[5] = builderRequest.getProperty().getState();
-                row[6] = builderRequest.getProperty().getPincode();
-                row[7] = builderRequest.getStatus();
-                row[8] = builderRequest.getBuyerNote();
-                row[9] = builderRequest.getInspectorNote();
-                row[10]=builderRequest.getQuote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof BuilderRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((BuilderRequest) workRequest).getRequestID();
+                row[2] = ((BuilderRequest) workRequest).getBuilder().getName();
+                row[3] = ((BuilderRequest) workRequest).getSeller().getName();
+                row[4] = ((BuilderRequest) workRequest).getProperty().getStreet();
+                row[5] = ((BuilderRequest) workRequest).getProperty().getCity();
+                row[6] = ((BuilderRequest) workRequest).getProperty().getState();
+                row[7] = ((BuilderRequest) workRequest).getProperty().getPincode();
+                row[8] = ((BuilderRequest) workRequest).getStatus();
+                row[9] = ((BuilderRequest) workRequest).getBuyerNote();
+                row[10] = ((BuilderRequest) workRequest).getInspectorNote();
+                row[11] = ((BuilderRequest) workRequest).getBuilder().getCharge();
+                row[12] = ((BuilderRequest) workRequest).getQuote();
+                row[13] = ((BuilderRequest) workRequest).getOrgType();
+                
+
                 model.addRow(row);
             }
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,11 +117,11 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Cleaner", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Cleaner Message", "Charge", "Quote"
+                "JobID", "Builder", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Cleaner Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,7 +130,7 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 710, 300));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 790, 300));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -133,6 +148,7 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
         });
         jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, -1, -1));
 
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,27 +162,28 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(btnBack)
                         .addGap(50, 50, 50)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
+                        .addGap(34, 34, 34)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -175,14 +192,15 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+       
+        if (selectedRow >= 0) {
+            BuilderRequest br = (BuilderRequest)houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+            
 
             if (!"".equals(feedback)) {
-                BuilderRequest builderRequest = builderRequestDirectory.fetchBuilderRequest(jobID);
-                builderRequest.setBuyerNote(feedback);
+              
+                br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
             } else {

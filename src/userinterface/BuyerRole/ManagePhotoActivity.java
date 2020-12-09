@@ -8,9 +8,11 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Photographer.PhotographerDirectory;
-import Business.PhotographerRequest.PhotographerRequest;
-import Business.PhotographerRequest.PhotographerRequestDirectory;
+import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -18,6 +20,8 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.PhotographerRequest;
+import Business.WorkQueue.WorkRequest;
 
 /**
  *
@@ -28,46 +32,56 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewPhotoJobs
      */
-      private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private PhotographerRequestDirectory photographerRequestDirectory;
-    private PhotographerDirectory photographerDirectory;
-    
-    public ManagePhotoActivity(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
+
+    /**
+     * Creates new form ViewCleanerJobs
+     */
+    public ManagePhotoActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.photographerRequestDirectory = (system.getPhotographerRequestDirectory()== null) ? new PhotographerRequestDirectory(): system.getPhotographerRequestDirectory();
-        this.photographerDirectory = (system.getPhotographerDirectory()== null) ? new PhotographerDirectory(): system.getPhotographerDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
+         
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (PhotographerRequest photoRequest : photographerRequestDirectory.getPhotoRequestList()) {
-            if (photoRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[11];
-                row[0] = photoRequest.getRequestID();
-                row[1] = photoRequest.getPhotographer().getPhotographerName();
-                row[2] = photoRequest.getSeller().getName();
-                row[3] = photoRequest.getProperty().getStreet();
-                row[4] = photoRequest.getProperty().getCity();
-                row[5] = photoRequest.getProperty().getState();
-                row[6] = photoRequest.getProperty().getPincode();
-                row[7] = photoRequest.getStatus();
-                row[8] = photoRequest.getBuyerNote();
-                row[9] = photoRequest.getInspectorNote();
-                row[10] =photoRequest.getQuote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof PhotographerRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((PhotographerRequest) workRequest).getRequestID();
+                row[2] = ((PhotographerRequest) workRequest).getPhotographer().getName();
+                row[3] = ((PhotographerRequest) workRequest).getSeller().getName();
+                row[4] = ((PhotographerRequest) workRequest).getProperty().getStreet();
+                row[5] = ((PhotographerRequest) workRequest).getProperty().getCity();
+                row[6] = ((PhotographerRequest) workRequest).getProperty().getState();
+                row[7] = ((PhotographerRequest) workRequest).getProperty().getPincode();
+                row[8] = ((PhotographerRequest) workRequest).getStatus();
+                row[9] = ((PhotographerRequest) workRequest).getBuyerNote();
+                row[10] = ((PhotographerRequest) workRequest).getInspectorNote();
+                row[11] = ((PhotographerRequest) workRequest).getPhotographer().getCharge();
+                row[12] = ((PhotographerRequest) workRequest).getQuote();
+                row[13] = ((PhotographerRequest) workRequest).getOrgType();
+                
+
                 model.addRow(row);
             }
         }
@@ -102,11 +116,11 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Photographer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Photographer Message", "Charge"
+                "JobID", "Photographer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Photographer Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,7 +129,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 112, 719, 250));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 750, 250));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -149,15 +163,16 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+         int selectedRow = houseTable.getSelectedRow();
+       
+        if (selectedRow >= 0) {
+            PhotographerRequest br = (PhotographerRequest)houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+            
 
             if (!"".equals(feedback)) {
-               PhotographerRequest photoRequest = photographerRequestDirectory.fetchPhotoRequest(jobID);
-                photoRequest.setBuyerNote(feedback);
+              
+                br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
             } else {

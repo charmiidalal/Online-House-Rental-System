@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author shivibhatt
+ * @author charmi
  */
 public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
 

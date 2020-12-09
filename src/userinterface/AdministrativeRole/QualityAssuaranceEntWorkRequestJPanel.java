@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author shivibhatt
+ * @author charmi
  */
 public class QualityAssuaranceEntWorkRequestJPanel extends javax.swing.JPanel {
 

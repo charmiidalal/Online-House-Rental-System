@@ -5,7 +5,6 @@
  */
 package userinterface.AgentRole;
 
-import Business.AgentRequest.AgentRequest;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -14,6 +13,7 @@ import Business.Property.PropertyDirectory;
 import Business.Seller.Seller;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AgentRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -80,14 +80,19 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblHouse = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnSendHouseSug = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/houseop.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 660, 440));
 
         jtblHouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,29 +124,35 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
             jtblHouse.getColumnModel().getColumn(9).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 73, 656, 219));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 730, 219));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("List of All Houses");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 27, -1, -1));
-
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBack.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         btnBack.setText("<< Back");
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 376, -1, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 320, -1, -1));
 
-        btnSendHouseSug.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSendHouseSug.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         btnSendHouseSug.setText("Send House Suggestions");
+        btnSendHouseSug.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSendHouseSug.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendHouseSugActionPerformed(evt);
             }
         });
-        add(btnSendHouseSug, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 376, -1, -1));
+        add(btnSendHouseSug, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 145, 164));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel3.setText("LIST OF ALL THE HOUSES");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -170,7 +181,9 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSendHouseSug;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtblHouse;
     // End of variables declaration//GEN-END:variables

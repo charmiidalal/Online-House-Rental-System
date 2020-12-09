@@ -6,13 +6,25 @@
 package userinterface.ElectricianRole;
 
 import Business.EcoSystem;
+<<<<<<< HEAD
+import Business.Electrician.Electrician;
+import Business.Electrician.ElectricianDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Inspector.Inspector;
+import Business.Inspector.InspectorDirectory;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
+import Business.Seller.SellerDirectory;
+=======
 import Business.ElectricianRequest.ElectricianRequest;
 import Business.Enterprise.Enterprise;
+>>>>>>> 7921124624ec369cccbc9452249fbdffdb7c1aeb
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.ElectricianRequest;
 
 /**
  *
@@ -122,7 +134,7 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/electricianop.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 400, 590));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 420, 590));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

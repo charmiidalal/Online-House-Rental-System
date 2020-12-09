@@ -8,14 +8,10 @@ package userinterface.PlumberRole;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.InspectRequest.InspectRequest;
-import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
-import Business.PlumbingRequest.PlumbingRequest;
-import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -24,6 +20,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.PlumberRequest;
 
 /**
  *
@@ -85,18 +82,18 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
 
-            if (workRequest instanceof PlumbingRequest) {
+            if (workRequest instanceof PlumberRequest) {
                 Object[] row = new Object[model.getColumnCount()];
                 row[0] = workRequest;
-                row[1] = ((PlumbingRequest) workRequest).getBuyer().getName();
-                row[2] = ((PlumbingRequest) workRequest).getSeller().getName();
-                row[3] = ((PlumbingRequest) workRequest).getProperty().getStreet();
-                row[4] = ((PlumbingRequest) workRequest).getProperty().getCity();
-                row[5] = ((PlumbingRequest) workRequest).getProperty().getState();
-                row[6] = ((PlumbingRequest) workRequest).getProperty().getPincode();
-                row[7] = ((PlumbingRequest) workRequest).getStatus();
-                row[8] = ((PlumbingRequest) workRequest).getBuyerNote();
-                row[9] = ((PlumbingRequest) workRequest).getInspectorNote();
+                row[1] = ((PlumberRequest) workRequest).getBuyer().getName();
+                row[2] = ((PlumberRequest) workRequest).getSeller().getName();
+                row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
+                row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
+                row[5] = ((PlumberRequest) workRequest).getProperty().getState();
+                row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
+                row[7] = ((PlumberRequest) workRequest).getStatus();
+                row[8] = ((PlumberRequest) workRequest).getBuyerNote();
+                row[9] = ((PlumberRequest) workRequest).getInspectorNote();
 
                 model.addRow(row);
             }
@@ -233,7 +230,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
-            PlumbingRequest plumbingRequest = (PlumbingRequest) houseTable.getValueAt(selectedRow, 0);
+            PlumberRequest plumbingRequest = (PlumberRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
             if (!"Job Taken".equals(plumbingRequest.getStatus())) {
                 if (!"".equals(feedback)) {
@@ -258,7 +255,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
-            PlumbingRequest plumbingRequest = (PlumbingRequest) houseTable.getValueAt(selectedRow, 0);
+            PlumberRequest plumbingRequest = (PlumberRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
 
             if (!"".equals(feedback)) {

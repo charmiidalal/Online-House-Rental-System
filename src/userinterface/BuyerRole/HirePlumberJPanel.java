@@ -13,8 +13,6 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
-import Business.PlumbingRequest.PlumbingRequest;
-import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.Property;
 import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
@@ -22,69 +20,62 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
+import Business.WorkQueue.PlumberRequest;
 /**
  *
  * @author Dinesh
  */
 public class HirePlumberJPanel extends javax.swing.JPanel {
 
-     private  JPanel userProcessContainer;
-    private  EcoSystem system;
+     private JPanel userProcessContainer;
+    private EcoSystem system;
     private UserAccount userAccount;
-    private  PlumberDirectory plumberDirectory;
-    private  PlumbingRequestDirectory plumbingRequestDirectory;
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
-     private Enterprise enterprise;
+   
+    private Enterprise enterprise;
     private Network network;
     private Organization organization;
-    /**
-     * Creates new form HirePlumberJPanel
-     */
-    public HirePlumberJPanel(JPanel userProcess,Organization organization,Network network,Enterprise enterprise, Property property,UserAccount userAccount, EcoSystem system) {
+
+    public HirePlumberJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
-         this.enterprise=enterprise;
-        this.network=network;
-        this.organization=organization;
-        this.plumberDirectory = (system.getPlumberDirectory()== null) ? new PlumberDirectory(): system.getPlumberDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.plumbingRequestDirectory = (system.getPlumbingRequestDirectory()== null) ? new PlumbingRequestDirectory(): system.getPlumbingRequestDirectory();
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
+      
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        //for (Plumber plumber : plumberDirectory.getPlumberist()) {
-//            if ("Available".equals(inspector.getStatus())) {
-  for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
-        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
-        {
-        for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList())
-        {
-             if(ua.getRole().equals("Plumber")){
-            Object[] row = new Object[13];
-            row[0] = ua.getUsername();
-            row[1] = ua.getName();
-            row[2] = ua.getStreet();
-            row[3] = ua.getCity();
-            row[4] = ua.getState();
-            row[5] = ua.getZipcode();
-            row[6] = ua.getStatus();
-            row[7] = ua.getCharge();
-             row[8]=ua.getUserOrganizationList().getName();
-            model.addRow(row);
-//            }
-             }
-        }
-        }
+
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    String role = ua.getRole().toString();
+                    if ("Plumber".equals(role)) {
+                        Object[] row = new Object[13];
+                        row[0] = ua.getUsername();
+                        row[1] = ua.getName();
+                        row[2] = ua.getStreet();
+                        row[3] = ua.getCity();
+                        row[4] = ua.getState();
+                        row[5] = ua.getZipcode();
+                        row[6] = ua.getStatus();
+                        row[7] = ua.getCharge();
+                        //row[8]=ua.getUserOrganizationList().getName();
+                        row[8] = org.getName();
+                        model.addRow(row);
+                    }
+                }
+            }
         }
     }
     /**
@@ -154,30 +145,43 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
+      int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String plumberID = (String) houseTable.getValueAt(selectedRow, 0);
-         String comment = commentTxxt.getText();
+        String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
+        String comment = commentTxxt.getText();
         if (count == 1) {
-            Plumber plumber = plumberDirectory.fetchPlumber(plumberID);
-            if ("Available".equals(plumber.getStatus())) {
-                PlumbingRequest er = new PlumbingRequest();
-                er.setRequestID(plumbingRequestDirectory.generatePlumbingRequestID());
-                er.setBuyer(buyer);
-                er.setPlumber(plumber);
-                er.setSeller((Seller) property.getSeller());
-                er.setStatus("Requested");
-                er.setBuyerNote(comment);
-                er.setProperty(property);
-                plumbingRequestDirectory.addPlumbingRequest(er);
-                system.setPlumbingRequestDirectory(plumbingRequestDirectory);
-                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Sorry! This inspector is already Occupied");
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+
+                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
+                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        {
+                            if ("Available".equals(ua.getStatus())) {
+                                PlumberRequest cr = new PlumberRequest();
+                                cr.setRequestID();
+                                cr.setBuyer(buyer);
+                                cr.setPlumber((Plumber) userAccount);
+                                cr.setSeller((Seller) property.getSeller());
+                                cr.setStatus("Requested");
+                                cr.setBuyerNote(comment);
+                                cr.setProperty(property);
+                               
+                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Sorry! This Photographer is already Occupied");
+
+                            }
+                        }
+                    }
+                }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
+           
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed

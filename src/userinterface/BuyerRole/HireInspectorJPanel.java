@@ -9,8 +9,6 @@ import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.InspectRequest.InspectRequest;
-import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
 import Business.Network.Network;
@@ -24,60 +22,62 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
+import Business.WorkQueue.InspectRequest;
 /**
  *
  * @author dinesh
  */
 public class HireInspectorJPanel extends javax.swing.JPanel {
 
-    private final JPanel userProcessContainer;
-    private final EcoSystem system;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
     private UserAccount userAccount;
-    private final InspectorDirectory inspectorDirectory;
-    private final InspectRequestDirectory inspectRequestDirectory;
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
-       private Enterprise enterprise;
+   
+    private Enterprise enterprise;
     private Network network;
     private Organization organization;
 
-    /**
-     * Creates new form BuyerWorkAreaJpanel
-     */
-    public HireInspectorJPanel(JPanel userProcess, Property property, Buyer buyer, EcoSystem system, UserAccount userAccount) {
+    public HireInspectorJPanel(JPanel userProcess,  UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
-        this.enterprise=enterprise;
-        this.network=network;
-        this.organization=organization;
-        this.inspectorDirectory = (system.getInspectorDirectory() == null) ? new InspectorDirectory() : system.getInspectorDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.inspectRequestDirectory = (system.getInspectRequestDirectory() == null) ? new InspectRequestDirectory() : system.getInspectRequestDirectory();
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
+      
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Inspector inspector : inspectorDirectory.getInsepectorList()) {
-//            if ("Available".equals(inspector.getStatus())) {
-            Object[] row = new Object[12];
-            row[0] = inspector.getInspectorNo();
-            row[1] = inspector.getInspectorName();
-            row[2] = inspector.getStreet();
-            row[3] = inspector.getCity();
-            row[4] = inspector.getState();
-            row[5] = inspector.getZipcode();
-            row[6] = inspector.getStatus();
-            row[7] = inspector.getCharge();
-            model.addRow(row);
-//            }
+
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    String role = ua.getRole().toString();
+                    if ("Inspector".equals(role)) {
+                        Object[] row = new Object[13];
+                        row[0] = ua.getUsername();
+                        row[1] = ua.getName();
+                        row[2] = ua.getStreet();
+                        row[3] = ua.getCity();
+                        row[4] = ua.getState();
+                        row[5] = ua.getZipcode();
+                        row[6] = ua.getStatus();
+                        row[7] = ua.getCharge();
+                        //row[8]=ua.getUserOrganizationList().getName();
+                        row[8] = org.getName();
+                        model.addRow(row);
+                    }
+                }
+            }
         }
     }
 
@@ -147,27 +147,39 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
+         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String inspectorID = (String) houseTable.getValueAt(selectedRow, 0);
-         String comment = commentTxxt.getText();
+        String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
+        String comment = commentTxxt.getText();
         if (count == 1) {
-            Inspector inspector = inspectorDirectory.fetchInspector(inspectorID);
-            if ("Available".equals(inspector.getStatus())) {
-                InspectRequest ir = new InspectRequest();
-                ir.setRequestID(inspectRequestDirectory.generateInspectorRequestID());
-                ir.setBuyer(buyer);
-                ir.setInspector(inspector);
-                ir.setSeller((Seller) property.getSeller());
-                ir.setStatus("Requested");
-                ir.setBuyerNote(comment);
-                ir.setProperty(property);
-                inspectRequestDirectory.addInspectRequest(ir);
-                system.setInspectRequestDirectory(inspectRequestDirectory);
-                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Sorry! This inspector is already Occupied");
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+
+                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
+                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        {
+                            if ("Available".equals(ua.getStatus())) {
+                                InspectRequest cr = new InspectRequest();
+                                cr.setRequestID();
+                                cr.setBuyer(buyer);
+                                cr.setInspector((Inspector) userAccount);
+                                cr.setSeller((Seller) property.getSeller());
+                                cr.setStatus("Requested");
+                                cr.setBuyerNote(comment);
+                                cr.setProperty(property);
+                               
+                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Sorry! This Inspector is already Occupied");
+
+                            }
+                        }
+                    }
+                }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -175,7 +187,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
 
     private void btnBuyHouse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyHouse1ActionPerformed
         // TODO add your handling code here:
-        BuyerWorkAreaJPanel buyerWorkAreaJPanel = new BuyerWorkAreaJPanel(userProcessContainer,userAccount,organization,enterprise, network, system);
+        BuyerScreenJPanel buyerWorkAreaJPanel = new BuyerScreenJPanel(userProcessContainer,userAccount,enterprise, system);
         userProcessContainer.add("BuyerWorkAreaJPanel", buyerWorkAreaJPanel);
         buyerWorkAreaJPanel.populateRequestTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
