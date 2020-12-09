@@ -9,6 +9,8 @@ import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.Cleaner.Cleaner;
 import Business.Cleaner.CleanerDirectory;
+import Business.CleaningRequest.CleaningRequest;
+import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -20,7 +22,6 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import Business.WorkQueue.CleaningRequest;
 
 /**
  *
@@ -38,6 +39,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     private Buyer buyer;
     private Property property;
     private CleanerDirectory cleanerDirectory;
+    private CleaningRequestDirectory cleaningRequestDirectory;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -52,7 +54,9 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-      
+        this.cleanerDirectory = (system.getCleanerDirectory() == null) ? new CleanerDirectory() : system.getCleanerDirectory();
+        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
+        this.cleaningRequestDirectory = (system.getCleaningRequestDirectory() == null) ? new CleaningRequestDirectory() : system.getCleaningRequestDirectory();
         populateRequestTable();
     }
 
@@ -177,6 +181,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
         if (count == 1) {
+
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
 
@@ -187,14 +192,15 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                         {
                             if ("Available".equals(ua.getStatus())) {
                                 CleaningRequest cr = new CleaningRequest();
-                                cr.setRequestID();
-                                cr.setBuyer(buyer);
-                                cr.setCleaner((Cleaner) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
+                                cr.setRequestID(cleaningRequestDirectory.generateCleaningRequestID());
+                                cr.setBuyer(userAccount);
+                                cr.setCleaner(ua);
+                                cr.setSeller(property.getSeller());
                                 cr.setStatus("Requested");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
-                               
+                                cleaningRequestDirectory.addCleaningRequest(cr);
+                                system.setCleaningRequestDirectory(cleaningRequestDirectory);
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");

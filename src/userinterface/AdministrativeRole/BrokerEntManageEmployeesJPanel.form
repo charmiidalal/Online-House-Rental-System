@@ -46,6 +46,7 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -83,6 +84,8 @@
         </Constraint>
       </Constraints>
     </Component>
+=======
+>>>>>>> 7921124624ec369cccbc9452249fbdffdb7c1aeb
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>

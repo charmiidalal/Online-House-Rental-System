@@ -9,11 +9,12 @@ import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.ManagerRequest.ManagerRequest;
+import Business.ManagerRequest.ManagerRequestDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.PropertyManager.PropertyManager;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -26,7 +27,6 @@ import userinterface.BuyerRole.HireCleanerJPanel;
 import userinterface.BuyerRole.HireElectricianJPanel;
 import userinterface.BuyerRole.HirePhotoJPanel;
 import userinterface.BuyerRole.HirePlumberJPanel;
-import Business.WorkQueue.ManagerRequest;
 
 /**
  *
@@ -34,7 +34,6 @@ import Business.WorkQueue.ManagerRequest;
  */
 public class ViewJobsJPanel extends javax.swing.JPanel {
 
-  
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
@@ -42,19 +41,19 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
+    private ManagerRequestDirectory managerRequestDirectory;
     private PropertyManagerDirectory propertyManagerDirectory;
-     private Property property;
+    private Property property;
     private Buyer buyer;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
+
     /**
      * Creates new form ViewJobsJPanel
      */
-   
 
-
-    public ViewJobsJPanel(JPanel userProcessContainer,Organization organization,Network network,Enterprise enterprise,Property property,  UserAccount useraccount,EcoSystem system) {
+    public ViewJobsJPanel(JPanel userProcessContainer, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount useraccount, EcoSystem system) {
 
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -63,17 +62,48 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-
-        this.propertyManagerDirectory = (system.getPropertyManagerDirectory()== null) ? new PropertyManagerDirectory(): system.getPropertyManagerDirectory();
+        this.managerRequestDirectory = (system.getManagerRequestDirectory() == null) ? new ManagerRequestDirectory() : system.getManagerRequestDirectory();
+        this.propertyManagerDirectory = (system.getPropertyManagerDirectory() == null) ? new PropertyManagerDirectory() : system.getPropertyManagerDirectory();
         this.property = property;
-        this.buyer=buyer;
-          this.network = network;
+        this.buyer = buyer;
+        this.network = network;
         this.enterprise = enterprise;
         this.organization = organization;
-        
-
         this.enterprise = enterprise;
+        populateStatusComboBox();
+    }
 
+    public void populateRequestTableFilter(String status) {
+        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
+        model.setRowCount(0);
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof ManagerRequest) {
+                if (((ManagerRequest) workRequest).getStatus().equals(status)) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((ManagerRequest) workRequest).getBuyer().getName();
+                    row[2] = ((ManagerRequest) workRequest).getSeller().getName();
+                    row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
+                    row[5] = ((ManagerRequest) workRequest).getProperty().getState();
+                    row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((ManagerRequest) workRequest).getStatus();
+                    row[8] = ((ManagerRequest) workRequest).getBuyerNote();
+                    row[9] = ((ManagerRequest) workRequest).getInspectorNote();
+
+                    model.addRow(row);
+                }
+            }
+        }
+    }
+
+    public void populateStatusComboBox() {
+        populateStatus.removeAllItems();
+        populateStatus.addItem("Pending");
+        populateStatus.addItem("Completed");
+        populateStatus.addItem("In Progress");
     }
 
     public void populateRequestTable() {
@@ -99,7 +129,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
             }
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,6 +163,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         houseTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        clearBtn = new javax.swing.JButton();
+        populateStatus = new javax.swing.JComboBox();
 
         hireElecBtn.setText("Hire Electrician");
         hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +229,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 .addContainerGap(209, Short.MAX_VALUE))
         );
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -333,6 +366,35 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 140, 164));
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel6.setText("Serach By Status");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+
+        clearBtn.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        clearBtn.setText("Clear");
+        clearBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        clearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBtnActionPerformed(evt);
+            }
+        });
+        add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 90, -1));
+
+        populateStatus.setBackground(new java.awt.Color(255, 255, 255));
+        populateStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        populateStatus.setForeground(new java.awt.Color(25, 56, 82));
+        populateStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                populateStatusActionPerformed(evt);
+            }
+        });
+        populateStatus.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                populateStatusPropertyChange(evt);
+            }
+        });
+        add(populateStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 140, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
@@ -344,7 +406,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 if (!"".equals(feedback)) {
                     managerRequest.setStatus("Job Taken");
                     managerRequest.setQuote(quoteTxt.getText());
-                
+
                     userAccount.setStatus("Occupied");
                     populateRequestTable();
                     JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
@@ -361,7 +423,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-         int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
             ManagerRequest managerRequest = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
@@ -381,9 +443,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
 
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,organization,network,enterprise, property, userAccount,system);
-
-      
+        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer, organization, network, enterprise, property, userAccount, system);
 
         userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -391,49 +451,49 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_hireElecBtnActionPerformed
 
     private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
-        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer, organization, network, enterprise, property, buyer, system);
         userProcessContainer.add("plumberWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePlumBtnActionPerformed
 
     private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
-        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer, organization, network, enterprise, property, buyer, system);
         userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePhotoBtnActionPerformed
 
     private void hireCleanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtnActionPerformed
-        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer, organization, network, enterprise, property, buyer, system);
         userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireCleanBtnActionPerformed
 
     private void hireElecBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtn1ActionPerformed
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer, organization, network, enterprise, property, buyer, system);
         userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireElecBtn1ActionPerformed
 
     private void hirePlumBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtn1ActionPerformed
-        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer, organization, network, enterprise, property, buyer, system);
         userProcessContainer.add("plumberWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePlumBtn1ActionPerformed
 
     private void hirePhotoBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtn1ActionPerformed
-        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer, organization, network, enterprise, property, buyer, system);
         userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePhotoBtn1ActionPerformed
 
     private void hireCleanBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtn1ActionPerformed
-        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer, organization, network, enterprise, property, buyer, system);
         userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -443,10 +503,28 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_quoteTxtActionPerformed
 
+    private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
+        // TODO add your handling code here:
+        populateRequestTable();
+    }//GEN-LAST:event_clearBtnActionPerformed
+
+    private void populateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_populateStatusActionPerformed
+        // TODO add your handling code here:
+        String status = (String) populateStatus.getSelectedItem();
+        if (status != null) {
+            populateRequestTableFilter(status);
+        }
+    }//GEN-LAST:event_populateStatusActionPerformed
+
+    private void populateStatusPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_populateStatusPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_populateStatusPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
+    private javax.swing.JButton clearBtn;
     private javax.swing.JButton hireCleanBtn;
     private javax.swing.JButton hireCleanBtn1;
     private javax.swing.JButton hireElecBtn;
@@ -464,9 +542,11 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox populateStatus;
     private javax.swing.JTextField quoteTxt;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables

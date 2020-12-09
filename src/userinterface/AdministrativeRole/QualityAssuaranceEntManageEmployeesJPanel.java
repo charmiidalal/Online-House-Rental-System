@@ -35,16 +35,7 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
         organizationJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
-        populateOrganizationComboBox();
         populateOrganizationEmployeeComboBox();
-    }
-
-    public void populateOrganizationComboBox() {
-        organizationJComboBox.removeAllItems();
-
-        for (Organization organization : organizationDirectory.getOrganizationList()) {
-            organizationJComboBox.addItem(organization);
-        }
     }
 
     public void populateOrganizationEmployeeComboBox() {
@@ -60,12 +51,13 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
 
         model.setRowCount(0);
-
-        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
-            Object[] row = new Object[model.getColumnCount()];
-            row[0] = employee.getId();
-            row[1] = employee.getName();
-            model.addRow(row);
+        for (Organization org : organizationDirectory.getOrganizationList()) {
+            for (Employee employee : org.getEmployeeDirectory().getEmployeeList()) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = employee.getId();
+                row[1] = employee.getName();
+                model.addRow(row);
+            }
         }
     }
 
@@ -79,8 +71,6 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        organizationJComboBox = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -102,21 +92,6 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("MANAGE VOLUNTARY UNIT EMPLOYEES");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 35, 492, -1));
-
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel1.setText("Organization");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 133, -1, -1));
-
-        organizationJComboBox.setBackground(new java.awt.Color(255, 255, 255));
-        organizationJComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        organizationJComboBox.setForeground(new java.awt.Color(25, 56, 82));
-        organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                organizationJComboBoxActionPerformed(evt);
-            }
-        });
-        add(organizationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 128, 168, -1));
 
         organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationJTable.setForeground(new java.awt.Color(25, 56, 82));
@@ -199,14 +174,6 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
-
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-        if (organization != null) {
-            populateTable(organization);
-        }
-    }//GEN-LAST:event_organizationJComboBoxActionPerformed
-
     private void employeeNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_employeeNameKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_employeeNameKeyPressed
@@ -228,7 +195,6 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
     private javax.swing.JTextField employeeName;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -237,7 +203,6 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox organizationEmpJComboBox;
-    private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JTable organizationJTable;
     // End of variables declaration//GEN-END:variables
 }

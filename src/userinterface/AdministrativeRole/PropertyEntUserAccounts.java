@@ -30,17 +30,17 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
     private Enterprise enterprise;
     private EcoSystem ecosystem;
     Organization organization;
-    
+
     public PropertyEntUserAccounts(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system, Organization organization) {
-       
+
         initComponents();
-         this.userProcessContainer = userProcessContainer;
+        this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.ecosystem = system;
         this.organization = organization;
-         tblUserDetails.getTableHeader().setDefaultRenderer(new HeaderColors());
-         populateVoluntaryOrganizationComboBox();
-         populateData();
+        tblUserDetails.getTableHeader().setDefaultRenderer(new HeaderColors());
+        populateVoluntaryOrganizationComboBox();
+        populateData();
     }
 
     /**
@@ -212,14 +212,14 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
         String userName = createUsername.getText();
         String password = createPassword.getText();
-        
-        if("".equals(userName)) {
+
+        if ("".equals(userName)) {
             JOptionPane.showMessageDialog(null, "Please enter username");
-        }else if(!ecosystem.checkIfUserIsUnique(userName)) {
+        } else if (!ecosystem.checkIfUserIsUnique(userName)) {
             JOptionPane.showMessageDialog(null, "Please enter unique username");
-        }else if("".equals(password)) {
+        } else if ("".equals(password)) {
             JOptionPane.showMessageDialog(null, "Please enter password");
-        }else{
+        } else {
             Organization organization = (Organization) selectOrganization.getSelectedItem();
             Employee employee = (Employee) selectEmployee.getSelectedItem();
             Role role = (Role) selectRole.getSelectedItem();
@@ -230,7 +230,7 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "User created successfully");
         }
     }//GEN-LAST:event_createUserJButtonActionPerformed
-    
+
     public void populateVoluntaryOrganizationComboBox() {
         selectOrganization.removeAllItems();
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
@@ -253,8 +253,7 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
             }
         }
     }
-        
-        
+
     public void populateVolunteerEmployeeComboBox(Organization organization) {
         selectEmployee.removeAllItems();
 
