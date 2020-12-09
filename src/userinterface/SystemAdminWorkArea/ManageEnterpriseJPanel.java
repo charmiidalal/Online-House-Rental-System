@@ -7,9 +7,7 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Utils.HeaderColors;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,24 +16,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
     private EcoSystem system;
 
     /**
      * Creates new form ManageEnterpriseJPanel
      */
-    public ManageEnterpriseJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public ManageEnterpriseJPanel(EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
         this.system = system;
-        enterpriseJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         populateTable();
         populateComboBox();
     }
 
     private void populateTable() {
-        enterpriseJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
-        DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTableEnterprise.getModel();
 
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
@@ -51,15 +45,15 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     }
 
     private void populateComboBox() {
-        networkJComboBox.removeAllItems();
-        enterpriseTypeJComboBox.removeAllItems();
+        JComboBoxNetwork.removeAllItems();
+        JComboBoxEnterpriseType.removeAllItems();
 
         for (Network network : system.getNetworkList()) {
-            networkJComboBox.addItem(network);
+            JComboBoxNetwork.addItem(network);
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            enterpriseTypeJComboBox.addItem(type);
+            JComboBoxEnterpriseType.addItem(type);
         }
 
     }
@@ -74,13 +68,13 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        enterpriseJTable = new javax.swing.JTable();
+        jTableEnterprise = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        networkJComboBox = new javax.swing.JComboBox();
+        JComboBoxNetwork = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         nameJTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        JComboBoxEnterpriseType = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JLabel();
@@ -90,9 +84,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        enterpriseJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        enterpriseJTable.setForeground(new java.awt.Color(25, 56, 82));
-        enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEnterprise.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jTableEnterprise.setForeground(new java.awt.Color(25, 56, 82));
+        jTableEnterprise.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -111,8 +105,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        enterpriseJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
-        jScrollPane1.setViewportView(enterpriseJTable);
+        jTableEnterprise.setSelectionBackground(new java.awt.Color(56, 90, 174));
+        jScrollPane1.setViewportView(jTableEnterprise);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 75, 523, 95));
 
@@ -121,16 +115,16 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel1.setText("Network");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 202, -1, -1));
 
-        networkJComboBox.setBackground(new java.awt.Color(255, 255, 255));
-        networkJComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        networkJComboBox.setForeground(new java.awt.Color(25, 56, 82));
-        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
+        JComboBoxNetwork.setBackground(new java.awt.Color(255, 255, 255));
+        JComboBoxNetwork.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        JComboBoxNetwork.setForeground(new java.awt.Color(25, 56, 82));
+        JComboBoxNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboBoxNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                networkJComboBoxActionPerformed(evt);
+                JComboBoxNetworkActionPerformed(evt);
             }
         });
-        add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 198, 210, -1));
+        add(JComboBoxNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 198, 210, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
@@ -146,11 +140,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel3.setText("Enterprise Type");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 247, -1, -1));
 
-        enterpriseTypeJComboBox.setBackground(new java.awt.Color(255, 255, 255));
-        enterpriseTypeJComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        enterpriseTypeJComboBox.setForeground(new java.awt.Color(25, 56, 82));
-        enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 243, 210, -1));
+        JComboBoxEnterpriseType.setBackground(new java.awt.Color(255, 255, 255));
+        JComboBoxEnterpriseType.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        JComboBoxEnterpriseType.setForeground(new java.awt.Color(25, 56, 82));
+        JComboBoxEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(JComboBoxEnterpriseType, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 243, 210, -1));
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(25, 56, 82));
@@ -175,39 +169,36 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 123, 30));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Admin_gif.gif"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 670, 530));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/enterprise_big.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 670, 530));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
+    private void JComboBoxNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBoxNetworkActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_networkJComboBoxActionPerformed
+    }//GEN-LAST:event_JComboBoxNetworkActionPerformed
 
     private void btnSubmitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubmitMousePressed
         // TODO add your handling code here:
-        Network network = (Network) networkJComboBox.getSelectedItem();
-        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
+        Network network = (Network) JComboBoxNetwork.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) JComboBoxEnterpriseType.getSelectedItem();
+        String name = nameJTextField.getText();
 
-        if (network == null || type == null) {
-            JOptionPane.showMessageDialog(null, "Invalid Input!");
+        if (network == null || type == null || name.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please Enter All Fields to Proceed!");
             return;
         }
 
-        String name = nameJTextField.getText();
-        if (!name.isEmpty()) {
-            Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-            JOptionPane.showMessageDialog(null, "Enterprise created sucessfully!");
-            nameJTextField.setText("");
-            populateTable();
-        } else {
-            JOptionPane.showMessageDialog(null, "Enter enterprise name");
-        }
+        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        JOptionPane.showMessageDialog(null, "Enterprise created sucessfully!");
+        nameJTextField.setText("");
+        populateTable();
+
     }//GEN-LAST:event_btnSubmitMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox JComboBoxEnterpriseType;
+    private javax.swing.JComboBox JComboBoxNetwork;
     private javax.swing.JLabel btnSubmit;
-    private javax.swing.JTable enterpriseJTable;
-    private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,7 +206,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableEnterprise;
     private javax.swing.JTextField nameJTextField;
-    private javax.swing.JComboBox networkJComboBox;
     // End of variables declaration//GEN-END:variables
 }

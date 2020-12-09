@@ -5,7 +5,6 @@
  */
 package userinterface.BuyerRole;
 
-
 import Business.Builder.Builder;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
@@ -16,6 +15,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import static Business.Organization.Organization.Type.Builder;
 import Business.Property.Property;
+import Business.Role.BuilderRole;
 import static Business.Role.Role.RoleType.Builder;
 import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import Business.WorkQueue.BuilderRequest;
 
-
 /**
  *
  * @author Dinesh
@@ -36,7 +35,7 @@ public class HireBuilder extends javax.swing.JPanel {
     /**
      * Creates new form HireBuilder
      */
-      private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private Buyer buyer;
@@ -65,19 +64,17 @@ public class HireBuilder extends javax.swing.JPanel {
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
             for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    String role = ua.getRole().toString();
-                    if ("Builder".equals(role)) {
-                        Object[] row = new Object[13];
-                        row[0] = ua.getUsername();
-                        row[1] = ua.getName();
-                        row[2] = ua.getStreet();
-                        row[3] = ua.getCity();
-                        row[4] = ua.getState();
-                        row[5] = ua.getZipcode();
-                        row[6] = ua.getStatus();
-                        row[7] = ua.getCharge();
-                        //row[8]=ua.getUserOrganizationList().getName();
-                        row[8] = org.getName();
+                    if (ua.getRole() instanceof BuilderRole) {
+                        Object[] row = new Object[9];
+                        row[0] = ua.getEmployee().getName();
+                        row[1] = ua.getUsername();
+                        row[2] = ua.getCity();
+                        row[3] = ua.getState();
+                        row[4] = ua.getStatus();
+                        row[5] = ua.getCharge();
+                        row[6] = org.getName();
+                        row[7] = network.getName();
+                        row[8] = ua.getPhone();
                         model.addRow(row);
                     }
                 }
@@ -176,7 +173,7 @@ public class HireBuilder extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-          int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
@@ -198,7 +195,7 @@ public class HireBuilder extends javax.swing.JPanel {
                                 builder.setStatus("Requested");
                                 builder.setBuyerNote(comment);
                                 builder.setProperty(property);
-                               
+
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Builder is already Occupied");

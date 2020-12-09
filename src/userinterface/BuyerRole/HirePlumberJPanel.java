@@ -14,6 +14,7 @@ import Business.Organization.Organization;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
 import Business.Property.Property;
+import Business.Role.PlumbingRole;
 import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -60,18 +61,17 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
             for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                     String role = ua.getRole().toString();
-                    if ("Plumber".equals(role)) {
-                        Object[] row = new Object[13];
-                        row[0] = ua.getUsername();
-                        row[1] = ua.getName();
-                        row[2] = ua.getStreet();
-                        row[3] = ua.getCity();
-                        row[4] = ua.getState();
-                        row[5] = ua.getZipcode();
-                        row[6] = ua.getStatus();
-                        row[7] = ua.getCharge();
-                        //row[8]=ua.getUserOrganizationList().getName();
-                        row[8] = org.getName();
+                    if (ua.getRole() instanceof PlumbingRole) {
+                        Object[] row = new Object[9];
+                        row[0] = ua.getEmployee().getName();
+                        row[1] = ua.getUsername();
+                        row[2] = ua.getCity();
+                        row[3] = ua.getState();
+                        row[4] = ua.getStatus();
+                        row[5] = ua.getCharge();
+                        row[6] = org.getName();
+                        row[7] = network.getName();
+                        row[8] = ua.getPhone();
                         model.addRow(row);
                     }
                 }

@@ -42,7 +42,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private void manageAdvertise() {
         manageOrganizationPanel.setBackground(new Color(236, 113, 107));
         manageEmployee.setBackground(new Color(215, 81, 81));
-        BuyerScreenJPanel viewJobsJPanel = new BuyerScreenJPanel(rightSystemAdminPanel,  account, enterprise,system);
+        BuyerScreenJPanel viewJobsJPanel = new BuyerScreenJPanel(rightSystemAdminPanel,account, enterprise,system,network, organization);
         rightSystemAdminPanel.add("viewJobsJPanel",viewJobsJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
@@ -83,16 +83,16 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1338, 840));
         setLayout(new java.awt.BorderLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(215, 81, 81));
+        systemAdminPanel.setBackground(new java.awt.Color(255, 213, 90));
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
+        jPanel3.setBackground(new java.awt.Color(255, 213, 90));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageOrganizationPanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganizationPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganizationPanel.setToolTipText("");
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -107,7 +107,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         manageEmployeeLabel.setBackground(new java.awt.Color(215, 81, 81));
         manageEmployeeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        manageEmployeeLabel.setText("View Advertisement ");
+        manageEmployeeLabel.setText("View Advertisements ");
         manageEmployeeLabel.setAutoscrolls(true);
         manageEmployeeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageEmployeeLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -139,7 +139,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageEmployee.setBackground(new java.awt.Color(215, 81, 81));
+        manageEmployee.setBackground(new java.awt.Color(255, 213, 90));
         manageEmployee.setToolTipText("");
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,7 +154,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         manageOrganization.setBackground(new java.awt.Color(215, 81, 81));
         manageOrganization.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageOrganization.setText("View Job Request");
+        manageOrganization.setText("View Job Status");
         manageOrganization.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageOrganization.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -193,9 +193,9 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 20));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 30, 340, 20));
 
-        manageOrganizationPanel1.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganizationPanel1.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganizationPanel1.setToolTipText("");
         manageOrganizationPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -268,7 +268,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageOrganizationMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageOrganizationMousePressed
-manageBuyers();
+    manageBuyers();
 
     }//GEN-LAST:event_manageOrganizationMousePressed
 
