@@ -5,18 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
-import Business.Cleaner.CleanerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.BuilderRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -33,10 +27,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
      private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private CleanerDirectory cleanerDirectory;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -106,7 +97,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N

@@ -5,12 +5,8 @@
  */
 package userinterface.SellerRole;
 
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.Inspector.InspectorDirectory;
 import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -25,10 +21,7 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private InspectorDirectory inspectorDirectory;
 
     /**
      * Creates new form BuyerWorkAreaJpanel
@@ -39,20 +32,17 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
         this.system = system;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.inspectorDirectory = (system.getInspectorDirectory() == null) ? new InspectorDirectory() : system.getInspectorDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
-        Seller seller = sellerDirectory.fetchSeller(userAccount.getEmployee().getName());
-        txtName.setText(seller.getName());
-        txtCity.setText(seller.getCity());
-        txtStreet.setText(seller.getStreet());
-        txtZipcode.setText(seller.getZipcode());
-        txtState.setText(seller.getState());
-        txtEmail.setText(seller.getEmail());
-        txtPhone.setText(seller.getPhone());
+        txtName.setText(userAccount.getName());
+        txtCity.setText(userAccount.getCity());
+        txtStreet.setText(userAccount.getStreet());
+        txtZipcode.setText(userAccount.getZipcode());
+        txtState.setText(userAccount.getState());
+        txtEmail.setText(userAccount.getEmail());
+        txtPhone.setText(userAccount.getPhone());
     }
 
     /**
@@ -246,14 +236,13 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Seller seller = sellerDirectory.fetchSeller(userAccount.getEmployee().getName());
-        seller.setName(txtName.getText());
-        seller.setCity(txtCity.getText());
-        seller.setZipcode(txtZipcode.getText());
-        seller.setStreet(txtStreet.getText());
-        seller.setEmail(txtEmail.getText());
-        seller.setPhone(txtPhone.getText());
-        seller.setState(txtState.getText());
+        userAccount.setName(txtName.getText());
+        userAccount.setCity(txtCity.getText());
+        userAccount.setZipcode(txtZipcode.getText());
+        userAccount.setStreet(txtStreet.getText());
+        userAccount.setEmail(txtEmail.getText());
+        userAccount.setPhone(txtPhone.getText());
+        userAccount.setState(txtState.getText());
         JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 

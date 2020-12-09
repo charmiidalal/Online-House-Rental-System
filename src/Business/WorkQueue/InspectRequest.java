@@ -5,13 +5,10 @@
  */
 package Business.WorkQueue;
 
-import Business.Buyer.Buyer;
 import Business.Enterprise.Enterprise;
-import Business.Inspector.Inspector;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
-import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 
 /**

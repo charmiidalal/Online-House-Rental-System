@@ -5,17 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Plumber.Plumber;
-import Business.Plumber.PlumberDirectory;
 import Business.Property.Property;
 import Business.Role.PlumbingRole;
-import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -31,8 +26,6 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
      private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private BuyerDirectory buyerDirectory;
-    private Buyer buyer;
     private Property property;
    
     private Enterprise enterprise;
@@ -43,7 +36,6 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
@@ -94,8 +86,9 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         commentTxxt = new javax.swing.JTextField();
         btnBack1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -142,6 +135,10 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumberop.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, 0, 470, 550));
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setText("PLUMBER LIST");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
@@ -149,6 +146,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
@@ -161,9 +159,9 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
                             if ("Available".equals(ua.getStatus())) {
                                 PlumberRequest cr = new PlumberRequest();
                                 cr.setRequestID();
-                                cr.setBuyer(buyer);
-                                cr.setPlumber((Plumber) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
+                                cr.setBuyer(userAccount);
+                                cr.setPlumber(serviceAcc);
+                                cr.setSeller(property.getSeller());
                                 cr.setStatus("Requested");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
@@ -198,6 +196,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

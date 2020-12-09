@@ -5,19 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.Electrician.Electrician;
-import Business.Electrician.ElectricianDirectory;
 import Business.Enterprise.Enterprise;
-import Business.Inspector.Inspector;
-import Business.Inspector.InspectorDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Role.ElectricianRole;
-import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -34,10 +27,6 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private ElectricianDirectory electricianDirectory;
-
-    private BuyerDirectory buyerDirectory;
-    private Buyer buyer;
     private Property property;
     private Enterprise enterprise;
     private Network network;
@@ -50,22 +39,17 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-        this.electricianDirectory = (system.getElectricianDirectory() == null) ? new ElectricianDirectory() : system.getElectricianDirectory();
-
         populateRequestTable();
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        //for (UserAccount userAccount: electricianDirectory.getElectricianList()) {
-//            if ("Available".equals(inspector.getStatus())) {
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
             for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
@@ -82,7 +66,6 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                         row[7] = network.getName();
                         row[8] = ua.getPhone();
                         model.addRow(row);
-//            }
                     }
                 }
             }
@@ -101,12 +84,13 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
         brnHireInspector = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -136,45 +120,47 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                 brnHireInspectorActionPerformed(evt);
             }
         });
-        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, -1, -1));
-
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/management.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1205, 10, 50, 50));
+        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Comment:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 460, -1, -1));
-        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, 460, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 250, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/electricianop.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 386, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 386, -1));
+
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 30, 30));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("ELECTRICIAN LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-
-                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
-                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) 
                         {
                             if ("Available".equals(ua.getStatus())) {
                                 ElectricianRequest cr = new ElectricianRequest();
                                 cr.setRequestID();
-                                cr.setBuyer(buyer);
-                                cr.setElectrician((Electrician) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
+                                cr.setBuyer(userAccount);
+                                cr.setElectrician(serviceAcc);
+                                cr.setSeller(property.getSeller());
                                 cr.setStatus("Requested");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
@@ -194,20 +180,21 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
+    }//GEN-LAST:event_btnBack1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnHireInspector;
-    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

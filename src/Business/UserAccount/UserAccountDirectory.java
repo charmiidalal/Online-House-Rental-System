@@ -41,6 +41,7 @@ public class UserAccountDirectory {
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
+        userAccount.setStatus("Available");
         userAccountList.add(userAccount);
         return userAccount;
     }
