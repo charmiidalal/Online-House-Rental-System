@@ -20,7 +20,7 @@ public class AgentRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
-        return new AgentWorkAreaJPanel(userProcessContainer, business,account);
+        return new AgentWorkAreaJPanel(userProcessContainer,account,organization,enterprise,network,business);
     }
 
     @Override

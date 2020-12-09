@@ -10,12 +10,14 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
 
 /**
  *
  * @author Dinesh
  */
 public class AgentRequest extends WorkRequest{
+    ArrayList<String> propertyList = new ArrayList<String>();
     private Network network;
     private Enterprise enterprise;
     private Organization.Type orgType;
@@ -59,6 +61,15 @@ public class AgentRequest extends WorkRequest{
     public void setOrgType(Organization.Type orgType) {
         this.orgType = orgType;
     }
+
+    public ArrayList<String> getPropertyList() {
+        return propertyList;
+    }
+
+    public void setPropertyList(ArrayList<String> propertyList) {
+        this.propertyList = propertyList;
+    }
+    
 
     public String getRequestID() {
         return requestID;

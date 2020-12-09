@@ -5,7 +5,6 @@
  */
 package userinterface.AgentRole;
 
-import Business.Agent.Agent;
 import Business.Agent.AgentDirectory;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
@@ -229,8 +228,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
-            AgentRequest agentRequest = agentRequestDirectory.fetchAgentRequest(jobID);
+            AgentRequest agentRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
             AssignPropetyJPanel assignPropetyJPanel = new AssignPropetyJPanel(userProcessContainer, userAccount, system, agentRequest);
             userProcessContainer.add("assignPropetyJPanel", assignPropetyJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();

@@ -9,7 +9,6 @@ import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.InspectRequest.InspectRequest;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
@@ -384,7 +383,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer, property, buyer, system, userAccount);
+            HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer,organization,network,enterprise, property, userAccount,system);
             userProcessContainer.add("managerActivity", hireServiceJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -407,8 +406,8 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer,  system, userAccount);
-            userProcessContainer.add("managerActivity", hireServiceJPanel);
+            HireBuilder hireBuilder = new HireBuilder(userProcessContainer,organization,network,enterprise, userAccount,system);
+            userProcessContainer.add("hireBuilder", hireBuilder);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         } else {
@@ -419,7 +418,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_builderBtnActionPerformed
 
     private void vireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vireBtnActionPerformed
-      viewJobsJPanel manageInspectorActivity = new viewJobsJPanel(userProcessContainer, system, userAccount);
+        viewJobsJPanel manageInspectorActivity = new viewJobsJPanel(userProcessContainer, system,enterprise, userAccount);
         userProcessContainer.add("manageInspectorActivity", manageInspectorActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
          layout.next(userProcessContainer);

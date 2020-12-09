@@ -5,7 +5,6 @@
  */
 package userinterface.SystemAdminWorkArea;
 
-import Business.AgentRequest.AgentRequest;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
