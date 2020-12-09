@@ -5,14 +5,23 @@
  */
 package userinterface.PhotographerRole;
 
+import userinterface.PlumberRole.*;
+import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.PhotographerRequest.PhotographerRequest;
+import Business.Inspector.Inspector;
+import Business.Inspector.InspectorDirectory;
+import Business.Plumber.Plumber;
+import Business.Plumber.PlumberDirectory;
+import Business.Property.PropertyDirectory;
+import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.PhotographerRequest;
 
 /**
  *
@@ -32,7 +41,6 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.enterprise = enterprise;
         populateRequestTable();
-        populateStatusComboBox();
     }
 
     public void populateRequestTable() {
@@ -58,40 +66,6 @@ public class ViewJobJPanel extends javax.swing.JPanel {
             }
         }
     }
-
-    public void populateStatusComboBox() {
-        populateStatus.removeAllItems();
-        populateStatus.addItem("Pending");
-        populateStatus.addItem("Completed");
-        populateStatus.addItem("In Progress");
-    }
-
-    public void populateRequestTableFilter(String status) {
-        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
-        model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof PhotographerRequest) {
-                if (((PhotographerRequest) workRequest).getStatus().equals(status)) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((PhotographerRequest) workRequest).getBuyer().getName();
-                    row[2] = ((PhotographerRequest) workRequest).getSeller().getName();
-                    row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((PhotographerRequest) workRequest).getProperty().getCity();
-                    row[5] = ((PhotographerRequest) workRequest).getProperty().getState();
-                    row[6] = ((PhotographerRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((PhotographerRequest) workRequest).getStatus();
-                    row[8] = ((PhotographerRequest) workRequest).getBuyerNote();
-                    row[9] = ((PhotographerRequest) workRequest).getInspectorNote();
-
-                    model.addRow(row);
-                }
-            }
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,9 +87,6 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
-        clearBtn = new javax.swing.JButton();
-        populateStatus = new javax.swing.JComboBox();
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/photograph.png"))); // NOI18N
 
@@ -130,14 +101,14 @@ public class ViewJobJPanel extends javax.swing.JPanel {
                 brnTakeJobActionPerformed(evt);
             }
         });
-        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, -1, -1));
+        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, -1, -1));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 410, 138, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, 138, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, -1, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
@@ -146,11 +117,11 @@ public class ViewJobJPanel extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 470, -1, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 450, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Update Quote: ");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, -1, 20));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, -1, 20));
 
         quoteTxt.setBackground(new java.awt.Color(153, 204, 255));
         quoteTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +129,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
                 quoteTxtActionPerformed(evt);
             }
         });
-        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, 140, -1));
+        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 380, 140, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
@@ -169,7 +140,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 140, 164));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/photograph.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 690, 550));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 690, 550));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -189,36 +160,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 781, 300));
-
-        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel7.setText("Serach By Status");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
-
-        clearBtn.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        clearBtn.setText("Clear");
-        clearBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        clearBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearBtnActionPerformed(evt);
-            }
-        });
-        add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 90, -1));
-
-        populateStatus.setBackground(new java.awt.Color(255, 255, 255));
-        populateStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        populateStatus.setForeground(new java.awt.Color(25, 56, 82));
-        populateStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                populateStatusActionPerformed(evt);
-            }
-        });
-        populateStatus.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                populateStatusPropertyChange(evt);
-            }
-        });
-        add(populateStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 140, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 781, 300));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
@@ -230,7 +172,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
                 if (!"".equals(feedback)) {
                     photographerRequest.setStatus("Job Taken");
                     photographerRequest.setQuote(quoteTxt.getText());
-
+                
                     userAccount.setStatus("Occupied");
                     populateRequestTable();
                     JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
@@ -247,7 +189,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
+       int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
             PhotographerRequest photographerRequest = (PhotographerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
@@ -269,28 +211,10 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_quoteTxtActionPerformed
 
-    private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
-        // TODO add your handling code here:
-        populateRequestTable();
-    }//GEN-LAST:event_clearBtnActionPerformed
-
-    private void populateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_populateStatusActionPerformed
-        // TODO add your handling code here:
-        String status = (String) populateStatus.getSelectedItem();
-        if (status != null) {
-            populateRequestTableFilter(status);
-        }
-    }//GEN-LAST:event_populateStatusActionPerformed
-
-    private void populateStatusPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_populateStatusPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_populateStatusPropertyChange
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
-    private javax.swing.JButton clearBtn;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -298,9 +222,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JComboBox populateStatus;
     private javax.swing.JTextField quoteTxt;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables

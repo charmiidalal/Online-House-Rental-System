@@ -74,6 +74,10 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         stateTxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        txtCharge = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtState = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         bathroomTxt = new javax.swing.JTextField();
         submitBtn = new javax.swing.JButton();
@@ -86,6 +90,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         priceTxt = new javax.swing.JTextField();
         imgupload = new javax.swing.JLabel();
         zipcodeTxt = new javax.swing.JTextField();
+<<<<<<< HEAD
         jLabel1 = new javax.swing.JLabel();
         txtCharge = new javax.swing.JTextField();
         homeNamelbl = new javax.swing.JLabel();
@@ -93,6 +98,8 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         bhklbl = new javax.swing.JLabel();
         pricelbl = new javax.swing.JLabel();
         bathroomlbl = new javax.swing.JLabel();
+=======
+>>>>>>> 8b820a1a48f6a78de3a3a8f905c7f6b30f858bd7
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -126,11 +133,21 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel8.setText("Upload Image* :");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 260, -1, -1));
+        jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 336, 180, -1));
+
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel9.setText("Charge:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 341, -1, -1));
+        jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 336, 180, -1));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel5.setText("State");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 341, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel10.setText("BHK:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
-        jPanel1.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, 180, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 430, -1, -1));
+        jPanel1.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 425, 180, -1));
 
         submitBtn.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         submitBtn.setText("Save");
@@ -140,7 +157,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 submitBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 530, 105, -1));
+        jPanel1.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 550, 105, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel4.setText("Pincode:");
@@ -164,16 +181,17 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel12.setText("Bathroom:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, -1, -1));
-        jPanel1.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 180, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 430, -1, -1));
+        jPanel1.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 425, 180, -1));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel13.setText("Price:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, -1));
-        jPanel1.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 180, -1));
-        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 250, 160, 100));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 514, -1, -1));
+        jPanel1.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 509, 180, -1));
+        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(943, 299, 151, 63));
         jPanel1.add(zipcodeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 180, -1));
 
+<<<<<<< HEAD
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Charge");
@@ -205,6 +223,8 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         bathroomlbl.setText("Enter the bathroom in 0.0 format");
         jPanel1.add(bathroomlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 190, -1));
 
+=======
+>>>>>>> 8b820a1a48f6a78de3a3a8f905c7f6b30f858bd7
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,7 +233,9 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -331,7 +353,6 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel homeNamelbl;
     private javax.swing.JLabel imglbl;
     private javax.swing.JLabel imgupload;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -339,9 +360,11 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JTextField priceTxt;
@@ -349,6 +372,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField stateTxt;
     private javax.swing.JButton submitBtn;
     private javax.swing.JTextField txtCharge;
+    private javax.swing.JTextField txtState;
     private javax.swing.JButton uploadBtn;
     private javax.swing.JTextField zipcodeTxt;
     // End of variables declaration//GEN-END:variables

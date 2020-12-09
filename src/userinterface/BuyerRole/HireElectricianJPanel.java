@@ -10,11 +10,7 @@ import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Electrician.Electrician;
 import Business.Electrician.ElectricianDirectory;
-import Business.ElectricianRequest.ElectricianRequest;
-import Business.ElectricianRequest.ElectricianRequestDirectory;
 import Business.Enterprise.Enterprise;
-import Business.InspectRequest.InspectRequest;
-import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
 import Business.Network.Network;
@@ -26,6 +22,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.ElectricianRequest;
 
 /**
  *
@@ -37,7 +34,7 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private UserAccount userAccount;
     private ElectricianDirectory electricianDirectory;
-    private ElectricianRequestDirectory electricianRequestDirectory;
+   
     private BuyerDirectory buyerDirectory;
     private Buyer buyer;
     private Property property;
@@ -58,8 +55,7 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         this.network=network;
         this.organization=organization;
         this.electricianDirectory = (system.getElectricianDirectory() == null) ? new ElectricianDirectory() : system.getElectricianDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.electricianRequestDirectory = (system.getElectricianRequestDirectory() == null) ? new ElectricianRequestDirectory() : system.getElectricianRequestDirectory();
+       
         populateRequestTable();
     }
 
@@ -129,7 +125,7 @@ for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 781, 300));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 781, 300));
 
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         brnHireInspector.setText("Hire Electrician");
@@ -138,48 +134,59 @@ for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
                 brnHireInspectorActionPerformed(evt);
             }
         });
-        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, -1, -1));
+        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, -1, -1));
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aed_final_project/src/icon/back.png"))); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/management.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, 35, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1205, 10, 50, 50));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Comment:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, -1, -1));
-        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 440, 460, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 460, -1, -1));
+        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, 460, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/electricianop.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 58, 386, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 386, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
+          int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String electricianID = (String) houseTable.getValueAt(selectedRow, 0);
+        String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
-
         if (count == 1) {
-            UserAccount userAccount = electricianDirectory.fetchElectrician(electricianID);
-            if ("Available".equals(userAccount.getStatus())) {
-                ElectricianRequest er = new ElectricianRequest();
-                er.setRequestID(electricianRequestDirectory.generateElectricianRequestID());
-                er.setBuyer(buyer);
-                er.setElectrician((Electrician) userAccount);
-                er.setSeller((Seller) property.getSeller());
-                er.setStatus("Requested");
-                er.setBuyerNote(comment);
-                er.setProperty(property);
-                electricianRequestDirectory.addElectricianRequest(er);
-                system.setElectricianRequestDirectory(electricianRequestDirectory);
-                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Sorry! This Electrician is already Occupied");
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+
+                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
+                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        {
+                            if ("Available".equals(ua.getStatus())) {
+                                ElectricianRequest cr = new ElectricianRequest();
+                                cr.setRequestID();
+                                cr.setBuyer(buyer);
+                                cr.setElectrician((Electrician) userAccount);
+                                cr.setSeller((Seller) property.getSeller());
+                                cr.setStatus("Requested");
+                                cr.setBuyerNote(comment);
+                                cr.setProperty(property);
+                               
+                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Sorry! This Electrician is already Occupied");
+
+                            }
+                        }
+                    }
+                }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }

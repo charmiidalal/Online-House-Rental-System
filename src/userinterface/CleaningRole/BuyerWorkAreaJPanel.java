@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author  Dinesh
  */
-public class CleanerWorkAreaJPanel extends javax.swing.JPanel {
+public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     Enterprise enterprise;
@@ -27,7 +27,7 @@ public class CleanerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public CleanerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
+    public BuyerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
@@ -223,7 +223,7 @@ public class CleanerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageOrganizationPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageOrganizationPanelMousePressed
         // TODO add your handling code here:
-        manageAdvertise();
+        manageBuyers();
     }//GEN-LAST:event_manageOrganizationPanelMousePressed
 
     private void manageEmployeeLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageEmployeeLabelMousePressed
@@ -232,7 +232,7 @@ public class CleanerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageEmployeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageEmployeeMousePressed
         // TODO add your handling code here:
-       
+        manageAdvertise();
     }//GEN-LAST:event_manageEmployeeMousePressed
     
     

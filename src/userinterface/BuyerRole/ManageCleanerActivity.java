@@ -8,23 +8,21 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.Cleaner.CleanerDirectory;
-import Business.CleaningRequest.CleaningRequest;
-import Business.CleaningRequest.CleaningRequestDirectory;
 import Business.EcoSystem;
-import Business.ElectricianRequest.ElectricianRequest;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-
 import Business.Property.Property;
-
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.BuilderRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.CleaningRequest;
 
 /**
  *
@@ -32,72 +30,59 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageCleanerActivity extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
+     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private CleaningRequestDirectory cleaningRequestDirectory;
     private CleanerDirectory cleanerDirectory;
-
-     private Enterprise enterprise;
+    private Enterprise enterprise;
     private Network network;
     private Organization organization;
-
-
-
 
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManageCleanerActivity(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
+    public ManageCleanerActivity(JPanel userProcess,  UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
-
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.cleaningRequestDirectory = (system.getCleaningRequestDirectory() == null) ? new CleaningRequestDirectory() : system.getCleaningRequestDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
+         
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
-        //Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList())
-        {
-        for(Organization org:e.getOrganizationDirectory().getOrganizationList())
-        {
-            //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
-        for(UserAccount ua:org.getUserAccountDirectory().getUserAccountList())
-        {
-       
-        for (CleaningRequest cleaningRequest : cleaningRequestDirectory.getCleaningRequestList()) {
-            if (cleaningRequest.getBuyer().getUsername().equals(ua.getUsername())) {
-                Object[] row = new Object[11];
-                row[0] = cleaningRequest.getRequestID();
-                row[1] = cleaningRequest.getCleaner().getName();
-                row[2] = cleaningRequest.getSeller().getName();
-                row[3] = cleaningRequest.getProperty().getStreet();
-                row[4] = cleaningRequest.getProperty().getCity();
-                row[5] = cleaningRequest.getProperty().getState();
-                row[6] = cleaningRequest.getProperty().getPincode();
-                row[7] = cleaningRequest.getStatus();
-                row[8] = cleaningRequest.getBuyerNote();
-                row[9] = cleaningRequest.getInspectorNote();
-                row[10] =cleaningRequest.getQuote();
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof CleaningRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((CleaningRequest) workRequest).getRequestID();
+                row[2] = ((CleaningRequest) workRequest).getCleaner().getName();
+                row[3] = ((CleaningRequest) workRequest).getSeller().getName();
+                row[4] = ((CleaningRequest) workRequest).getProperty().getStreet();
+                row[5] = ((CleaningRequest) workRequest).getProperty().getCity();
+                row[6] = ((CleaningRequest) workRequest).getProperty().getState();
+                row[7] = ((CleaningRequest) workRequest).getProperty().getPincode();
+                row[8] = ((CleaningRequest) workRequest).getStatus();
+                row[9] = ((CleaningRequest) workRequest).getBuyerNote();
+                row[10] = ((CleaningRequest) workRequest).getInspectorNote();
+                row[11] = ((CleaningRequest) workRequest).getCleaner().getCharge();
+                row[12] = ((CleaningRequest) workRequest).getQuote();
+                row[13] = ((CleaningRequest) workRequest).getOrgType();
+                
+
                 model.addRow(row);
-            }}
-     
-        }
-        }
+            }
         }
     }
 
@@ -145,11 +130,11 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Cleaner", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Cleaner Message", "Charge"
+                "JobID", "Cleaner", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Cleaner Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -173,13 +158,13 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 821, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 821, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,15 +190,16 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+         int selectedRow = houseTable.getSelectedRow();
+       
+        if (selectedRow >= 0) {
+            CleaningRequest br = (CleaningRequest)houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+            
 
             if (!"".equals(feedback)) {
-                CleaningRequest cleanerRequest = cleaningRequestDirectory.fetchCleaningRequest(jobID);
-                cleanerRequest.setBuyerNote(feedback);
+              
+                br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
             } else {
@@ -234,8 +220,6 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;

@@ -13,7 +13,7 @@ import Business.Organization.Organization;
  *
  * @author anush
  */
-public class SellerRequest {
+public class SellerRequest extends WorkRequest {
     private Network network;
     private Enterprise enterprise;
     private Organization.Type orgType;

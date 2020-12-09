@@ -32,8 +32,8 @@ public class CleaningRequest extends WorkRequest {
     int max = 999;
 
     public CleaningRequest() {
-        int randomNum = (int) (Math.random() * (max - min + 1) + min);
-        requestID = "Request" + randomNum;
+//        int randomNum = (int) (Math.random() * (max - min + 1) + min);
+//        requestID = "Request" + randomNum;
     }
 
     public Network getNetwork() {
@@ -64,8 +64,9 @@ public class CleaningRequest extends WorkRequest {
         return requestID;
     }
 
-    public void setRequestID(String requestID) {
-        this.requestID = requestID;
+    public void setRequestID() {
+        int randomNum = (int) (Math.random() * (max - min + 1) + min);
+       this.requestID = "Request" + randomNum;
     }
 
     public UserAccount getSeller() {

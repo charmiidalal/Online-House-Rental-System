@@ -8,9 +8,10 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Plumber.PlumberDirectory;
-import Business.PlumbingRequest.PlumbingRequest;
-import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -18,7 +19,9 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
+import Business.Property.Property;
+import Business.WorkQueue.WorkRequest;
+import Business.WorkQueue.PlumberRequest;
 /**
  *
  * @author Dinesh
@@ -28,46 +31,56 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewPumberJobs
      */
-    private JPanel userProcessContainer;
+     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private PlumbingRequestDirectory plumbingRequestDirectory;
-    private PlumberDirectory plumberDirectory;
-    
-    public ManagePlumberActivity(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
+
+    /**
+     * Creates new form ViewCleanerJobs
+     */
+    public ManagePlumberActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.plumbingRequestDirectory = (system.getPlumbingRequestDirectory()== null) ? new PlumbingRequestDirectory(): system.getPlumbingRequestDirectory();
-        this.plumberDirectory = (system.getPlumberDirectory()== null) ? new PlumberDirectory(): system.getPlumberDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
+         
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (PlumbingRequest plumberRequest : plumbingRequestDirectory.getPlumbingRequestList()) {
-            if (plumberRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[11];
-                row[0] = plumberRequest.getRequestID();
-                row[1] = plumberRequest.getPlumber().getPlumberName();
-                row[2] = plumberRequest.getSeller().getName();
-                row[3] = plumberRequest.getProperty().getStreet();
-                row[4] = plumberRequest.getProperty().getCity();
-                row[5] = plumberRequest.getProperty().getState();
-                row[6] = plumberRequest.getProperty().getPincode();
-                row[7] = plumberRequest.getStatus();
-                row[8] = plumberRequest.getBuyerNote();
-                row[9] = plumberRequest.getInspectorNote();
-                row[10] =plumberRequest.getQuote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof PlumberRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((PlumberRequest) workRequest).getRequestID();
+                row[2] = ((PlumberRequest) workRequest).getPlumber().getName();
+                row[3] = ((PlumberRequest) workRequest).getSeller().getName();
+                row[4] = ((PlumberRequest) workRequest).getProperty().getStreet();
+                row[5] = ((PlumberRequest) workRequest).getProperty().getCity();
+                row[6] = ((PlumberRequest) workRequest).getProperty().getState();
+                row[7] = ((PlumberRequest) workRequest).getProperty().getPincode();
+                row[8] = ((PlumberRequest) workRequest).getStatus();
+                row[9] = ((PlumberRequest) workRequest).getBuyerNote();
+                row[10] = ((PlumberRequest) workRequest).getInspectorNote();
+                row[11] = ((PlumberRequest) workRequest).getPlumber().getCharge();
+                row[12] = ((PlumberRequest) workRequest).getQuote();
+                row[13] = ((PlumberRequest) workRequest).getOrgType();
+                
+
                 model.addRow(row);
             }
         }
@@ -102,11 +115,11 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Plumber", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Plumber Message", "Charge"
+                "JobID", "Plumber", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Plumber Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,7 +128,7 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 920, 300));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 20, 920, 300));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -147,25 +160,25 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -175,15 +188,16 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+         int selectedRow = houseTable.getSelectedRow();
+       
+        if (selectedRow >= 0) {
+            PlumberRequest br = (PlumberRequest)houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+            
 
             if (!"".equals(feedback)) {
-                PlumbingRequest plumberRequest = plumbingRequestDirectory.fetchPlumbingRequest(jobID);
-                plumberRequest.setBuyerNote(feedback);
+              
+                br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
             } else {

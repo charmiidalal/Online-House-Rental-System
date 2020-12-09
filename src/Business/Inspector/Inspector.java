@@ -5,11 +5,13 @@
  */
 package Business.Inspector;
 
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author Dinesh
  */
-public class Inspector {
+public class Inspector extends UserAccount{
 
     private String inspectorNo;
     private String inspectorName;

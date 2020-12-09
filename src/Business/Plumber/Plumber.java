@@ -5,12 +5,14 @@
  */
 package Business.Plumber;
 
+import Business.UserAccount.UserAccount;
+
 
 /**
  *
  * @author Dinesh
  */
-public class Plumber {
+public class Plumber extends UserAccount {
 
     private String plumberNo;
     private String plumberName;

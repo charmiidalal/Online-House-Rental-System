@@ -5,8 +5,7 @@
  */
 package userinterface.BuilderRole;
 
-import Business.Builder.Builder;
-import Business.Builder.BuilderDirectory;
+
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -198,7 +197,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       userAccount.setName(txtName.getText());
+       userAccount. setName(txtName.getText());
         userAccount.setCharge(txtCharge.getText());
         userAccount.setCity(txtCity.getText());
         userAccount.setStatus(txtStatus.getText());

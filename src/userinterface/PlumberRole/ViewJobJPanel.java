@@ -8,14 +8,10 @@ package userinterface.PlumberRole;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.InspectRequest.InspectRequest;
-import Business.InspectRequest.InspectRequestDirectory;
 import Business.Inspector.Inspector;
 import Business.Inspector.InspectorDirectory;
 import Business.Plumber.Plumber;
 import Business.Plumber.PlumberDirectory;
-import Business.PlumbingRequest.PlumbingRequest;
-import Business.PlumbingRequest.PlumbingRequestDirectory;
 import Business.Property.PropertyDirectory;
 import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
@@ -24,6 +20,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.PlumberRequest;
 
 /**
  *
@@ -43,40 +40,6 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.enterprise = enterprise;
         populateRequestTable();
-        populateStatusComboBox();
-    }
-
-    public void populateStatusComboBox() {
-        populateStatus.removeAllItems();
-        populateStatus.addItem("Pending");
-        populateStatus.addItem("Completed");
-        populateStatus.addItem("In Progress");
-    }
-
-    public void populateRequestTableFilter(String status) {
-        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
-        model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof PlumbingRequest) {
-                if (((PlumbingRequest) workRequest).getStatus().equals(status)) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((PlumbingRequest) workRequest).getBuyer().getName();
-                    row[2] = ((PlumbingRequest) workRequest).getSeller().getName();
-                    row[3] = ((PlumbingRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((PlumbingRequest) workRequest).getProperty().getCity();
-                    row[5] = ((PlumbingRequest) workRequest).getProperty().getState();
-                    row[6] = ((PlumbingRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((PlumbingRequest) workRequest).getStatus();
-                    row[8] = ((PlumbingRequest) workRequest).getBuyerNote();
-                    row[9] = ((PlumbingRequest) workRequest).getInspectorNote();
-
-                    model.addRow(row);
-                }
-            }
-        }
     }
 
     public void populateRequestTable() {
@@ -85,24 +48,23 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
 
-            if (workRequest instanceof PlumbingRequest) {
+            if (workRequest instanceof PlumberRequest) {
                 Object[] row = new Object[model.getColumnCount()];
                 row[0] = workRequest;
-                row[1] = ((PlumbingRequest) workRequest).getBuyer().getName();
-                row[2] = ((PlumbingRequest) workRequest).getSeller().getName();
-                row[3] = ((PlumbingRequest) workRequest).getProperty().getStreet();
-                row[4] = ((PlumbingRequest) workRequest).getProperty().getCity();
-                row[5] = ((PlumbingRequest) workRequest).getProperty().getState();
-                row[6] = ((PlumbingRequest) workRequest).getProperty().getPincode();
-                row[7] = ((PlumbingRequest) workRequest).getStatus();
-                row[8] = ((PlumbingRequest) workRequest).getBuyerNote();
-                row[9] = ((PlumbingRequest) workRequest).getInspectorNote();
+                row[1] = ((PlumberRequest) workRequest).getBuyer().getName();
+                row[2] = ((PlumberRequest) workRequest).getSeller().getName();
+                row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
+                row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
+                row[5] = ((PlumberRequest) workRequest).getProperty().getState();
+                row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
+                row[7] = ((PlumberRequest) workRequest).getStatus();
+                row[8] = ((PlumberRequest) workRequest).getBuyerNote();
+                row[9] = ((PlumberRequest) workRequest).getInspectorNote();
 
                 model.addRow(row);
             }
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -123,15 +85,11 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        clearBtn = new javax.swing.JButton();
-        populateStatus = new javax.swing.JComboBox();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumberop.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 690, 550));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 690, 550));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,7 +109,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 781, 300));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 781, 300));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setText("Take Job");
@@ -161,7 +119,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
                 brnTakeJobActionPerformed(evt);
             }
         });
-        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
+        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, -1, -1));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 420, 130, -1));
@@ -199,47 +157,18 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumber.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 140, 164));
-
-        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel6.setText("Serach By Status");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
-
-        clearBtn.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        clearBtn.setText("Clear");
-        clearBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        clearBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearBtnActionPerformed(evt);
-            }
-        });
-        add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 90, -1));
-
-        populateStatus.setBackground(new java.awt.Color(255, 255, 255));
-        populateStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        populateStatus.setForeground(new java.awt.Color(25, 56, 82));
-        populateStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                populateStatusActionPerformed(evt);
-            }
-        });
-        populateStatus.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                populateStatusPropertyChange(evt);
-            }
-        });
-        add(populateStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 140, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
+      int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
-            PlumbingRequest plumbingRequest = (PlumbingRequest) houseTable.getValueAt(selectedRow, 0);
+            PlumberRequest plumbingRequest = (PlumberRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
             if (!"Job Taken".equals(plumbingRequest.getStatus())) {
                 if (!"".equals(feedback)) {
                     plumbingRequest.setStatus("Job Taken");
                     plumbingRequest.setQuote(quoteTxt.getText());
-
+                
                     userAccount.setStatus("Occupied");
                     populateRequestTable();
                     JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
@@ -258,7 +187,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
-            PlumbingRequest plumbingRequest = (PlumbingRequest) houseTable.getValueAt(selectedRow, 0);
+            PlumberRequest plumbingRequest = (PlumberRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
 
             if (!"".equals(feedback)) {
@@ -278,37 +207,17 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_quoteTxtActionPerformed
 
-    private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
-        // TODO add your handling code here:
-        populateRequestTable();
-    }//GEN-LAST:event_clearBtnActionPerformed
-
-    private void populateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_populateStatusActionPerformed
-        // TODO add your handling code here:
-        String status = (String) populateStatus.getSelectedItem();
-        if (status != null) {
-            populateRequestTableFilter(status);
-        }
-    }//GEN-LAST:event_populateStatusActionPerformed
-
-    private void populateStatusPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_populateStatusPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_populateStatusPropertyChange
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
-    private javax.swing.JButton clearBtn;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox populateStatus;
     private javax.swing.JTextField quoteTxt;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables

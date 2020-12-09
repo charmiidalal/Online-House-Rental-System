@@ -15,25 +15,25 @@ import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.Buyer.BuyerDirectory;
 import Business.Cleaner.CleanerDirectory;
-import Business.CleaningRequest.CleaningRequestDirectory;
+
 import Business.Electrician.ElectricianDirectory;
-import Business.ElectricianRequest.ElectricianRequestDirectory;
+
 import Business.Employee.Employee;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Inspector.InspectorDirectory;
-import Business.InspectRequest.InspectRequestDirectory;
-import Business.AgentRequest.AgentRequestDirectory;
-import Business.BuilderRequest.BuilderRequestDirectory;
-import Business.ManagerRequest.ManagerRequestDirectory;
+
+
+
+
 import Business.Organization.OrganizationDirectory;
-import Business.PackerRequest.PackerRequestDirectory;
+
 import Business.PackersMovers.PackersMoversDirectory;
 import Business.Photographer.PhotographerDirectory;
-import Business.PhotographerRequest.PhotographerRequestDirectory;
+
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
 import Business.Plumber.PlumberDirectory;
-import Business.PlumbingRequest.PlumbingRequestDirectory;
+
 
 import Business.Property.PropertyDirectory;
 import java.awt.Color;
@@ -57,7 +57,6 @@ public class EcoSystem extends Organization {
     private OrganizationDirectory organizationDirectory;
     private PhotographerDirectory photographerDirectory;
     private InspectorDirectory inspectorDirectory;
-    private InspectRequestDirectory orderDirectory;
     private AgentDirectory agentDirectory;
     private BuilderDirectory builderDirectory;
     private ElectricianDirectory electricianDirectory;
@@ -67,23 +66,10 @@ public class EcoSystem extends Organization {
     private PackersMoversDirectory packersMoversDirectory;
     private GovermentEmployeeDirectory govermentEmployeeDirectory;
     private PropertyDirectory propertyDirectory;
-    private InspectRequestDirectory inspectRequestDirectory;
-    private PlumbingRequestDirectory plumbingRequestDirectory;
-    private ElectricianRequestDirectory electricianRequestDirectory;
-    private AgentRequestDirectory agentRequestDirectory;
-    private CleaningRequestDirectory cleaningRequestDirectory;
-    private PackerRequestDirectory packerRequestDirectory;
-    private BuilderRequestDirectory builderRequestDirectory;
-    private PhotographerRequestDirectory photographerRequestDirectory;
-    private ManagerRequestDirectory managerRequestDirectory;
 
-    public ElectricianRequestDirectory getElectricianRequestDirectory() {
-        return electricianRequestDirectory;
-    }
 
-    public void setElectricianRequestDirectory(ElectricianRequestDirectory electricianRequestDirectory) {
-        this.electricianRequestDirectory = electricianRequestDirectory;
-    }
+
+  
     private ArrayList<Network> networkList;
 
     public OrganizationDirectory getOrganizationDirectory() {
@@ -149,29 +135,10 @@ public class EcoSystem extends Organization {
         this.buyerDirectory = buyerDirectory;
     }
 
-    public BuilderRequestDirectory getBuilderRequestDirectory() {
-        return builderRequestDirectory;
-    }
+   
 
-    public void setBuilderRequestDirectory(BuilderRequestDirectory builderRequestDirectory) {
-        this.builderRequestDirectory = builderRequestDirectory;
-    }
-
-    public PhotographerRequestDirectory getPhotographerRequestDirectory() {
-        return photographerRequestDirectory;
-    }
-
-    public void setPhotographerRequestDirectory(PhotographerRequestDirectory photographerRequestDirectory) {
-        this.photographerRequestDirectory = photographerRequestDirectory;
-    }
-
-    public ManagerRequestDirectory getManagerRequestDirectory() {
-        return managerRequestDirectory;
-    }
-
-    public void setManagerRequestDirectory(ManagerRequestDirectory managerRequestDirectory) {
-        this.managerRequestDirectory = managerRequestDirectory;
-    }
+   
+ 
 
     
     public boolean checkIfUserIsUnique(String userName) {
@@ -192,38 +159,9 @@ public class EcoSystem extends Organization {
         this.sellerDirectory = sellerDirectory;
     }
 
-    public InspectRequestDirectory getOrderDirectory() {
-        return orderDirectory;
-    }
+   
 
-    public CleaningRequestDirectory getCleaningRequestDirectory() {
-        return cleaningRequestDirectory;
-    }
-
-    public void setCleaningRequestDirectory(CleaningRequestDirectory cleaningRequestDirectory) {
-        this.cleaningRequestDirectory = cleaningRequestDirectory;
-    }
-
-    public PackerRequestDirectory getPackerRequestDirectory() {
-        return packerRequestDirectory;
-    }
-
-    public void setPackerRequestDirectory(PackerRequestDirectory packerRequestDirectory) {
-        this.packerRequestDirectory = packerRequestDirectory;
-    }
-
-    
-    public void setOrderDirectory(InspectRequestDirectory orderDirectory) {
-        this.orderDirectory = orderDirectory;
-    }
-
-    public PlumbingRequestDirectory getPlumbingRequestDirectory() {
-        return plumbingRequestDirectory;
-    }
-
-    public void setPlumbingRequestDirectory(PlumbingRequestDirectory plumbingRequestDirectory) {
-        this.plumbingRequestDirectory = plumbingRequestDirectory;
-    }
+   
 
     public PhotographerDirectory getPhotographerDirectory() {
         return photographerDirectory;
@@ -313,21 +251,9 @@ public class EcoSystem extends Organization {
         this.propertyDirectory = propertyDirectory;
     }
 
-    public InspectRequestDirectory getInspectRequestDirectory() {
-        return inspectRequestDirectory;
-    }
+  
 
-    public void setInspectRequestDirectory(InspectRequestDirectory inspectRequestDirectory) {
-        this.inspectRequestDirectory = inspectRequestDirectory;
-    }
-
-    public AgentRequestDirectory getAgentRequestDirectory() {
-        return agentRequestDirectory;
-    }
-
-    public void setAgentRequestDirectory(AgentRequestDirectory agentRequestDirectory) {
-        this.agentRequestDirectory = agentRequestDirectory;
-    }
+    
     
     public Boolean checkValidPhoneFormat(String phoneNo) {
         Pattern pattern;

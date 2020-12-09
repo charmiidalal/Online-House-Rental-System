@@ -8,8 +8,10 @@ package userinterface.BuyerRole;
 import Business.Buyer.Buyer;
 import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.ManagerRequest.ManagerRequest;
-import Business.ManagerRequest.ManagerRequestDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Seller.SellerDirectory;
@@ -18,6 +20,8 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.WorkQueue.ManagerRequest;
+import Business.WorkQueue.WorkRequest;
 
 /**
  *
@@ -28,46 +32,56 @@ public class ManageManagerActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewMangerJobs
      */
-   private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
     private BuyerDirectory buyerDirectory;
-    private ManagerRequestDirectory managerRequestDirectory;
-    private PropertyManagerDirectory propertyManagerDirectory;
-    
-    public ManageManagerActivity(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
+
+    /**
+     * Creates new form ViewCleanerJobs
+     */
+    public ManageManagerActivity(JPanel userProcess,  UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
         this.userAccount = userAccount;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.organization = organization;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        this.managerRequestDirectory = (system.getManagerRequestDirectory()== null) ? new ManagerRequestDirectory(): system.getManagerRequestDirectory();
-        this.propertyManagerDirectory = (system.getPropertyManagerDirectory()== null) ? new PropertyManagerDirectory(): system.getPropertyManagerDirectory();
         populateRequestTable();
     }
 
     public void populateRequestTable() {
+         
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        Buyer buyer = buyerDirectory.fetchBuyer(userAccount.getEmployee().getName());
-        for (ManagerRequest managerRequest : managerRequestDirectory.getmanagerRequestList()) {
-            if (managerRequest.getBuyer().getBuyerNo().equals(buyer.getBuyerNo())) {
-                Object[] row = new Object[11];
-                row[0] = managerRequest.getRequestID();
-                row[1] = managerRequest.getPropertyManager().getPropertyName();
-                row[2] = managerRequest.getSeller().getName();
-                row[3] = managerRequest.getProperty().getStreet();
-                row[4] = managerRequest.getProperty().getCity();
-                row[5] = managerRequest.getProperty().getState();
-                row[6] = managerRequest.getProperty().getPincode();
-                row[7] = managerRequest.getStatus();
-                row[8] = managerRequest.getBuyerNote();
-                row[9] = managerRequest.getInspectorNote();
-                row[10] =managerRequest.getQuote();
+
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
+
+            if (workRequest instanceof ManagerRequest) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = workRequest;
+                row[1] = ((ManagerRequest) workRequest).getRequestID();
+                row[2] = ((ManagerRequest) workRequest).getManager().getName();
+                row[3] = ((ManagerRequest) workRequest).getSeller().getName();
+                row[4] = ((ManagerRequest) workRequest).getProperty().getStreet();
+                row[5] = ((ManagerRequest) workRequest).getProperty().getCity();
+                row[6] = ((ManagerRequest) workRequest).getProperty().getState();
+                row[7] = ((ManagerRequest) workRequest).getProperty().getPincode();
+                row[8] = ((ManagerRequest) workRequest).getStatus();
+                row[9] = ((ManagerRequest) workRequest).getBuyerNote();
+                row[10] = ((ManagerRequest) workRequest).getInspectorNote();
+                row[11] = ((ManagerRequest) workRequest).getManager().getCharge();
+                row[12] = ((ManagerRequest) workRequest).getQuote();
+                row[13] = ((ManagerRequest) workRequest).getOrgType();
+                
+
                 model.addRow(row);
             }
         }
@@ -106,11 +120,11 @@ public class ManageManagerActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Manager", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Manager Message", "Charge"
+                "JobID", "Manager", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Manager Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -151,15 +165,16 @@ public class ManageManagerActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
+       int selectedRow = houseTable.getSelectedRow();
+       
+        if (selectedRow >= 0) {
+            ManagerRequest br = (ManagerRequest)houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            String jobID = (String) houseTable.getValueAt(selectedRow, 0);
+            
 
             if (!"".equals(feedback)) {
-                ManagerRequest managerRequest = managerRequestDirectory.fetchManagerRequest(jobID);
-                managerRequest.setBuyerNote(feedback);
+              
+                br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
             } else {

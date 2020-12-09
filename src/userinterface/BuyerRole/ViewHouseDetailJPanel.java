@@ -233,7 +233,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        BuyerWorkAreaJPanel buyerJPanel = new BuyerWorkAreaJPanel(userProcessContainer,userAccount, organization,  enterprise, network,  system);
+        BuyerScreenJPanel buyerJPanel = new BuyerScreenJPanel(userProcessContainer,userAccount,  enterprise,  system);
         userProcessContainer.add("BuyerWorkAreaJPanel", buyerJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

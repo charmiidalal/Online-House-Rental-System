@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author shivibhatt
+ * @author charmi
  */
 public class ServiceProviderEntManageOrganizationsJPanel extends javax.swing.JPanel {
 

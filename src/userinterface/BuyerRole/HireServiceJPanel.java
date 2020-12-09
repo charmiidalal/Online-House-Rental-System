@@ -369,10 +369,10 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         cleanerPanel.setLayout(cleanerPanelLayout);
         cleanerPanelLayout.setHorizontalGroup(
             cleanerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cleanerPanelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+            .addGroup(cleanerPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(manageCleaner, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(43, 43, 43))
         );
         cleanerPanelLayout.setVerticalGroup(
             cleanerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,7 +382,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 .addGap(32, 32, 32))
         );
 
-        jPanel3.add(cleanerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 290, 40));
+        jPanel3.add(cleanerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 290, 40));
 
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 470));
     }// </editor-fold>//GEN-END:initComponents
