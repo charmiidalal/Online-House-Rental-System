@@ -44,7 +44,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         this.system = system;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-       populateRequestTable();
+        populateRequestTable();
     }
 
     public void populateRequestTable() {

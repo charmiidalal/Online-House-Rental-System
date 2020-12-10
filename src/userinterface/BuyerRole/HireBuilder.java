@@ -81,41 +81,17 @@ public class HireBuilder extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
         brnHireInspector = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane1.setForeground(new java.awt.Color(41, 50, 80));
-
-        houseTable.setAutoCreateRowSorter(true);
-        houseTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "BuilderID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        houseTable.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(houseTable);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 750, 240));
 
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         brnHireInspector.setForeground(new java.awt.Color(41, 50, 80));
@@ -153,7 +129,29 @@ public class HireBuilder extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("BUILDERS LIST");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, 30));
+
+        jScrollPane1.setForeground(new java.awt.Color(41, 50, 80));
+
+        houseTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "City", "State", "Status", "Phone", "Charge", "OrganizationName"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(houseTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 790, 300));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed

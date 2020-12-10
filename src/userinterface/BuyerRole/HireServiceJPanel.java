@@ -31,7 +31,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     private Network network;
     private Organization organization;
 
-    HireServiceJPanel(JPanel userProcessContainer, Organization organization, Network network, Enterprise enterprise, Property property, EcoSystem system, UserAccount userAccount) {
+    public HireServiceJPanel(JPanel userProcessContainer, Organization organization, Network network, Enterprise enterprise, Property property, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;

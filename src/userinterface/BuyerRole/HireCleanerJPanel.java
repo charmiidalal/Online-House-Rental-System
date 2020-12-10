@@ -104,11 +104,11 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CleanerID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge", "OrganizationName"
+                "ID", "Name", "City", "State", "Status", "Phone", "Charge", "OrganizationName"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, true
+                true, false, false, false, false, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -117,7 +117,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 781, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 790, 300));
 
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         brnHireInspector.setForeground(new java.awt.Color(41, 50, 80));

@@ -54,24 +54,26 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
                 for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
                     if (workRequest instanceof BuilderRequest) {
-                        Object[] row = new Object[model.getColumnCount()];
-                        row[0] = ((BuilderRequest) workRequest).getRequestID();
-                        row[1] = ((BuilderRequest) workRequest).getBuilder().getName();
-                        row[2] = ((BuilderRequest) workRequest).getSeller().getName();
-                        row[3] = ((BuilderRequest) workRequest).getProperty().getStreet();
-                        row[4] = ((BuilderRequest) workRequest).getProperty().getCity();
-                        row[5] = ((BuilderRequest) workRequest).getProperty().getState();
-                        row[6] = ((BuilderRequest) workRequest).getProperty().getPincode();
-                        row[7] = ((BuilderRequest) workRequest).getStatus();
-                        row[8] = ((BuilderRequest) workRequest).getBuyerNote();
-                        row[9] = ((BuilderRequest) workRequest).getInspectorNote();
-                        row[10] = ((BuilderRequest) workRequest).getBuilder().getCharge();
-                        row[11] = ((BuilderRequest) workRequest).getQuote();
-                        row[12] = ((BuilderRequest) workRequest).getOrgType();
-                        model.addRow(row);
+                        if (userAccount.getUsername().equals(((BuilderRequest) workRequest).getBuyer().getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = ((BuilderRequest) workRequest).getRequestID();
+                            row[1] = ((BuilderRequest) workRequest).getBuilder().getName();
+                            row[2] = ((BuilderRequest) workRequest).getSeller().getName();
+                            row[3] = ((BuilderRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((BuilderRequest) workRequest).getProperty().getCity();
+                            row[5] = ((BuilderRequest) workRequest).getProperty().getState();
+                            row[6] = ((BuilderRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((BuilderRequest) workRequest).getStatus();
+                            row[8] = ((BuilderRequest) workRequest).getBuyerNote();
+                            row[9] = ((BuilderRequest) workRequest).getInspectorNote();
+                            row[10] = ((BuilderRequest) workRequest).getBuilder().getCharge();
+                            row[11] = ((BuilderRequest) workRequest).getQuote();
+                            row[12] = ((BuilderRequest) workRequest).getOrgType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -87,26 +89,36 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        btnBack = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txtFeedback = new javax.swing.JTextField();
         btnCompleteJob = new javax.swing.JButton();
+        txtFeedback = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 17, 41, -1));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("VIEW BUILDER JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
-        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 270, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
@@ -116,7 +128,12 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 270, -1));
+
+        jLabel4.setBackground(new java.awt.Color(241, 241, 242));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/builder.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 270, 145, 320));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,22 +153,15 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 960, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 960, 270));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 67, 1100, -1));
-
-        btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
+                btnBack1ActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 17, 41, -1));
-
-        jLabel4.setBackground(new java.awt.Color(241, 241, 242));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/builder.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 34, 145, 320));
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 40, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -179,14 +189,22 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables

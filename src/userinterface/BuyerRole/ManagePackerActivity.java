@@ -51,28 +51,30 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         populateRequestTable();
     }
 
-     public void populateRequestTable() {
+    public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
                 for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
                     if (workRequest instanceof PackerRequest) {
-                        Object[] row = new Object[model.getColumnCount()];
-                        row[0] = ((PackerRequest) workRequest).getRequestID();
-                        row[1] = ((PackerRequest) workRequest).getPacker().getName();
-                        row[2] = ((PackerRequest) workRequest).getSeller().getName();
-                        row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
-                        row[4] = ((PackerRequest) workRequest).getProperty().getCity();
-                        row[5] = ((PackerRequest) workRequest).getProperty().getState();
-                        row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
-                        row[7] = ((PackerRequest) workRequest).getStatus();
-                        row[8] = ((PackerRequest) workRequest).getBuyerNote();
-                        row[9] = ((PackerRequest) workRequest).getInspectorNote();
-                        row[10] = ((PackerRequest) workRequest).getPacker().getCharge();
-                        row[11] = ((PackerRequest) workRequest).getQuote();
-                        row[12] = ((PackerRequest) workRequest).getOrgType();
-                        model.addRow(row);
+                        if (userAccount.getUsername().equals(((PackerRequest) workRequest).getBuyer().getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = ((PackerRequest) workRequest).getRequestID();
+                            row[1] = ((PackerRequest) workRequest).getPacker().getName();
+                            row[2] = ((PackerRequest) workRequest).getSeller().getName();
+                            row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((PackerRequest) workRequest).getProperty().getCity();
+                            row[5] = ((PackerRequest) workRequest).getProperty().getState();
+                            row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((PackerRequest) workRequest).getStatus();
+                            row[8] = ((PackerRequest) workRequest).getBuyerNote();
+                            row[9] = ((PackerRequest) workRequest).getInspectorNote();
+                            row[10] = ((PackerRequest) workRequest).getPacker().getCharge();
+                            row[11] = ((PackerRequest) workRequest).getQuote();
+                            row[12] = ((PackerRequest) workRequest).getOrgType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -96,6 +98,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -105,8 +108,8 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
-        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 250, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
+        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 250, -1));
 
         btnCompleteJob.setBackground(new java.awt.Color(204, 204, 204));
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -117,10 +120,10 @@ public class ManagePackerActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
+        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delivery-truck.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 150, 230));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 310, 150, 230));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +131,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 30, 30));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 50, 30, 30));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,7 +151,11 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 960, 260));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 960, 260));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel5.setText("VIEW MOVERS & PACKERS JOB LIST");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("VIEW JOB LIST");
@@ -158,20 +165,20 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(715, Short.MAX_VALUE)
+                .addContainerGap(529, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(479, 479, 479))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1298, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(477, Short.MAX_VALUE))
+                .addContainerGap(525, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,6 +217,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtFeedback;

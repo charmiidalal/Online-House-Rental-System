@@ -5,7 +5,6 @@
  */
 package userinterface.CleaningRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.WorkQueue.CleaningRequest;
@@ -60,10 +59,12 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
                 row[8] = ((CleaningRequest) workRequest).getBuyerNote();
                 row[9] = ((CleaningRequest) workRequest).getInspectorNote();
                 row[10] = ((CleaningRequest) workRequest).getQuote();
+                row[11] = ((CleaningRequest) workRequest).getBuyer().getRole().toString();
                 model.addRow(row);
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,8 +77,6 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
         brnTakeJob = new javax.swing.JButton();
         btnCompleteJob = new javax.swing.JButton();
         txtFeedback = new javax.swing.JTextField();
@@ -86,12 +85,14 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         quoteTxt = new javax.swing.JTextField();
         btnViewBuyerDetails = new javax.swing.JButton();
         btnViewSellerDetails = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/CLEANING.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 680, 500));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 680, 500));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -101,26 +102,6 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaning-staff.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 145, 164));
-
-        houseTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "JobID", "Buyer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(houseTable);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 910, 300));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setText("Take Job");
@@ -159,7 +140,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, 120, -1));
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnViewBuyerDetails.setText("View Buyer Details");
+        btnViewBuyerDetails.setText("View Assignee Details");
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuyerDetailsActionPerformed(evt);
@@ -175,6 +156,26 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, -1));
+
+        houseTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation", "Role"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, false, false, false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(houseTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 910, 300));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed

@@ -59,6 +59,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 row[8] = ((InspectRequest) workRequest).getBuyerNote();
                 row[9] = ((InspectRequest) workRequest).getInspectorNote();
                 row[10] = ((InspectRequest) workRequest).getQuote();
+                row[11] = ((InspectRequest) workRequest).getBuyer().getRole().toString();
                 model.addRow(row);
             }
         }
@@ -101,18 +102,18 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/inspectJob.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 470, 530));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 470, 530));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "JobID", "Buyer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation"
+                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -160,7 +161,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnViewBuyerDetails.setBackground(null);
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnViewBuyerDetails.setText("View Buyer Details");
+        btnViewBuyerDetails.setText("View Assignee Details");
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuyerDetailsActionPerformed(evt);

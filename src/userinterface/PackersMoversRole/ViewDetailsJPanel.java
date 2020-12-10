@@ -61,6 +61,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
                 row[8] = ((PackerRequest) workRequest).getBuyerNote();
                 row[9] = ((PackerRequest) workRequest).getInspectorNote();
                 row[10] = ((PackerRequest) workRequest).getQuote();
+                row[11] = ((PackerRequest) workRequest).getBuyer().getRole().toString();
                 model.addRow(row);
             }
         }
@@ -76,8 +77,6 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         brnTakeJob = new javax.swing.JButton();
         btnCompleteJob = new javax.swing.JButton();
@@ -87,6 +86,8 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         quoteTxt = new javax.swing.JTextField();
         btnViewBuyerDetails = new javax.swing.JButton();
         btnViewSellerDetails = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -97,27 +98,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/deliveryman.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 860, 610));
-
-        houseTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "JobID", "Buyer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(houseTable);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 910, 300));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 860, 610));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delivery-truck.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, -30, 140, 164));
@@ -159,7 +140,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 120, -1));
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnViewBuyerDetails.setText("View Buyer Details");
+        btnViewBuyerDetails.setText("View Assignee Details");
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuyerDetailsActionPerformed(evt);
@@ -175,6 +156,26 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, -1, -1));
+
+        houseTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation", "Role"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, false, false, false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(houseTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 910, 300));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed

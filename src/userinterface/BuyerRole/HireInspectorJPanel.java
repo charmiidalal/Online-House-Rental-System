@@ -79,12 +79,12 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         brnHireInspector = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,12 +98,26 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         });
         add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, -1, 40));
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setText("Comment:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
+        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 220, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/detective.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel4.setText("INSPECTOR LIST");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
+
+        jScrollPane1.setForeground(new java.awt.Color(41, 50, 80));
+
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name", "City", "State", "Status", "Contact", "Charge", "Organization"
+                "ID", "Name", "City", "State", "Status", "Phone", "Charge", "OrganizationName"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -116,19 +130,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 900, 310));
-
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel1.setText("Comment:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
-        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 220, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/detective.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel4.setText("INSPECTOR LIST");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 790, 300));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed

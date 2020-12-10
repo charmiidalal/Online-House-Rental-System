@@ -58,17 +58,10 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
 
         for (Organization organization : directory.getOrganizationList()) {
             {
-                if (organization instanceof InspectorOrganization) {
-                    Object[] row = new Object[2];
-                    row[0] = organization.getType().getValue();
-                    row[1] = organization.getName();
-                    model.addRow(row);
-                }else if (organization instanceof PhotographerOrganization) {
-                    Object[] row = new Object[2];
-                    row[0] = organization.getType().getValue();
-                    row[1] = organization.getName();
-                    model.addRow(row);
-                }
+                Object[] row = new Object[2];
+                row[0] = organization.getType().getValue();
+                row[1] = organization.getName();
+                model.addRow(row);
             }
 
         }

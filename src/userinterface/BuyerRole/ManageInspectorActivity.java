@@ -54,21 +54,23 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
             if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
                 for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
                     if (workRequest instanceof InspectRequest) {
-                        Object[] row = new Object[model.getColumnCount()];
-                        row[0] = ((InspectRequest) workRequest).getRequestID();
-                        row[1] = ((InspectRequest) workRequest).getInspector().getName();
-                        row[2] = ((InspectRequest) workRequest).getSeller().getName();
-                        row[3] = ((InspectRequest) workRequest).getProperty().getStreet();
-                        row[4] = ((InspectRequest) workRequest).getProperty().getCity();
-                        row[5] = ((InspectRequest) workRequest).getProperty().getState();
-                        row[6] = ((InspectRequest) workRequest).getProperty().getPincode();
-                        row[7] = ((InspectRequest) workRequest).getStatus();
-                        row[8] = ((InspectRequest) workRequest).getBuyerNote();
-                        row[9] = ((InspectRequest) workRequest).getInspectorNote();
-                        row[10] = ((InspectRequest) workRequest).getInspector().getCharge();
-                        row[11] = ((InspectRequest) workRequest).getQuote();
-                        row[12] = ((InspectRequest) workRequest).getOrgType();
-                        model.addRow(row);
+                        if (userAccount.getUsername().equals(((InspectRequest) workRequest).getBuyer().getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = ((InspectRequest) workRequest).getRequestID();
+                            row[1] = ((InspectRequest) workRequest).getInspector().getName();
+                            row[2] = ((InspectRequest) workRequest).getSeller().getName();
+                            row[3] = ((InspectRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((InspectRequest) workRequest).getProperty().getCity();
+                            row[5] = ((InspectRequest) workRequest).getProperty().getState();
+                            row[6] = ((InspectRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((InspectRequest) workRequest).getStatus();
+                            row[8] = ((InspectRequest) workRequest).getBuyerNote();
+                            row[9] = ((InspectRequest) workRequest).getInspectorNote();
+                            row[10] = ((InspectRequest) workRequest).getInspector().getCharge();
+                            row[11] = ((InspectRequest) workRequest).getQuote();
+                            row[12] = ((InspectRequest) workRequest).getOrgType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -114,13 +116,13 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 960, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 960, 270));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, -1, -1));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 282, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 282, -1));
 
         btnSendMsg.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSendMsg.setForeground(new java.awt.Color(0, 0, 51));
@@ -130,10 +132,10 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
                 btnSendMsgActionPerformed(evt);
             }
         });
-        add(btnSendMsg, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
+        add(btnSendMsg, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/detective (1).png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 170, 250));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 340, 170, 250));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -141,11 +143,11 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 50, 30, 30));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("VIEW JOB LIST");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 30));
+        jLabel3.setText("VIEW INSPECTOR JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSendMsgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendMsgActionPerformed

@@ -64,6 +64,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
                 row[8] = ((AgentRequest) workRequest).getBuyerNote();
                 row[9] = ((AgentRequest) workRequest).getInspectorNote();
                 row[10] = ((AgentRequest) workRequest).getQuote();
+                row[11] = ((AgentRequest) workRequest).getBuyer().getRole().toString();
                 model.addRow(row);
             }
         }
@@ -97,7 +98,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENTO.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 660, 440));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 380, 138, -1));
@@ -129,11 +130,11 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Buyer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Agent Message", "Quotation"
+                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Agent Message", "Quotation", "Assignee Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                true, false, false, true, false, false, false, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -145,7 +146,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 910, 300));
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnViewBuyerDetails.setText("View Buyer Details");
+        btnViewBuyerDetails.setText("View Assignee Details");
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuyerDetailsActionPerformed(evt);

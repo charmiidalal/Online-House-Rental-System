@@ -11,6 +11,7 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
+import userinterface.BuyerRole.viewJobsJPanel;
 
 /**
  *
@@ -43,13 +44,19 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageJobs() {
-        
-        ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(userRight,organization,network, enterprise, property,account, system);
+        ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(userRight,organization,network, enterprise,account, system);
         userRight.add("viewJobsJPanel",viewJobsJPanel);
         CardLayout layout = (CardLayout) userRight.getLayout();
         layout.next(userRight);
     }
-
+    
+    private void manageBuyers() {
+        viewJobsJPanel managecleanerJPanel = new viewJobsJPanel(userRight, account, enterprise, system, network, organization);
+        userRight.add("manageInspectorProfileJPanel", managecleanerJPanel);
+        CardLayout layout = (CardLayout) userRight.getLayout();
+        layout.next(userRight);
+    }
+    
     private void manageProfile() {
         
         ManageProfileJPanel manageInspectorProfileJPanel = new ManageProfileJPanel(userRight, enterprise, account, system);
@@ -76,6 +83,8 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         manageJobsPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         manageJobs = new javax.swing.JLabel();
+        manageOrganization = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         userRight = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(215, 81, 81));
@@ -139,11 +148,11 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        userLeft.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 280, -1));
+        userLeft.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 280, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("PROPERTY MANAGER MANAGEMENT");
-        userLeft.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        userLeft.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -177,7 +186,7 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(manageJobsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(manageJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -192,6 +201,22 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         );
 
         userLeft.add(manageJobsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 280, 50));
+
+        manageOrganization.setBackground(new java.awt.Color(255, 213, 90));
+        manageOrganization.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        manageOrganization.setText("View Job Status");
+        manageOrganization.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manageOrganization.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageOrganizationMousePressed(evt);
+            }
+        });
+        userLeft.add(manageOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 220, 30));
+
+        jLabel4.setBackground(new java.awt.Color(255, 213, 90));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/request.png"))); // NOI18N
+        userLeft.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         userRight.setBackground(new java.awt.Color(241, 241, 242));
         userRight.setMinimumSize(new java.awt.Dimension(1058, 840));
@@ -234,16 +259,22 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         manageProfile();
     }//GEN-LAST:event_manageProfileMousePressed
+
+    private void manageOrganizationMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageOrganizationMousePressed
+        manageBuyers();
+    }//GEN-LAST:event_manageOrganizationMousePressed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel manageJobs;
     private javax.swing.JPanel manageJobsPanel;
+    private javax.swing.JLabel manageOrganization;
     private javax.swing.JLabel manageProfile;
     private javax.swing.JPanel manageProfilePanel;
     private javax.swing.JPanel systemAdminPanel;

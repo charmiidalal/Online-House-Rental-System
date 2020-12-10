@@ -51,28 +51,30 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
         populateRequestTable();
     }
 
-     public void populateRequestTable() {
+    public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
             if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
                 for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
                     if (workRequest instanceof PhotographerRequest) {
-                        Object[] row = new Object[model.getColumnCount()];
-                        row[0] = ((PhotographerRequest) workRequest).getRequestID();
-                        row[1] = ((PhotographerRequest) workRequest).getPhotographer().getName();
-                        row[2] = ((PhotographerRequest) workRequest).getSeller().getName();
-                        row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
-                        row[4] = ((PhotographerRequest) workRequest).getProperty().getCity();
-                        row[5] = ((PhotographerRequest) workRequest).getProperty().getState();
-                        row[6] = ((PhotographerRequest) workRequest).getProperty().getPincode();
-                        row[7] = ((PhotographerRequest) workRequest).getStatus();
-                        row[8] = ((PhotographerRequest) workRequest).getBuyerNote();
-                        row[9] = ((PhotographerRequest) workRequest).getInspectorNote();
-                        row[10] = ((PhotographerRequest) workRequest).getPhotographer().getCharge();
-                        row[11] = ((PhotographerRequest) workRequest).getQuote();
-                        row[12] = ((PhotographerRequest) workRequest).getOrgType();
-                        model.addRow(row);
+                        if (userAccount.getUsername().equals(((PhotographerRequest) workRequest).getBuyer().getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = ((PhotographerRequest) workRequest).getRequestID();
+                            row[1] = ((PhotographerRequest) workRequest).getPhotographer().getName();
+                            row[2] = ((PhotographerRequest) workRequest).getSeller().getName();
+                            row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((PhotographerRequest) workRequest).getProperty().getCity();
+                            row[5] = ((PhotographerRequest) workRequest).getProperty().getState();
+                            row[6] = ((PhotographerRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((PhotographerRequest) workRequest).getStatus();
+                            row[8] = ((PhotographerRequest) workRequest).getBuyerNote();
+                            row[9] = ((PhotographerRequest) workRequest).getInspectorNote();
+                            row[10] = ((PhotographerRequest) workRequest).getPhotographer().getCharge();
+                            row[11] = ((PhotographerRequest) workRequest).getQuote();
+                            row[12] = ((PhotographerRequest) workRequest).getOrgType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -107,8 +109,8 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
-        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 254, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
+        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 254, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
@@ -118,10 +120,10 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
+        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/photographer.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 164));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 140, 164));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,7 +143,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 960, 270));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 960, 270));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
@@ -151,11 +153,11 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 10, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 40, 30, 30));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("VIEW JOB LIST");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 30));
+        jLabel3.setText("VIEW PHOTOGRAPHER JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed

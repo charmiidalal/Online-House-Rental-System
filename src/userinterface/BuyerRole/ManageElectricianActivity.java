@@ -51,24 +51,26 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
                 for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
                     if (workRequest instanceof ElectricianRequest) {
-                        Object[] row = new Object[model.getColumnCount()];
-                        row[0] = ((ElectricianRequest) workRequest).getRequestID();
-                        row[1] = ((ElectricianRequest) workRequest).getElectrician().getName();
-                        row[2] = ((ElectricianRequest) workRequest).getSeller().getName();
-                        row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();
-                        row[4] = ((ElectricianRequest) workRequest).getProperty().getCity();
-                        row[5] = ((ElectricianRequest) workRequest).getProperty().getState();
-                        row[6] = ((ElectricianRequest) workRequest).getProperty().getPincode();
-                        row[7] = ((ElectricianRequest) workRequest).getStatus();
-                        row[8] = ((ElectricianRequest) workRequest).getBuyerNote();
-                        row[9] = ((ElectricianRequest) workRequest).getInspectorNote();
-                        row[10] = ((ElectricianRequest) workRequest).getElectrician().getCharge();
-                        row[11] = ((ElectricianRequest) workRequest).getQuote();
-                        row[12] = ((ElectricianRequest) workRequest).getOrgType();
-                        model.addRow(row);
+                        if (userAccount.getUsername().equals(((ElectricianRequest) workRequest).getBuyer().getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = ((ElectricianRequest) workRequest).getRequestID();
+                            row[1] = ((ElectricianRequest) workRequest).getElectrician().getName();
+                            row[2] = ((ElectricianRequest) workRequest).getSeller().getName();
+                            row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((ElectricianRequest) workRequest).getProperty().getCity();
+                            row[5] = ((ElectricianRequest) workRequest).getProperty().getState();
+                            row[6] = ((ElectricianRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((ElectricianRequest) workRequest).getStatus();
+                            row[8] = ((ElectricianRequest) workRequest).getBuyerNote();
+                            row[9] = ((ElectricianRequest) workRequest).getInspectorNote();
+                            row[10] = ((ElectricianRequest) workRequest).getElectrician().getCharge();
+                            row[11] = ((ElectricianRequest) workRequest).getQuote();
+                            row[12] = ((ElectricianRequest) workRequest).getOrgType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -99,8 +101,8 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 90, -1));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 250, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 90, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 250, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
@@ -110,10 +112,10 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 140, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 140, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/electrician.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 164));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 140, 164));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -121,11 +123,11 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 30, 30, 30));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("VIEW JOB LIST");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, 30));
+        jLabel3.setText("VIEW ELECTRICIAN JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, 30));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,7 +147,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 960, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 960, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed

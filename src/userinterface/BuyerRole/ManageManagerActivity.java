@@ -52,24 +52,26 @@ public class ManageManagerActivity extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
                 for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
                     if (workRequest instanceof ManagerRequest) {
-                        Object[] row = new Object[model.getColumnCount()];
-                        row[0] = ((ManagerRequest) workRequest).getRequestID();
-                        row[1] = ((ManagerRequest) workRequest).getManager().getName();
-                        row[2] = ((ManagerRequest) workRequest).getSeller().getName();
-                        row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
-                        row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
-                        row[5] = ((ManagerRequest) workRequest).getProperty().getState();
-                        row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
-                        row[7] = ((ManagerRequest) workRequest).getStatus();
-                        row[8] = ((ManagerRequest) workRequest).getBuyerNote();
-                        row[9] = ((ManagerRequest) workRequest).getInspectorNote();
-                        row[10] = ((ManagerRequest) workRequest).getManager().getCharge();
-                        row[11] = ((ManagerRequest) workRequest).getQuote();
-                        row[12] = ((ManagerRequest) workRequest).getOrgType();
-                        model.addRow(row);
+                        if (userAccount.getUsername().equals(((ManagerRequest) workRequest).getBuyer().getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = ((ManagerRequest) workRequest).getRequestID();
+                            row[1] = ((ManagerRequest) workRequest).getManager().getName();
+                            row[2] = ((ManagerRequest) workRequest).getSeller().getName();
+                            row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
+                            row[5] = ((ManagerRequest) workRequest).getProperty().getState();
+                            row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((ManagerRequest) workRequest).getStatus();
+                            row[8] = ((ManagerRequest) workRequest).getBuyerNote();
+                            row[9] = ((ManagerRequest) workRequest).getInspectorNote();
+                            row[10] = ((ManagerRequest) workRequest).getManager().getCharge();
+                            row[11] = ((ManagerRequest) workRequest).getQuote();
+                            row[12] = ((ManagerRequest) workRequest).getOrgType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -106,14 +108,14 @@ public class ManageManagerActivity extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, 30, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 150, 270));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 320, 150, 270));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("VIEW JOB LIST");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, 30));
+        jLabel3.setText("VIEW PROPERTY MANAGER JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, 30));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setText("Send Message");
@@ -122,12 +124,12 @@ public class ManageManagerActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 300, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, -1, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 300, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,7 +149,7 @@ public class ManageManagerActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 960, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 960, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed

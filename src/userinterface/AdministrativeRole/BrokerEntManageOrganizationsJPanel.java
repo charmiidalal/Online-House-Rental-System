@@ -44,12 +44,10 @@ public class BrokerEntManageOrganizationsJPanel extends javax.swing.JPanel {
 
         for (Organization organization : directory.getOrganizationList()) {
             {
-                if (organization instanceof AgentOrganization) {
-                    Object[] row = new Object[2];
-                    row[0] = organization.getType().getValue();
-                    row[1] = organization.getName();
-                    model.addRow(row);
-                }
+                Object[] row = new Object[2];
+                row[0] = organization.getType().getValue();
+                row[1] = organization.getName();
+                model.addRow(row);
             }
 
         }

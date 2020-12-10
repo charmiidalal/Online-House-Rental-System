@@ -51,24 +51,26 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
                 for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
                     if (workRequest instanceof CleaningRequest) {
-                        Object[] row = new Object[model.getColumnCount()];
-                        row[0] = ((CleaningRequest) workRequest).getRequestID();
-                        row[1] = ((CleaningRequest) workRequest).getCleaner().getName();
-                        row[2] = ((CleaningRequest) workRequest).getSeller().getName();
-                        row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
-                        row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
-                        row[5] = ((CleaningRequest) workRequest).getProperty().getState();
-                        row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
-                        row[7] = ((CleaningRequest) workRequest).getStatus();
-                        row[8] = ((CleaningRequest) workRequest).getBuyerNote();
-                        row[9] = ((CleaningRequest) workRequest).getInspectorNote();
-                        row[10] = ((CleaningRequest) workRequest).getCleaner().getCharge();
-                        row[11] = ((CleaningRequest) workRequest).getQuote();
-                        row[12] = ((CleaningRequest) workRequest).getOrgType();
-                        model.addRow(row);
+                        if (userAccount.getUsername().equals(((CleaningRequest) workRequest).getBuyer().getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = ((CleaningRequest) workRequest).getRequestID();
+                            row[1] = ((CleaningRequest) workRequest).getCleaner().getName();
+                            row[2] = ((CleaningRequest) workRequest).getSeller().getName();
+                            row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
+                            row[5] = ((CleaningRequest) workRequest).getProperty().getState();
+                            row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((CleaningRequest) workRequest).getStatus();
+                            row[8] = ((CleaningRequest) workRequest).getBuyerNote();
+                            row[9] = ((CleaningRequest) workRequest).getInspectorNote();
+                            row[10] = ((CleaningRequest) workRequest).getCleaner().getCharge();
+                            row[11] = ((CleaningRequest) workRequest).getQuote();
+                            row[12] = ((CleaningRequest) workRequest).getOrgType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -91,12 +93,13 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtFeedback = new javax.swing.JTextField();
         btnCompleteJob = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaning-staff.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 126, 145, 164));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, 145, 164));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +107,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 30, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 30, 30, 30));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,13 +127,13 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 960, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 960, 270));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 245, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 245, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
@@ -140,7 +143,11 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 140, 30));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 140, 30));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("VIEW CLEANER JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -176,6 +183,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtFeedback;

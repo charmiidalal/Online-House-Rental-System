@@ -17,11 +17,10 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.BuyerRole.HireCleanerJPanel;
-import userinterface.BuyerRole.HireElectricianJPanel;
-import userinterface.BuyerRole.HirePhotoJPanel;
-import userinterface.BuyerRole.HirePlumberJPanel;
 import Business.WorkQueue.ManagerRequest;
+import userinterface.BuyerRole.HireServiceJPanel;
+import userinterface.BuyerRole.ViewBuyerDetailsJPanel;
+import userinterface.BuyerRole.ViewSellerDetailsJPanel;
 
 /**
  *
@@ -29,49 +28,58 @@ import Business.WorkQueue.ManagerRequest;
  */
 public class ViewJobsJPanel extends javax.swing.JPanel {
 
-  
     private JPanel userProcessContainer;
     private EcoSystem system;
-    private UserAccount userAccount;
-
-    
+    private UserAccount useraccount;
     private PropertyDirectory propertyDirectory;
-     private Property property;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
+
     /**
      * Creates new form ViewJobsJPanel
      */
-   
 
-
-    public ViewJobsJPanel(JPanel userProcessContainer,Organization organization,Network network,Enterprise enterprise,Property property,  UserAccount useraccount,EcoSystem system) {
-
+    public ViewJobsJPanel(JPanel userProcessContainer, Organization organization, Network network, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.userAccount = userAccount;
-
+        this.useraccount = useraccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-      
-        this.property = property;
-        
-          this.network = network;
+        this.network = network;
         this.enterprise = enterprise;
         this.organization = organization;
-        
-
         this.enterprise = enterprise;
-
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+        popuatePropertyTable();
+        populateRequestTable();
     }
-
+    public void popuatePropertyTable() {
+        DefaultTableModel model = (DefaultTableModel) propertyTable.getModel();
+        model.setRowCount(0);
+        for (Property property : propertyDirectory.getPropertyList()) {
+            Object[] row = new Object[12];
+            row[0] = property.getPropertyID();
+            row[1] = property.getPropertyName();
+            row[2] = property.getStreet();
+            row[3] = property.getCity();
+            row[4] = property.getState();
+            row[5] = property.getPincode();
+            row[6] = property.getBhk();
+            row[7] = property.getBathroom();
+            row[8] = property.getPrice();
+            row[9] = property.getStatus();
+            row[10] = property.getSeller();
+            row[11] = property.getSeller().getName();
+            model.addRow(row);
+        }
+    }
+    
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
             if (workRequest instanceof ManagerRequest) {
                 Object[] row = new Object[model.getColumnCount()];
                 row[0] = workRequest;
@@ -84,12 +92,10 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 row[7] = ((ManagerRequest) workRequest).getStatus();
                 row[8] = ((ManagerRequest) workRequest).getBuyerNote();
                 row[9] = ((ManagerRequest) workRequest).getInspectorNote();
-
                 model.addRow(row);
             }
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,24 +112,22 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         hirePackBtn = new javax.swing.JButton();
         hirePhotoBtn = new javax.swing.JButton();
         hireCleanBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
-        brnTakeJob = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        txtFeedback = new javax.swing.JTextField();
-        btnCompleteJob = new javax.swing.JButton();
-        hirePlumBtn1 = new javax.swing.JButton();
-        hireCleanBtn1 = new javax.swing.JButton();
-        hirePackBtn1 = new javax.swing.JButton();
-        hireElecBtn1 = new javax.swing.JButton();
-        hirePhotoBtn1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        quoteTxt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        houseTable1 = new javax.swing.JTable();
+        propertyTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        brnTakeJob = new javax.swing.JButton();
+        btnCompleteJob = new javax.swing.JButton();
+        txtFeedback = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        quoteTxt = new javax.swing.JTextField();
+        btnViewBuyerDetails = new javax.swing.JButton();
+        btnViewSellerDetails = new javax.swing.JButton();
+        hireSPBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
 
         hireElecBtn.setText("Hire Electrician");
         hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -190,114 +194,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        houseTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "JobID", "Buyer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Manager Message"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(houseTable);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 900, 300));
-
-        brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        brnTakeJob.setText("Take Job");
-        brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                brnTakeJobActionPerformed(evt);
-            }
-        });
-        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 690, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 710, -1, -1));
-
-        txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 710, 138, -1));
-
-        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnCompleteJob.setText("Mark Complete");
-        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompleteJobActionPerformed(evt);
-            }
-        });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 750, -1, -1));
-
-        hirePlumBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        hirePlumBtn1.setText("Hire Plumber");
-        hirePlumBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hirePlumBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hirePlumBtn1ActionPerformed(evt);
-            }
-        });
-        add(hirePlumBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 140, -1));
-
-        hireCleanBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        hireCleanBtn1.setText("Hire Cleaner");
-        hireCleanBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hireCleanBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireCleanBtn1ActionPerformed(evt);
-            }
-        });
-        add(hireCleanBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 140, -1));
-
-        hirePackBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        hirePackBtn1.setText("Hire Packers/Movers");
-        hirePackBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(hirePackBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 140, -1));
-
-        hireElecBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        hireElecBtn1.setText("Hire Electrician");
-        hireElecBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hireElecBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireElecBtn1ActionPerformed(evt);
-            }
-        });
-        add(hireElecBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 140, -1));
-
-        hirePhotoBtn1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        hirePhotoBtn1.setText("Hire Photographer");
-        hirePhotoBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hirePhotoBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hirePhotoBtn1ActionPerformed(evt);
-            }
-        });
-        add(hirePhotoBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 140, -1));
-
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel2.setText("Update Quote: ");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 680, -1, -1));
-
-        quoteTxt.setBackground(new java.awt.Color(153, 204, 255));
-        quoteTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quoteTxtActionPerformed(evt);
-            }
-        });
-        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 680, 140, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 690, 550));
-
-        houseTable1.setModel(new javax.swing.table.DefaultTableModel(
+        propertyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -313,35 +210,138 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(houseTable1);
+        jScrollPane2.setViewportView(propertyTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 900, 300));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, 920, 300));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, -30, 690, 550));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("PROPERTY MANAGER WORK REQUEST");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 140, 164));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 140, 164));
+
+        brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        brnTakeJob.setText("Take Job");
+        brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brnTakeJobActionPerformed(evt);
+            }
+        });
+        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, -1));
+
+        btnCompleteJob.setText("Mark Complete");
+        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompleteJobActionPerformed(evt);
+            }
+        });
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 420, 150, -1));
+
+        txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 370, 120, -1));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel1.setText("Feedback:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 370, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setText("Quotation Amount: ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 160, 20));
+
+        quoteTxt.setBackground(new java.awt.Color(153, 204, 255));
+        quoteTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quoteTxtActionPerformed(evt);
+            }
+        });
+        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 120, -1));
+
+        btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnViewBuyerDetails.setText("View Buyer Details");
+        btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBuyerDetailsActionPerformed(evt);
+            }
+        });
+        add(btnViewBuyerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, -1, -1));
+
+        btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnViewSellerDetails.setText("View Seller Details");
+        btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewSellerDetailsActionPerformed(evt);
+            }
+        });
+        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, -1, -1));
+
+        hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        hireSPBtn.setForeground(new java.awt.Color(41, 50, 80));
+        hireSPBtn.setText("Hire Services");
+        hireSPBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireSPBtnActionPerformed(evt);
+            }
+        });
+        add(hireSPBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 120, -1));
+
+        houseTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation", "Role"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, false, false, false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(houseTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 910, 300));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
+
+    }//GEN-LAST:event_hireElecBtnActionPerformed
+
+    private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
+       
+    }//GEN-LAST:event_hirePlumBtnActionPerformed
+
+    private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
+       
+    }//GEN-LAST:event_hirePhotoBtnActionPerformed
+
+    private void hireCleanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtnActionPerformed
+       
+    }//GEN-LAST:event_hireCleanBtnActionPerformed
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
-            ManagerRequest managerRequest = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
-            String feedback = txtFeedback.getText();
-            if (!"Job Taken".equals(managerRequest.getStatus())) {
-                if (!"".equals(feedback)) {
-                    managerRequest.setStatus("Job Taken");
-                    managerRequest.setQuote(quoteTxt.getText());
-                
-                    userAccount.setStatus("Occupied");
-                    populateRequestTable();
-                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
-                }
+            ManagerRequest inspectRequest = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
+            try {
+                Double quote = Double.parseDouble(quoteTxt.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Quote");
+                return;
+            }
+            if (!"In Progress".equals(inspectRequest.getStatus())) {
+                inspectRequest.setStatus("In Progress");
+                inspectRequest.setQuote(quoteTxt.getText());
+                useraccount.setStatus("Occupied");
+                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                populateRequestTable();
             } else {
                 JOptionPane.showMessageDialog(null, "Job is already taken!");
             }
@@ -352,104 +352,106 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-         int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
-            ManagerRequest managerRequest = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
+            ManagerRequest inspectRequest = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-
-            if (!"".equals(feedback)) {
-                managerRequest.setStatus("Completed");
-                managerRequest.setInspectorNote(feedback);
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
+            }
+            if (!"Completed".equals(inspectRequest.getStatus())) {
+                inspectRequest.setStatus("Completed");
+                inspectRequest.setInspectorNote(feedback);
+                JOptionPane.showMessageDialog(null, "Job is set to completed!");
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to set your status to Available?", "Warning", dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    useraccount.setStatus("Available");
+                }
                 populateRequestTable();
-                userAccount.setStatus("Available");
             } else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                JOptionPane.showMessageDialog(null, "Job is already completed!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
-    private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
-
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,organization,network,enterprise, property, userAccount,system);
-
-      
-
-        userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hireElecBtnActionPerformed
-
-    private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
-        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property,userAccount, system);
-        userProcessContainer.add("plumberWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hirePlumBtnActionPerformed
-
-    private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
-        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer,organization,network,enterprise, property,userAccount, system);
-        userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hirePhotoBtnActionPerformed
-
-    private void hireCleanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtnActionPerformed
-        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property ,userAccount,system);
-        userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hireCleanBtnActionPerformed
-
-    private void hireElecBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtn1ActionPerformed
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,organization,network,enterprise, property,userAccount,system);
-        userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hireElecBtn1ActionPerformed
-
-    private void hirePlumBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtn1ActionPerformed
-        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property ,userAccount, system);
-        userProcessContainer.add("plumberWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hirePlumBtn1ActionPerformed
-
-    private void hirePhotoBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtn1ActionPerformed
-        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer,organization,network,enterprise, property,userAccount, system);
-        userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hirePhotoBtn1ActionPerformed
-
-    private void hireCleanBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtn1ActionPerformed
-        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property ,userAccount,system);
-        userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_hireCleanBtn1ActionPerformed
-
     private void quoteTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quoteTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_quoteTxtActionPerformed
+
+    private void btnViewBuyerDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBuyerDetailsActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+
+        int count = houseTable.getSelectedRowCount();
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                UserAccount buyerAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
+                ViewBuyerDetailsJPanel viewBuyerDetailsJPanel = new ViewBuyerDetailsJPanel(userProcessContainer, buyerAcc, useraccount, system);
+                userProcessContainer.add("ViewBuyerDetailsJPanel", viewBuyerDetailsJPanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a Row!!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
+    }//GEN-LAST:event_btnViewBuyerDetailsActionPerformed
+
+    private void btnViewSellerDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSellerDetailsActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+
+        int count = houseTable.getSelectedRowCount();
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                UserAccount sellerAcc = (UserAccount) houseTable.getValueAt(selectedRow, 2);
+                ViewSellerDetailsJPanel viewSellerDetailsJPanel = new ViewSellerDetailsJPanel(userProcessContainer, sellerAcc, useraccount, system);
+                userProcessContainer.add("viewSellerDetailsJPanel", viewSellerDetailsJPanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a Row!!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
+    }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
+
+    private void hireSPBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireSPBtnActionPerformed
+        int selectedRow = propertyTable.getSelectedRow();
+        int count = propertyTable.getSelectedRowCount();
+        if (count == 1) {
+            String propertyID = (String) propertyTable.getValueAt(selectedRow, 0);
+            Property property = propertyDirectory.fetchProperty(propertyID);
+
+            HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer,organization,network,enterprise, property,system, useraccount);
+            userProcessContainer.add("hireServiceJPanel", hireServiceJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+
+        }else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_hireSPBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
+    private javax.swing.JButton btnViewBuyerDetails;
+    private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JButton hireCleanBtn;
-    private javax.swing.JButton hireCleanBtn1;
     private javax.swing.JButton hireElecBtn;
-    private javax.swing.JButton hireElecBtn1;
     private javax.swing.JButton hirePackBtn;
-    private javax.swing.JButton hirePackBtn1;
     private javax.swing.JButton hirePhotoBtn;
-    private javax.swing.JButton hirePhotoBtn1;
     private javax.swing.JButton hirePlumBtn;
-    private javax.swing.JButton hirePlumBtn1;
+    private javax.swing.JButton hireSPBtn;
     private javax.swing.JTable houseTable;
-    private javax.swing.JTable houseTable1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -458,6 +460,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable propertyTable;
     private javax.swing.JTextField quoteTxt;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables

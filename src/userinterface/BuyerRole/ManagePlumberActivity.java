@@ -51,28 +51,30 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         populateRequestTable();
     }
 
-     public void populateRequestTable() {
+    public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
                 for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
                     if (workRequest instanceof PlumberRequest) {
-                        Object[] row = new Object[model.getColumnCount()];
-                        row[0] = ((PlumberRequest) workRequest).getRequestID();
-                        row[1] = ((PlumberRequest) workRequest).getPlumber().getName();
-                        row[2] = ((PlumberRequest) workRequest).getSeller().getName();
-                        row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
-                        row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
-                        row[5] = ((PlumberRequest) workRequest).getProperty().getState();
-                        row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
-                        row[7] = ((PlumberRequest) workRequest).getStatus();
-                        row[8] = ((PlumberRequest) workRequest).getBuyerNote();
-                        row[9] = ((PlumberRequest) workRequest).getInspectorNote();
-                        row[10] = ((PlumberRequest) workRequest).getPlumber().getCharge();
-                        row[11] = ((PlumberRequest) workRequest).getQuote();
-                        row[12] = ((PlumberRequest) workRequest).getOrgType();
-                        model.addRow(row);
+                        if (userAccount.getUsername().equals(((PlumberRequest) workRequest).getBuyer().getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = ((PlumberRequest) workRequest).getRequestID();
+                            row[1] = ((PlumberRequest) workRequest).getPlumber().getName();
+                            row[2] = ((PlumberRequest) workRequest).getSeller().getName();
+                            row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
+                            row[5] = ((PlumberRequest) workRequest).getProperty().getState();
+                            row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((PlumberRequest) workRequest).getStatus();
+                            row[8] = ((PlumberRequest) workRequest).getBuyerNote();
+                            row[9] = ((PlumberRequest) workRequest).getInspectorNote();
+                            row[10] = ((PlumberRequest) workRequest).getPlumber().getCharge();
+                            row[11] = ((PlumberRequest) workRequest).getQuote();
+                            row[12] = ((PlumberRequest) workRequest).getOrgType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -95,22 +97,23 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         btnCompleteJob = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumber.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 134, 144));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 400, 134, 144));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("VIEW JOB LIST");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, 30));
+        jLabel3.setText("VIEW PLUMBER JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 330, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 330, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
@@ -120,7 +123,7 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, -1, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +143,15 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 960, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 960, 270));
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 30, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -162,8 +173,16 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
