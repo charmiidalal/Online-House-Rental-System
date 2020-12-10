@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/userinterface/SystemAdminWorkArea/PieGraphforNumofUsers.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>103</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/HirePhotoJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/PropertyManagerRole/ViewJobsJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/HireElectricianJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/HirePackersJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/HirePlumberJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/BuyerScreenJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/HireInspectorJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/HireServiceJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/HiremanagerJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/AgentRole/AssignPropetyJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/PropertyManagerRole/PropertyManagerWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/BuyerRole/BuyerWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/Dinesh/Desktop/AED%20pRojet/aed_final_project/src/userinterface/PropertyManagerRole/ManageProfileJPanel.java</file>
+        </group>
     </open-files>
 </project-private>
