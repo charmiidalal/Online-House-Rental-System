@@ -59,7 +59,6 @@ public class ServiceProviderEntWorkRequestJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
             if (workRequest instanceof UserRegistrationRequest) {
                 Object[] row = new Object[model.getColumnCount()];
                 row[0] = workRequest;
@@ -70,7 +69,6 @@ public class ServiceProviderEntWorkRequestJPanel extends javax.swing.JPanel {
                 row[5] = ((UserRegistrationRequest) workRequest).getUserCity();
                 row[6] = ((UserRegistrationRequest) workRequest).getOrgType();
                 row[7] = ((UserRegistrationRequest) workRequest).getNetwork();
-
                 model.addRow(row);
             }
         }
@@ -130,7 +128,7 @@ public class ServiceProviderEntWorkRequestJPanel extends javax.swing.JPanel {
         workRequestJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 854, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 854, 170));
 
         btnAccept.setBackground(new java.awt.Color(255, 255, 255));
         btnAccept.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N

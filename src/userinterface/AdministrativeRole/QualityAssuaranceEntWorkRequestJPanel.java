@@ -53,7 +53,6 @@ public class QualityAssuaranceEntWorkRequestJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
             if (workRequest instanceof UserRegistrationRequest) {
                 Object[] row = new Object[model.getColumnCount()];
                 row[0] = workRequest;
@@ -64,11 +63,9 @@ public class QualityAssuaranceEntWorkRequestJPanel extends javax.swing.JPanel {
                 row[5] = ((UserRegistrationRequest) workRequest).getUserCity();
                 row[6] = ((UserRegistrationRequest) workRequest).getOrgType();
                 row[7] = ((UserRegistrationRequest) workRequest).getNetwork();
-
                 model.addRow(row);
             }
         }
-
     }
 
     /**
