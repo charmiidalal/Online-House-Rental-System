@@ -7,9 +7,10 @@ package userinterface.CleaningRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Property.PropertyDirectory;
+import Business.Organization.Organization;
+
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -81,8 +82,8 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         txtCity = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,10 +95,12 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 87, 180, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Name:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 89, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setText("Street");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 158, -1, -1));
 
@@ -105,6 +108,7 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jPanel1.add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 156, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(41, 50, 80));
         jLabel6.setText("Phone:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 89, -1, -1));
 
@@ -120,10 +124,12 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 156, 180, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(41, 50, 80));
         jLabel7.setText("Email:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 158, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(41, 50, 80));
         jLabel8.setText("Zipcode:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 226, -1, -1));
 
@@ -134,6 +140,7 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 297, 180, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(41, 50, 80));
         jLabel9.setText("Charge:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 299, -1, -1));
 
@@ -141,10 +148,12 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 297, 180, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setText("State");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 299, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(41, 50, 80));
         jLabel10.setText("Status");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 371, -1, -1));
 
@@ -152,6 +161,7 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 369, 180, -1));
 
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(41, 50, 80));
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -170,19 +180,20 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jPanel1.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 224, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(41, 50, 80));
         jLabel4.setText("City");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 226, -1, -1));
-
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(25, 56, 82));
-        jLabel11.setText("CLEANER PROFILE");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 13, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaner.png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 870, 450));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(25, 56, 82));
+        jLabel11.setText("CLEANER PROFILE");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
@@ -191,16 +202,38 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        userAccount.setName(txtName.getText());
-        userAccount.setCharge(txtCharge.getText());
-        userAccount.setCity(txtCity.getText());
-        userAccount.setStatus(txtStatus.getText());
-        userAccount.setZipcode(txtZipcode.getText());
-        userAccount.setStreet(txtStreet.getText());
-        userAccount.setEmail(txtEmail.getText());
-        userAccount.setPhone(txtPhone.getText());
-        userAccount.setState(txtState.getText());
-        JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
+
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                String role = ua.getRole().toString();
+                if ("Cleaning".equals(role)) {
+                    try {
+                        if (!ua.getPhone().equalsIgnoreCase(txtPhone.getText())) {
+                            JOptionPane.showMessageDialog(null, "Phone number already exists!Please enter another Phone number");
+                            break;
+                        } 
+                     } catch (NullPointerException ex) {
+                        System.out.println("phone number exists");
+                    }}}}
+                
+            
+                            userAccount.setName(txtName.getText());
+                            userAccount.setCharge(txtCharge.getText());
+                            userAccount.setCity(txtCity.getText());
+                            userAccount.setStatus(txtStatus.getText());
+                            userAccount.setZipcode(txtZipcode.getText());
+                            userAccount.setStreet(txtStreet.getText());
+                            userAccount.setEmail(txtEmail.getText());
+                            userAccount.setPhone(txtPhone.getText());
+                            userAccount.setState(txtState.getText());
+                            JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
+                        
+
+                   
+
+        
+
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed

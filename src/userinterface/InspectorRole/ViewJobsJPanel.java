@@ -101,7 +101,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/inspectJob.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 470, 530));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 470, 530));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

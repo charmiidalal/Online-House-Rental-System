@@ -78,12 +78,12 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
+        jPanel3.setBackground(new java.awt.Color(255, 213, 90));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageInspectorProfile.setBackground(new java.awt.Color(215, 81, 81));
+        manageInspectorProfile.setBackground(new java.awt.Color(255, 213, 90));
         manageInspectorProfile.setToolTipText("");
         manageInspectorProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -91,12 +91,12 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel2.setBackground(new java.awt.Color(255, 213, 90));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/management.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
-        manageProfileLabel.setBackground(new java.awt.Color(215, 81, 81));
+        manageProfileLabel.setBackground(new java.awt.Color(255, 213, 90));
         manageProfileLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageProfileLabel.setText("Manage Profile");
         manageProfileLabel.setAutoscrolls(true);
@@ -129,7 +129,7 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageInspectorProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageJobs.setBackground(new java.awt.Color(215, 81, 81));
+        manageJobs.setBackground(new java.awt.Color(255, 213, 90));
         manageJobs.setToolTipText("");
         manageJobs.setPreferredSize(new java.awt.Dimension(264, 48));
         manageJobs.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,11 +138,11 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel4.setBackground(new java.awt.Color(255, 213, 90));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/request.png"))); // NOI18N
 
-        manageJobsLbl.setBackground(new java.awt.Color(215, 81, 81));
+        manageJobsLbl.setBackground(new java.awt.Color(255, 213, 90));
         manageJobsLbl.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         manageJobsLbl.setText("Manage Jobs");
         manageJobsLbl.addMouseListener(new java.awt.event.MouseAdapter() {
