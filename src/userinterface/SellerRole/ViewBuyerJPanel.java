@@ -5,12 +5,8 @@
  */
 package userinterface.SellerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
 import Business.Property.Property;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.io.File;
@@ -19,7 +15,6 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
-import java.nio.channels.FileChannel;
 
 /**
  *
@@ -32,21 +27,14 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
-
-    private BuyerDirectory buyerDirectory;
-    private UserAccount useraccount;
+    private UserAccount buyer;
     private Property property;
-    private Buyer buyer;
 
-    public ViewBuyerJPanel(JPanel userProcessContainer, Property property, Buyer buyer,  UserAccount useraccount,EcoSystem system) {
+    public ViewBuyerJPanel(JPanel userProcessContainer, Property property, UserAccount buyer,  UserAccount useraccount,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-
-        this.useraccount = useraccount;
-
-        this.system = system;
-        //this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
         this.buyer = buyer;
+        this.system = system;
         this.property = property;
         txtHouse.setText(property.getPropertyName());
         showBuyer();
@@ -58,22 +46,22 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
 
     private void showBuyer() {
         property.getRegisteredBuyer().stream().map((_item) -> {
-            txtname.setText(buyer.getBuyerName());
+            txtname.setText(buyer.getName());
             return _item;
         }).map((_item) -> {
-            txtPhone.setText(buyer.getBuyerPhone());
+            txtPhone.setText(buyer.getPhone());
             return _item;
         }).map((_item) -> {
-            txtAddress.setText(buyer.getBuyerStreet());
+            txtAddress.setText(buyer.getStreet());
             return _item;
         }).map((_item) -> {
-            txtZipcode.setText(buyer.getBuyerZipcode());
+            txtZipcode.setText(buyer.getZipcode());
             return _item;
         }).map((_item) -> {
-            txtEmail.setText(buyer.getBuyerEmail());
+            txtEmail.setText(buyer.getEmail());
             return _item;
         }).forEachOrdered((_item) -> {
-            txtId.setText(buyer.getNationalId());
+            txtId.setText(buyer.getNationId());
         }); //File file=buyer.get
     }
     

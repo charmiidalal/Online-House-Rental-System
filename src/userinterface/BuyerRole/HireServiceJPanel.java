@@ -5,20 +5,14 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
-import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import java.awt.Color;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import userinterface.ElectricianRole.ElectricianWorkAreaJPanel;
 
 /**
  *
@@ -33,7 +27,6 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private UserAccount userAccount;
     private Property property;
-    private Buyer buyer;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -77,6 +70,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hireInspector = new javax.swing.JButton();
         hirePhotograph = new javax.swing.JButton();
         hireBuilder = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -175,11 +169,11 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hirePropertyManagerActionPerformed(evt);
             }
         });
-        add(hirePropertyManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+        add(hirePropertyManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("SERVICE MANAGEMENT");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
 
         hirePlum.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirePlum.setForeground(new java.awt.Color(0, 0, 51));
@@ -189,7 +183,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hirePlumActionPerformed(evt);
             }
         });
-        add(hirePlum, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 190, -1));
+        add(hirePlum, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, -1));
 
         hireCleaner.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireCleaner.setForeground(new java.awt.Color(0, 0, 51));
@@ -199,7 +193,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireCleanerActionPerformed(evt);
             }
         });
-        add(hireCleaner, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 190, -1));
+        add(hireCleaner, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 190, -1));
 
         hireEletrician.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireEletrician.setForeground(new java.awt.Color(0, 0, 51));
@@ -209,7 +203,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireEletricianActionPerformed(evt);
             }
         });
-        add(hireEletrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 190, -1));
+        add(hireEletrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 190, -1));
 
         hirepackerMover.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirepackerMover.setForeground(new java.awt.Color(0, 0, 51));
@@ -219,7 +213,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hirepackerMoverActionPerformed(evt);
             }
         });
-        add(hirepackerMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 200, -1));
+        add(hirepackerMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 200, -1));
 
         hireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireInspector.setForeground(new java.awt.Color(0, 0, 51));
@@ -229,7 +223,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireInspectorActionPerformed(evt);
             }
         });
-        add(hireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, 200, -1));
+        add(hireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 200, -1));
 
         hirePhotograph.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirePhotograph.setForeground(new java.awt.Color(0, 0, 51));
@@ -239,7 +233,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hirePhotographActionPerformed(evt);
             }
         });
-        add(hirePhotograph, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 200, -1));
+        add(hirePhotograph, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 200, -1));
 
         hireBuilder.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireBuilder.setForeground(new java.awt.Color(0, 0, 51));
@@ -249,7 +243,10 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireBuilderActionPerformed(evt);
             }
         });
-        add(hireBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 190, -1));
+        add(hireBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 190, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property_manager.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 540, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -336,6 +333,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     private javax.swing.JButton hirePlum;
     private javax.swing.JButton hirePropertyManager;
     private javax.swing.JButton hirepackerMover;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

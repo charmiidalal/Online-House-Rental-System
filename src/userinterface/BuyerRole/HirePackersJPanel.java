@@ -5,17 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.PackersMovers.PackersMovers;
-import Business.PackersMovers.PackersMoversDirectory;
 import Business.Property.Property;
 import Business.Role.PackersMoversRole;
-import Business.Seller.Seller;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -35,8 +30,6 @@ public class HirePackersJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private BuyerDirectory buyerDirectory;
-    private Buyer buyer;
     private Property property;
    
     private Enterprise enterprise;
@@ -47,7 +40,6 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
@@ -100,8 +92,9 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -132,7 +125,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
                 brnHireInspectorActionPerformed(evt);
             }
         });
-        jPanel1.add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 640, 120, 20));
+        jPanel1.add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 120, 20));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -145,11 +138,15 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Comment:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 640, -1, -1));
-        jPanel1.add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 640, 470, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
+        jPanel1.add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 470, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/mover.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 700, 260));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 700, 360));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("MOVERS & PACKERS LIST");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -172,6 +169,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
@@ -184,9 +182,9 @@ public class HirePackersJPanel extends javax.swing.JPanel {
                             if ("Available".equals(ua.getStatus())) {
                                 PackerRequest cr = new PackerRequest();
                                 cr.setRequestID();
-                                cr.setBuyer(buyer);
-                                cr.setPacker((PackersMovers) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
+                                cr.setBuyer(userAccount);
+                                cr.setPacker(serviceAcc);
+                                cr.setSeller(property.getSeller());
                                 cr.setStatus("Requested");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
@@ -220,6 +218,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

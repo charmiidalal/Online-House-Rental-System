@@ -105,7 +105,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/management.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
-        manageEmployeeLabel.setBackground(new java.awt.Color(215, 81, 81));
+        manageEmployeeLabel.setBackground(new java.awt.Color(255, 213, 90));
         manageEmployeeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageEmployeeLabel.setText("View Advertisements ");
         manageEmployeeLabel.setAutoscrolls(true);
@@ -152,7 +152,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/request.png"))); // NOI18N
 
-        manageOrganization.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganization.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganization.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         manageOrganization.setText("View Job Status");
         manageOrganization.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -242,7 +242,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 

@@ -11,8 +11,6 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JFileChooser;
@@ -33,7 +31,6 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
      * Creates new form ViewHouseJPanel
      */
     private JPanel userProcessContainer;
-    private Seller seller;
     private PropertyDirectory propertyDirectory;
     private Property property;
     private EcoSystem system;
@@ -201,7 +198,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 51));
         jLabel9.setText("HOUSE DETAILS");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
         jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 260, 170));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/HOUSE1.jpg"))); // NOI18N

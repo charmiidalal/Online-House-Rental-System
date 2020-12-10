@@ -5,16 +5,10 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
-import Business.Electrician.ElectricianDirectory;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Property.Property;
-import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -35,9 +29,6 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -53,7 +44,6 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         populateRequestTable();
     }
 
@@ -102,6 +92,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         btnCompleteJob = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -124,13 +115,13 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 700, 280));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 700, 280));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 90, -1));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 250, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 90, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 250, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
@@ -140,7 +131,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 140, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 140, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/electrician.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 164));
@@ -151,7 +142,11 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, 30, 30));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("VIEW JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -190,6 +185,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtFeedback;
