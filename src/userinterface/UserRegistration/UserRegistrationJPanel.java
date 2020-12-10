@@ -5,7 +5,6 @@
  */
 package userinterface.UserRegistration;
 
-
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
@@ -76,7 +75,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         orgCombo.addItem(Organization.Type.Plumbing);
         orgCombo.addItem(Organization.Type.PackersMovers);
         orgCombo.addItem(Organization.Type.Cleaning);
-          orgCombo.addItem(Organization.Type.Photographer);
+        orgCombo.addItem(Organization.Type.Photographer);
         orgCombo.addItem(Organization.Type.Electrician);
         orgCombo.addItem(Organization.Type.PropertyManager);
         orgCombo.addItem(Organization.Type.Builder);
@@ -141,6 +140,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         usernameSuccesslbl1 = new javax.swing.JLabel();
         phoneSuccesslbl = new javax.swing.JLabel();
         phoneErrlbl = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1338, 900));
@@ -301,7 +301,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         });
         add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, -1, -1));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Home_Image_Signup.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Home_Image_Signup.png"))); // NOI18N
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 830, 400));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -333,10 +333,10 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         emailFormatErrlbl.setText("Email format incorrect- xxx@xxx.com");
         add(emailFormatErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 350, 250, 20));
 
-        emailSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick1.4.gif"))); // NOI18N
-        add(emailSuccesslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, -1, -1));
+        emailSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/tick1.4.gif"))); // NOI18N
+        add(emailSuccesslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 30, 30));
 
-        passwordSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick1.4.gif"))); // NOI18N
+        passwordSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/tick1.4.gif"))); // NOI18N
         add(passwordSuccesslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 290, 40, 40));
 
         duplicateUsernamelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
@@ -354,16 +354,19 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         passwordErrlbl.setText("Password format is incorrect - Atleast 1 uppercase,1lowercase,alphanumerics and @$!%*?& with minimum 8  characters");
         add(passwordErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 640, 50));
 
-        usernameSuccesslbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick1.4.gif"))); // NOI18N
+        usernameSuccesslbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/tick1.4.gif"))); // NOI18N
         add(usernameSuccesslbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 230, 40, 40));
 
-        phoneSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick1.4.gif"))); // NOI18N
+        phoneSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/tick1.4.gif"))); // NOI18N
         add(phoneSuccesslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 510, 40, 40));
 
         phoneErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         phoneErrlbl.setForeground(new java.awt.Color(255, 0, 0));
         phoneErrlbl.setText("Please enter valid phone number!");
         add(phoneErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 520, 280, 20));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/sun.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void stateComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateComboActionPerformed
@@ -422,13 +425,13 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         if (password.isEmpty()) {
             txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
             txtPassword.setForeground(Color.red);
-            
+
         }
 
         if (emailAddress.isEmpty()) {
             txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED));
             txtEmail.setForeground(Color.red);
-            
+
         }
 
         if (city.isEmpty()) {
@@ -440,13 +443,13 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         if (type == null) {
             orgCombo.setBorder(BorderFactory.createLineBorder(Color.RED));
             orgCombo.setForeground(Color.red);
-           
+
         }
 
         if (phone.isEmpty()) {
             txtContact.setBorder(BorderFactory.createLineBorder(Color.RED));
             txtContact.setForeground(Color.red);
-            
+
         }
 
         if (username.isEmpty() || name.isEmpty()
@@ -456,43 +459,16 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                 || type == null
                 || phone.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter all the fields for registeration!", "Error!", JOptionPane.ERROR_MESSAGE);
-        } /*for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
-            if (ua.getUsername().equals(username)) {
-               // JOptionPane.showMessageDialog(null, "Username should be unique. UserName is already in use.");
-               duplicateUsernamelbl.setVisible(true);
-               return;
-            }
-            duplicateUsernamelbl.setVisible(false);
-            usernameSuccesslbl.setVisible(true);
-        }
-        if (!system.checkValidEmailFormat(emailAddress)) {
-            //system.setValidationAlert(UsrNameLabel, txtEmail, "Username should be in the format of xx_xx@xx.xx", true);
-            emailFormatErrlbl.setVisible(true);
-        } else {
-            emailSuccesslbl.setVisible(true);
-           // system.setValidationAlert(UsrNameLabel, txtEmail, "", false);
-        }
-        if (!system.checkValidPhoneFormat(phone)) {
-            system.setValidationAlert(lblPhone, txtContact, "Please enter correct form for phone number!", true);
-        } else {
-            system.setValidationAlert(lblPhone, txtContact, "", false);
-        }
-        if (!system.checkValidPasswordFormat(password)) {
-            system.setValidationAlert(passwordLabel, txtPassword, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.", true);
-        } else {
-            system.setValidationAlert(passwordLabel, txtPassword, "", false);
-        }*/ else if (emailIDValidation && userUniqueCheck && phoneValidation && passwordCheck) {
+        } else if (emailIDValidation && userUniqueCheck && phoneValidation && passwordCheck) {
             if (Organization.Type.Buyer == type) {
-                for (Network network1 : system.getNetworkList()) {
-                    for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
-                        if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
-                            Organization org = enterprise.getOrganizationDirectory().createOrganization(type, name);
-                            Employee emp = org.getEmployeeDirectory().createEmployee(name);
-                            UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(username, password, emp, new BuyerRole());
-                            String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account is activated. Happy Housing!";
-                            sendEmailMessage(emailAddress, bodyMsg);
-                            SendSMS sendSMS = new SendSMS(phone, bodyMsg);
-                        }
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
+                        Organization org = enterprise.getOrganizationDirectory().createOrganization(type, name);
+                        Employee emp = org.getEmployeeDirectory().createEmployee(name);
+                        UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(username, password, emp, new BuyerRole());
+                        String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account is activated. Happy Housing!";
+                        sendEmailMessage(emailAddress, bodyMsg);
+                        SendSMS sendSMS = new SendSMS(phone, bodyMsg);
                     }
                 }
             } else {
@@ -509,24 +485,10 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                 String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.";
                 sendEmailMessage(emailAddress, bodyMsg);
                 SendSMS sendSMS = new SendSMS(phone, bodyMsg);
-                for (Network network1 : system.getNetworkList()) {
-                    for (Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()) {
-                        if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Broker) {
-                            if (enterprise.getWorkQueue() == null) {
-                                enterprise.setWorkQueue(new WorkQueue());
-                            }
-                            enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
-                        } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
-                            if (enterprise.getWorkQueue() == null) {
-                                enterprise.setWorkQueue(new WorkQueue());
-                            }
-                            enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
-                        } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
-                            if (enterprise.getWorkQueue() == null) {
-                                enterprise.setWorkQueue(new WorkQueue());
-                            }
-                            enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
-                        } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
+
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                        if (org.getType() == type) {
                             if (enterprise.getWorkQueue() == null) {
                                 enterprise.setWorkQueue(new WorkQueue());
                             }
@@ -800,6 +762,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

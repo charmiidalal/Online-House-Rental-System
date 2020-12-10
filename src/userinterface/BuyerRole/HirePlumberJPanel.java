@@ -157,7 +157,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
             return;
         } else if (!serviceAcc.getStatus().equals("Available")) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Inspector is already Occupied");
+            JOptionPane.showMessageDialog(null, "Sorry! This Plumber is already Occupied");
             return;
         }
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
