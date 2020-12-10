@@ -38,13 +38,13 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
      * Creates new form CreateAdvertiseJPanel
      */
     public CreateAdvertiseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
-            initComponents();
-            this.userProcessContainer = userProcessContainer;
-            this.enterprise = enterprise;
-            this.userAccount = useraccount;
-            this.system = system;
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.userAccount = useraccount;
+        this.system = system;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-       disableLabels();
+        disableLabels();
     }
 
     public ImageIcon ResizeImage(String ImagePath) {
@@ -86,51 +86,53 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         priceTxt = new javax.swing.JTextField();
         imgupload = new javax.swing.JLabel();
         zipcodeTxt = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtCharge = new javax.swing.JTextField();
         homeNamelbl = new javax.swing.JLabel();
         imglbl = new javax.swing.JLabel();
         bhklbl = new javax.swing.JLabel();
         pricelbl = new javax.swing.JLabel();
         bathroomlbl = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(241, 241, 242));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(241, 241, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, -1));
+        jPanel1.add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 180, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Name* :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 99, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel3.setText("City");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 172, -1, -1));
-        jPanel1.add(cityTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 180, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
+        jPanel1.add(cityTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel6.setText("House Address:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 99, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, -1, -1));
 
         addressTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(addressTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 94, 180, -1));
-        jPanel1.add(stateTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 167, 180, -1));
+        jPanel1.add(addressTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 180, -1));
+        jPanel1.add(stateTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 180, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel7.setText("State");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 172, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel8.setText("Upload Image* :");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 260, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel10.setText("BHK:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
-        jPanel1.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, 180, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
+        jPanel1.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 410, 180, -1));
 
         submitBtn.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         submitBtn.setText("Save");
@@ -140,17 +142,17 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 submitBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, 105, -1));
+        jPanel1.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, 105, 40));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel4.setText("Pincode:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 260, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(25, 56, 82));
         jLabel11.setText("HOUSE ADVERTISEMENT");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 24, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, -1, -1));
 
         uploadBtn.setBackground(new java.awt.Color(255, 255, 255));
         uploadBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -160,61 +162,49 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 uploadBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(uploadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 254, -1, -1));
+        jPanel1.add(uploadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel12.setText("Bathroom:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, -1, -1));
-        jPanel1.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 180, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
+        jPanel1.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 180, -1));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel13.setText("Price:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, -1));
-        jPanel1.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 180, -1));
+        jLabel13.setText("Rent:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
+        jPanel1.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 180, -1));
         jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 250, 160, 100));
-        jPanel1.add(zipcodeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 180, -1));
-
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel1.setText("Charge");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, -1));
-        jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 400, 180, -1));
+        jPanel1.add(zipcodeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 180, -1));
 
         homeNamelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         homeNamelbl.setForeground(new java.awt.Color(255, 0, 0));
         homeNamelbl.setText("Please enter the name");
-        jPanel1.add(homeNamelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 220, 20));
+        jPanel1.add(homeNamelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 220, 20));
 
         imglbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         imglbl.setForeground(new java.awt.Color(255, 51, 51));
         imglbl.setText("Please upload the image of the house ");
-        jPanel1.add(imglbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 290, 200, -1));
+        jPanel1.add(imglbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, 200, -1));
 
         bhklbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         bhklbl.setForeground(new java.awt.Color(255, 51, 51));
         bhklbl.setText("Please enter BHK value in integers");
-        jPanel1.add(bhklbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 210, -1));
+        jPanel1.add(bhklbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 210, -1));
 
         pricelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         pricelbl.setForeground(new java.awt.Color(255, 51, 51));
         pricelbl.setText("Please enter price in 0.0 format");
-        jPanel1.add(pricelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, 200, -1));
+        jPanel1.add(pricelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 200, -1));
 
         bathroomlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         bathroomlbl.setForeground(new java.awt.Color(255, 51, 51));
-        bathroomlbl.setText("Enter the bathroom in 0.0 format");
-        jPanel1.add(bathroomlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 190, -1));
+        bathroomlbl.setText("Enter the bathroom in number format");
+        jPanel1.add(bathroomlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, 190, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house4.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, 680));
     }// </editor-fold>//GEN-END:initComponents
 
     private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
@@ -255,33 +245,34 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         //blBioId.setIcon(personBioId);
         double price = 0.0;
         double bathroom = 0.0;
+        Boolean flag = true;
 
-        price = Double.parseDouble(priceTxt.getText());
-        int bhk = Integer.parseInt(bhkTxt.getText());
-        bathroom = Double.parseDouble(bathroomTxt.getText());
+        price = Double.parseDouble((priceTxt.getText()).isEmpty() ? "0.0" : priceTxt.getText());
+        int bhk = Integer.parseInt((bhkTxt.getText()).isEmpty() ? "0" : bhkTxt.getText());
+        bathroom = Double.parseDouble((bathroomTxt.getText()).isEmpty() ? "0.0" : bathroomTxt.getText());
 
         if (name.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty() || price == 0.0 || img == null || bathroom == 0.0) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
+            flag = false;
         }
-        if(price==0.0 )
-        {
+        if (price == 0.0) {
             pricelbl.setVisible(true);
+            flag = false;
         }
-        if(img==null)
-        {
+        if (img == null) {
             imglbl.setVisible(true);
+            flag = false;
         }
-        if(bhk==0)
-        {
+        if (bhk == 0) {
             bhklbl.setVisible(true);
+            flag = false;
         }
-        if(bathroom==0.0)
-        {
+        if (bathroom == 0.0) {
             bathroomlbl.setVisible(true);
-        }
-        else {
+            flag = false;
+        } 
+        if(flag){
             disableLabels();
-            String sellerName = this.userAccount.getEmployee().getName();
             Property property = new Property();
             property.setPropertyName(name);
             property.setStreet(address);
@@ -301,8 +292,8 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             emptyAllFields();
         }
     }//GEN-LAST:event_submitBtnActionPerformed
-    
-     public void emptyAllFields(){
+
+    public void emptyAllFields() {
         nameTxt.setText("");
         addressTxt.setText("");
         cityTxt.setText("");
@@ -312,15 +303,15 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         priceTxt.setText("");
         bhkTxt.setText("");
         bathroomTxt.setText("");
-     }
- public void disableLabels()
- {
-      homeNamelbl.setVisible(false);
+    }
+
+    public void disableLabels() {
+        homeNamelbl.setVisible(false);
         bhklbl.setVisible(false);
         imglbl.setVisible(false);
         pricelbl.setVisible(false);
         bathroomlbl.setVisible(false);
- }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTxt;
     private javax.swing.JTextField bathroomTxt;
@@ -348,7 +339,6 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel pricelbl;
     private javax.swing.JTextField stateTxt;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JTextField txtCharge;
     private javax.swing.JButton uploadBtn;
     private javax.swing.JTextField zipcodeTxt;
     // End of variables declaration//GEN-END:variables

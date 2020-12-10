@@ -40,7 +40,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         this.system = system;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         populateTable();
-        jPanelHouse.setVisible(false);
+        disableLabels();
     }
 
     private void populateTable() {
@@ -59,15 +59,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 row[7] = property.getBathroom();
                 row[8] = property.getPrice();
                 row[9] = property.getStatus();
-//                try {
-//                    if (property.getBuyer().getBuyerName() != null) {
-//                        row[10] = property.getBuyer().getBuyerName();
-//                    } else {
-//                        row[10] = "";
-//                    }
-//                } catch (NullPointerException ex) {
-//                    System.out.println("userinterface.SellerRole.ManageHouseJPanel.populateTable()");
-//                }
                 dtm.addRow(row);
             }
         }
@@ -88,12 +79,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnDeleteHouse = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnBuyers = new javax.swing.JButton();
-        jPanelHouse = new javax.swing.JPanel();
-        bhkTxt = new javax.swing.JTextField();
-        bathroomTxt = new javax.swing.JTextField();
-        priceTxt = new javax.swing.JTextField();
-        jComboBoxStatus = new javax.swing.JComboBox<>();
-        txtSoldTo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -110,7 +95,16 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jbtnUpdate = new javax.swing.JButton();
+        bhkTxt = new javax.swing.JTextField();
+        jComboBoxStatus = new javax.swing.JComboBox<>();
+        bathroomTxt = new javax.swing.JTextField();
+        priceTxt = new javax.swing.JTextField();
+        txtSoldTo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        bhklbl = new javax.swing.JLabel();
+        homeNamelbl = new javax.swing.JLabel();
+        bathroomlbl = new javax.swing.JLabel();
+        pricelbl = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,7 +130,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         jtblHouse.setSelectionBackground(new java.awt.Color(0, 0, 51));
         jScrollPane1.setViewportView(jtblHouse);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 930, 190));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 930, 190));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -172,32 +166,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBuyers, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, -1, -1));
-
-        jPanelHouse.setBackground(new java.awt.Color(241, 241, 242));
-        jPanelHouse.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        bhkTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bhkTxtActionPerformed(evt);
-            }
-        });
-        jPanelHouse.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 160, -1));
-
-        bathroomTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bathroomTxtActionPerformed(evt);
-            }
-        });
-        jPanelHouse.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, -1));
-        jPanelHouse.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 166, -1));
-
-        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacant", "Sold" }));
-        jPanelHouse.add(jComboBoxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 166, -1));
-
-        txtSoldTo.setEnabled(false);
-        jPanelHouse.add(txtSoldTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 175, -1));
-
-        add(jPanelHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 350, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
@@ -238,27 +206,27 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 51));
         jLabel11.setText("BHK:");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 37, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, 37, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 51));
         jLabel10.setText("Bathroom:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel8.setText("Price:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, -1, -1));
+        jLabel8.setText("Rent:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 51));
         jLabel7.setText("Status:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 530, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 51));
         jLabel12.setText("SoldTo:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 580, -1, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, -1, -1));
 
         jbtnUpdate.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jbtnUpdate.setText("Update");
@@ -267,12 +235,53 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 jbtnUpdateActionPerformed(evt);
             }
         });
-        add(jbtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 620, 88, -1));
+        add(jbtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 630, 88, -1));
+
+        bhkTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhkTxtActionPerformed(evt);
+            }
+        });
+        add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 360, 160, -1));
+
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacant", "Sold" }));
+        add(jComboBoxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 166, -1));
+
+        bathroomTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathroomTxtActionPerformed(evt);
+            }
+        });
+        add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, 160, -1));
+        add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 166, -1));
+
+        txtSoldTo.setEnabled(false);
+        add(txtSoldTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 570, 160, -1));
 
         jLabel2.setBackground(new java.awt.Color(241, 241, 242));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house seller.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house3.png"))); // NOI18N
         jLabel2.setOpaque(true);
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 210, 810, 530));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, 530, 530));
+
+        bhklbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        bhklbl.setForeground(new java.awt.Color(255, 51, 51));
+        bhklbl.setText("Please enter BHK value in integers");
+        add(bhklbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 380, 210, -1));
+
+        homeNamelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        homeNamelbl.setForeground(new java.awt.Color(255, 0, 0));
+        homeNamelbl.setText("Please enter the name");
+        add(homeNamelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 220, 20));
+
+        bathroomlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        bathroomlbl.setForeground(new java.awt.Color(255, 51, 51));
+        bathroomlbl.setText("Enter the bathroom in number format");
+        add(bathroomlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, 190, -1));
+
+        pricelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        pricelbl.setForeground(new java.awt.Color(255, 51, 51));
+        pricelbl.setText("Please enter price in 0.0 format");
+        add(pricelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 490, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteHouseActionPerformed
@@ -296,7 +305,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        jPanelHouse.setVisible(true);
         DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
 
         int selectedRow = jtblHouse.getSelectedRow();
@@ -374,74 +382,71 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
     private void jbtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnUpdateActionPerformed
         // TODO add your handling code here:
-        jPanelHouse.setVisible(true);
-        String sellerID = this.useraccount.getEmployee().getName();
-        DefaultTableModel dtm1 = (DefaultTableModel) jtblHouse.getModel();
+        String name = nameTxt.getText();
+        String address = addressTxt.getText();
+        String city = cityTxt.getText();
+        String state = stateTxt.getText();
+        String pincode = pinTxt.getText();
+        double price = 0.0;
+        double bathroom = 0.0;
+        Boolean flag = true;
 
-        int selectedRow = jtblHouse.getSelectedRow();
-        Property property = (Property) jtblHouse.getValueAt(selectedRow, 0);
+        price = Double.parseDouble((priceTxt.getText()).isEmpty() ? "0.0" : priceTxt.getText());
+        int bhk = Integer.parseInt((bhkTxt.getText()).isEmpty() ? "0" : bhkTxt.getText());
+        bathroom = Double.parseDouble((bathroomTxt.getText()).isEmpty() ? "0.0" : bathroomTxt.getText());
 
-        property.setPropertyName(nameTxt.getText());
-        property.setStreet(addressTxt.getText());
-        property.setCity(cityTxt.getText());
-        property.setPincode(pinTxt.getText());
-        property.setState(stateTxt.getText());
-        int bhkget = Integer.parseInt(bhkTxt.getText());
-
-        System.out.println(bhkget);
-        property.setBhk(bhkget);
-        property.setBathroom(Double.parseDouble(bathroomTxt.getText()));
-        property.setPrice(Double.parseDouble(priceTxt.getText()));
-        String statusget = String.valueOf(jComboBoxStatus.getSelectedItem());
-        property.setStatus(statusget);
-        //property.setBuyer(buyer);
-//        try {
-//            if (txtSoldTo.getText() != null) {
-//                property.getBuyer().setBuyerName(txtSoldTo.getText());
-//            }
-//
-//        } catch (NullPointerException e) {
-//            System.out.println("NullPointerException thrown!");
-//        }
-
-        DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
-        dtm.setRowCount(0);
-
-        Object[] row = new Object[11];
-        row[0] = property;
-        row[1] = property.getPropertyName();
-        row[2] = property.getStreet();
-        row[3] = property.getCity();
-        row[4] = property.getState();
-        row[5] = property.getPincode();
-        row[6] = property.getBhk();
-        row[7] = property.getBathroom();
-        row[8] = property.getPrice();
-        row[9] = property.getStatus();
-        row[10] = property.getBuyer();
-        dtm.addRow(row);
-
-        property.setSeller(useraccount);
-
-        system.setPropertyDirectory(propertyDirectory);
-        JOptionPane.showMessageDialog(null, "House details Updated!");
-        nameTxt.setText("");
-        addressTxt.setText("");
-        pinTxt.setText("");
-        stateTxt.setText("");
-
-        bhkTxt.setText("");
-
-        bathroomTxt.setText("");
-
-        priceTxt.setText("");
-
-        txtSoldTo.setText("");
-        cityTxt.setText("");
-        populateTable();
-        jPanelHouse.setVisible(false);
+        if (name.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty() || price == 0.0 || bathroom == 0.0) {
+            JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
+            flag = false;
+        }
+        if (price == 0.0) {
+            pricelbl.setVisible(true);
+            flag = false;
+        }
+        if (bhk == 0) {
+            bhklbl.setVisible(true);
+            flag = false;
+        }
+        if (bathroom == 0.0) {
+            bathroomlbl.setVisible(true);
+            flag = false;
+        }
+        if (flag) {
+            disableLabels();
+            int selectedRow = jtblHouse.getSelectedRow();
+            Property property = (Property) jtblHouse.getValueAt(selectedRow, 0);
+            property.setPropertyName(nameTxt.getText());
+            property.setStreet(addressTxt.getText());
+            property.setCity(cityTxt.getText());
+            property.setPincode(pinTxt.getText());
+            property.setState(stateTxt.getText());
+            int bhkget = Integer.parseInt(bhkTxt.getText());
+            property.setBhk(bhkget);
+            property.setBathroom(Double.parseDouble(bathroomTxt.getText()));
+            property.setPrice(Double.parseDouble(priceTxt.getText()));
+            String statusget = String.valueOf(jComboBoxStatus.getSelectedItem());
+            property.setStatus(statusget);
+            property.setSeller(useraccount);
+            system.setPropertyDirectory(propertyDirectory);
+            JOptionPane.showMessageDialog(null, "House details Updated!");
+            nameTxt.setText("");
+            addressTxt.setText("");
+            pinTxt.setText("");
+            stateTxt.setText("");
+            bhkTxt.setText("");
+            bathroomTxt.setText("");
+            priceTxt.setText("");
+            txtSoldTo.setText("");
+            cityTxt.setText("");
+            populateTable();
+        }
     }//GEN-LAST:event_jbtnUpdateActionPerformed
-
+    public void disableLabels() {
+        homeNamelbl.setVisible(false);
+        bhklbl.setVisible(false);
+        pricelbl.setVisible(false);
+        bathroomlbl.setVisible(false);
+    }
     private void bathroomTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathroomTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bathroomTxtActionPerformed
@@ -454,11 +459,14 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTxt;
     private javax.swing.JTextField bathroomTxt;
+    private javax.swing.JLabel bathroomlbl;
     private javax.swing.JTextField bhkTxt;
+    private javax.swing.JLabel bhklbl;
     private javax.swing.JButton btnBuyers;
     private javax.swing.JButton btnDeleteHouse;
     private javax.swing.JButton btnEdit;
     private javax.swing.JTextField cityTxt;
+    private javax.swing.JLabel homeNamelbl;
     private javax.swing.JComboBox<String> jComboBoxStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -472,13 +480,13 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanelHouse;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnUpdate;
     private javax.swing.JTable jtblHouse;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JTextField pinTxt;
     private javax.swing.JTextField priceTxt;
+    private javax.swing.JLabel pricelbl;
     private javax.swing.JTextField stateTxt;
     private javax.swing.JTextField txtSoldTo;
     // End of variables declaration//GEN-END:variables

@@ -49,7 +49,6 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -74,14 +73,6 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 30, 30, 30));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Name:");
@@ -150,13 +141,6 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 514, 269, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
         // TODO add your handling code here:
 
@@ -179,15 +163,9 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
             useraccount.setZipcode(zipcode);
             useraccount.setNationId(nationalId);
             useraccount.setIdDoc(idDoc);
-            property.setBuyer(useraccount);
-            ArrayList<UserAccount> RegisteredBuyer = new ArrayList<>();
-            RegisteredBuyer.add(useraccount);
-            // property.setRegisteredBuyer(RegisteredBuyer);
-            system.getPropertyDirectory().getPropertyList().set(propertyDirectory.getPropertyList().indexOf(property), property);
-            //system.getPropertyDirectory().addProperty(property);
-            system.setPropertyDirectory(propertyDirectory);
-            // this.buyerDirectory.setBuyerList(RegisteredBuyer);
-            //system.setBuyerDirectory(buyerDirectory);
+            ArrayList<UserAccount> registeredBuyer = property.getRegisteredBuyer();
+            registeredBuyer.add(useraccount);
+            property.setRegisteredBuyer(registeredBuyer);
             JOptionPane.showMessageDialog(this, "Thank you for submitting the form!");
         }
     }//GEN-LAST:event_btnsubmitActionPerformed
@@ -203,7 +181,6 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnUpload;
     private javax.swing.JButton btnsubmit;
     private javax.swing.JLabel jLabel1;
