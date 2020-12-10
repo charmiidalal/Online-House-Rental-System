@@ -6,11 +6,9 @@
 package userinterface.BuyerRole;
 
 import Business.EcoSystem;
-import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 /**
@@ -32,6 +30,7 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
         initComponents();
         this.system = system;
         this.userAccount = userAccount;
+        this.seller = seller;
         this.userProcessContainer = userProcessContainer;
         populateRequestTable();
     }
