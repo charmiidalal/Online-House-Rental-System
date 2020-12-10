@@ -35,7 +35,7 @@ public class HireBuilder extends javax.swing.JPanel {
     private Network network;
     private Organization organization;
 
-    public HireBuilder(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, UserAccount userAccount, EcoSystem system) {
+    public HireBuilder(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -168,9 +168,7 @@ public class HireBuilder extends javax.swing.JPanel {
 
                     //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
-                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
-                        {
+                         if (serviceAcc.getUsername().equals(ua.getUsername())) {
                             if ("Available".equals(ua.getStatus())) {
                                 BuilderRequest builder = new BuilderRequest();
                                 builder.setRequestID();
@@ -180,7 +178,7 @@ public class HireBuilder extends javax.swing.JPanel {
                                 builder.setStatus("Pending");
                                 builder.setBuyerNote(comment);
                                 builder.setProperty(property);
-
+                                e.getWorkQueue().getWorkRequestList().add(builder);
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Builder is already Occupied");

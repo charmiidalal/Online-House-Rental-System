@@ -17,17 +17,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.WorkQueue.PlumberRequest;
+
 /**
  *
  * @author Dinesh
  */
 public class HirePlumberJPanel extends javax.swing.JPanel {
 
-     private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private Property property;
-   
+
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -41,12 +42,12 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-      
+
         populateRequestTable();
     }
 
     public void populateRequestTable() {
-          DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -55,7 +56,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
                         if (ua.getRole() instanceof PlumbingRole) {
                             Object[] row = new Object[9];
                             row[0] = ua.getEmployee().getName();
-                            row[1] = ua.getUsername();
+                            row[1] = ua;
                             row[2] = ua.getCity();
                             row[3] = ua.getState();
                             row[4] = ua.getStatus();
@@ -70,6 +71,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,20 +144,15 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-      int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
-        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-
-                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
-                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
-                        {
+                        if (serviceAcc.getUsername().equals(ua.getUsername())) {
                             if ("Available".equals(ua.getStatus())) {
                                 PlumberRequest cr = new PlumberRequest();
                                 cr.setRequestID();
@@ -165,11 +162,10 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
                                 cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
-                               
+                                e.getWorkQueue().getWorkRequestList().add(cr);
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Photographer is already Occupied");
-
                             }
                         }
                     }
@@ -179,7 +175,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
-           
+
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed

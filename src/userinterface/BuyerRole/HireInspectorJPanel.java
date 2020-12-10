@@ -5,7 +5,6 @@
  */
 package userinterface.BuyerRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 
@@ -18,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.WorkQueue.InspectRequest;
+
 /**
  *
  * @author dinesh
@@ -32,7 +32,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     private Network network;
     private Organization organization;
 
-    public HireInspectorJPanel(JPanel userProcess,  UserAccount userAccount, EcoSystem system) {
+    public HireInspectorJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -41,7 +41,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-      
+
         populateRequestTable();
     }
 
@@ -54,8 +54,8 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                 for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                     if (ua.getRole() instanceof InspectorRole) {
                         Object[] row = new Object[9];
-                        row[0] = ua.getEmployee().getName();
-                        row[1] = ua.getUsername();
+                        row[0] = ua.getEmployee().getId();
+                        row[1] = ua;
                         row[2] = ua.getCity();
                         row[3] = ua.getState();
                         row[4] = ua.getStatus();
@@ -97,7 +97,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                 brnHireInspectorActionPerformed(evt);
             }
         });
-        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, -1, 20));
+        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, -1, 40));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,20 +133,15 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-         int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
-        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
         String comment = commentTxxt.getText();
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-
-                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
-                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
-                        {
+                        if (serviceAcc.getUsername().equals(ua.getUsername())) {
                             if ("Available".equals(ua.getStatus())) {
                                 InspectRequest cr = new InspectRequest();
                                 cr.setRequestID();
@@ -156,17 +151,15 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                                 cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
-                               
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                e.getWorkQueue().getWorkRequestList().add(cr);
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Inspector is already Occupied");
-
                             }
                         }
                     }
                 }
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }

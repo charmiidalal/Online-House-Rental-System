@@ -51,15 +51,14 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) jtblBuyers.getModel();
         dtm.setRowCount(0);
         for (UserAccount useraccounts : property.getRegisteredBuyer()) {
-
-            Object[] row = new Object[6];
-            row[0] = useraccounts;
-            row[1] = useraccounts.getName();
-
+            Object[] row = new Object[5];
+            row[0] = useraccounts.getEmployee().getId();
+            row[1] = useraccounts;
+            row[2] = useraccounts.getPhone();
+            row[3] = useraccounts.getEmail();
+            row[4] = useraccounts.getCity();
             dtm.addRow(row);
-
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -69,7 +68,6 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblBuyers = new javax.swing.JTable();
         btnAddBuyer = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -83,11 +81,11 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "", " Name", "Phone", "Email-Id", "Address", "Zipcode"
+                "ID", "Name", "Phone", "Email-Id", "City"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -100,10 +98,9 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
             jtblBuyers.getColumnModel().getColumn(2).setResizable(false);
             jtblBuyers.getColumnModel().getColumn(3).setResizable(false);
             jtblBuyers.getColumnModel().getColumn(4).setResizable(false);
-            jtblBuyers.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 102, 660, 180));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 660, 180));
 
         btnAddBuyer.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnAddBuyer.setText("Sell House");
@@ -113,15 +110,6 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAddBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
-
-        btnBack.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 30, 30));
 
         btnView.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnView.setText("View Buyers");
@@ -162,14 +150,6 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAddBuyerActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        ManageHouseJPanel houseJPanel = new ManageHouseJPanel(userProcessContainer, enterprise, useraccount, system);
-        userProcessContainer.add("ManageHouseJPanel", houseJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
         int selectedRow = jtblBuyers.getSelectedRow();
@@ -194,7 +174,6 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBuyer;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -291,7 +291,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
 
     private void hireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireInspectorActionPerformed
         // TODO add your handling code here:
-        HireInspectorJPanel hireServiceJPanel = new HireInspectorJPanel(userProcessContainer, userAccount, system);
+        HireInspectorJPanel hireServiceJPanel = new HireInspectorJPanel(userProcessContainer,organization, network, enterprise, property,userAccount, system);
         userProcessContainer.add("managerActivity", hireServiceJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -308,22 +308,12 @@ public class HireServiceJPanel extends javax.swing.JPanel {
     private void hireBuilderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireBuilderActionPerformed
         // TODO add your handling code here:
         
-        HireBuilder hireBuilder = new HireBuilder(userProcessContainer, organization, network, enterprise, userAccount, system);
+        HireBuilder hireBuilder = new HireBuilder(userProcessContainer, organization, network, enterprise,property, userAccount, system);
         userProcessContainer.add("hireBuilder", hireBuilder);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireBuilderActionPerformed
 
-  
-    
-    private void inspector() {
-
-        HireInspectorJPanel hireServiceJPanel = new HireInspectorJPanel(userProcessContainer, userAccount, system);
-        userProcessContainer.add("managerActivity", hireServiceJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton hireBuilder;
     private javax.swing.JButton hireCleaner;

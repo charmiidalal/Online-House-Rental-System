@@ -6,7 +6,6 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -38,47 +37,31 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageAdvertise() {
-        manageAdvertisePanel.setBackground(new Color(236, 113, 107));
-        manageBuyer.setBackground(new Color(215, 81, 81));
-        manageUserProfile.setBackground(new Color(215, 81, 81));
-        manageHousesPanel.setBackground(new Color(215, 81, 81));
         CreateAdvertiseJPanel advrtPanel = new CreateAdvertiseJPanel(userProcessContainer, enterprise, account, system);
-        rightSystemAdminPanel.add("advrtPanel",advrtPanel);
+        rightSystemAdminPanel.add("advrtPanel", advrtPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
 
-    private void manageBuyers() {
-        manageBuyer.setBackground(new Color(236, 113, 107));
-        manageAdvertisePanel.setBackground(new Color(215, 81, 81));
-        manageUserProfile.setBackground(new Color(215, 81, 81));
-        manageHousesPanel.setBackground(new Color(215, 81, 81));
-       //ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer, enterprise, account, system);
-      // userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
-       CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-       layout.next(userProcessContainer);
-    }
+//    private void manageBuyers() {
+//        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer, enterprise, account, system);
+//        userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+//    }
 
-    private void manageUsers() {
-        manageUserProfile.setBackground(new Color(236, 113, 107));
-        manageAdvertisePanel.setBackground(new Color(215, 81, 81));
-        manageBuyer.setBackground(new Color(215, 81, 81));
-        manageHousesPanel.setBackground(new Color(215, 81, 81));
-        ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(userProcessContainer, enterprise, account, system);
+    private void manageHouses() {
+        ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(rightSystemAdminPanel, enterprise, account, system);
         rightSystemAdminPanel.add("ManageHouseJPanel", mngHousesPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
 
-    private void manageRequests() {
-        manageHousesPanel.setBackground(new Color(236, 113, 107));
-        manageUserProfile.setBackground(new Color(215, 81, 81));
-        manageAdvertisePanel.setBackground(new Color(215, 81, 81));
-        manageBuyer.setBackground(new Color(215, 81, 81));
-    ManageSellerProfileJPanel manageSellerProfileJPanel = new ManageSellerProfileJPanel(userProcessContainer, system, account);
-      userProcessContainer.add("ManageInspectorJPanel", manageSellerProfileJPanel);
-       CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-       layout.next(userProcessContainer);
+    private void manageProfile() {
+        ManageSellerProfileJPanel manageSellerProfileJPanel = new ManageSellerProfileJPanel(userProcessContainer, system, account);
+        rightSystemAdminPanel.add("ManageInspectorJPanel", manageSellerProfileJPanel);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
     }
 
     /**
@@ -94,22 +77,23 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageAdvertisePanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         manageAdvertise = new javax.swing.JLabel();
-        manageBuyer = new javax.swing.JPanel();
+        manageSellerProfile = new javax.swing.JPanel();
         manageProfile = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        manageUserProfile = new javax.swing.JPanel();
+        manageHousesJpanel = new javax.swing.JPanel();
         manageHouses = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         manageHousesPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
         rightSystemAdminPanel = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1338, 840));
         setLayout(new java.awt.BorderLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(215, 81, 81));
+        systemAdminPanel.setBackground(new java.awt.Color(255, 213, 90));
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
@@ -126,7 +110,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel2.setBackground(new java.awt.Color(255, 213, 90));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/best.png"))); // NOI18N
         jLabel2.setToolTipText("");
@@ -163,12 +147,12 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageAdvertisePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageBuyer.setBackground(new java.awt.Color(255, 213, 90));
-        manageBuyer.setToolTipText("");
-        manageBuyer.setPreferredSize(new java.awt.Dimension(264, 48));
-        manageBuyer.addMouseListener(new java.awt.event.MouseAdapter() {
+        manageSellerProfile.setBackground(new java.awt.Color(255, 213, 90));
+        manageSellerProfile.setToolTipText("");
+        manageSellerProfile.setPreferredSize(new java.awt.Dimension(264, 48));
+        manageSellerProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageBuyerMousePressed(evt);
+                manageSellerProfileMousePressed(evt);
             }
         });
 
@@ -177,37 +161,37 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageProfile.setText("Manage Profile");
         manageProfile.setPreferredSize(new java.awt.Dimension(115, 16));
 
-        jLabel6.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel6.setBackground(new java.awt.Color(255, 213, 90));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/manager24x.png"))); // NOI18N
 
-        javax.swing.GroupLayout manageBuyerLayout = new javax.swing.GroupLayout(manageBuyer);
-        manageBuyer.setLayout(manageBuyerLayout);
-        manageBuyerLayout.setHorizontalGroup(
-            manageBuyerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageBuyerLayout.createSequentialGroup()
+        javax.swing.GroupLayout manageSellerProfileLayout = new javax.swing.GroupLayout(manageSellerProfile);
+        manageSellerProfile.setLayout(manageSellerProfileLayout);
+        manageSellerProfileLayout.setHorizontalGroup(
+            manageSellerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageSellerProfileLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(manageProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        manageBuyerLayout.setVerticalGroup(
-            manageBuyerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageBuyerLayout.createSequentialGroup()
+        manageSellerProfileLayout.setVerticalGroup(
+            manageSellerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageSellerProfileLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(manageBuyerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(manageSellerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manageProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel3.add(manageBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
+        jPanel3.add(manageSellerProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
 
-        manageUserProfile.setBackground(new java.awt.Color(255, 213, 90));
-        manageUserProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+        manageHousesJpanel.setBackground(new java.awt.Color(255, 213, 90));
+        manageHousesJpanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                manageUserProfileMousePressed(evt);
+                manageHousesJpanelMousePressed(evt);
             }
         });
 
@@ -216,31 +200,28 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageHouses.setText("Manage Houses");
         manageHouses.setPreferredSize(new java.awt.Dimension(115, 16));
 
-        jLabel7.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel7.setBackground(new java.awt.Color(255, 213, 90));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-houses-48.png"))); // NOI18N
 
-        javax.swing.GroupLayout manageUserProfileLayout = new javax.swing.GroupLayout(manageUserProfile);
-        manageUserProfile.setLayout(manageUserProfileLayout);
-        manageUserProfileLayout.setHorizontalGroup(
-            manageUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageUserProfileLayout.createSequentialGroup()
+        javax.swing.GroupLayout manageHousesJpanelLayout = new javax.swing.GroupLayout(manageHousesJpanel);
+        manageHousesJpanel.setLayout(manageHousesJpanelLayout);
+        manageHousesJpanelLayout.setHorizontalGroup(
+            manageHousesJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageHousesJpanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(manageHouses, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
-        manageUserProfileLayout.setVerticalGroup(
-            manageUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manageUserProfileLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(manageHouses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+        manageHousesJpanelLayout.setVerticalGroup(
+            manageHousesJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(manageHouses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel3.add(manageUserProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 280, 40));
+        jPanel3.add(manageHousesJpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 280, 40));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("SELLER WORK AREA ");
@@ -248,7 +229,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 20));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 30, 320, 20));
 
         manageHousesPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageHousesPanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -276,6 +257,9 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         );
 
         jPanel3.add(manageHousesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 280, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/estate-agent.png"))); // NOI18N
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 200));
 
         rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
@@ -311,22 +295,23 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageAdvertise();
     }//GEN-LAST:event_manageAdvertisePanelMousePressed
 
-    private void manageBuyerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageBuyerMousePressed
+    private void manageSellerProfileMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageSellerProfileMousePressed
         // TODO add your handling code here:
-        manageBuyers();
-    }//GEN-LAST:event_manageBuyerMousePressed
+        manageProfile();
+    }//GEN-LAST:event_manageSellerProfileMousePressed
 
-    private void manageUserProfileMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUserProfileMousePressed
-        manageUsers();
-    }//GEN-LAST:event_manageUserProfileMousePressed
+    private void manageHousesJpanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageHousesJpanelMousePressed
+        manageHouses();
+    }//GEN-LAST:event_manageHousesJpanelMousePressed
 
     private void manageHousesPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageHousesPanelMousePressed
         // TODO add your handling code here:
-        manageRequests();
+        manageHouses();
     }//GEN-LAST:event_manageHousesPanelMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -336,11 +321,11 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel manageAdvertise;
     private javax.swing.JPanel manageAdvertisePanel;
-    private javax.swing.JPanel manageBuyer;
     private javax.swing.JLabel manageHouses;
+    private javax.swing.JPanel manageHousesJpanel;
     private javax.swing.JPanel manageHousesPanel;
     private javax.swing.JLabel manageProfile;
-    private javax.swing.JPanel manageUserProfile;
+    private javax.swing.JPanel manageSellerProfile;
     private javax.swing.JPanel rightSystemAdminPanel;
     private javax.swing.JPanel systemAdminPanel;
     // End of variables declaration//GEN-END:variables
