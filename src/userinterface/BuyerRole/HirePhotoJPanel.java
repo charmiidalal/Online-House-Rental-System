@@ -58,25 +58,25 @@ public class HirePhotoJPanel extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
+         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    String role = ua.getRole().toString();
-                    if (ua.getRole() instanceof PhotographerRole) {
-                        Object[] row = new Object[9];
-                        row[0] = ua.getEmployee().getName();
-                        row[1] = ua.getUsername();
-                        row[2] = ua.getCity();
-                        row[3] = ua.getState();
-                        row[4] = ua.getStatus();
-                        row[5] = ua.getCharge();
-                        row[6] = org.getName();
-                        row[7] = network.getName();
-                        row[8] = ua.getPhone();
-                        model.addRow(row);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getRole() instanceof PhotographerRole) {
+                            Object[] row = new Object[9];
+                            row[0] = ua.getEmployee().getName();
+                            row[1] = ua.getUsername();
+                            row[2] = ua.getCity();
+                            row[3] = ua.getState();
+                            row[4] = ua.getStatus();
+                            row[5] = ua.getCharge();
+                            row[6] = org.getName();
+                            row[7] = network.getName();
+                            row[8] = ua.getPhone();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
