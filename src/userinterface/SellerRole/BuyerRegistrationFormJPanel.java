@@ -70,6 +70,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         txtHouse = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,7 +118,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                 btnsubmitActionPerformed(evt);
             }
         });
-        add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 595, -1, -1));
+        add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setText("REGISTRATION FORM");
@@ -136,9 +137,17 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         add(txtHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 534, 127, 27));
 
         jLabel10.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/70-512.png"))); // NOI18N
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 410, 530));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house5.png"))); // NOI18N
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 470, 530));
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 514, 269, -1));
+
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
@@ -179,8 +188,16 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         uploadlbl.setText(filename);
     }//GEN-LAST:event_btnUploadActionPerformed
 
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnUpload;
     private javax.swing.JButton btnsubmit;
     private javax.swing.JLabel jLabel1;

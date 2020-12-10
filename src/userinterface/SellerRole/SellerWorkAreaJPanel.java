@@ -112,7 +112,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(255, 213, 90));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/best.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/best.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
         manageAdvertise.setBackground(new java.awt.Color(255, 213, 90));
@@ -163,7 +163,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel6.setBackground(new java.awt.Color(255, 213, 90));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/manager24x.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/manager24x.png"))); // NOI18N
 
         javax.swing.GroupLayout manageSellerProfileLayout = new javax.swing.GroupLayout(manageSellerProfile);
         manageSellerProfile.setLayout(manageSellerProfileLayout);
@@ -202,7 +202,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel7.setBackground(new java.awt.Color(255, 213, 90));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-houses-48.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/icons8-houses-48.png"))); // NOI18N
 
         javax.swing.GroupLayout manageHousesJpanelLayout = new javax.swing.GroupLayout(manageHousesJpanel);
         manageHousesJpanel.setLayout(manageHousesJpanelLayout);

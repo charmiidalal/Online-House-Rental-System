@@ -85,10 +85,10 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        btnBack1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
+        btnBack1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -109,14 +109,6 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/electricianop.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 386, -1));
-
-        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBack1ActionPerformed(evt);
-            }
-        });
-        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 30, 30));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("ELECTRICIAN LIST");
@@ -143,6 +135,14 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(houseTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 790, 300));
+
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed

@@ -85,13 +85,13 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
         jLabel2.setText("Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, 43));
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 270, 200, -1));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 200, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setText("Street");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
-        add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 200, 30));
+        add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 200, 30));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 51));
@@ -103,7 +103,7 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
                 txtCityActionPerformed(evt);
             }
         });
-        add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 200, -1));
+        add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 140, 200, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 51));
@@ -120,19 +120,19 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
                 txtPhoneActionPerformed(evt);
             }
         });
-        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 200, -1));
+        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 200, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 51));
         jLabel7.setText("Email:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
-        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 200, -1));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 200, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 51));
         jLabel8.setText("Zipcode:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, -1, -1));
-        add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 200, 200, -1));
+        add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, 200, -1));
 
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSave.setText("Save");
@@ -142,7 +142,7 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
             }
         });
         add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
-        add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 140, 200, -1));
+        add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 200, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house5.png"))); // NOI18N
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 1020, 640));

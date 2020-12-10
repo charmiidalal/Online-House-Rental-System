@@ -115,7 +115,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel1.setText("Network");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 202, -1, -1));
 
-        JComboBoxNetwork.setBackground(new java.awt.Color(255, 255, 255));
         JComboBoxNetwork.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         JComboBoxNetwork.setForeground(new java.awt.Color(25, 56, 82));
         JComboBoxNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -140,7 +139,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel3.setText("Enterprise Type");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 247, -1, -1));
 
-        JComboBoxEnterpriseType.setBackground(new java.awt.Color(255, 255, 255));
         JComboBoxEnterpriseType.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         JComboBoxEnterpriseType.setForeground(new java.awt.Color(25, 56, 82));
         JComboBoxEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -152,8 +150,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel6.setText("MANAGE ENTERPRISE ");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 16, 523, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Admin_Icon_small.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 145, 164));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/enterprise_icon.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 145, 164));
 
         btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
         btnSubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
