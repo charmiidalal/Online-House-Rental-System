@@ -76,6 +76,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         orgCombo.addItem(Organization.Type.Plumbing);
         orgCombo.addItem(Organization.Type.PackersMovers);
         orgCombo.addItem(Organization.Type.Cleaning);
+          orgCombo.addItem(Organization.Type.Photographer);
         orgCombo.addItem(Organization.Type.Electrician);
         orgCombo.addItem(Organization.Type.PropertyManager);
         orgCombo.addItem(Organization.Type.Builder);
@@ -351,7 +352,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         passwordErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         passwordErrlbl.setForeground(new java.awt.Color(255, 51, 51));
         passwordErrlbl.setText("Password format is incorrect - Atleast 1 uppercase,1lowercase,alphanumerics and @$!%*?& with minimum 8  characters");
-        add(passwordErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 560, 50));
+        add(passwordErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 640, 50));
 
         usernameSuccesslbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick1.4.gif"))); // NOI18N
         add(usernameSuccesslbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 230, 40, 40));
