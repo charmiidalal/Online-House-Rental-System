@@ -40,8 +40,7 @@ public class AgentWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageAdvertise() {
-        manageOrganizationPanel.setBackground(new Color(236, 113, 107));
-        manageEmployee.setBackground(new Color(215, 81, 81));
+        
         ViewAgentJobJPanel managecleanerJPanel = new ViewAgentJobJPanel(rightSystemAdminPanel, system, enterprise, account);
         rightSystemAdminPanel.add("viewJobsJPanel",managecleanerJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
@@ -49,8 +48,7 @@ public class AgentWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageBuyers() {
-        manageEmployee.setBackground(new Color(236, 113, 107));
-        manageOrganizationPanel.setBackground(new Color(215, 81, 81));
+        
         ManageAgentJPanel managecleanerJPanel = new ManageAgentJPanel(rightSystemAdminPanel, system, enterprise, account);
         rightSystemAdminPanel.add("manageInspectorProfileJPanel", managecleanerJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
@@ -84,12 +82,12 @@ public class AgentWorkAreaJPanel extends javax.swing.JPanel {
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
+        jPanel3.setBackground(new java.awt.Color(255, 213, 90));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageOrganizationPanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganizationPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganizationPanel.setToolTipText("");
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -136,7 +134,7 @@ public class AgentWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageEmployee.setBackground(new java.awt.Color(215, 81, 81));
+        manageEmployee.setBackground(new java.awt.Color(255, 213, 90));
         manageEmployee.setToolTipText("");
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -149,9 +147,9 @@ public class AgentWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/request.png"))); // NOI18N
 
-        manageOrganization.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganization.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganization.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        manageOrganization.setText("Manage Jobs");
+        manageOrganization.setText("  Manage Jobs");
         manageOrganization.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageOrganization.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -166,7 +164,7 @@ public class AgentWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(manageEmployeeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(manageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -174,8 +172,8 @@ public class AgentWorkAreaJPanel extends javax.swing.JPanel {
             manageEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(manageEmployeeLayout.createSequentialGroup()
-                .addGap(0, 13, Short.MAX_VALUE)
-                .addComponent(manageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(manageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel3.add(manageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 280, 40));
@@ -185,14 +183,14 @@ public class AgentWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 280, 60));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("CLEANER MANAGEMENT");
+        jLabel3.setText("AGENT MANAGEMENT");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 20));
 
-        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 

@@ -17,7 +17,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 /**
  *
- * @author charmi
+ * @author Charmi Dalal
  */
 public class SendSMS {
 

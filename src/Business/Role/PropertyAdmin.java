@@ -14,7 +14,7 @@ import userinterface.AdministrativeRole.PropertyEntAdminWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author anush
  */
 public class PropertyAdmin extends Role{
 

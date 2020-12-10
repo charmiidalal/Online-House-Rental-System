@@ -670,13 +670,13 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         passwordCheck = passwordValidator(txtPassword.getText());
         if (passwordCheck == false) {
-            passwordLabel.setVisible(true);
+            passwordErrlbl.setVisible(true);
             passwordSuccesslbl.setVisible(false);
             passwordCheck = false;
         } else {
             txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             txtPassword.setForeground(Color.BLACK);
-            passwordLabel.setVisible(false);
+            passwordErrlbl.setVisible(false);
             passwordSuccesslbl.setVisible(true);
             passwordCheck = true;
             int delay = 3500; //milliseconds

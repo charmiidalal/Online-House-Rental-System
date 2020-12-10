@@ -11,7 +11,7 @@ import Business.Role.AgentRole;
 
 /**
  *
- * @author MyPC1
+ * @author anush
  */
 public class BrokerEnterprise extends Enterprise {
 

@@ -13,7 +13,7 @@ import Business.Utils.HeaderColors;
 
 /**
  *
- * @author raunak
+ * @author dinesh
  */
 public class ManageNetworkJPanel extends javax.swing.JPanel {
 

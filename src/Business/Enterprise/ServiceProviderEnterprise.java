@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author MyPC1
+ * @author anush
  */
 public class ServiceProviderEnterprise extends Enterprise {
     

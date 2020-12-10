@@ -8,7 +8,7 @@ import Business.UserAccount.UserAccount;
 
 /**
  *
- * @author rrheg
+ * @author anush
  */
 public class ConfigureASystem {
     

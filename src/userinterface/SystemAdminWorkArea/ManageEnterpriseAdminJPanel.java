@@ -20,7 +20,7 @@ import Business.Utils.HeaderColors;
 
 /**
  *
- * @author raunak
+ * @author charmi
  */
 public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
@@ -35,7 +35,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        enterpriseJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
+     
         populateTable();
         populateNetworkComboBox();
     }

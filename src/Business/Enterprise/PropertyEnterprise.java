@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author MyPC1
+ * @author anush
  */
 public class PropertyEnterprise extends Enterprise {
     

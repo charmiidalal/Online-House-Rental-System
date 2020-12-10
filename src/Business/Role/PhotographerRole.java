@@ -14,7 +14,7 @@ import userinterface.PhotographerRole.PhotographerWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author anush
  */
 
 public class PhotographerRole extends Role {

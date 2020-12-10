@@ -46,7 +46,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author MyPC1
+ * @author anush
  */
 public class EcoSystem extends Organization {
 

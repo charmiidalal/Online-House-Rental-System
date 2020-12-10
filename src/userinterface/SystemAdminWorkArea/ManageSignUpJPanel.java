@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author dinesh
  */
 public class ManageSignUpJPanel extends javax.swing.JPanel {
 

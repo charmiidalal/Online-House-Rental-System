@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author charmi
  */
 public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 

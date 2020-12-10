@@ -15,7 +15,7 @@ import userinterface.InspectorRole.InspectorWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author anush
  */
 public class InspectorRole extends Role{
 

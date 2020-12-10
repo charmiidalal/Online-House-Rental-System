@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author  Dinesh
  */
-public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
+public class CleaningWorkAreaJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     Enterprise enterprise;
@@ -27,7 +27,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public BuyerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
+    public CleaningWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
@@ -40,8 +40,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageAdvertise() {
-        manageOrganizationPanel.setBackground(new Color(236, 113, 107));
-        manageEmployee.setBackground(new Color(215, 81, 81));
+        
         ViewDetailsJPanel viewJobsJPanel = new ViewDetailsJPanel(rightSystemAdminPanel, enterprise, account, system);
         rightSystemAdminPanel.add("viewJobsJPanel",viewJobsJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
@@ -49,8 +48,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageBuyers() {
-        manageEmployee.setBackground(new Color(236, 113, 107));
-        manageOrganizationPanel.setBackground(new Color(215, 81, 81));
+       
         ManageCleaningJPanel managecleanerJPanel = new ManageCleaningJPanel(rightSystemAdminPanel, enterprise, account, system);
         rightSystemAdminPanel.add("manageInspectorProfileJPanel", managecleanerJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
@@ -84,12 +82,12 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
+        jPanel3.setBackground(new java.awt.Color(255, 213, 90));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageOrganizationPanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganizationPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganizationPanel.setToolTipText("");
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -136,7 +134,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageEmployee.setBackground(new java.awt.Color(215, 81, 81));
+        manageEmployee.setBackground(new java.awt.Color(255, 213, 90));
         manageEmployee.setToolTipText("");
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,6 +191,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 20));
 
         rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightSystemAdminPanel.setForeground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 

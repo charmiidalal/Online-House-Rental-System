@@ -14,7 +14,7 @@ import userinterface.PropertyManagerRole.PropertyManagerWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author anush
  */
 public class PropertyManagerRole extends Role{
 
