@@ -5,13 +5,12 @@
  */
 package userinterface.AgentRole;
 
-import Business.Buyer.BuyerDirectory;
+
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
+
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AgentRequest;
 import java.awt.CardLayout;

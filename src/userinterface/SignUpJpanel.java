@@ -5,15 +5,13 @@
  */
 package userinterface;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
+
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Role.BuyerRole;
 import Business.Role.SellerRole;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
+
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.HeadlessException;
@@ -36,8 +34,6 @@ public class SignUpJpanel extends javax.swing.JPanel {
     JPanel cardSequenceJPanel;
     EcoSystem system;
     private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    BuyerDirectory buyerDirectory;
-    SellerDirectory sellerDirectory;
     public static final int FIELD_LIST_COUNT = 6;
 
     private List<JTextField> fieldList = new ArrayList<JTextField>();
@@ -46,8 +42,7 @@ public class SignUpJpanel extends javax.swing.JPanel {
         initComponents();
         this.cardSequenceJPanel = cardSequenceJPanel;
         this.system = system;
-        this.buyerDirectory = buyerDirectory;
-        this.sellerDirectory = sellerDirectory;
+      
         populateComboBox();
         for (int i = 0; i < FIELD_LIST_COUNT; i++) {
             JTextField field = new JTextField();
@@ -264,25 +259,24 @@ public class SignUpJpanel extends javax.swing.JPanel {
             if (password == null ? confirmpassword == null : password.equals(confirmpassword)) {
                 system.setValidationAlert(lblCnfrmPass, txtConfirmPassword, "", false);
                 if ("Buyer".equals(userType)) {
-                    Buyer buyer = new Buyer();
-                    buyer.setBuyerNo(buyerDirectory.generateBuyerID());
-                    buyer.setBuyerName(name);
-                    buyer.setBuyerEmail(emailAddress);
-                    
-                    this.buyerDirectory.addBuyer(buyer);
-                    Employee employee = system.getEmployeeDirectory().createEmployee(buyer.getBuyerNo());
-                    system.setBuyerDirectory(buyerDirectory);
-                   // UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole(), true, name, emailAddress, "Buyer");
-                } else {
-                    Seller seller = new Seller();
-                    seller.setSellerNo(sellerDirectory.generateSellerID());
-                    seller.setName(name);
-                    seller.setUsername(username);
-                    seller.setEmail(emailAddress);
-                    seller.setIsApproved(false);
-                    this.sellerDirectory.addSeller(seller);
-                    Employee employee = system.getEmployeeDirectory().createEmployee(seller.getSellerNo());
-                    system.setSellerDirectory(sellerDirectory);
+//               
+//                    buyer.setBuyerName(name);
+//                    buyer.setBuyerEmail(emailAddress);
+//                    
+//                    this.buyerDirectory.addBuyer(buyer);
+//                    Employee employee = system.getEmployeeDirectory().createEmployee(buyer.getBuyerNo());
+//                    system.setBuyerDirectory(buyerDirectory);
+//                   // UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new BuyerRole(), true, name, emailAddress, "Buyer");
+//                } else {
+//                    Seller seller = new Seller();
+//                    seller.setSellerNo(sellerDirectory.generateSellerID());
+//                    seller.setName(name);
+//                    seller.setUsername(username);
+//                    seller.setEmail(emailAddress);
+//                    seller.setIsApproved(false);
+//                    this.sellerDirectory.addSeller(seller);
+//                    Employee employee = system.getEmployeeDirectory().createEmployee(seller.getSellerNo());
+//                    system.setSellerDirectory(sellerDirectory);
                    // UserAccount ua = system.getUserAccountDirectory().createUserAccount(username, password, employee, new SellerRole(), false, name, emailAddress, "Seller");
                 }
                 dB4OUtil.storeSystem(system);

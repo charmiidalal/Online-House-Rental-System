@@ -11,8 +11,6 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
-import Business.Property.PropertyDirectory;
-import Business.PropertyManager.PropertyManagerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -33,7 +31,6 @@ public class ManageManagerActivity extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private PropertyDirectory propertyDirectory;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -49,7 +46,6 @@ public class ManageManagerActivity extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         populateRequestTable();
     }
 

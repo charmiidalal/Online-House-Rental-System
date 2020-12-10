@@ -13,7 +13,6 @@ import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Organization.OrganizationDirectory;
-import Business.PropertyManager.PropertyManagerDirectory;
 import Business.Property.PropertyDirectory;
 import java.awt.Color;
 import java.util.regex.Matcher;
@@ -32,7 +31,6 @@ public class EcoSystem extends Organization {
     private static EcoSystem business;
     private EnterpriseDirectory enterpriseDirectory;
     private OrganizationDirectory organizationDirectory;
-    private PropertyManagerDirectory propertyManagerDirectory;
     private GovermentEmployeeDirectory govermentEmployeeDirectory;
     private PropertyDirectory propertyDirectory;
 
@@ -105,14 +103,7 @@ public class EcoSystem extends Organization {
         return true;
     }
     
-    public PropertyManagerDirectory getPropertyManagerDirectory() {
-        return propertyManagerDirectory;
-    }
-
-    public void setPropertyManagerDirectory(PropertyManagerDirectory propertyManagerDirectory) {
-        this.propertyManagerDirectory = propertyManagerDirectory;
-    }
-
+   
     public GovermentEmployeeDirectory getGovermentEmployeeDirectory() {
         return govermentEmployeeDirectory;
     }

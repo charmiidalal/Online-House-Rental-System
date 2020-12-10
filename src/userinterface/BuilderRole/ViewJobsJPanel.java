@@ -6,11 +6,9 @@
 package userinterface.BuilderRole;
 
 import Business.WorkQueue.BuilderRequest;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
