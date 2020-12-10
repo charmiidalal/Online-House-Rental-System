@@ -5,7 +5,6 @@
  */
 package userinterface.BuyerRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -38,7 +37,7 @@ public class ManageManagerActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManageManagerActivity(JPanel userProcess,  UserAccount userAccount, EcoSystem system) {
+    public ManageManagerActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system, Enterprise enterprise, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -50,7 +49,7 @@ public class ManageManagerActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-         
+
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
@@ -72,13 +71,11 @@ public class ManageManagerActivity extends javax.swing.JPanel {
                 row[11] = ((ManagerRequest) workRequest).getManager().getCharge();
                 row[12] = ((ManagerRequest) workRequest).getQuote();
                 row[13] = ((ManagerRequest) workRequest).getOrgType();
-                
 
                 model.addRow(row);
             }
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -162,15 +159,14 @@ public class ManageManagerActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-       int selectedRow = houseTable.getSelectedRow();
-       
+        int selectedRow = houseTable.getSelectedRow();
+
         if (selectedRow >= 0) {
-            ManagerRequest br = (ManagerRequest)houseTable.getValueAt(selectedRow, 0);
+            ManagerRequest br = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            
 
             if (!"".equals(feedback)) {
-              
+
                 br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");

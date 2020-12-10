@@ -39,7 +39,7 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManageBuilderActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
+    public ManageBuilderActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system,Enterprise enterprise, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;

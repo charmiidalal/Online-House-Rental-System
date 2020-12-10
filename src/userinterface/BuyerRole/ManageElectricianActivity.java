@@ -36,7 +36,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManageElectricianActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
+    public ManageElectricianActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system, Enterprise enterprise, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -48,7 +48,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-         
+
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
@@ -70,12 +70,12 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
                 row[11] = ((ElectricianRequest) workRequest).getElectrician().getCharge();
                 row[12] = ((ElectricianRequest) workRequest).getQuote();
                 row[13] = ((ElectricianRequest) workRequest).getOrgType();
-                
 
                 model.addRow(row);
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,15 +151,14 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-         int selectedRow = houseTable.getSelectedRow();
-       
+        int selectedRow = houseTable.getSelectedRow();
+
         if (selectedRow >= 0) {
-            ElectricianRequest br = (ElectricianRequest)houseTable.getValueAt(selectedRow, 0);
+            ElectricianRequest br = (ElectricianRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            
 
             if (!"".equals(feedback)) {
-              
+
                 br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");

@@ -62,7 +62,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             row[7] = property.getBathroom();
             row[8] = property.getPrice();
             row[9] = property.getStatus();
-            row[10] = property.getSeller().getUsername();
+            row[10] = property.getSeller();
             row[11] = property.getSeller().getName();
             model.addRow(row);
         }

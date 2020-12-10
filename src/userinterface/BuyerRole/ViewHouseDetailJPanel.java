@@ -12,15 +12,8 @@ import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
-import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import userinterface.SellerRole.SellerWorkAreaJPanel;
 /**
  *
  * @author anush
@@ -69,9 +62,6 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         bathroomTxt.setText(Double.toString(property.getBathroom()));
         ImageIcon propertyImg = (ImageIcon) property.getUploadImg();
         imgupload.setIcon(propertyImg);
-
-      
-
     }
 
     /**

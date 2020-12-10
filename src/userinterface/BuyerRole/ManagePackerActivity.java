@@ -19,7 +19,6 @@ import Business.Property.Property;
 import Business.WorkQueue.PackerRequest;
 import Business.WorkQueue.WorkRequest;
 
-
 /**
  *
  * @author Dinesh
@@ -29,7 +28,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewPackerJobs
      */
-      private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private PropertyDirectory propertyDirectory;
@@ -40,7 +39,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManagePackerActivity(JPanel userProcess,  UserAccount userAccount, EcoSystem system) {
+    public ManagePackerActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system, Enterprise enterprise, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -53,7 +52,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-         
+
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
@@ -75,12 +74,12 @@ public class ManagePackerActivity extends javax.swing.JPanel {
                 row[11] = ((PackerRequest) workRequest).getPacker().getCharge();
                 row[12] = ((PackerRequest) workRequest).getQuote();
                 row[13] = ((PackerRequest) workRequest).getOrgType();
-                
 
                 model.addRow(row);
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,14 +179,13 @@ public class ManagePackerActivity extends javax.swing.JPanel {
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
         int selectedRow = houseTable.getSelectedRow();
-       
+
         if (selectedRow >= 0) {
-            PackerRequest br = (PackerRequest)houseTable.getValueAt(selectedRow, 0);
+            PackerRequest br = (PackerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            
 
             if (!"".equals(feedback)) {
-              
+
                 br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
