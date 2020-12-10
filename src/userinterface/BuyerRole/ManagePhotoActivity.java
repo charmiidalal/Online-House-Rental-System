@@ -39,7 +39,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManagePhotoActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
+    public ManagePhotoActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system, Enterprise enterprise, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -52,7 +52,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-         
+
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
@@ -74,7 +74,6 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
                 row[11] = ((PhotographerRequest) workRequest).getPhotographer().getCharge();
                 row[12] = ((PhotographerRequest) workRequest).getQuote();
                 row[13] = ((PhotographerRequest) workRequest).getOrgType();
-                
 
                 model.addRow(row);
             }
@@ -162,15 +161,14 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-         int selectedRow = houseTable.getSelectedRow();
-       
+        int selectedRow = houseTable.getSelectedRow();
+
         if (selectedRow >= 0) {
-            PhotographerRequest br = (PhotographerRequest)houseTable.getValueAt(selectedRow, 0);
+            PhotographerRequest br = (PhotographerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            
 
             if (!"".equals(feedback)) {
-              
+
                 br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");

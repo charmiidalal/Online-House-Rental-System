@@ -24,7 +24,7 @@ import Business.WorkQueue.CleaningRequest;
  */
 public class ManageCleanerActivity extends javax.swing.JPanel {
 
-     private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private PropertyDirectory propertyDirectory;
@@ -35,7 +35,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManageCleanerActivity(JPanel userProcess,  UserAccount userAccount, EcoSystem system) {
+    public ManageCleanerActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system, Enterprise enterprise, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -48,7 +48,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-         
+
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
@@ -70,7 +70,6 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
                 row[11] = ((CleaningRequest) workRequest).getCleaner().getCharge();
                 row[12] = ((CleaningRequest) workRequest).getQuote();
                 row[13] = ((CleaningRequest) workRequest).getOrgType();
-                
 
                 model.addRow(row);
             }
@@ -181,15 +180,14 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-         int selectedRow = houseTable.getSelectedRow();
-       
+        int selectedRow = houseTable.getSelectedRow();
+
         if (selectedRow >= 0) {
-            CleaningRequest br = (CleaningRequest)houseTable.getValueAt(selectedRow, 0);
+            CleaningRequest br = (CleaningRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            
 
             if (!"".equals(feedback)) {
-              
+
                 br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");

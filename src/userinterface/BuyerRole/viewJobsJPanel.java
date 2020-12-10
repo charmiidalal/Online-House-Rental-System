@@ -7,6 +7,8 @@ package userinterface.BuyerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -21,25 +23,27 @@ public class viewJobsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form viewJobsJPanel
      */
-     private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private PropertyDirectory propertyDirectory;
-    private Enterprise enterprise; 
+    private Enterprise enterprise;
+    private Network network;
+    private Organization organization;
 
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public viewJobsJPanel(JPanel userProcess, EcoSystem system,Enterprise enterprsie, UserAccount userAccount) {
+    public viewJobsJPanel(JPanel userProcess, UserAccount userAccount, Enterprise enterprsie, EcoSystem system, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-         this.enterprise = enterprise;
+        this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-       
+        this.network = network;
+        this.organization = organization;
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,56 +137,56 @@ public class viewJobsJPanel extends javax.swing.JPanel {
 
     private void btnHireInspector1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireInspector1ActionPerformed
         // TODO add your handling code here:
-        ManageInspectorActivity manageInspectorActivity = new ManageInspectorActivity(userProcessContainer,userAccount, system );
+        ManageInspectorActivity manageInspectorActivity = new ManageInspectorActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
         userProcessContainer.add("manageInspectorActivity", manageInspectorActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnHireInspector1ActionPerformed
 
     private void btnViewElectricianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewElectricianActionPerformed
-        ManageElectricianActivity manageElectricianActivity = new ManageElectricianActivity(userProcessContainer,userAccount, system );
+        ManageElectricianActivity manageElectricianActivity = new ManageElectricianActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
         userProcessContainer.add("manageElectricianActivity", manageElectricianActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewElectricianActionPerformed
 
     private void btnViewPlumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPlumberActionPerformed
-        ManagePlumberActivity managePlumberActivity = new ManagePlumberActivity(userProcessContainer,userAccount, system );
+        ManagePlumberActivity managePlumberActivity = new ManagePlumberActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
         userProcessContainer.add("ManagePlumberActivity", managePlumberActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewPlumberActionPerformed
 
     private void btnViewPackerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPackerActionPerformed
-        ManagePackerActivity managePackerActivity = new ManagePackerActivity(userProcessContainer,userAccount, system );
+        ManagePackerActivity managePackerActivity = new ManagePackerActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
         userProcessContainer.add("ManagePackerActivity", managePackerActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewPackerActionPerformed
 
     private void btnViewPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPhotoActionPerformed
-        ManagePhotoActivity ManagePhotoActivity = new ManagePhotoActivity(userProcessContainer,userAccount, system );
+        ManagePhotoActivity ManagePhotoActivity = new ManagePhotoActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
         userProcessContainer.add("ManagePhotoActivity", ManagePhotoActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewPhotoActionPerformed
 
     private void btnViewCleanerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCleanerActionPerformed
-        ManageCleanerActivity ManageCleanerActivity = new ManageCleanerActivity(userProcessContainer,userAccount, system );
+        ManageCleanerActivity ManageCleanerActivity = new ManageCleanerActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
         userProcessContainer.add("ManageCleanerActivity", ManageCleanerActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewCleanerActionPerformed
 
     private void btnViewManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewManagerActionPerformed
-        ManageManagerActivity manageManagerActivity = new ManageManagerActivity(userProcessContainer,userAccount, system );
+        ManageManagerActivity manageManagerActivity = new ManageManagerActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
         userProcessContainer.add("ManageManagerActivity", manageManagerActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewManagerActionPerformed
 
     private void btnViewBuilderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBuilderActionPerformed
-        ManageBuilderActivity manageManagerActivity = new ManageBuilderActivity(userProcessContainer,userAccount, system );
+        ManageBuilderActivity manageManagerActivity = new ManageBuilderActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
         userProcessContainer.add("ManageManagerActivity", manageManagerActivity);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

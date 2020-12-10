@@ -36,7 +36,7 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManageInspectorActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
+    public ManageInspectorActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system,Enterprise enterprise, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;

@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import Business.Property.Property;
 import Business.WorkQueue.WorkRequest;
 import Business.WorkQueue.PlumberRequest;
+
 /**
  *
  * @author Dinesh
@@ -27,7 +28,7 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewPumberJobs
      */
-     private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private PropertyDirectory propertyDirectory;
@@ -38,7 +39,7 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
     /**
      * Creates new form ViewCleanerJobs
      */
-    public ManagePlumberActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system) {
+    public ManagePlumberActivity(JPanel userProcess, UserAccount userAccount, EcoSystem system, Enterprise enterprise, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -51,7 +52,7 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-         
+
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
@@ -73,13 +74,11 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
                 row[11] = ((PlumberRequest) workRequest).getPlumber().getCharge();
                 row[12] = ((PlumberRequest) workRequest).getQuote();
                 row[13] = ((PlumberRequest) workRequest).getOrgType();
-                
 
                 model.addRow(row);
             }
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,15 +181,14 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-         int selectedRow = houseTable.getSelectedRow();
-       
+        int selectedRow = houseTable.getSelectedRow();
+
         if (selectedRow >= 0) {
-            PlumberRequest br = (PlumberRequest)houseTable.getValueAt(selectedRow, 0);
+            PlumberRequest br = (PlumberRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            
 
             if (!"".equals(feedback)) {
-              
+
                 br.setBuyerNote(feedback);
                 populateRequestTable();
                 JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
