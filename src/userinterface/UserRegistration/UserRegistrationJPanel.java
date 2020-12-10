@@ -329,7 +329,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
         emailFormatErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         emailFormatErrlbl.setForeground(new java.awt.Color(255, 0, 0));
-        emailFormatErrlbl.setText("Email format incorrect- xxx_xxx@xxx.com");
+        emailFormatErrlbl.setText("Email format incorrect- xxx@xxx.com");
         add(emailFormatErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 350, 250, 20));
 
         emailSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick1.4.gif"))); // NOI18N
@@ -350,7 +350,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
         passwordErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         passwordErrlbl.setForeground(new java.awt.Color(255, 51, 51));
-        passwordErrlbl.setText("Password format is incorrect - Atleast 1 uppercase,1lowercase,alphabets and numbers and !@$* and min 8  characters");
+        passwordErrlbl.setText("Password format is incorrect - Atleast 1 uppercase,1lowercase,alphanumerics and @$!%*?& with minimum 8  characters");
         add(passwordErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 560, 50));
 
         usernameSuccesslbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick1.4.gif"))); // NOI18N
