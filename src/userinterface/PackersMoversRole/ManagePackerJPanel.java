@@ -5,13 +5,11 @@
  */
 package userinterface.PackersMoversRole;
 
-import Business.Buyer.BuyerDirectory;
+
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.PackersMovers.PackersMovers;
-import Business.PackersMovers.PackersMoversDirectory;
+
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -83,7 +81,7 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Name:");

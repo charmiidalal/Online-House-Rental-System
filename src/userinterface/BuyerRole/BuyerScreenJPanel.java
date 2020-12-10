@@ -5,16 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -31,9 +27,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -41,7 +35,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerScreenJPanel(JPanel userProcessContainer, UserAccount userAccount,  Enterprise enterprise,  EcoSystem system) {
+    public BuyerScreenJPanel(JPanel userProcessContainer, UserAccount userAccount,  Enterprise enterprise,  EcoSystem system, Network network,Organization organization ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.network = network;
@@ -50,9 +44,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         this.system = system;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.sellerDirectory = (system.getSellerDirectory() == null) ? new SellerDirectory() : system.getSellerDirectory();
-        populateRequestTable();
+       populateRequestTable();
     }
 
     public void populateRequestTable() {
@@ -87,21 +79,15 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        vireBtn = new javax.swing.JButton();
-        managerBtn = new javax.swing.JButton();
-        hireSPBtn = new javax.swing.JButton();
-        managerBtn1 = new javax.swing.JButton();
-        builderBtn = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnBuyHouse = new javax.swing.JButton();
         btnRegistration = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnViewHouseDetails = new javax.swing.JButton();
         btnViewSellerDetails = new javax.swing.JButton();
+        hireSPBtn = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -122,146 +108,67 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 72, 735, 271));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        vireBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        vireBtn.setForeground(new java.awt.Color(0, 0, 51));
-        vireBtn.setText("View Job Requests");
-        vireBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vireBtnActionPerformed(evt);
-            }
-        });
-
-        managerBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        managerBtn.setForeground(new java.awt.Color(0, 0, 51));
-        managerBtn.setText("Hire Property Manager");
-        managerBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                managerBtnActionPerformed(evt);
-            }
-        });
-
-        hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        hireSPBtn.setForeground(new java.awt.Color(0, 0, 51));
-        hireSPBtn.setText("Hire Service Providers");
-        hireSPBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireSPBtnActionPerformed(evt);
-            }
-        });
-
-        managerBtn1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        managerBtn1.setForeground(new java.awt.Color(0, 0, 51));
-        managerBtn1.setText("Hire Inspector");
-        managerBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                managerBtn1ActionPerformed(evt);
-            }
-        });
-
-        builderBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        builderBtn.setForeground(new java.awt.Color(0, 0, 51));
-        builderBtn.setText("Hire Builder");
-        builderBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                builderBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(builderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(vireBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(managerBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(managerBtn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hireSPBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(managerBtn1)
-                .addGap(18, 18, 18)
-                .addComponent(managerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(vireBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(hireSPBtn)
-                .addGap(53, 53, 53)
-                .addComponent(builderBtn)
-                .addContainerGap(274, Short.MAX_VALUE))
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 42, -1, -1));
-
-        btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 11, 30, 30));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 790, 271));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel2.setText("BUYER WORKREQUESTS");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 16, -1, 30));
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
+        jLabel2.setText("VIEW PROPERTIES");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, 30));
 
         btnBuyHouse.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnBuyHouse.setForeground(new java.awt.Color(0, 0, 51));
+        btnBuyHouse.setForeground(new java.awt.Color(41, 50, 80));
         btnBuyHouse.setText("Buy House");
         btnBuyHouse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuyHouseActionPerformed(evt);
             }
         });
-        add(btnBuyHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 203, -1));
+        add(btnBuyHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 203, -1));
 
         btnRegistration.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnRegistration.setForeground(new java.awt.Color(0, 0, 51));
+        btnRegistration.setForeground(new java.awt.Color(41, 50, 80));
         btnRegistration.setText("Registeration Form");
         btnRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrationActionPerformed(evt);
             }
         });
-        add(btnRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, 201, -1));
+        add(btnRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, 201, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/buyerimg1.jpg"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 720, 320));
+        jLabel3.setBackground(new java.awt.Color(241, 241, 242));
+        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/household.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 690, 600));
 
         btnViewHouseDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnViewHouseDetails.setForeground(new java.awt.Color(0, 0, 51));
+        btnViewHouseDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewHouseDetails.setText("View House Details");
         btnViewHouseDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewHouseDetailsActionPerformed(evt);
             }
         });
-        add(btnViewHouseDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 203, 32));
+        add(btnViewHouseDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 203, 32));
 
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnViewSellerDetails.setForeground(new java.awt.Color(0, 0, 51));
+        btnViewSellerDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewSellerDetails.setText("View Seller Details");
         btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewSellerDetailsActionPerformed(evt);
             }
         });
-        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 203, 31));
+        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 203, 31));
+
+        hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        hireSPBtn.setForeground(new java.awt.Color(41, 50, 80));
+        hireSPBtn.setText("Hire Services");
+        hireSPBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireSPBtnActionPerformed(evt);
+            }
+        });
+        add(hireSPBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 203, -1));
 
         getAccessibleContext().setAccessibleParent(this);
     }// </editor-fold>//GEN-END:initComponents
@@ -290,18 +197,12 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
-            /*Property property = propertyDirectory.fetchProperty(propertyID);
-            property.setStatus("Sold");
-            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            property.setBuyer(buyer);
-            populateRequestTable();*/
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to buy the house? Please fill the Property Registration Form first! If you have completed and got it approved please click yes!", "Warning", dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION) {
                 Property property = propertyDirectory.fetchProperty(propertyID);
                 property.setStatus("Sold");
-                Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-                property.setBuyer(buyer);
+                property.setBuyer(userAccount);
                 populateRequestTable();
             } else {
                 JOptionPane.showMessageDialog(null, "Please click on Registration Form to buy the house!");
@@ -316,8 +217,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
-            String sellerID = (String) houseTable.getValueAt(selectedRow, 10);
-            Seller seller = sellerDirectory.fetchSeller(sellerID);
+            UserAccount seller = (UserAccount) houseTable.getValueAt(selectedRow, 10);
             ViewSellerDetailsJPanel viewSellerDetailsJPanel = new ViewSellerDetailsJPanel(userProcessContainer, seller, userAccount, system);
             userProcessContainer.add("viewSellerDetailsJPanel", viewSellerDetailsJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -335,9 +235,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             if (!"sold".equalsIgnoreCase(status)) {
                 String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
                 Property property = propertyDirectory.fetchProperty(propertyID);
-                Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-
-                BuyerRegistrationFormJPanel regBuyerPanel = new BuyerRegistrationFormJPanel(userProcessContainer, property, buyer, system, userAccount);
+                BuyerRegistrationFormJPanel regBuyerPanel = new BuyerRegistrationFormJPanel(userProcessContainer, property, system, userAccount);
                 userProcessContainer.add("BuyerRegistrationFormJPanel", regBuyerPanel);
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
@@ -351,13 +249,6 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnRegistrationActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void hireSPBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireSPBtnActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
@@ -367,7 +258,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             //Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
       
             HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer,organization,network,enterprise, property,system, userAccount);
-            userProcessContainer.add("manageInspectorActivity", hireServiceJPanel);
+            userProcessContainer.add("hireServiceJPanel", hireServiceJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         
@@ -376,86 +267,16 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_hireSPBtnActionPerformed
 
-    private void managerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerBtnActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
-            String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
-            Property property = propertyDirectory.fetchProperty(propertyID);
-            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            HiremanagerJPanel hireServiceJPanel = new HiremanagerJPanel(userProcessContainer,organization,network,enterprise, property, userAccount,system);
-            userProcessContainer.add("managerActivity", hireServiceJPanel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-        }
-    }//GEN-LAST:event_managerBtnActionPerformed
-
-    private void builderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_builderBtnActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        String status = (String) houseTable.getValueAt(selectedRow, 8);
-
-        if (count == 1) {
-            //need to do
-
-        }
-        if ("Sold".equals(status)) {
-
-            String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
-            Property property = propertyDirectory.fetchProperty(propertyID);
-            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            HireBuilder hireBuilder = new HireBuilder(userProcessContainer,organization,network,enterprise, userAccount,system);
-            userProcessContainer.add("hireBuilder", hireBuilder);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-        }
-
-
-    }//GEN-LAST:event_builderBtnActionPerformed
-
-    private void vireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vireBtnActionPerformed
-        viewJobsJPanel manageInspectorActivity = new viewJobsJPanel(userProcessContainer, system,enterprise, userAccount);
-        userProcessContainer.add("manageInspectorActivity", manageInspectorActivity);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-         layout.next(userProcessContainer);
-    }//GEN-LAST:event_vireBtnActionPerformed
-
-    private void managerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerBtn1ActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
-            String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
-            Property property = propertyDirectory.fetchProperty(propertyID);
-            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            HireInspectorJPanel hireServiceJPanel = new HireInspectorJPanel(userProcessContainer,  userAccount,system);
-            userProcessContainer.add("managerActivity", hireServiceJPanel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-        }
-    }//GEN-LAST:event_managerBtn1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBuyHouse;
     private javax.swing.JButton btnRegistration;
     private javax.swing.JButton btnViewHouseDetails;
     private javax.swing.JButton btnViewSellerDetails;
-    private javax.swing.JButton builderBtn;
     private javax.swing.JButton hireSPBtn;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton managerBtn;
-    private javax.swing.JButton managerBtn1;
-    private javax.swing.JButton vireBtn;
     // End of variables declaration//GEN-END:variables
 }

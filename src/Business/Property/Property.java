@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Business.Property;
-import Business.Buyer.Buyer;
 import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;

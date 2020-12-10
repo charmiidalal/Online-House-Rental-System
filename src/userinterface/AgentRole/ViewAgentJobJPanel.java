@@ -5,8 +5,7 @@
  */
 package userinterface.AgentRole;
 
-import Business.Agent.AgentDirectory;
-import Business.Buyer.BuyerDirectory;
+
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
@@ -28,8 +27,6 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private UserAccount userAccount;
     private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private AgentDirectory agentDirectory;
     private Enterprise enterprise;
 
     /**
@@ -42,8 +39,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.agentDirectory = (system.getAgentDirectory() == null) ? new AgentDirectory() : system.getAgentDirectory();
+
         populateRequestTable();
     }
 

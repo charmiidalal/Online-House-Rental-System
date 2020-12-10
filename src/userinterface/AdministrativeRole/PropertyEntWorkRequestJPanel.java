@@ -15,7 +15,6 @@ import Business.Role.BuilderRole;
 import Business.Role.PropertyManagerRole;
 import Business.Role.SellerRole;
 import Business.UserAccount.UserAccount;
-import Business.Utils.HeaderColors;
 import Business.WorkQueue.UserRegistrationRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;
@@ -46,12 +45,10 @@ public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
         this.network = network;
         this.business = business;
         this.organizationDirectory = enterprise.getOrganizationDirectory();
-        workRequestJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         populateTable();
     }
 
     public void populateTable() {
-        workRequestJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
         model.setRowCount(0);
@@ -89,10 +86,10 @@ public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
         btnAccept = new javax.swing.JButton();
         btnReject = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setMinimumSize(new java.awt.Dimension(1058, 840));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,7 +125,7 @@ public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
         workRequestJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 854, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 854, 170));
 
         btnAccept.setBackground(new java.awt.Color(255, 255, 255));
         btnAccept.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -156,13 +153,13 @@ public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MANAGE VOLUNTEER UNIT WORK REQUEST");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 41, 431, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 431, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/VolunteerOPaque512x.png"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 520, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/enterprise_back.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 520, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/collaboration.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/enterprise_icon.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
@@ -215,8 +212,8 @@ public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnReject;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

@@ -7,34 +7,25 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Network.Network;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import Business.Utils.HeaderColors;
 
 /**
  *
  * @author dinesh
  */
 public class ManageNetworkJPanel extends javax.swing.JPanel {
-
-    private JPanel userProcessContainer;
-    private EcoSystem system;
-
+    private final EcoSystem system;
     /**
      *
      * Creates new form ManageNetworkJPanel
      */
-    public ManageNetworkJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public ManageNetworkJPanel(EcoSystem system) {
         initComponents();
-
-        this.userProcessContainer = userProcessContainer;
         this.system = system;
-        networkJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         populateNetworkTable();
     }
 
     private void populateNetworkTable() {
-        networkJTable.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) networkJTable.getModel();
 
         model.setRowCount(0);
@@ -117,10 +108,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(25, 56, 82));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("MANAGE NETWORK");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 586, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 586, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/worldwide_network.png"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 147, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/security.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 190, 170));
 
         btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
         btnSubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -136,8 +127,8 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 153, 32));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Network.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 950, 570));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Organization_back.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 950, 570));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButton() {
@@ -146,13 +137,13 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             if (system.checkExistingNetwork(name)) {
                 Network network = system.createAndAddNetwork();
                 network.setName(name);
-                JOptionPane.showMessageDialog(null, "Network Successfully Created");
+                JOptionPane.showMessageDialog(null, "Network Created Successfully");
                 nameJTextField.setText("");
             } else {
-                JOptionPane.showMessageDialog(null, "Network Already Exits");
+                JOptionPane.showMessageDialog(null, "Network Already Exists");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Enter city name");
+            JOptionPane.showMessageDialog(null, "Please Enter Network Name to Proceed!");
         }
 
         populateNetworkTable();

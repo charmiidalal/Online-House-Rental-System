@@ -5,7 +5,7 @@
  */
 package userinterface.UserRegistration;
 
-import Business.Buyer.Buyer;
+
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;

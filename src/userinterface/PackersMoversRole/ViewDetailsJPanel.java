@@ -5,13 +5,10 @@
  */
 package userinterface.PackersMoversRole;
 
-import Business.Buyer.BuyerDirectory;
+
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.PackersMovers.PackersMovers;
-import Business.PackersMovers.PackersMoversDirectory;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -89,6 +86,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

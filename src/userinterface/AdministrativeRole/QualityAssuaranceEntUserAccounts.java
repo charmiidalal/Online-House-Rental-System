@@ -11,8 +11,6 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
-import Business.Utils.HeaderColors;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -38,7 +36,6 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.ecosystem = system;
         this.organization = organization;
-         tblUserDetails.getTableHeader().setDefaultRenderer(new HeaderColors());
          populateVoluntaryOrganizationComboBox();
          populateData();
     }
@@ -66,7 +63,7 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         selectEmployee = new javax.swing.JComboBox();
         selectOrganization = new javax.swing.JComboBox();
         createUserJButton = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -145,7 +142,6 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         createUsername.setForeground(new java.awt.Color(25, 56, 82));
         add(createUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 468, 378, -1));
 
-        selectRole.setBackground(new java.awt.Color(255, 255, 255));
         selectRole.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectRole.setForeground(new java.awt.Color(25, 56, 82));
         selectRole.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +151,6 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         });
         add(selectRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 418, 378, -1));
 
-        selectEmployee.setBackground(new java.awt.Color(255, 255, 255));
         selectEmployee.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectEmployee.setForeground(new java.awt.Color(25, 56, 82));
         selectEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +160,6 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         });
         add(selectEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 368, 378, -1));
 
-        selectOrganization.setBackground(new java.awt.Color(255, 255, 255));
         selectOrganization.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectOrganization.setForeground(new java.awt.Color(25, 56, 82));
         selectOrganization.addActionListener(new java.awt.event.ActionListener() {
@@ -186,11 +180,11 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         });
         add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 569, 145, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser128x.png"))); // NOI18N
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/group.png"))); // NOI18N
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/userImageOpaque.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 400, -1));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/userAccount.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 570, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectRoleActionPerformed
@@ -239,7 +233,6 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
     }
 
     public void populateData() {
-        tblUserDetails.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) tblUserDetails.getModel();
 
         model.setRowCount(0);
@@ -280,8 +273,8 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox selectEmployee;
     private javax.swing.JComboBox selectOrganization;

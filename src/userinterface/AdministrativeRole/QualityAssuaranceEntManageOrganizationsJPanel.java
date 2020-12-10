@@ -13,8 +13,6 @@ import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
 import Business.Organization.PhotographerOrganization;
-import Business.Utils.HeaderColors;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +40,6 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
         this.enterprise = enterprise;
         this.network = network;
         this.system = system;
-        tblVoluntaryOrg.getTableHeader().setDefaultRenderer(new HeaderColors());
         volPopulate();
         populateOrganizationTypeComboBox();
 
@@ -55,7 +52,6 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
     }
 
     public void volPopulate() {
-        tblVoluntaryOrg.getTableHeader().setDefaultRenderer(new HeaderColors());
         DefaultTableModel model = (DefaultTableModel) tblVoluntaryOrg.getModel();
 
         model.setRowCount(0);
@@ -95,7 +91,6 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
         jLabel3 = new javax.swing.JLabel();
         organizationName = new javax.swing.JTextField();
         addJButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -136,15 +131,14 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("MANAGE VOLUNTARY UNIT ORGANIZATION");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 595, -1));
+        jLabel2.setText("MANAGE QUALITY ASSUARANCE ORGANIZATION");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 595, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
         jLabel1.setText("Organization Type ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
 
-        OrganizationTypeComboBox.setBackground(new java.awt.Color(255, 255, 255));
         OrganizationTypeComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         OrganizationTypeComboBox.setForeground(new java.awt.Color(25, 56, 82));
         add(OrganizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 171, -1));
@@ -169,11 +163,8 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
         });
         add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/department128x.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/OrganizationIncident600xOpaque.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Organization_back.png"))); // NOI18N
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 660, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
@@ -198,7 +189,6 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField organizationName;

@@ -5,20 +5,15 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
+
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Inspector.Inspector;
-import Business.Inspector.InspectorDirectory;
+
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
-import Business.Property.PropertyDirectory;
-import Business.Seller.Seller;
-import Business.Seller.SellerDirectory;
+import Business.Role.InspectorRole;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -32,10 +27,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private BuyerDirectory buyerDirectory;
-    private Buyer buyer;
     private Property property;
-   
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -44,7 +36,6 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
@@ -61,19 +52,17 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
             for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    String role = ua.getRole().toString();
-                    if ("Inspector".equals(role)) {
-                        Object[] row = new Object[13];
-                        row[0] = ua.getUsername();
-                        row[1] = ua.getName();
-                        row[2] = ua.getStreet();
-                        row[3] = ua.getCity();
-                        row[4] = ua.getState();
-                        row[5] = ua.getZipcode();
-                        row[6] = ua.getStatus();
-                        row[7] = ua.getCharge();
-                        //row[8]=ua.getUserOrganizationList().getName();
-                        row[8] = org.getName();
+                    if (ua.getRole() instanceof InspectorRole) {
+                        Object[] row = new Object[9];
+                        row[0] = ua.getEmployee().getName();
+                        row[1] = ua.getUsername();
+                        row[2] = ua.getCity();
+                        row[3] = ua.getState();
+                        row[4] = ua.getStatus();
+                        row[5] = ua.getCharge();
+                        row[6] = org.getName();
+                        row[7] = network.getName();
+                        row[8] = ua.getPhone();
                         model.addRow(row);
                     }
                 }
@@ -93,11 +82,12 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         brnHireInspector = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
-        btnBuyHouse1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -107,7 +97,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                 brnHireInspectorActionPerformed(evt);
             }
         });
-        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, 20));
+        add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, -1, 20));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,29 +117,26 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 900, 310));
-
-        btnBuyHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBuyHouse1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuyHouse1ActionPerformed(evt);
-            }
-        });
-        add(btnBuyHouse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 20, 30, 30));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 900, 310));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Comment:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
-        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 410, 220, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
+        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 220, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/MedicalWorkAreaOpaque.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/detective.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel4.setText("INSPECTOR LIST");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
          int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -163,10 +150,10 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                             if ("Available".equals(ua.getStatus())) {
                                 InspectRequest cr = new InspectRequest();
                                 cr.setRequestID();
-                                cr.setBuyer(buyer);
-                                cr.setInspector((Inspector) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
-                                cr.setStatus("Requested");
+                                cr.setBuyer(userAccount);
+                                cr.setInspector(serviceAcc);
+                                cr.setSeller(property.getSeller());
+                                cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
                                
@@ -185,23 +172,14 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 
-    private void btnBuyHouse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyHouse1ActionPerformed
-        // TODO add your handling code here:
-        BuyerScreenJPanel buyerWorkAreaJPanel = new BuyerScreenJPanel(userProcessContainer,userAccount,enterprise, system);
-        userProcessContainer.add("BuyerWorkAreaJPanel", buyerWorkAreaJPanel);
-        buyerWorkAreaJPanel.populateRequestTable();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnBuyHouse1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnHireInspector;
-    private javax.swing.JButton btnBuyHouse1;
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,16 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Plumber.Plumber;
-import Business.Plumber.PlumberDirectory;
 import Business.Property.Property;
-import Business.Seller.Seller;
+import Business.Role.PlumbingRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -30,8 +26,6 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
      private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private BuyerDirectory buyerDirectory;
-    private Buyer buyer;
     private Property property;
    
     private Enterprise enterprise;
@@ -42,7 +36,6 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
@@ -53,26 +46,25 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-        DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
+          DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    String role = ua.getRole().toString();
-                    if ("Plumber".equals(role)) {
-                        Object[] row = new Object[13];
-                        row[0] = ua.getUsername();
-                        row[1] = ua.getName();
-                        row[2] = ua.getStreet();
-                        row[3] = ua.getCity();
-                        row[4] = ua.getState();
-                        row[5] = ua.getZipcode();
-                        row[6] = ua.getStatus();
-                        row[7] = ua.getCharge();
-                        //row[8]=ua.getUserOrganizationList().getName();
-                        row[8] = org.getName();
-                        model.addRow(row);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getRole() instanceof PlumbingRole) {
+                            Object[] row = new Object[9];
+                            row[0] = ua.getEmployee().getName();
+                            row[1] = ua.getUsername();
+                            row[2] = ua.getCity();
+                            row[3] = ua.getState();
+                            row[4] = ua.getStatus();
+                            row[5] = ua.getCharge();
+                            row[6] = org.getName();
+                            row[7] = network.getName();
+                            row[8] = ua.getPhone();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -94,8 +86,9 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         commentTxxt = new javax.swing.JTextField();
         btnBack1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -142,6 +135,10 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumberop.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, 0, 470, 550));
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setText("PLUMBER LIST");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
@@ -149,6 +146,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
@@ -161,10 +159,10 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
                             if ("Available".equals(ua.getStatus())) {
                                 PlumberRequest cr = new PlumberRequest();
                                 cr.setRequestID();
-                                cr.setBuyer(buyer);
-                                cr.setPlumber((Plumber) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
-                                cr.setStatus("Requested");
+                                cr.setBuyer(userAccount);
+                                cr.setPlumber(serviceAcc);
+                                cr.setSeller(property.getSeller());
+                                cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
                                
@@ -198,6 +196,7 @@ public class HirePlumberJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

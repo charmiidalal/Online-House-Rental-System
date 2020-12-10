@@ -5,17 +5,12 @@
  */
 package userinterface.SellerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -31,11 +26,8 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
-    private SellerDirectory sellerDirectory;
     private Enterprise enterprise;
     private UserAccount useraccount;
-    private BuyerDirectory buyerDirectory;
-    private Buyer buyer;
     private Property property;
     private PropertyDirectory propertyDirectory;
 
@@ -44,11 +36,8 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.useraccount = useraccount;
-        this.sellerDirectory = sellerDirectory;
         this.system = system;
-        this.buyer = buyer;
         this.property = property;
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         populateTable();
     }
@@ -85,7 +74,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtblBuyers.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -123,7 +112,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
                 btnAddBuyerActionPerformed(evt);
             }
         });
-        add(btnAddBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
+        add(btnAddBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
 
         btnBack.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
@@ -132,7 +121,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(751, 22, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 30, 30));
 
         btnView.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnView.setText("View Buyers");
@@ -141,15 +130,15 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
                 btnViewActionPerformed(evt);
             }
         });
-        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, -1, -1));
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("INTERESTED BUYERS");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 59, -1, 19));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Buy_a_home.png"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 230, 746, 550));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house1.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 170, 750, 550));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddBuyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBuyerActionPerformed
@@ -161,12 +150,12 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
             int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to sell the house", "Warning", dialogButton);
 
             if (dialogResult == JOptionPane.YES_OPTION) {
-                buyer = (Buyer) jtblBuyers.getValueAt(selectedRow, 0);
-                property.setBuyer(buyer);
+                UserAccount buyerAcc = (UserAccount) jtblBuyers.getValueAt(selectedRow, 0);
+                property.setBuyer(buyerAcc);
                 property.setStatus("Sold");
                 system.getPropertyDirectory().getPropertyList().set(propertyDirectory.getPropertyList().indexOf(property), property);
                 system.setPropertyDirectory(propertyDirectory);
-                JOptionPane.showMessageDialog(this, "" + property.getPropertyName() + "house is sold to" + buyer.getBuyerName() + "");
+                JOptionPane.showMessageDialog(this, "" + property.getPropertyName() + "house is sold to" + buyerAcc.getUsername() + "");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a house to be sold");
@@ -175,9 +164,9 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-         ManageHouseJPanel houseJPanel = new ManageHouseJPanel(userProcessContainer,enterprise, useraccount,system);
+        ManageHouseJPanel houseJPanel = new ManageHouseJPanel(userProcessContainer, enterprise, useraccount, system);
         userProcessContainer.add("ManageHouseJPanel", houseJPanel);
-         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -188,11 +177,8 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         int count = jtblBuyers.getSelectedRowCount();
         if (count == 1) {
             if (selectedRow >= 0) {
-
-                String name = (String) jtblBuyers.getValueAt(selectedRow, 1);
-                Buyer viewBuyer = buyerDirectory.getBuyer(name);
-
-                ViewBuyerJPanel buyerPanel = new ViewBuyerJPanel(userProcessContainer, property, viewBuyer, useraccount, system);
+                UserAccount buyerAcc = (UserAccount) jtblBuyers.getValueAt(selectedRow, 1);
+                ViewBuyerJPanel buyerPanel = new ViewBuyerJPanel(userProcessContainer, property, buyerAcc, useraccount, system);
                 userProcessContainer.add("SellerWorkAreaJPanel", buyerPanel);
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);

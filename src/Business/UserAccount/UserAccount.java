@@ -31,6 +31,8 @@ public class UserAccount {
     private String City;
     private String State;
     private String Charge;
+    private String NationId;
+    private String IdDoc;
     private boolean  isApproved;
     private Enterprise userEnterpriseList;
     private Organization userOrganizationList;
@@ -186,13 +188,19 @@ public class UserAccount {
         this.isApproved = isApproved;
     }
 
-    
+    public String getNationId() {
+        return NationId;
+    }
 
-   
+    public void setNationId(String NationId) {
+        this.NationId = NationId;
+    }
 
-    
+    public String getIdDoc() {
+        return IdDoc;
+    }
 
-    
-    
-    
+    public void setIdDoc(String IdDoc) {
+        this.IdDoc = IdDoc;
+    }
 }

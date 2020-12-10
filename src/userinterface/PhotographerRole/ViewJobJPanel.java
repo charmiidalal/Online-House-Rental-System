@@ -6,15 +6,9 @@
 package userinterface.PhotographerRole;
 
 import userinterface.PlumberRole.*;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Inspector.Inspector;
-import Business.Inspector.InspectorDirectory;
-import Business.Plumber.Plumber;
-import Business.Plumber.PlumberDirectory;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -90,7 +84,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/photograph.png"))); // NOI18N
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

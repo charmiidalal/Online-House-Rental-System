@@ -8,7 +8,6 @@ package userinterface.InspectorRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Inspector.InspectorDirectory;
 import Business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

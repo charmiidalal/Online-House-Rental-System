@@ -7,8 +7,6 @@ package userinterface.PhotographerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Photographer.Photographer;
-import Business.Photographer.PhotographerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -81,7 +79,7 @@ public class ManagePhotographerProfileJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N

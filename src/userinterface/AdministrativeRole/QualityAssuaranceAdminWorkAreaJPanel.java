@@ -107,16 +107,16 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1338, 840));
         setLayout(new java.awt.BorderLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(215, 81, 81));
+        systemAdminPanel.setBackground(new java.awt.Color(255, 213, 90));
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
+        jPanel3.setBackground(new java.awt.Color(255, 213, 90));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageOrganizationPanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageOrganizationPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganizationPanel.setToolTipText("");
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -126,7 +126,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(215, 81, 81));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/department.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/user_small.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
         manageOrganization.setBackground(new java.awt.Color(215, 81, 81));
@@ -161,7 +161,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageEmployee.setBackground(new java.awt.Color(215, 81, 81));
+        manageEmployee.setBackground(new java.awt.Color(255, 213, 90));
         manageEmployee.setToolTipText("");
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,7 +172,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel4.setBackground(new java.awt.Color(215, 81, 81));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeesmallicon24x.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/employee_small.png"))); // NOI18N
 
         manageEmployeeLabel.setBackground(new java.awt.Color(215, 81, 81));
         manageEmployeeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
@@ -208,7 +208,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
 
-        manageUserAccount.setBackground(new java.awt.Color(215, 81, 81));
+        manageUserAccount.setBackground(new java.awt.Color(255, 213, 90));
         manageUserAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageUserAccountMousePressed(evt);
@@ -217,7 +217,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel6.setBackground(new java.awt.Color(215, 81, 81));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loginUser24x.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/login_small.png"))); // NOI18N
 
         manageUserAccountLabel.setBackground(new java.awt.Color(215, 81, 81));
         manageUserAccountLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
@@ -240,7 +240,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(manageUserAccountLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(manageUserAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manageUserAccountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -249,17 +249,17 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 280, -1));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 280, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("PROPERTY UNIT SYSTEM");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        jLabel3.setText("QUALITY ASSUARANCE ENTERPRISE");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 20));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 30, 370, 20));
 
-        manageRequestPanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageRequestPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageRequestPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageRequestPanelMousePressed(evt);
@@ -268,9 +268,9 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel7.setBackground(new java.awt.Color(215, 81, 81));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cooking.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/request_small.png"))); // NOI18N
 
-        manageRequestLabel.setBackground(new java.awt.Color(215, 81, 81));
+        manageRequestLabel.setBackground(new java.awt.Color(255, 213, 90));
         manageRequestLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageRequestLabel.setText("Manage Requests");
         manageRequestLabel.setPreferredSize(new java.awt.Dimension(115, 16));
@@ -298,7 +298,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageRequestPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 280, 40));
 
-        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 

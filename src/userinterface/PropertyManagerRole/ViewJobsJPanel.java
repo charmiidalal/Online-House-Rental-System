@@ -5,17 +5,12 @@
  */
 package userinterface.PropertyManagerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.PropertyManager.PropertyManager;
-import Business.PropertyManager.PropertyManagerDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -39,12 +34,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private UserAccount userAccount;
 
-    private SellerDirectory sellerDirectory;
+    
     private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private PropertyManagerDirectory propertyManagerDirectory;
      private Property property;
-    private Buyer buyer;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -62,11 +54,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
 
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-
-        this.propertyManagerDirectory = (system.getPropertyManagerDirectory()== null) ? new PropertyManagerDirectory(): system.getPropertyManagerDirectory();
+      
         this.property = property;
-        this.buyer=buyer;
+        
           this.network = network;
         this.enterprise = enterprise;
         this.organization = organization;
@@ -197,6 +187,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 .addContainerGap(209, Short.MAX_VALUE))
         );
 
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -391,49 +382,49 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_hireElecBtnActionPerformed
 
     private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
-        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property,userAccount, system);
         userProcessContainer.add("plumberWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePlumBtnActionPerformed
 
     private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
-        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer,organization,network,enterprise, property,userAccount, system);
         userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePhotoBtnActionPerformed
 
     private void hireCleanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtnActionPerformed
-        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property ,userAccount,system);
         userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireCleanBtnActionPerformed
 
     private void hireElecBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtn1ActionPerformed
-        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HireElectricianJPanel hireService = new HireElectricianJPanel(userProcessContainer,organization,network,enterprise, property,userAccount,system);
         userProcessContainer.add("ElectricianWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireElecBtn1ActionPerformed
 
     private void hirePlumBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtn1ActionPerformed
-        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HirePlumberJPanel hireService = new HirePlumberJPanel(userProcessContainer,organization,network,enterprise, property ,userAccount, system);
         userProcessContainer.add("plumberWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePlumBtn1ActionPerformed
 
     private void hirePhotoBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtn1ActionPerformed
-        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HirePhotoJPanel hireService = new HirePhotoJPanel(userProcessContainer,organization,network,enterprise, property,userAccount, system);
         userProcessContainer.add("PhotoWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hirePhotoBtn1ActionPerformed
 
     private void hireCleanBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtn1ActionPerformed
-        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property, buyer,system);
+        HireCleanerJPanel hireService = new HireCleanerJPanel(userProcessContainer,organization,network,enterprise, property ,userAccount,system);
         userProcessContainer.add("CleaningWorkAreaJPanel", hireService);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

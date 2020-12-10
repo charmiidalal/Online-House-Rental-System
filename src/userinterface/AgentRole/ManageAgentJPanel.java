@@ -5,18 +5,10 @@
  */
 package userinterface.AgentRole;
 
-import Business.Agent.Agent;
-import Business.Agent.AgentDirectory;
-import userinterface.PlumberRole.*;
-import Business.Buyer.BuyerDirectory;
+
+
 import Business.EcoSystem;
-import Business.Electrician.Electrician;
-import Business.Electrician.ElectricianDirectory;
 import Business.Enterprise.Enterprise;
-import Business.Plumber.Plumber;
-import Business.Plumber.PlumberDirectory;
-import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -31,10 +23,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
-    private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private AgentDirectory agentDirectory;
     private Enterprise enterprise;
 
     /**
@@ -46,23 +34,21 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         this.system = system;
         this.enterprise=enterprise;
         this.userAccount = userAccount;
-        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-        this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.agentDirectory = (system.getAgentDirectory()== null) ? new AgentDirectory(): system.getAgentDirectory();
+
+
         populateRequestTable();
     }
 
     public void populateRequestTable() {
-        Agent agent = agentDirectory.fetchAgent(userAccount.getEmployee().getName());
-        txtName.setText(agent.getAgentName());
-        txtCharge.setText(agent.getCharge());
-        txtCity.setText(agent.getCity());
-        txtStatus.setText(agent.getState());
-        txtZipcode.setText(agent.getZipcode());
-        txtStreet.setText(agent.getStreet());
-        txtEmail.setText(agent.getEmail());
-        txtPhone.setText(agent.getPhone());
-        txtStatus.setText(agent.getStatus());
+         txtName.setText(userAccount.getName());
+        txtCharge.setText(userAccount.getCharge());
+        txtCity.setText(userAccount.getCity());
+        txtStatus.setText(userAccount.getState());
+        txtZipcode.setText(userAccount.getZipcode());
+        txtStreet.setText(userAccount.getStreet());
+        txtEmail.setText(userAccount.getEmail());
+        txtPhone.setText(userAccount.getPhone());
+        txtStatus.setText(userAccount.getStatus());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -215,16 +201,15 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Agent agent = agentDirectory.fetchAgent(userAccount.getEmployee().getName());
-        agent.setAgentName(txtName.getText());
-        agent.setCharge(txtCharge.getText());
-        agent.setCity(txtCity.getText());
-        agent.setStatus(txtStatus.getText());
-        agent.setZipcode(txtZipcode.getText());
-        agent.setStreet(txtStreet.getText());
-        agent.setEmail(txtEmail.getText());
-        agent.setPhone(txtPhone.getText());
-        agent.setState(txtState.getText());
+         userAccount. setName(txtName.getText());
+        userAccount.setCharge(txtCharge.getText());
+        userAccount.setCity(txtCity.getText());
+        userAccount.setStatus(txtStatus.getText());
+        userAccount.setZipcode(txtZipcode.getText());
+        userAccount.setStreet(txtStreet.getText());
+        userAccount.setEmail(txtEmail.getText());
+        userAccount.setPhone(txtPhone.getText());
+        userAccount.setState(txtState.getText());
         JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 

@@ -5,16 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
-import Business.Cleaner.Cleaner;
-import Business.Cleaner.CleanerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
-import Business.Seller.Seller;
+import Business.Role.CleaningRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -34,10 +30,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private BuyerDirectory buyerDirectory;
-    private Buyer buyer;
     private Property property;
-    private CleanerDirectory cleanerDirectory;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -46,13 +39,12 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.buyer = buyer;
         this.property = property;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-      
+
         populateRequestTable();
     }
 
@@ -63,19 +55,17 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
             for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    String role = ua.getRole().toString();
-                    if ("Cleaning".equals(role)) {
-                        Object[] row = new Object[13];
-                        row[0] = ua.getUsername();
-                        row[1] = ua.getName();
-                        row[2] = ua.getStreet();
-                        row[3] = ua.getCity();
-                        row[4] = ua.getState();
-                        row[5] = ua.getZipcode();
-                        row[6] = ua.getStatus();
-                        row[7] = ua.getCharge();
-                        //row[8]=ua.getUserOrganizationList().getName();
-                        row[8] = org.getName();
+                    if (ua.getRole() instanceof CleaningRole) {
+                        Object[] row = new Object[9];
+                        row[0] = ua.getEmployee().getName();
+                        row[1] = ua.getUsername();
+                        row[2] = ua.getCity();
+                        row[3] = ua.getState();
+                        row[4] = ua.getStatus();
+                        row[5] = ua.getCharge();
+                        row[6] = org.getName();
+                        row[7] = network.getName();
+                        row[8] = ua.getPhone();
                         model.addRow(row);
                     }
                 }
@@ -100,11 +90,14 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane1.setForeground(new java.awt.Color(41, 50, 80));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,50 +117,66 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 781, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 781, 300));
 
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        brnHireInspector.setForeground(new java.awt.Color(41, 50, 80));
         brnHireInspector.setText("Hire Cleaner");
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnHireInspectorActionPerformed(evt);
             }
         });
-        jPanel1.add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 770, -1, -1));
+        jPanel1.add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, -1, -1));
 
+        btnBack.setForeground(new java.awt.Color(41, 50, 80));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 30, 30));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, 30, 30));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 50, 80));
         jLabel1.setText("Comment:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 770, -1, -1));
-        jPanel1.add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 770, 407, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
 
+        commentTxxt.setForeground(new java.awt.Color(41, 50, 80));
+        jPanel1.add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 407, -1));
+
+        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/CLEANING.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 383, 582, 378));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 582, 660));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
+        jLabel3.setText("CLEANERS LIST");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 948, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(322, 322, 322)
+                .addComponent(jLabel3)
+                .addContainerGap(660, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1091, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(754, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 17, Short.MAX_VALUE)))
+                    .addGap(0, 36, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -175,26 +184,23 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         String cleanerID = (String) houseTable.getValueAt(selectedRow, 0);
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
         String comment = commentTxxt.getText();
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-
-                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
-                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID))
                         {
                             if ("Available".equals(ua.getStatus())) {
                                 CleaningRequest cr = new CleaningRequest();
                                 cr.setRequestID();
-                                cr.setBuyer(buyer);
-                                cr.setCleaner((Cleaner) userAccount);
-                                cr.setSeller((Seller) property.getSeller());
-                                cr.setStatus("Requested");
+                                cr.setBuyer(userAccount);
+                                cr.setCleaner(serviceAcc);
+                                cr.setSeller(property.getSeller());
+                                cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
-                               
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");
@@ -224,6 +230,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

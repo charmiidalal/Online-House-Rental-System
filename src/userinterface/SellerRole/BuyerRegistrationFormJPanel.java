@@ -5,13 +5,10 @@
  */
 package userinterface.SellerRole;
 
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.io.File;
@@ -28,28 +25,16 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem system;
-
-    
-    private BuyerDirectory buyerDirectory;
-    /**
-     * Creates new form SellerWorkAreaJPanel1
-     */
-   
     private UserAccount useraccount;
     private Property property;
-    private Buyer buyer;
     private PropertyDirectory propertyDirectory;
 
-    public BuyerRegistrationFormJPanel(JPanel userProcessContainer,Property property, Buyer buyer, EcoSystem system,UserAccount useraccount) {
+    public BuyerRegistrationFormJPanel(JPanel userProcessContainer, Property property, EcoSystem system, UserAccount useraccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        
         this.useraccount = useraccount;
-       
         this.system = system;
-        //this.buyerDirectory = (system.getBuyerDirectory() == null) ? new BuyerDirectory() : system.getBuyerDirectory();
-        this.buyer=buyer;
-        this.property=property;
+        this.property = property;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
 
         txtHouse.setText(property.getPropertyName());
@@ -87,7 +72,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
@@ -174,41 +159,37 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
         // TODO add your handling code here:
-        
+
         String name = txtname.getText();
         String phone = txtPhone.getText();
         String address = txtAddress.getText();
         String zipcode = txtZipcode.getText();
         String email = txtEmail.getText();
         String nationalId = txtId.getText();
-       
-        String idDoc=uploadlbl.getText();
-        
-     // Buyer buyer = (this.buyerDirectory.getBuyer(name)) == null ? new Buyer() : this.buyerDirectory.getBuyer(name);
- if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || zipcode.isEmpty() || nationalId.isEmpty() ||email.isEmpty()) {
+        String idDoc = uploadlbl.getText();
+
+        // Buyer buyer = (this.buyerDirectory.getBuyer(name)) == null ? new Buyer() : this.buyerDirectory.getBuyer(name);
+        if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || zipcode.isEmpty() || nationalId.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
+        } else {
+            useraccount.setName(name);
+            useraccount.setPhone(phone);
+            useraccount.setEmail(email);
+            useraccount.setStreet(address);
+            useraccount.setZipcode(zipcode);
+            useraccount.setNationId(nationalId);
+            useraccount.setIdDoc(idDoc);
+            property.setBuyer(useraccount);
+            ArrayList<UserAccount> RegisteredBuyer = new ArrayList<>();
+            RegisteredBuyer.add(useraccount);
+            // property.setRegisteredBuyer(RegisteredBuyer);
+            system.getPropertyDirectory().getPropertyList().set(propertyDirectory.getPropertyList().indexOf(property), property);
+            //system.getPropertyDirectory().addProperty(property);
+            system.setPropertyDirectory(propertyDirectory);
+            // this.buyerDirectory.setBuyerList(RegisteredBuyer);
+            //system.setBuyerDirectory(buyerDirectory);
+            JOptionPane.showMessageDialog(this, "Thank you for submitting the form!");
         }
- else
- {
-        buyer.setBuyerName(name);
-        buyer.setBuyerPhone(phone);
-        buyer.setBuyerEmail(email);
-        buyer.setBuyerStreet(address);
-        buyer.setBuyerZipcode(zipcode);
-        buyer.setNationalId(nationalId);
-        
-        buyer.setIdDoc(idDoc);
-           property.setBuyer(buyer);
-         ArrayList<UserAccount> RegisteredBuyer = new ArrayList<>();
-        RegisteredBuyer.add(buyer);
-       // property.setRegisteredBuyer(RegisteredBuyer);
-        system.getPropertyDirectory().getPropertyList().set(propertyDirectory.getPropertyList().indexOf(property), property);
-        //system.getPropertyDirectory().addProperty(property);
-       system.setPropertyDirectory(propertyDirectory);
-      // this.buyerDirectory.setBuyerList(RegisteredBuyer);
-        //system.setBuyerDirectory(buyerDirectory);
-        JOptionPane.showMessageDialog(this, "Thank you for submitting the form!");
- }
     }//GEN-LAST:event_btnsubmitActionPerformed
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed

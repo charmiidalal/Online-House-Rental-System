@@ -5,17 +5,12 @@
  */
 package userinterface.BuyerRole;
 
-import Business.Builder.BuilderDirectory;
-import Business.Buyer.Buyer;
-import Business.Buyer.BuyerDirectory;
-import Business.Cleaner.CleanerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -36,10 +31,7 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
-    private SellerDirectory sellerDirectory;
     private PropertyDirectory propertyDirectory;
-    private BuyerDirectory buyerDirectory;
-    private CleanerDirectory cleanerDirectory;
     private Enterprise enterprise;
     private Network network;
     private Organization organization;
@@ -156,6 +148,7 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setBackground(new java.awt.Color(241, 241, 242));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/builder.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

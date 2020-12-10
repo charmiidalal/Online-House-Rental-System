@@ -113,12 +113,12 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
+        jPanel3.setBackground(new java.awt.Color(255, 213, 90));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageAdvertisePanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageAdvertisePanel.setBackground(new java.awt.Color(255, 213, 90));
         manageAdvertisePanel.setToolTipText("");
         manageAdvertisePanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -131,7 +131,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/best.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
-        manageAdvertise.setBackground(new java.awt.Color(215, 81, 81));
+        manageAdvertise.setBackground(new java.awt.Color(255, 213, 90));
         manageAdvertise.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         manageAdvertise.setText("Create Advertise");
         manageAdvertise.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,7 +163,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageAdvertisePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageBuyer.setBackground(new java.awt.Color(215, 81, 81));
+        manageBuyer.setBackground(new java.awt.Color(255, 213, 90));
         manageBuyer.setToolTipText("");
         manageBuyer.setPreferredSize(new java.awt.Dimension(264, 48));
         manageBuyer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,7 +172,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageProfile.setBackground(new java.awt.Color(215, 81, 81));
+        manageProfile.setBackground(new java.awt.Color(255, 213, 90));
         manageProfile.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageProfile.setText("Manage Profile");
         manageProfile.setPreferredSize(new java.awt.Dimension(115, 16));
@@ -204,14 +204,14 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageBuyer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
 
-        manageUserProfile.setBackground(new java.awt.Color(215, 81, 81));
+        manageUserProfile.setBackground(new java.awt.Color(255, 213, 90));
         manageUserProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageUserProfileMousePressed(evt);
             }
         });
 
-        manageHouses.setBackground(new java.awt.Color(215, 81, 81));
+        manageHouses.setBackground(new java.awt.Color(255, 213, 90));
         manageHouses.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageHouses.setText("Manage Houses");
         manageHouses.setPreferredSize(new java.awt.Dimension(115, 16));
@@ -227,7 +227,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageUserProfileLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(manageHouses, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -250,7 +250,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 20));
 
-        manageHousesPanel.setBackground(new java.awt.Color(215, 81, 81));
+        manageHousesPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageHousesPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageHousesPanelMousePressed(evt);
@@ -277,7 +277,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageHousesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 280, 40));
 
-        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 
