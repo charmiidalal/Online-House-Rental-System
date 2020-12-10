@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author charmi
+ * @author raunak
  */
 public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
@@ -30,10 +30,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     public ManageEnterpriseAdminJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
-<<<<<<< HEAD
-     
-=======
->>>>>>> 750f7ab4da788f47f910422b68a06cdaa8dc1611
         populateTable();
         populateNetworkComboBox();
     }

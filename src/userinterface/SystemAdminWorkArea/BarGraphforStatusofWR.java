@@ -47,7 +47,7 @@ import Business.WorkQueue.*;
 
 /**
  *
- * @author charmi
+ * @author Mayank
  */
 public class BarGraphforStatusofWR extends javax.swing.JPanel {
 

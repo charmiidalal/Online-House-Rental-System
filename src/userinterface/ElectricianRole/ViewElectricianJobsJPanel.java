@@ -111,10 +111,9 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 61, 840, 300));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 61, 820, 300));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        brnTakeJob.setForeground(new java.awt.Color(41, 50, 80));
         brnTakeJob.setText("Take Job");
         brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
@@ -128,12 +127,10 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 410, 138, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(41, 50, 80));
         jLabel1.setText("Feedback:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 410, -1, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnCompleteJob.setForeground(new java.awt.Color(41, 50, 80));
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +141,6 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
         add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 460, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Update Quote: ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, -1, -1));
 

@@ -14,7 +14,7 @@ import userinterface.GovermentEmployeeRole.GovermentEmployeeWorkAreaJPanel;
 
 /**
  *
- * @author anush
+ * @author raunak
  */
 public class GovermentEmployeeRole extends Role{
 

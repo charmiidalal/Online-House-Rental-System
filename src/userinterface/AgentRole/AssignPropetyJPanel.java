@@ -91,7 +91,7 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/houseop.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 660, 440));
 
         jtblHouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,18 +126,16 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 730, 219));
 
         btnBack.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(41, 50, 80));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack.setText("<< Back");
         btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 320, -1, -1));
 
         btnSendHouseSug.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
-        btnSendHouseSug.setForeground(new java.awt.Color(41, 50, 80));
         btnSendHouseSug.setText("Send House Suggestions");
         btnSendHouseSug.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSendHouseSug.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +143,7 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
                 btnSendHouseSugActionPerformed(evt);
             }
         });
-        add(btnSendHouseSug, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 180, 30));
+        add(btnSendHouseSug, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 145, 164));

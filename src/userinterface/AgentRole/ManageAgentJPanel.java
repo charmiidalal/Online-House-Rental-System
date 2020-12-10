@@ -86,7 +86,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Name:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 86, -1, -1));
 
@@ -94,7 +93,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 84, 149, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setText("Street");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
@@ -102,7 +100,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 158, 149, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(41, 50, 80));
         jLabel4.setText("City:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 251, -1, -1));
 
@@ -110,7 +107,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 249, 149, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setText("State");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 321, -1, -1));
 
@@ -118,7 +114,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 382, 149, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(41, 50, 80));
         jLabel6.setText("Phone:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 86, -1, -1));
 
@@ -131,7 +126,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 84, 149, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(41, 50, 80));
         jLabel7.setText("Email:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 158, -1, -1));
 
@@ -139,7 +133,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 156, 149, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(41, 50, 80));
         jLabel8.setText("Zipcode:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(479, 251, -1, -1));
 
@@ -147,7 +140,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 249, 149, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(41, 50, 80));
         jLabel9.setText("Charge:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 321, -1, -1));
 
@@ -156,7 +148,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
 
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(41, 50, 80));
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +161,6 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
         jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 319, 149, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(41, 50, 80));
         jLabel10.setText("Status");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 384, -1, -1));
 

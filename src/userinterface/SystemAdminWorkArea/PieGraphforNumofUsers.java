@@ -44,7 +44,7 @@ import org.jfree.data.general.PieDataset;
 
 /**
  *
- * @author anush
+ * @author Mayank
  */
 public class PieGraphforNumofUsers extends javax.swing.JPanel {
     

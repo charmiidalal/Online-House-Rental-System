@@ -14,7 +14,7 @@ import userinterface.AdministrativeRole.QualityAssuaranceAdminWorkAreaJPanel;
 
 /**
  *
- * @author anush
+ * @author raunak
  */
 public class QAadmin extends Role{
 

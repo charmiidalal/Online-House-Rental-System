@@ -40,7 +40,8 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageAdvertise() {
-        
+        manageOrganizationPanel.setBackground(new Color(236, 113, 107));
+        manageEmployee.setBackground(new Color(215, 81, 81));
         ViewJobsJPanel viewJobsJPanel = new ViewJobsJPanel(rightSystemAdminPanel, enterprise, account, system);
         rightSystemAdminPanel.add("viewJobsJPanel",viewJobsJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
@@ -48,7 +49,8 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageBuyers() {
-       
+        manageEmployee.setBackground(new Color(236, 113, 107));
+        manageOrganizationPanel.setBackground(new Color(215, 81, 81));
         ManageBuilderJPanel managebuilderJPanel = new ManageBuilderJPanel(rightSystemAdminPanel, enterprise, account, system);
         rightSystemAdminPanel.add("manageInspectorProfileJPanel", managebuilderJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
@@ -82,12 +84,12 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
-        jPanel3.setBackground(new java.awt.Color(255, 213, 90));
+        jPanel3.setBackground(new java.awt.Color(215, 81, 81));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageOrganizationPanel.setBackground(new java.awt.Color(255, 213, 90));
+        manageOrganizationPanel.setBackground(new java.awt.Color(215, 81, 81));
         manageOrganizationPanel.setToolTipText("");
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -136,7 +138,7 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
-        manageEmployee.setBackground(new java.awt.Color(255, 213, 90));
+        manageEmployee.setBackground(new java.awt.Color(215, 81, 81));
         manageEmployee.setToolTipText("");
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +192,7 @@ public class BuilderWorkAreaJPanel extends javax.swing.JPanel {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 20));
 
-        rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
+        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 

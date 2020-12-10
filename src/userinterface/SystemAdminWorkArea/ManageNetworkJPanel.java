@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author dinesh
+ * @author raunak
  */
 public class ManageNetworkJPanel extends javax.swing.JPanel {
     private final EcoSystem system;

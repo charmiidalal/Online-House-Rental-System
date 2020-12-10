@@ -83,7 +83,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 89, -1, -1));
 
@@ -91,7 +90,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 84, 149, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setText("Street");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
@@ -99,7 +97,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 155, 149, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(41, 50, 80));
         jLabel4.setText("City:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 221, -1, -1));
 
@@ -107,7 +104,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 211, 149, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setText("State");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 295, -1, -1));
 
@@ -115,7 +111,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 354, 149, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(41, 50, 80));
         jLabel6.setText("Phone:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 89, -1, -1));
 
@@ -128,7 +123,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 84, 158, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(41, 50, 80));
         jLabel7.setText("Email:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 160, -1, -1));
 
@@ -136,7 +130,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 155, 158, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(41, 50, 80));
         jLabel8.setText("Zipcode:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 216, -1, -1));
 
@@ -144,7 +137,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 211, 158, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(41, 50, 80));
         jLabel9.setText("Charge:");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 295, -1, -1));
 
@@ -153,7 +145,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
 
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(41, 50, 80));
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +158,6 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 290, 149, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(41, 50, 80));
         jLabel10.setText("Status");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 359, -1, -1));
 
@@ -175,7 +165,7 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(25, 56, 82));
         jLabel11.setText("INSPECTOR PROFILE");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 6, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/inspector1.png"))); // NOI18N
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 660, 440));
