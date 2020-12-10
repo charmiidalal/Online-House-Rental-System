@@ -5,16 +5,11 @@
  */
 package userinterface.ElectricianRole;
 
-import Business.Buyer.BuyerDirectory;
+
 import Business.EcoSystem;
-import Business.Electrician.Electrician;
-import Business.Electrician.ElectricianDirectory;
 import Business.Enterprise.Enterprise;
-import Business.Inspector.Inspector;
-import Business.Inspector.InspectorDirectory;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;

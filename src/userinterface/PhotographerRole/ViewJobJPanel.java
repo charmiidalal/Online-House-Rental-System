@@ -6,15 +6,9 @@
 package userinterface.PhotographerRole;
 
 import userinterface.PlumberRole.*;
-import Business.Buyer.BuyerDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Inspector.Inspector;
-import Business.Inspector.InspectorDirectory;
-import Business.Plumber.Plumber;
-import Business.Plumber.PlumberDirectory;
 import Business.Property.PropertyDirectory;
-import Business.Seller.SellerDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
