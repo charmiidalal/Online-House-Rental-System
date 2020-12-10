@@ -48,30 +48,29 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof CleaningRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((CleaningRequest) workRequest).getRequestID();
-                row[2] = ((CleaningRequest) workRequest).getCleaner().getName();
-                row[3] = ((CleaningRequest) workRequest).getSeller().getName();
-                row[4] = ((CleaningRequest) workRequest).getProperty().getStreet();
-                row[5] = ((CleaningRequest) workRequest).getProperty().getCity();
-                row[6] = ((CleaningRequest) workRequest).getProperty().getState();
-                row[7] = ((CleaningRequest) workRequest).getProperty().getPincode();
-                row[8] = ((CleaningRequest) workRequest).getStatus();
-                row[9] = ((CleaningRequest) workRequest).getBuyerNote();
-                row[10] = ((CleaningRequest) workRequest).getInspectorNote();
-                row[11] = ((CleaningRequest) workRequest).getCleaner().getCharge();
-                row[12] = ((CleaningRequest) workRequest).getQuote();
-                row[13] = ((CleaningRequest) workRequest).getOrgType();
-
-                model.addRow(row);
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof CleaningRequest) {
+                        Object[] row = new Object[model.getColumnCount()];
+                        row[0] = ((CleaningRequest) workRequest).getRequestID();
+                        row[1] = ((CleaningRequest) workRequest).getCleaner().getName();
+                        row[2] = ((CleaningRequest) workRequest).getSeller().getName();
+                        row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
+                        row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
+                        row[5] = ((CleaningRequest) workRequest).getProperty().getState();
+                        row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
+                        row[7] = ((CleaningRequest) workRequest).getStatus();
+                        row[8] = ((CleaningRequest) workRequest).getBuyerNote();
+                        row[9] = ((CleaningRequest) workRequest).getInspectorNote();
+                        row[10] = ((CleaningRequest) workRequest).getCleaner().getCharge();
+                        row[11] = ((CleaningRequest) workRequest).getQuote();
+                        row[12] = ((CleaningRequest) workRequest).getOrgType();
+                        model.addRow(row);
+                    }
+                }
             }
         }
     }
@@ -85,42 +84,34 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtFeedback = new javax.swing.JTextField();
         btnCompleteJob = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        btnBack2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaning-staff.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 126, 145, 164));
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel1.setText("Feedback:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
-        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 245, -1));
-
-        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
-        btnCompleteJob.setText("Send Message");
-        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompleteJobActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 30, 140, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 30, 30, 30));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "JobID", "Cleaner", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Cleaner Message", "Charge", "Quote", "OrgType"
+                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -133,49 +124,23 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaning-staff.png"))); // NOI18N
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 960, 270));
 
-        btnBack2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel1.setText("Feedback:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 245, -1));
+
+        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
+        btnCompleteJob.setText("Send Message");
+        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBack2ActionPerformed(evt);
+                btnCompleteJobActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 821, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 140, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -185,36 +150,33 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             CleaningRequest br = (CleaningRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-
-            if (!"".equals(feedback)) {
-
-                br.setBuyerNote(feedback);
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
             }
+            br.setBuyerNote(feedback);
+            populateRequestTable();
+            JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
-    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBack2ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack2;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables

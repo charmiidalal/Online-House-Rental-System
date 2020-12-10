@@ -49,30 +49,29 @@ public class ManageManagerActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof ManagerRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((ManagerRequest) workRequest).getRequestID();
-                row[2] = ((ManagerRequest) workRequest).getManager().getName();
-                row[3] = ((ManagerRequest) workRequest).getSeller().getName();
-                row[4] = ((ManagerRequest) workRequest).getProperty().getStreet();
-                row[5] = ((ManagerRequest) workRequest).getProperty().getCity();
-                row[6] = ((ManagerRequest) workRequest).getProperty().getState();
-                row[7] = ((ManagerRequest) workRequest).getProperty().getPincode();
-                row[8] = ((ManagerRequest) workRequest).getStatus();
-                row[9] = ((ManagerRequest) workRequest).getBuyerNote();
-                row[10] = ((ManagerRequest) workRequest).getInspectorNote();
-                row[11] = ((ManagerRequest) workRequest).getManager().getCharge();
-                row[12] = ((ManagerRequest) workRequest).getQuote();
-                row[13] = ((ManagerRequest) workRequest).getOrgType();
-
-                model.addRow(row);
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof ManagerRequest) {
+                        Object[] row = new Object[model.getColumnCount()];
+                        row[0] = ((ManagerRequest) workRequest).getRequestID();
+                        row[1] = ((ManagerRequest) workRequest).getManager().getName();
+                        row[2] = ((ManagerRequest) workRequest).getSeller().getName();
+                        row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
+                        row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
+                        row[5] = ((ManagerRequest) workRequest).getProperty().getState();
+                        row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
+                        row[7] = ((ManagerRequest) workRequest).getStatus();
+                        row[8] = ((ManagerRequest) workRequest).getBuyerNote();
+                        row[9] = ((ManagerRequest) workRequest).getInspectorNote();
+                        row[10] = ((ManagerRequest) workRequest).getManager().getCharge();
+                        row[11] = ((ManagerRequest) workRequest).getQuote();
+                        row[12] = ((ManagerRequest) workRequest).getOrgType();
+                        model.addRow(row);
+                    }
+                }
             }
         }
     }
@@ -87,30 +86,55 @@ public class ManageManagerActivity extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        txtFeedback = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnCompleteJob = new javax.swing.JButton();
+        txtFeedback = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 30, 30));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 150, 270));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("VIEW JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, 30));
+
+        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnCompleteJob.setText("Send Message");
+        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompleteJobActionPerformed(evt);
+            }
+        });
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 300, -1));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setText("Feedback:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "JobID", "Manager", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Manager Message", "Charge", "Quote", "OrgType"
+                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -123,38 +147,7 @@ public class ManageManagerActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 782, 270));
-
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel1.setText("Feedback:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
-        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 300, -1));
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 90, 800, 350));
-
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, 30, 30));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 150, 270));
-
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("VIEW JOB LIST");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 30));
-
-        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnCompleteJob.setText("Send Message");
-        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompleteJobActionPerformed(evt);
-            }
-        });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 960, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -164,16 +157,13 @@ public class ManageManagerActivity extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             ManagerRequest br = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-
-            if (!"".equals(feedback)) {
-
-                br.setBuyerNote(feedback);
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
             }
-
+            br.setBuyerNote(feedback);
+            populateRequestTable();
+            JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
@@ -195,7 +185,6 @@ public class ManageManagerActivity extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables

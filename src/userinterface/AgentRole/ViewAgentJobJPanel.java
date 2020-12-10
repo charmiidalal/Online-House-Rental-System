@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.WorkQueue.AgentRequest;
 import Business.WorkQueue.WorkRequest;
+import userinterface.BuyerRole.ViewBuyerDetailsJPanel;
+import userinterface.BuyerRole.ViewSellerDetailsJPanel;
 
 /**
  *
@@ -52,8 +54,8 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
             if (workRequest instanceof AgentRequest) {
                 Object[] row = new Object[model.getColumnCount()];
                 row[0] = workRequest;
-                row[1] = ((AgentRequest) workRequest).getBuyer().getName();
-                row[2] = ((AgentRequest) workRequest).getSeller().getName();
+                row[1] = ((AgentRequest) workRequest).getBuyer();
+                row[2] = ((AgentRequest) workRequest).getSeller();
                 row[3] = ((AgentRequest) workRequest).getProperty().getStreet();
                 row[4] = ((AgentRequest) workRequest).getProperty().getCity();
                 row[5] = ((AgentRequest) workRequest).getProperty().getState();
@@ -61,7 +63,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
                 row[7] = ((AgentRequest) workRequest).getStatus();
                 row[8] = ((AgentRequest) workRequest).getBuyerNote();
                 row[9] = ((AgentRequest) workRequest).getInspectorNote();
-
+                row[10] = ((AgentRequest) workRequest).getQuote();
                 model.addRow(row);
             }
         }
@@ -77,70 +79,32 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
-        brnTakeJob = new javax.swing.JButton();
         txtFeedback = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        btnCompleteJob = new javax.swing.JButton();
         btnSuggestProperty = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
+        btnViewBuyerDetails = new javax.swing.JButton();
+        btnViewSellerDetails = new javax.swing.JButton();
+        brnTakeJob = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         quoteTxt = new javax.swing.JTextField();
+        btnCompleteJob = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENTO.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 660, 440));
-
-        houseTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "JobID", "Buyer", "City", "Zipcode", "BHK", "Bathroom", "Status", "Buyer Message", "Inspector Message"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, false, true, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(houseTable);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 824, 300));
-
-        brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        brnTakeJob.setText("Take Job");
-        brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                brnTakeJobActionPerformed(evt);
-            }
-        });
-        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 660, 440));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
-        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 430, 138, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 380, 138, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setText("Feedback:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, -1, -1));
-
-        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnCompleteJob.setText("Mark Complete");
-        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompleteJobActionPerformed(evt);
-            }
-        });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 480, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 380, -1, -1));
 
         btnSuggestProperty.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnSuggestProperty.setText("Suggest Property");
@@ -150,7 +114,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
                 btnSuggestPropertyActionPerformed(evt);
             }
         });
-        add(btnSuggestProperty, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, -1, -1));
+        add(btnSuggestProperty, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
@@ -160,64 +124,73 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENT.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 145, 164));
 
+        houseTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "JobID", "Buyer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Agent Message", "Quotation"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, false, false, false, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(houseTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 910, 300));
+
+        btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnViewBuyerDetails.setText("View Buyer Details");
+        btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBuyerDetailsActionPerformed(evt);
+            }
+        });
+        add(btnViewBuyerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, -1, -1));
+
+        btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnViewSellerDetails.setText("View Seller Details");
+        btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewSellerDetailsActionPerformed(evt);
+            }
+        });
+        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
+
+        brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        brnTakeJob.setText("Take Job");
+        brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brnTakeJobActionPerformed(evt);
+            }
+        });
+        add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
+
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        jLabel2.setText("Update Quote: ");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 390, -1, -1));
+        jLabel2.setText("Quotation Amount: ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 160, 20));
 
         quoteTxt.setBackground(new java.awt.Color(153, 204, 255));
-        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 390, 138, -1));
+        quoteTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quoteTxtActionPerformed(evt);
+            }
+        });
+        add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, 120, -1));
+
+        btnCompleteJob.setText("Mark Complete");
+        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompleteJobActionPerformed(evt);
+            }
+        });
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 430, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
-      int selectedRow = houseTable.getSelectedRow();
-        if (selectedRow >= 0) {
-            AgentRequest agentRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
-            String feedback = txtFeedback.getText();
-            if (!"Job Taken".equals(agentRequest.getStatus())) {
-                if (!"".equals(feedback)) {
-                    agentRequest.setStatus("Job Taken");
-                    agentRequest.setQuote(quoteTxt.getText());
-                    //inspector.getCharge();
-                    // inspector.setCharge(quoteTxt.getText());
-                    userAccount.setStatus("Occupied");
-                    populateRequestTable();
-                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Job is already taken!");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-        }
-                                            
-
-   
-    
-
-    
-    }//GEN-LAST:event_brnTakeJobActionPerformed
-
-    private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = houseTable.getSelectedRow();
-        if (selectedRow >= 0) {
-            AgentRequest agentRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
-            String feedback = txtFeedback.getText();
-
-            if (!"".equals(feedback)) {
-                agentRequest.setStatus("Completed");
-                agentRequest.setInspectorNote(feedback);
-                populateRequestTable();
-                userAccount.setStatus("Available");
-            } else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-        }
-    }//GEN-LAST:event_btnCompleteJobActionPerformed
 
     private void btnSuggestPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuggestPropertyActionPerformed
         // TODO add your handling code here:
@@ -234,11 +207,109 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSuggestPropertyActionPerformed
 
+    private void btnViewBuyerDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBuyerDetailsActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+
+        int count = houseTable.getSelectedRowCount();
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                UserAccount buyerAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
+                ViewBuyerDetailsJPanel viewBuyerDetailsJPanel = new ViewBuyerDetailsJPanel(userProcessContainer, buyerAcc, userAccount, system);
+                userProcessContainer.add("ViewBuyerDetailsJPanel", viewBuyerDetailsJPanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a Row!!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
+    }//GEN-LAST:event_btnViewBuyerDetailsActionPerformed
+
+    private void btnViewSellerDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSellerDetailsActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+
+        int count = houseTable.getSelectedRowCount();
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                UserAccount sellerAcc = (UserAccount) houseTable.getValueAt(selectedRow, 2);
+                ViewSellerDetailsJPanel viewSellerDetailsJPanel = new ViewSellerDetailsJPanel(userProcessContainer, sellerAcc, userAccount, system);
+                userProcessContainer.add("viewSellerDetailsJPanel", viewSellerDetailsJPanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a Row!!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
+    }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
+
+    private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
+        int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            AgentRequest inspectRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
+            try {
+                Double quote = Double.parseDouble(quoteTxt.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Quote");
+                return;
+            }
+            if (!"In Progress".equals(inspectRequest.getStatus())) {
+                inspectRequest.setStatus("In Progress");
+                inspectRequest.setQuote(quoteTxt.getText());
+                userAccount.setStatus("Occupied");
+                JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                populateRequestTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is already taken!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_brnTakeJobActionPerformed
+
+    private void quoteTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quoteTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quoteTxtActionPerformed
+
+    private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            AgentRequest inspectRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
+            String feedback = txtFeedback.getText();
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
+            }
+            if (!"Completed".equals(inspectRequest.getStatus())) {
+                inspectRequest.setStatus("Completed");
+                inspectRequest.setInspectorNote(feedback);
+                JOptionPane.showMessageDialog(null, "Job is set to completed!");
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to set your status to Available?", "Warning", dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    userAccount.setStatus("Available");
+                }
+                populateRequestTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is already completed!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_btnCompleteJobActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JButton btnSuggestProperty;
+    private javax.swing.JButton btnViewBuyerDetails;
+    private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

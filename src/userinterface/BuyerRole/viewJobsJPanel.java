@@ -34,7 +34,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public viewJobsJPanel(JPanel userProcess, UserAccount userAccount, Enterprise enterprsie, EcoSystem system, Network network, Organization organization) {
+    public viewJobsJPanel(JPanel userProcess, UserAccount userAccount, Enterprise enterprise, EcoSystem system, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;

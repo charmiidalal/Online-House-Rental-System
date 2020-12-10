@@ -51,31 +51,30 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         populateRequestTable();
     }
 
-    public void populateRequestTable() {
-
+     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof PlumberRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((PlumberRequest) workRequest).getRequestID();
-                row[2] = ((PlumberRequest) workRequest).getPlumber().getName();
-                row[3] = ((PlumberRequest) workRequest).getSeller().getName();
-                row[4] = ((PlumberRequest) workRequest).getProperty().getStreet();
-                row[5] = ((PlumberRequest) workRequest).getProperty().getCity();
-                row[6] = ((PlumberRequest) workRequest).getProperty().getState();
-                row[7] = ((PlumberRequest) workRequest).getProperty().getPincode();
-                row[8] = ((PlumberRequest) workRequest).getStatus();
-                row[9] = ((PlumberRequest) workRequest).getBuyerNote();
-                row[10] = ((PlumberRequest) workRequest).getInspectorNote();
-                row[11] = ((PlumberRequest) workRequest).getPlumber().getCharge();
-                row[12] = ((PlumberRequest) workRequest).getQuote();
-                row[13] = ((PlumberRequest) workRequest).getOrgType();
-
-                model.addRow(row);
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof PlumberRequest) {
+                        Object[] row = new Object[model.getColumnCount()];
+                        row[0] = ((PlumberRequest) workRequest).getRequestID();
+                        row[1] = ((PlumberRequest) workRequest).getPlumber().getName();
+                        row[2] = ((PlumberRequest) workRequest).getSeller().getName();
+                        row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
+                        row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
+                        row[5] = ((PlumberRequest) workRequest).getProperty().getState();
+                        row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
+                        row[7] = ((PlumberRequest) workRequest).getStatus();
+                        row[8] = ((PlumberRequest) workRequest).getBuyerNote();
+                        row[9] = ((PlumberRequest) workRequest).getInspectorNote();
+                        row[10] = ((PlumberRequest) workRequest).getPlumber().getCharge();
+                        row[11] = ((PlumberRequest) workRequest).getQuote();
+                        row[12] = ((PlumberRequest) workRequest).getOrgType();
+                        model.addRow(row);
+                    }
+                }
             }
         }
     }
@@ -89,27 +88,46 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtFeedback = new javax.swing.JTextField();
         btnCompleteJob = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumber.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 134, 144));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setText("VIEW JOB LIST");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, 30));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel1.setText("Feedback:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
+        add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 330, -1));
+
+        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
+        btnCompleteJob.setText("Send Message");
+        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompleteJobActionPerformed(evt);
+            }
+        });
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, -1, -1));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "JobID", "Plumber", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Plumber Message", "Charge", "Quote", "OrgType"
+                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -122,61 +140,7 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 920, 300));
-
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel1.setText("Feedback:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
-        jPanel1.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 330, -1));
-
-        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
-        btnCompleteJob.setText("Send Message");
-        btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompleteJobActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("VIEW JOB LIST");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, -1, 30));
-
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 30, 30));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumber.png"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(151, Short.MAX_VALUE))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 960, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -186,37 +150,25 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             PlumberRequest br = (PlumberRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-
-            if (!"".equals(feedback)) {
-
-                br.setBuyerNote(feedback);
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
             }
-
+            br.setBuyerNote(feedback);
+            populateRequestTable();
+            JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnCompleteJobActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables

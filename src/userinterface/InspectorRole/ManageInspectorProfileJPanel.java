@@ -152,7 +152,7 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, -1, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
 
         txtState.setBackground(new java.awt.Color(153, 204, 255));
         add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 290, 149, -1));

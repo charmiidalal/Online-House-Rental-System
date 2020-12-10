@@ -48,30 +48,29 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
-
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof ElectricianRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((ElectricianRequest) workRequest).getRequestID();
-                row[2] = ((ElectricianRequest) workRequest).getElectrician().getName();
-                row[3] = ((ElectricianRequest) workRequest).getSeller().getName();
-                row[4] = ((ElectricianRequest) workRequest).getProperty().getStreet();
-                row[5] = ((ElectricianRequest) workRequest).getProperty().getCity();
-                row[6] = ((ElectricianRequest) workRequest).getProperty().getState();
-                row[7] = ((ElectricianRequest) workRequest).getProperty().getPincode();
-                row[8] = ((ElectricianRequest) workRequest).getStatus();
-                row[9] = ((ElectricianRequest) workRequest).getBuyerNote();
-                row[10] = ((ElectricianRequest) workRequest).getInspectorNote();
-                row[11] = ((ElectricianRequest) workRequest).getElectrician().getCharge();
-                row[12] = ((ElectricianRequest) workRequest).getQuote();
-                row[13] = ((ElectricianRequest) workRequest).getOrgType();
-
-                model.addRow(row);
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof ElectricianRequest) {
+                        Object[] row = new Object[model.getColumnCount()];
+                        row[0] = ((ElectricianRequest) workRequest).getRequestID();
+                        row[1] = ((ElectricianRequest) workRequest).getElectrician().getName();
+                        row[2] = ((ElectricianRequest) workRequest).getSeller().getName();
+                        row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();
+                        row[4] = ((ElectricianRequest) workRequest).getProperty().getCity();
+                        row[5] = ((ElectricianRequest) workRequest).getProperty().getState();
+                        row[6] = ((ElectricianRequest) workRequest).getProperty().getPincode();
+                        row[7] = ((ElectricianRequest) workRequest).getStatus();
+                        row[8] = ((ElectricianRequest) workRequest).getBuyerNote();
+                        row[9] = ((ElectricianRequest) workRequest).getInspectorNote();
+                        row[10] = ((ElectricianRequest) workRequest).getElectrician().getCharge();
+                        row[11] = ((ElectricianRequest) workRequest).getQuote();
+                        row[12] = ((ElectricianRequest) workRequest).getOrgType();
+                        model.addRow(row);
+                    }
+                }
             }
         }
     }
@@ -85,37 +84,17 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        houseTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtFeedback = new javax.swing.JTextField();
         btnCompleteJob = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        houseTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        houseTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "JobID", "Electrician", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Electrician Message", "Charge", "Quote", "OrgType"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(houseTable);
-
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 700, 280));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -142,11 +121,31 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, 30, 30));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("VIEW JOB LIST");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, 30));
+
+        houseTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, false, false, false, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(houseTable);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 960, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -156,15 +155,13 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             ElectricianRequest br = (ElectricianRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-
-            if (!"".equals(feedback)) {
-
-                br.setBuyerNote(feedback);
-                populateRequestTable();
-                JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Please enter feedback!");
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
             }
+            br.setBuyerNote(feedback);
+            populateRequestTable();
+            JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

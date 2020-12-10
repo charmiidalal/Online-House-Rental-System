@@ -12,6 +12,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Role.InspectorRole;
+import Business.SendSMS.SendSMS;
 import Business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -41,7 +42,6 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.organization = organization;
-
         populateRequestTable();
     }
 
@@ -53,16 +53,15 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
             for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                     if (ua.getRole() instanceof InspectorRole) {
-                        Object[] row = new Object[9];
+                        Object[] row = new Object[8];
                         row[0] = ua.getEmployee().getId();
                         row[1] = ua;
                         row[2] = ua.getCity();
                         row[3] = ua.getState();
                         row[4] = ua.getStatus();
-                        row[5] = ua.getCharge();
-                        row[6] = org.getName();
-                        row[7] = network.getName();
-                        row[8] = ua.getPhone();
+                        row[5] = ua.getPhone();
+                        row[6] = ua.getCharge();
+                        row[7] = org.getName();
                         model.addRow(row);
                     }
                 }
@@ -104,11 +103,11 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "InspectorID", "Name", "Address", "City", "State", "Zipcode", "Status", "Charge"
+                "ID", "Name", "City", "State", "Status", "Contact", "Charge", "Organization"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -137,31 +136,35 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
         String comment = commentTxxt.getText();
-        if (count == 1) {
-            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (serviceAcc.getUsername().equals(ua.getUsername())) {
-                            if ("Available".equals(ua.getStatus())) {
-                                InspectRequest cr = new InspectRequest();
-                                cr.setRequestID();
-                                cr.setBuyer(userAccount);
-                                cr.setInspector(serviceAcc);
-                                cr.setSeller(property.getSeller());
-                                cr.setStatus("Pending");
-                                cr.setBuyerNote(comment);
-                                cr.setProperty(property);
-                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                                e.getWorkQueue().getWorkRequestList().add(cr);
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Sorry! This Inspector is already Occupied");
-                            }
-                        }
+        if (count > 1) {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+            return;
+        } else if (comment.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
+            return;
+        } else if (!serviceAcc.getStatus().equals("Available")) {
+            JOptionPane.showMessageDialog(null, "Sorry! This Inspector is already Occupied");
+            return;
+        }
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    if (serviceAcc.getUsername().equals(ua.getUsername())) {
+                        InspectRequest cr = new InspectRequest();
+                        cr.setRequestID();
+                        cr.setBuyer(userAccount);
+                        cr.setInspector(serviceAcc);
+                        cr.setSeller(property.getSeller());
+                        cr.setStatus("Pending");
+                        cr.setBuyerNote(comment);
+                        cr.setProperty(property);
+                        SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                        EcoSystem.sendEmailMessage(serviceAcc.getEmail(),"Hello! You have one new work request! Please login to know more!");
+                        JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                        e.getWorkQueue().getWorkRequestList().add(cr);
                     }
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 

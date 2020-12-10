@@ -11,6 +11,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Role.PropertyManagerRole;
+import Business.SendSMS.SendSMS;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -53,16 +54,15 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                         if (ua.getRole() instanceof PropertyManagerRole) {
-                            Object[] row = new Object[9];
-                            row[0] = ua.getEmployee().getName();
+                            Object[] row = new Object[8];
+                            row[0] = ua.getEmployee().getId();
                             row[1] = ua;
                             row[2] = ua.getCity();
                             row[3] = ua.getState();
                             row[4] = ua.getStatus();
-                            row[5] = ua.getCharge();
-                            row[6] = org.getName();
-                            row[7] = network.getName();
-                            row[8] = ua.getPhone();
+                            row[5] = ua.getPhone();
+                            row[6] = ua.getCharge();
+                            row[7] = org.getName();
                             model.addRow(row);
                         }
                     }
@@ -165,32 +165,35 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
         String comment = commentTxxt.getText();
-        if (count == 1) {
-            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (serviceAcc.getUsername().equals(ua.getUsername())) {
-                            if ("Available".equals(ua.getStatus())) {
-                                ManagerRequest cr = new ManagerRequest();
-                                cr.setRequestID();
-                                cr.setBuyer(userAccount);
-                                cr.setManager(serviceAcc);
-                                cr.setSeller(property.getSeller());
-                                cr.setStatus("Pending");
-                                cr.setBuyerNote(comment);
-                                cr.setProperty(property);
-                                 e.getWorkQueue().getWorkRequestList().add(cr);
-                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Sorry! This Property Manager is already Occupied");
-
-                            }
-                        }
+        if (count > 1) {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+            return;
+        } else if (comment.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
+            return;
+        } else if (!serviceAcc.getStatus().equals("Available")) {
+            JOptionPane.showMessageDialog(null, "Sorry! This Inspector is already Occupied");
+            return;
+        }
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    if (serviceAcc.getUsername().equals(ua.getUsername())) {
+                        ManagerRequest cr = new ManagerRequest();
+                        cr.setRequestID();
+                        cr.setBuyer(userAccount);
+                        cr.setManager(serviceAcc);
+                        cr.setSeller(property.getSeller());
+                        cr.setStatus("Pending");
+                        cr.setBuyerNote(comment);
+                        cr.setProperty(property);
+                        e.getWorkQueue().getWorkRequestList().add(cr);
+                        JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                        SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                        EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
                     }
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 
