@@ -94,7 +94,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         pricelbl = new javax.swing.JLabel();
         bathroomlbl = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, -1));
 
@@ -140,7 +140,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 submitBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 530, 105, -1));
+        jPanel1.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, 105, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel4.setText("Pincode:");
@@ -188,7 +188,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         imglbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         imglbl.setForeground(new java.awt.Color(255, 51, 51));
         imglbl.setText("Please upload the image of the house ");
-        jPanel1.add(imglbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, 200, -1));
+        jPanel1.add(imglbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 290, 200, -1));
 
         bhklbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         bhklbl.setForeground(new java.awt.Color(255, 51, 51));

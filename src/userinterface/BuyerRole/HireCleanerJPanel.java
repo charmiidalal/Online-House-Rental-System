@@ -97,6 +97,8 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(241, 241, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setForeground(new java.awt.Color(41, 50, 80));
+
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -118,6 +120,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 781, 300));
 
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        brnHireInspector.setForeground(new java.awt.Color(41, 50, 80));
         brnHireInspector.setText("Hire Cleaner");
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +129,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, -1, -1));
 
+        btnBack.setForeground(new java.awt.Color(41, 50, 80));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,14 +139,19 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, 30, 30));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 50, 80));
         jLabel1.setText("Comment:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
+
+        commentTxxt.setForeground(new java.awt.Color(41, 50, 80));
         jPanel1.add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 407, -1));
 
+        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/CLEANING.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 582, 660));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setText("CLEANERS LIST");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -180,11 +189,8 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         if (count == 1) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-
-                    //UserAccount ua = org.getUserAccountDirectory().searchUser(cleanerID);
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getUsername().equalsIgnoreCase(cleanerID)) //UserAccount uaFound=org.getUserAccountDirectory().searchUser(cleanerID);
-                        // UserAccount ua=org.getUserAccountDirectory().searchUser(cleanerID);
+                        if (ua.getUsername().equalsIgnoreCase(cleanerID))
                         {
                             if ("Available".equals(ua.getStatus())) {
                                 CleaningRequest cr = new CleaningRequest();
@@ -192,10 +198,9 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                                 cr.setBuyer(userAccount);
                                 cr.setCleaner(serviceAcc);
                                 cr.setSeller(property.getSeller());
-                                cr.setStatus("Requested");
+                                cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
-
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");

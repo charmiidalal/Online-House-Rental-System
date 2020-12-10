@@ -93,6 +93,8 @@ public class HireBuilder extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setForeground(new java.awt.Color(41, 50, 80));
+
         houseTable.setAutoCreateRowSorter(true);
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,6 +118,7 @@ public class HireBuilder extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 750, 240));
 
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        brnHireInspector.setForeground(new java.awt.Color(41, 50, 80));
         brnHireInspector.setText("Hire Builder");
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,15 +128,20 @@ public class HireBuilder extends javax.swing.JPanel {
         add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, -1, 21));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/BUILDING.png"))); // NOI18N
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 660, 440));
+
+        commentTxxt.setForeground(new java.awt.Color(41, 50, 80));
         add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 190, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 50, 80));
         jLabel1.setText("Comment:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
+        btnBack.setForeground(new java.awt.Color(41, 50, 80));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +151,7 @@ public class HireBuilder extends javax.swing.JPanel {
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 30, 30));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("BUILDERS LIST");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
@@ -168,7 +177,7 @@ public class HireBuilder extends javax.swing.JPanel {
                                 builder.setBuyer(userAccount);
                                 builder.setBuilder(serviceAcc);
                                 builder.setSeller(property.getSeller());
-                                builder.setStatus("Requested");
+                                builder.setStatus("Pending");
                                 builder.setBuyerNote(comment);
                                 builder.setProperty(property);
 

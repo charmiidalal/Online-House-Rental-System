@@ -111,11 +111,12 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 790, 271));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("VIEW PROPERTIES");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, 30));
 
         btnBuyHouse.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnBuyHouse.setForeground(new java.awt.Color(0, 0, 51));
+        btnBuyHouse.setForeground(new java.awt.Color(41, 50, 80));
         btnBuyHouse.setText("Buy House");
         btnBuyHouse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +126,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         add(btnBuyHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 203, -1));
 
         btnRegistration.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnRegistration.setForeground(new java.awt.Color(0, 0, 51));
+        btnRegistration.setForeground(new java.awt.Color(41, 50, 80));
         btnRegistration.setText("Registeration Form");
         btnRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,11 +136,12 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         add(btnRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, 201, -1));
 
         jLabel3.setBackground(new java.awt.Color(241, 241, 242));
+        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/household.png"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 690, 600));
 
         btnViewHouseDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnViewHouseDetails.setForeground(new java.awt.Color(0, 0, 51));
+        btnViewHouseDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewHouseDetails.setText("View House Details");
         btnViewHouseDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +151,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         add(btnViewHouseDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 203, 32));
 
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnViewSellerDetails.setForeground(new java.awt.Color(0, 0, 51));
+        btnViewSellerDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewSellerDetails.setText("View Seller Details");
         btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +161,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 203, 31));
 
         hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        hireSPBtn.setForeground(new java.awt.Color(0, 0, 51));
+        hireSPBtn.setForeground(new java.awt.Color(41, 50, 80));
         hireSPBtn.setText("Hire Services");
         hireSPBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,11 +197,6 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
-            /*Property property = propertyDirectory.fetchProperty(propertyID);
-            property.setStatus("Sold");
-            Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-            property.setBuyer(buyer);
-            populateRequestTable();*/
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to buy the house? Please fill the Property Registration Form first! If you have completed and got it approved please click yes!", "Warning", dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION) {

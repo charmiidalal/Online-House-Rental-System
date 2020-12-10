@@ -100,7 +100,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel2.setBackground(new java.awt.Color(255, 213, 90));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/management.png"))); // NOI18N
         jLabel2.setToolTipText("");
@@ -148,7 +148,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(215, 81, 81));
+        jLabel4.setBackground(new java.awt.Color(255, 213, 90));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/request.png"))); // NOI18N
 

@@ -177,7 +177,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                                 cr.setBuyer(userAccount);
                                 cr.setManager(serviceAcc);
                                 cr.setSeller(property.getSeller());
-                                cr.setStatus("Requested");
+                                cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
                                 JOptionPane.showMessageDialog(null, "Request Sent Successfully!");

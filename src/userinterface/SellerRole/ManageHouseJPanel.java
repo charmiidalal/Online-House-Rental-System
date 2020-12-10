@@ -88,8 +88,12 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnDeleteHouse = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnBuyers = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanelHouse = new javax.swing.JPanel();
+        bhkTxt = new javax.swing.JTextField();
+        bathroomTxt = new javax.swing.JTextField();
+        priceTxt = new javax.swing.JTextField();
+        jComboBoxStatus = new javax.swing.JComboBox<>();
+        txtSoldTo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -98,21 +102,17 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         cityTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         stateTxt = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        bhkTxt = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        bathroomTxt = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        priceTxt = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         pinTxt = new javax.swing.JTextField();
-        jComboBoxStatus = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtSoldTo = new javax.swing.JTextField();
         jbtnUpdate = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtblHouse.setAutoCreateRowSorter(true);
@@ -136,12 +136,12 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         jtblHouse.setSelectionBackground(new java.awt.Color(0, 0, 51));
         jScrollPane1.setViewportView(jtblHouse);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 1030, 127));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 930, 190));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel1.setText("LIST OF HOUSES");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, -1, -1));
+        jLabel1.setText("LIST OF ADVERTISES");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
 
         btnDeleteHouse.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnDeleteHouse.setForeground(new java.awt.Color(0, 0, 51));
@@ -151,7 +151,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 btnDeleteHouseActionPerformed(evt);
             }
         });
-        add(btnDeleteHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
+        add(btnDeleteHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
 
         btnEdit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnEdit.setForeground(new java.awt.Color(0, 0, 51));
@@ -161,7 +161,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
 
         btnBuyers.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnBuyers.setForeground(new java.awt.Color(0, 0, 51));
@@ -171,97 +171,94 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 btnBuyersActionPerformed(evt);
             }
         });
-        add(btnBuyers, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, -1, -1));
+        add(btnBuyers, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, -1, -1));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house seller.jpg"))); // NOI18N
-        jLabel2.setOpaque(true);
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 410, 280));
-
-        jPanelHouse.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHouse.setBackground(new java.awt.Color(241, 241, 242));
         jPanelHouse.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel3.setText("Name:");
-        jPanelHouse.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 19, -1, -1));
-
-        nameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTxtActionPerformed(evt);
-            }
-        });
-        jPanelHouse.add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 20, 188, -1));
-
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel4.setText("House Address:");
-        jPanelHouse.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 65, -1, -1));
-        jPanelHouse.add(addressTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 66, 188, -1));
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel5.setText("City:");
-        jPanelHouse.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 112, -1, -1));
-        jPanelHouse.add(cityTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 113, 188, -1));
-
-        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel6.setText("State:");
-        jPanelHouse.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 159, -1, -1));
-        jPanelHouse.add(stateTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 160, 188, -1));
-
-        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel11.setText("BHK:");
-        jPanelHouse.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 19, 37, -1));
 
         bhkTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bhkTxtActionPerformed(evt);
             }
         });
-        jPanelHouse.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 20, 160, -1));
-
-        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel10.setText("Bathroom:");
-        jPanelHouse.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 65, -1, -1));
+        jPanelHouse.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 160, -1));
 
         bathroomTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bathroomTxtActionPerformed(evt);
             }
         });
-        jPanelHouse.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 66, 160, -1));
+        jPanelHouse.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, -1));
+        jPanelHouse.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 166, -1));
 
-        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel8.setText("Price:");
-        jPanelHouse.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 112, -1, -1));
-        jPanelHouse.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 113, 166, -1));
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacant", "Sold" }));
+        jPanelHouse.add(jComboBoxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 166, -1));
 
-        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel7.setText("Status:");
-        jPanelHouse.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 159, -1, -1));
+        txtSoldTo.setEnabled(false);
+        jPanelHouse.add(txtSoldTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 175, -1));
+
+        add(jPanelHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 350, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel3.setText("Name:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
+
+        nameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTxtActionPerformed(evt);
+            }
+        });
+        add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 188, -1));
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel4.setText("House Address:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
+        add(addressTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 188, -1));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel5.setText("City:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
+        add(cityTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 188, -1));
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel6.setText("State:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, -1, -1));
+        add(stateTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 188, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 51));
         jLabel9.setText("Pincode:");
-        jPanelHouse.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 207, -1, -1));
-        jPanelHouse.add(pinTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 208, 188, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 580, -1, -1));
+        add(pinTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 570, 188, -1));
 
-        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacant", "Sold" }));
-        jPanelHouse.add(jComboBoxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 160, 166, -1));
+        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel11.setText("BHK:");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 37, -1));
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel10.setText("Bathroom:");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel8.setText("Price:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel7.setText("Status:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 51));
         jLabel12.setText("SoldTo:");
-        jPanelHouse.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 207, -1, -1));
-
-        txtSoldTo.setEnabled(false);
-        jPanelHouse.add(txtSoldTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 208, 175, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 580, -1, -1));
 
         jbtnUpdate.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jbtnUpdate.setText("Update");
@@ -270,9 +267,12 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 jbtnUpdateActionPerformed(evt);
             }
         });
-        jPanelHouse.add(jbtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, 88, -1));
+        add(jbtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 620, 88, -1));
 
-        add(jPanelHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, -1, -1));
+        jLabel2.setBackground(new java.awt.Color(241, 241, 242));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house seller.jpg"))); // NOI18N
+        jLabel2.setOpaque(true);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 210, 810, 530));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteHouseActionPerformed
@@ -372,14 +372,6 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTxtActionPerformed
 
-    private void bhkTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhkTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bhkTxtActionPerformed
-
-    private void bathroomTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathroomTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bathroomTxtActionPerformed
-
     private void jbtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnUpdateActionPerformed
         // TODO add your handling code here:
         jPanelHouse.setVisible(true);
@@ -449,6 +441,14 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         populateTable();
         jPanelHouse.setVisible(false);
     }//GEN-LAST:event_jbtnUpdateActionPerformed
+
+    private void bathroomTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathroomTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bathroomTxtActionPerformed
+
+    private void bhkTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhkTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bhkTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

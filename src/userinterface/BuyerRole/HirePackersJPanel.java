@@ -185,7 +185,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
                                 cr.setBuyer(userAccount);
                                 cr.setPacker(serviceAcc);
                                 cr.setSeller(property.getSeller());
-                                cr.setStatus("Requested");
+                                cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
                                

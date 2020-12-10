@@ -153,7 +153,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                                 cr.setBuyer(userAccount);
                                 cr.setInspector(serviceAcc);
                                 cr.setSeller(property.getSeller());
-                                cr.setStatus("Requested");
+                                cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
                                

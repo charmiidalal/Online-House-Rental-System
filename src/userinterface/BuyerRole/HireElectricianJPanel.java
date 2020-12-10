@@ -161,7 +161,7 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                                 cr.setBuyer(userAccount);
                                 cr.setElectrician(serviceAcc);
                                 cr.setSeller(property.getSeller());
-                                cr.setStatus("Requested");
+                                cr.setStatus("Pending");
                                 cr.setBuyerNote(comment);
                                 cr.setProperty(property);
 
