@@ -350,8 +350,8 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
         passwordErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         passwordErrlbl.setForeground(new java.awt.Color(255, 51, 51));
-        passwordErrlbl.setText("Password format is incorrect");
-        add(passwordErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 300, 260, 30));
+        passwordErrlbl.setText("Password format is incorrect - Atleast 1 uppercase,1lowercase,alphabets and numbers and !@$* and min 8  characters");
+        add(passwordErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 560, 50));
 
         usernameSuccesslbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick1.4.gif"))); // NOI18N
         add(usernameSuccesslbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 230, 40, 40));
@@ -670,13 +670,13 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         passwordCheck = passwordValidator(txtPassword.getText());
         if (passwordCheck == false) {
-            passwordLabel.setVisible(true);
+            passwordErrlbl.setVisible(true);
             passwordSuccesslbl.setVisible(false);
             passwordCheck = false;
         } else {
             txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             txtPassword.setForeground(Color.BLACK);
-            passwordLabel.setVisible(false);
+            passwordErrlbl.setVisible(false);
             passwordSuccesslbl.setVisible(true);
             passwordCheck = true;
             int delay = 3500; //milliseconds

@@ -5,10 +5,11 @@
  */
 package userinterface.CleaningRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.WorkQueue.CleaningRequest;
+import Business.Property.PropertyDirectory;
+
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -30,7 +31,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Enterprise enterprise;
 
-    public ViewDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
+    public ViewDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
@@ -62,6 +63,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,7 +89,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/CLEANING.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 680, 500));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 620, 510));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,9 +109,10 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 781, 280));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 820, 280));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Update Quote: ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, -1, -1));
 
@@ -122,6 +125,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 130, -1));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        brnTakeJob.setForeground(new java.awt.Color(41, 50, 80));
         brnTakeJob.setText("Take Job");
         brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +136,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnCompleteJob.setForeground(new java.awt.Color(41, 50, 80));
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
@@ -139,9 +144,10 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 440, -1, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 480, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 50, 80));
         jLabel1.setText("Feedback:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, -1, -1));
 
@@ -164,7 +170,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
         // TODO add your handling code here:
-       int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         if (selectedRow >= 0) {
             CleaningRequest cleaningRequest = (CleaningRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
@@ -187,11 +193,22 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             CleaningRequest cleaningRequest = (CleaningRequest) houseTable.getValueAt(selectedRow, 0);
             String feedback = txtFeedback.getText();
-            if (!"Job Taken".equals(cleaningRequest.getStatus())) {
+            if (!"Accepted".equals(cleaningRequest.getStatus())) {
                 if (!"".equals(feedback)) {
-                    cleaningRequest.setStatus("Job Taken");
+                    cleaningRequest.setStatus("Accepted");
                     cleaningRequest.setQuote(quoteTxt.getText());
-                
+
+                    userAccount.setStatus("Occupied");
+                    populateRequestTable();
+                    JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter feedback!");
+                }
+            } else if ((!"Accepted".equals(cleaningRequest.getStatus()) && (!"Completed".equals(cleaningRequest.getStatus())))) {
+                if (!"".equals(feedback)) {
+                    cleaningRequest.setStatus("Requested");
+                    cleaningRequest.setQuote(quoteTxt.getText());
+
                     userAccount.setStatus("Occupied");
                     populateRequestTable();
                     JOptionPane.showMessageDialog(null, "Job Taken Successfully!");
@@ -199,7 +216,8 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Please enter feedback!");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already taken!");
+               
+                JOptionPane.showMessageDialog(null, "Job is already taken!Please select another request.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

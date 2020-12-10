@@ -7,8 +7,9 @@ package userinterface.ElectricianRole;
 
 
 import Business.EcoSystem;
+
 import Business.Enterprise.Enterprise;
-import Business.Property.PropertyDirectory;
+
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -84,22 +85,25 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtName.setBackground(new java.awt.Color(153, 204, 255));
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 77, 180, -1));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 180, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 79, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setText("Street");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 158, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         txtStreet.setBackground(new java.awt.Color(153, 204, 255));
-        add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 156, 180, -1));
+        add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(41, 50, 80));
         jLabel6.setText("Phone:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 81, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
 
         txtPhone.setBackground(new java.awt.Color(153, 204, 255));
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
@@ -113,10 +117,12 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 143, 180, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(41, 50, 80));
         jLabel7.setText("Email:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 143, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(41, 50, 80));
         jLabel8.setText("Zipcode:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 217, -1, -1));
 
@@ -127,6 +133,7 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
         add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 313, 180, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(41, 50, 80));
         jLabel9.setText("Charge:");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 315, -1, -1));
 
@@ -134,10 +141,12 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
         add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 313, 180, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setText("State");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 315, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(41, 50, 80));
         jLabel10.setText("Status");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 415, -1, -1));
 
@@ -146,6 +155,7 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
 
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(41, 50, 80));
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -164,6 +174,7 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
         add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 215, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(41, 50, 80));
         jLabel4.setText("City");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 217, -1, -1));
 

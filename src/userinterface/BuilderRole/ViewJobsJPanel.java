@@ -6,9 +6,10 @@
 package userinterface.BuilderRole;
 
 import Business.WorkQueue.BuilderRequest;
+
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Property.PropertyDirectory;
+
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -101,7 +102,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 287, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/BUILDING.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 550, 480));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,6 +136,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 380, 138, -1));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        brnTakeJob.setForeground(new java.awt.Color(41, 50, 80));
         brnTakeJob.setText("Take Job");
         brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +147,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, -1, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnCompleteJob.setForeground(new java.awt.Color(41, 50, 80));
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
@@ -155,10 +158,12 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 470, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Update Quote: ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 50, 80));
         jLabel1.setText("Feedback:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 430, -1, -1));
 

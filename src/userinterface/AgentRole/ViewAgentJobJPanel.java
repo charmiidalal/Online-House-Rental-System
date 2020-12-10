@@ -27,6 +27,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private UserAccount userAccount;
     private PropertyDirectory propertyDirectory;
+    
     private Enterprise enterprise;
 
     /**
@@ -39,7 +40,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-
+        
         populateRequestTable();
     }
 
@@ -92,8 +93,9 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENTO.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 610, 390));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,6 +118,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 824, 300));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        brnTakeJob.setForeground(new java.awt.Color(41, 50, 80));
         brnTakeJob.setText("Take Job");
         brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
@@ -129,10 +132,12 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 430, 138, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 50, 80));
         jLabel1.setText("Feedback:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, -1, -1));
 
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnCompleteJob.setForeground(new java.awt.Color(41, 50, 80));
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +148,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 480, -1, -1));
 
         btnSuggestProperty.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnSuggestProperty.setForeground(new java.awt.Color(41, 50, 80));
         btnSuggestProperty.setText("Suggest Property");
         btnSuggestProperty.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuggestProperty.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +167,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 145, 164));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Update Quote: ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 390, -1, -1));
 

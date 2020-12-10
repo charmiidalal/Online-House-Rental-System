@@ -5,12 +5,11 @@
  */
 package userinterface.BuilderRole;
 
-
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -20,8 +19,7 @@ import javax.swing.JPanel;
  */
 public class ManageBuilderJPanel extends javax.swing.JPanel {
 
-    
-      private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
     private Enterprise enterprise;
@@ -40,6 +38,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
+
         txtName.setText(userAccount.getName());
         txtCharge.setText(userAccount.getCharge());
         txtCity.setText(userAccount.getCity());
@@ -50,6 +49,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         txtPhone.setText(userAccount.getPhone());
         txtStatus.setText(userAccount.getStatus());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,10 +89,12 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 77, 180, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Name:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 79, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setText("Street");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 158, -1, -1));
 
@@ -100,6 +102,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         jPanel1.add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 156, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(41, 50, 80));
         jLabel6.setText("Phone:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 81, -1, -1));
 
@@ -115,10 +118,12 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 145, 180, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(41, 50, 80));
         jLabel7.setText("Email:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 145, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(41, 50, 80));
         jLabel8.setText("Zipcode:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 219, -1, -1));
 
@@ -129,6 +134,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 288, 180, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(41, 50, 80));
         jLabel9.setText("Charge:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 290, -1, -1));
 
@@ -136,10 +142,12 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 288, 180, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setText("State");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 290, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(41, 50, 80));
         jLabel10.setText("Status");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 370, -1, -1));
 
@@ -147,6 +155,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 368, 180, -1));
 
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(41, 50, 80));
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +174,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         jPanel1.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 217, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(41, 50, 80));
         jLabel4.setText("City");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 219, -1, -1));
 
@@ -195,16 +205,32 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       userAccount. setName(txtName.getText());
-        userAccount.setCharge(txtCharge.getText());
-        userAccount.setCity(txtCity.getText());
-        userAccount.setStatus(txtStatus.getText());
-        userAccount.setZipcode(txtZipcode.getText());
-        userAccount.setStreet(txtStreet.getText());
-        userAccount.setEmail(txtEmail.getText());
-        userAccount.setPhone(txtPhone.getText());
-        userAccount.setState(txtState.getText());
-        JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                String role = ua.getRole().toString();
+                if ("Builder".equals(role)) {
+                    try {
+                        if (ua.getPhone().equalsIgnoreCase(txtPhone.getText())) {
+                            JOptionPane.showMessageDialog(null, "Phone number already exists!Please enter another Phone number");
+                            break;
+                        } else {
+                            userAccount.setName(txtName.getText());
+                            userAccount.setCharge(txtCharge.getText());
+                            userAccount.setCity(txtCity.getText());
+                            userAccount.setStatus(txtStatus.getText());
+                            userAccount.setZipcode(txtZipcode.getText());
+                            userAccount.setStreet(txtStreet.getText());
+                            userAccount.setEmail(txtEmail.getText());
+                            userAccount.setPhone(txtPhone.getText());
+                            userAccount.setState(txtState.getText());
+                            JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
+                        }
+                    } catch (NullPointerException ex) {
+                        System.out.println("phone number exists");
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
