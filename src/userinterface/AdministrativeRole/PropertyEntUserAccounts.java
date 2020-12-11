@@ -29,16 +29,16 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
     private Enterprise enterprise;
     private EcoSystem ecosystem;
     Organization organization;
-    
+
     public PropertyEntUserAccounts(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system, Organization organization) {
-       
+
         initComponents();
-         this.userProcessContainer = userProcessContainer;
+        this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.ecosystem = system;
         this.organization = organization;
-         populateVoluntaryOrganizationComboBox();
-         populateData();
+        populateOrganizationComboBox();
+        populateData();
     }
 
     /**
@@ -199,34 +199,36 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
     private void selectOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectOrganizationActionPerformed
         Organization organization = (Organization) selectOrganization.getSelectedItem();
         if (organization != null) {
-            populateVolunteerEmployeeComboBox(organization);
+            populateEmployeeComboBox(organization);
             popRoleComboBox(organization);
         }
     }//GEN-LAST:event_selectOrganizationActionPerformed
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-        String userName = createUsername.getText();
+        String username = createUsername.getText();
         String password = createPassword.getText();
-        
-        if("".equals(userName)) {
-            JOptionPane.showMessageDialog(null, "Please enter username");
-        }else if(!ecosystem.checkIfUserIsUnique(userName)) {
-            JOptionPane.showMessageDialog(null, "Please enter unique username");
-        }else if("".equals(password)) {
-            JOptionPane.showMessageDialog(null, "Please enter password");
-        }else{
-            Organization organization = (Organization) selectOrganization.getSelectedItem();
-            Employee employee = (Employee) selectEmployee.getSelectedItem();
-            Role role = (Role) selectRole.getSelectedItem();
-            organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-            populateData();
-            createUsername.setText("");
-            createPassword.setText("");
-            JOptionPane.showMessageDialog(null, "User created successfully");
+        if ("".equals(username) || "".equals(password)|| selectOrganization.getSelectedItem() == null
+                || selectEmployee.getSelectedItem() == null || selectRole.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Please enter required fields username & password!");
+            return;
         }
+        if (!ecosystem.checkValidPasswordFormat(password)) {
+            return;
+        }
+        if (!ecosystem.checkIfUserIsUnique(username)) {
+            return;
+        }
+        Organization organization = (Organization) selectOrganization.getSelectedItem();
+        Employee employee = (Employee) selectEmployee.getSelectedItem();
+        Role role = (Role) selectRole.getSelectedItem();
+        organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
+        populateData();
+        createUsername.setText("");
+        createPassword.setText("");
+        JOptionPane.showMessageDialog(null, "User created successfully");
     }//GEN-LAST:event_createUserJButtonActionPerformed
-    
-    public void populateVoluntaryOrganizationComboBox() {
+
+    public void populateOrganizationComboBox() {
         selectOrganization.removeAllItems();
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             selectOrganization.addItem(organization);
@@ -247,9 +249,8 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
             }
         }
     }
-        
-        
-    public void populateVolunteerEmployeeComboBox(Organization organization) {
+
+    public void populateEmployeeComboBox(Organization organization) {
         selectEmployee.removeAllItems();
 
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {

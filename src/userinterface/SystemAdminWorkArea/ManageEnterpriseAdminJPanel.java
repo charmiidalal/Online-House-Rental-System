@@ -129,7 +129,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel1.setText("Network");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
 
-        networkJComboBox.setBackground(new java.awt.Color(255, 255, 255));
         networkJComboBox.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         networkJComboBox.setForeground(new java.awt.Color(25, 56, 82));
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -154,7 +153,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel3.setText("Enterprise");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, 20));
 
-        enterpriseJComboBox.setBackground(new java.awt.Color(255, 255, 255));
         enterpriseJComboBox.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         enterpriseJComboBox.setForeground(new java.awt.Color(25, 56, 82));
         enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -220,44 +218,46 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private void btnSubmitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubmitMousePressed
         // TODO add your handling code here:
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
-        if (username.isEmpty() || password.isEmpty() || name.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty() || name.isEmpty()
+                || enterpriseJComboBox.getSelectedItem() == null || networkJComboBox.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(null, "Please enter all fields", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
-            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+            return;
+        }
+        if (!system.checkValidPasswordFormat(password)) {
+            return;
+        }
+        if (!system.checkIfUserIsUnique(username)) {
+            return;
+        }
 
-            if (system.checkIfUserIsUnique(username)) {
-                UserAccount account = null;
-                if (null != enterprise.getEnterpriseType()) {
-                    switch (enterprise.getEnterpriseType()) {
-                        case ServiceProvider:
-                            account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ServiceProviderAdmin());
-                            break;
-                        case Property:
-                            account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PropertyAdmin());
-                            break;
-                        case QualityAssurance:
-                            account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new QAadmin());
-                            break;
-                        case Broker:
-                            account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new BrokerAdmin());
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                usernameJTextField.setText("");
-                passwordJPasswordField.setText("");
-                nameJTextField.setText("");
-                JOptionPane.showMessageDialog(null, "Account created sucessfully");
-                populateTable();
-            } else {
-                JOptionPane.showMessageDialog(null, "Please enter unique username", "Warning", JOptionPane.WARNING_MESSAGE);
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+        UserAccount account = null;
+        if (null != enterprise.getEnterpriseType()) {
+            switch (enterprise.getEnterpriseType()) {
+                case ServiceProvider:
+                    account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ServiceProviderAdmin());
+                    break;
+                case Property:
+                    account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PropertyAdmin());
+                    break;
+                case QualityAssurance:
+                    account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new QAadmin());
+                    break;
+                case Broker:
+                    account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new BrokerAdmin());
+                    break;
+                default:
+                    break;
             }
         }
+        usernameJTextField.setText("");
+        passwordJPasswordField.setText("");
+        nameJTextField.setText("");
+        JOptionPane.showMessageDialog(null, "User Account created sucessfully");
+        populateTable();
     }//GEN-LAST:event_btnSubmitMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
