@@ -202,6 +202,7 @@ public class ManageElectricianJPanel extends javax.swing.JPanel {
         } else if (!system.isDouble(txtCharge.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter valid charge!");
             return;
+            
         } else if(!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5){
             JOptionPane.showMessageDialog(null, "Please enter valid 5 digit zipcode!");
             return;

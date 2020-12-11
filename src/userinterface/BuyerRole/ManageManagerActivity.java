@@ -128,11 +128,11 @@ public class ManageManagerActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
+                "JobID", "Manager", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

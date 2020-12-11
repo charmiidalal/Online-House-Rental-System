@@ -125,24 +125,32 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Name:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 93, -1, -1));
+
+        txtname.setEnabled(false);
         add(txtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 89, 141, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
         jLabel2.setText("Phone:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 152, -1, -1));
+
+        txtPhone.setEnabled(false);
         add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 148, 141, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setText("Address");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 212, -1, -1));
+
+        txtAddress.setEnabled(false);
         add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 208, 140, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 51));
         jLabel9.setText("Zipcode");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 271, -1, -1));
+
+        txtZipcode.setEnabled(false);
         add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 267, 140, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -154,7 +162,11 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(0, 0, 51));
         jLabel5.setText("NationalID");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 365, -1, -1));
+
+        txtId.setEnabled(false);
         add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 361, 140, -1));
+
+        txtEmail.setEnabled(false);
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 317, 140, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N

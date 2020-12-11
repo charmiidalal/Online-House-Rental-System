@@ -66,12 +66,12 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePlum = new javax.swing.JButton();
         hireCleaner = new javax.swing.JButton();
         hireEletrician = new javax.swing.JButton();
+        agentHire = new javax.swing.JButton();
         hirepackerMover = new javax.swing.JButton();
         hireInspector = new javax.swing.JButton();
         hirePhotograph = new javax.swing.JButton();
         hireBuilder = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        agentHire = new javax.swing.JButton();
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -206,6 +206,16 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         });
         add(hireEletrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 190, -1));
 
+        agentHire.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        agentHire.setForeground(new java.awt.Color(41, 50, 80));
+        agentHire.setText("Hire Agent");
+        agentHire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agentHireActionPerformed(evt);
+            }
+        });
+        add(agentHire, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 180, -1));
+
         hirepackerMover.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirepackerMover.setForeground(new java.awt.Color(0, 0, 51));
         hirepackerMover.setText("Hire Packers Movers");
@@ -249,16 +259,6 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property_manager.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 500, 510));
-
-        agentHire.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        agentHire.setForeground(new java.awt.Color(41, 50, 80));
-        agentHire.setText("Hire Agent");
-        agentHire.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agentHireActionPerformed(evt);
-            }
-        });
-        add(agentHire, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 180, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 

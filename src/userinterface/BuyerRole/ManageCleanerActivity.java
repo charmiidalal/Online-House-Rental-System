@@ -106,11 +106,11 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
+                "JobID", "Cleaner", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -179,9 +179,6 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBack1;
-    private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnBack3;
     private javax.swing.JButton btnCompleteJob;
     private javax.swing.JTable houseTable;

@@ -84,19 +84,27 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setText("Street");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
+
+        txtZipcode.setEnabled(false);
         add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 160, -1));
+
+        txtStreet.setEnabled(false);
         add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 160, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 51));
         jLabel4.setText("City:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
+
+        txtCity.setEnabled(false);
         add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 160, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 51));
         jLabel5.setText("State");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, -1, -1));
+
+        txtState.setEnabled(false);
         add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -104,6 +112,7 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
         jLabel6.setText("Phone:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
 
+        txtPhone.setEnabled(false);
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPhoneActionPerformed(evt);
@@ -125,8 +134,11 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
         jLabel2.setText("Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, -1, -1));
+
+        txtEmail.setEnabled(false);
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 160, -1));
 
+        txtName.setEnabled(false);
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);

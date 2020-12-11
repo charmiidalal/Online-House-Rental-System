@@ -164,7 +164,10 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         // Buyer buyer = (this.buyerDirectory.getBuyer(name)) == null ? new Buyer() : this.buyerDirectory.getBuyer(name);
         if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || zipcode.isEmpty() || nationalId.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
-        } else {
+        } else if(!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5){
+            JOptionPane.showMessageDialog(null, "Please enter valid 5 digit zipcode!");
+            return;
+        }else{
             useraccount.setName(name);
             useraccount.setPhone(phone);
             useraccount.setEmail(email);

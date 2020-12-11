@@ -74,7 +74,7 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(25, 56, 82));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("MANAGE VOLUNTARY UNIT USERS ACCOUNT");
+        jLabel5.setText("MANAGE QUALITY ASSURANCE USERS ACCOUNT");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 638, -1));
 
         jScrollPane1.setForeground(new java.awt.Color(0, 102, 255));
