@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Enterprise.Enterprise;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import Business.GovermentEmployee.GovermentEmployeeDirectory;
 import Business.Organization.OrganizationDirectory;
 import Business.Property.PropertyDirectory;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -41,9 +43,6 @@ public class EcoSystem extends Organization {
     private GovermentEmployeeDirectory govermentEmployeeDirectory;
     private PropertyDirectory propertyDirectory;
 
-
-
-  
     private ArrayList<Network> networkList;
 
     public OrganizationDirectory getOrganizationDirectory() {
@@ -60,11 +59,11 @@ public class EcoSystem extends Organization {
         }
         return business;
     }
-    
+
     public static void setInstance(EcoSystem system) {
         business = system;
     }
-    
+
     public Network createAndAddNetwork() {
         Network network = new Network();
         networkList.add(network);
@@ -99,18 +98,65 @@ public class EcoSystem extends Organization {
     public void setEnterpriseDirectory(EnterpriseDirectory enterpriseDirectory) {
         this.enterpriseDirectory = enterpriseDirectory;
     }
-   
-    public boolean checkIfUserIsUnique(String userName) {
-        if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
-            return false;
-        }
-        for (Network network : networkList) {
 
+    public boolean checkIfUserIsUnique(String userName) {
+        for (Network n : business.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount u : o.getUserAccountDirectory().getUserAccountList()) {
+                        if (u.getUsername().equals(userName)) {
+                            return false;
+                        }
+                    }
+                }
+            }
         }
         return true;
     }
-    
-   
+
+    public boolean checkIfPhoneIsUnique(String phone) {
+        for (Network n : business.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount u : o.getUserAccountDirectory().getUserAccountList()) {
+                        if (u.getPhone() != null) {
+                            if (u.getPhone().equals(phone)) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean checkIfPasswordIsValid(String passwordValue) {
+        Pattern pattern;
+        Matcher matcher;
+        String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(passwordValue);
+        return matcher.matches();
+    }
+
+    public boolean checkIfEmailIsUnique(String email) {
+        for (Network n : business.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount u : o.getUserAccountDirectory().getUserAccountList()) {
+                        if (u.getEmail() != null) {
+                            if (u.getEmail().equals(email)) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     public GovermentEmployeeDirectory getGovermentEmployeeDirectory() {
         return govermentEmployeeDirectory;
     }
@@ -127,10 +173,6 @@ public class EcoSystem extends Organization {
         this.propertyDirectory = propertyDirectory;
     }
 
-  
-
-    
-    
     public Boolean checkValidPhoneFormat(String phoneNo) {
         Pattern pattern;
         Matcher matcher;
@@ -168,16 +210,48 @@ public class EcoSystem extends Organization {
             txtBoxName.setBorder(BorderFactory.createLineBorder(Color.black));
         }
     }
-    
-    public boolean checkExistingNetwork(String name){
-        for(Network network : networkList){
-            if(network.getName().equalsIgnoreCase(name)){
+
+    public boolean checkExistingNetwork(String name) {
+        for (Network network : networkList) {
+            if (network.getName().equalsIgnoreCase(name)) {
                 return false;
             }
         }
         return true;
     }
-    
+
+    public boolean isDouble(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isInt(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isNull(String strNum) {
+        if (strNum.trim().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static void sendEmailMessage(String emailId, String body) {
         String to = emailId;
         String from = "doneverevereply@gmail.com";

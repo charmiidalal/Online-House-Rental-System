@@ -45,12 +45,12 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         txtName.setText(userAccount.getName());
         txtCharge.setText(userAccount.getCharge());
         txtCity.setText(userAccount.getCity());
-        txtStatus.setText(userAccount.getState());
+        txtStatus.setText(userAccount.getStatus());
         txtZipcode.setText(userAccount.getZipcode());
         txtStreet.setText(userAccount.getStreet());
         txtEmail.setText(userAccount.getEmail());
         txtPhone.setText(userAccount.getPhone());
-        txtStatus.setText(userAccount.getStatus());
+        txtState.setText(userAccount.getState());
     }
 
     /**
@@ -79,11 +79,11 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtStatus = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
         txtCity = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        btnSave = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -160,17 +160,6 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         txtStatus.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 369, 180, -1));
 
-        btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(41, 50, 80));
-        btnSave.setText("Save");
-        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(676, 398, -1, -1));
-
         txtCity.setBackground(new java.awt.Color(153, 204, 255));
         txtCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +183,17 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
         jLabel11.setForeground(new java.awt.Color(25, 56, 82));
         jLabel11.setText("CLEANER PROFILE");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+
+        btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(41, 50, 80));
+        btnSave.setText("Save");
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 550, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
@@ -202,38 +202,43 @@ public class ManageCleaningJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-
-        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                String role = ua.getRole().toString();
-                if ("Cleaning".equals(role)) {
-                    try {
-                        if (!ua.getPhone().equalsIgnoreCase(txtPhone.getText())) {
-                            JOptionPane.showMessageDialog(null, "Phone number already exists!Please enter another Phone number");
-                            break;
-                        } 
-                     } catch (NullPointerException ex) {
-                        System.out.println("phone number exists");
-                    }}}}
-                
-            
-                            userAccount.setName(txtName.getText());
-                            userAccount.setCharge(txtCharge.getText());
-                            userAccount.setCity(txtCity.getText());
-                            userAccount.setStatus(txtStatus.getText());
-                            userAccount.setZipcode(txtZipcode.getText());
-                            userAccount.setStreet(txtStreet.getText());
-                            userAccount.setEmail(txtEmail.getText());
-                            userAccount.setPhone(txtPhone.getText());
-                            userAccount.setState(txtState.getText());
-                            JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
-                        
-
-                   
-
-        
-
-
+        if (system.isNull(txtName.getText()) || system.isNull(txtCharge.getText()) || system.isNull(txtCity.getText())
+                || system.isNull(txtStatus.getText()) || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
+                || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+            return;
+        } else if (!system.isDouble(txtCharge.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid charge!");
+            return;
+        } else if (!system.isInt(txtZipcode.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        } else if (!system.isInt(txtZipcode.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        } else if (!system.checkValidPhoneFormat(txtPhone.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid phone format!");
+            return;
+        } else if (!system.checkValidEmailFormat(txtEmail.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid email format!");
+            return;
+        } else if (!system.checkIfEmailIsUnique(TOOL_TIP_TEXT_KEY)) {
+            JOptionPane.showMessageDialog(null, "Sorry this email address already exists in our system!");
+            return;
+        } else if (!system.checkIfPhoneIsUnique(TOOL_TIP_TEXT_KEY)) {
+            JOptionPane.showMessageDialog(null, "Sorry this phone number already exists in our system!");
+            return;
+        }
+        userAccount.setName(txtName.getText());
+        userAccount.setCharge(txtCharge.getText());
+        userAccount.setCity(txtCity.getText());
+        userAccount.setStatus(txtStatus.getText());
+        userAccount.setZipcode(txtZipcode.getText());
+        userAccount.setStreet(txtStreet.getText());
+        userAccount.setEmail(txtEmail.getText());
+        userAccount.setPhone(txtPhone.getText());
+        userAccount.setState(txtState.getText());
+        JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed

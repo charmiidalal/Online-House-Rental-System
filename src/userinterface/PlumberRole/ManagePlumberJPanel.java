@@ -28,7 +28,7 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageElectricianJPanel
      */
-   public ManagePlumberJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
+    public ManagePlumberJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -42,12 +42,12 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
         txtName.setText(userAccount.getName());
         txtCharge.setText(userAccount.getCharge());
         txtCity.setText(userAccount.getCity());
-        txtStatus.setText(userAccount.getState());
+        txtStatus.setText(userAccount.getStatus());
         txtZipcode.setText(userAccount.getZipcode());
         txtStreet.setText(userAccount.getStreet());
         txtEmail.setText(userAccount.getEmail());
         txtPhone.setText(userAccount.getPhone());
-        txtStatus.setText(userAccount.getStatus());
+        txtState.setText(userAccount.getState());
     }
 
     /**
@@ -163,7 +163,7 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, -1, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
 
         txtStreet.setBackground(new java.awt.Color(153, 204, 255));
         add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 150, -1));
@@ -173,7 +173,7 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, 60));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumber_op.png"))); // NOI18N
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 700, 320));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 700, 320));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
@@ -182,7 +182,34 @@ public class ManagePlumberJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       userAccount.setName(txtName.getText());
+        if (system.isNull(txtName.getText()) || system.isNull(txtCharge.getText()) || system.isNull(txtCity.getText())
+                || system.isNull(txtStatus.getText()) || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
+                || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+            return;
+        } else if (!system.isDouble(txtCharge.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid charge!");
+            return;
+        } else if (!system.isInt(txtZipcode.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        } else if (!system.isInt(txtZipcode.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        } else if (!system.checkValidPhoneFormat(txtPhone.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid phone format!");
+            return;
+        } else if (!system.checkValidEmailFormat(txtEmail.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter valid email format!");
+            return;
+        } else if (!system.checkIfEmailIsUnique(TOOL_TIP_TEXT_KEY)) {
+            JOptionPane.showMessageDialog(null, "Sorry this email address already exists in our system!");
+            return;
+        } else if (!system.checkIfPhoneIsUnique(TOOL_TIP_TEXT_KEY)) {
+            JOptionPane.showMessageDialog(null, "Sorry this phone number already exists in our system!");
+            return;
+        }
+        userAccount.setName(txtName.getText());
         userAccount.setCharge(txtCharge.getText());
         userAccount.setCity(txtCity.getText());
         userAccount.setStatus(txtStatus.getText());

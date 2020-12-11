@@ -8,7 +8,6 @@ package userinterface.UserRegistration;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
-//import Business.Location.LocationPoint;
 import Business.Network.Network;
 import Business.Organization.AgentOrganization;
 import Business.Organization.BuilderOrganization;
@@ -20,19 +19,8 @@ import Business.UserAccount.UserAccount;
 import Business.Utils.Validation;
 import Business.WorkQueue.UserRegistrationRequest;
 import Business.WorkQueue.WorkQueue;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -49,6 +37,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
     private boolean phoneValidation;
     private boolean userUniqueCheck;
     private boolean passwordCheck;
+    private boolean flag = false;
 
     /**
      * Creates new form UserRegistrationJPanel
@@ -60,7 +49,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         validation = new Validation();
         populateNetworkComboBox();
         populateOrgTypes();
-        disableLabels();
     }
 
     public void populateNetworkComboBox() {
@@ -82,24 +70,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         orgCombo.addItem(Organization.Type.Inspector);
         orgCombo.addItem(Organization.Type.Buyer);
         orgCombo.addItem(Organization.Type.Seller);
-
-    }
-
-    private void disableLabels() {
-        duplicateUsernamelbl.setVisible(false);
-        usernameSuccesslbl1.setVisible(false);
-
-        emailFormatErrlbl.setVisible(false);
-        emailSuccesslbl.setVisible(false);
-
-        orgErrlbl1.setVisible(false);
-        stateErrlbl.setVisible(false);
-
-        passwordErrlbl.setVisible(false);
-        passwordSuccesslbl.setVisible(false);
-
-        phoneErrlbl.setVisible(false);
-        phoneSuccesslbl.setVisible(false);
     }
 
     /**
@@ -130,16 +100,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         orgCombo = new javax.swing.JComboBox();
-        stateErrlbl = new javax.swing.JLabel();
-        emailFormatErrlbl = new javax.swing.JLabel();
-        emailSuccesslbl = new javax.swing.JLabel();
-        passwordSuccesslbl = new javax.swing.JLabel();
-        duplicateUsernamelbl = new javax.swing.JLabel();
-        orgErrlbl1 = new javax.swing.JLabel();
-        passwordErrlbl = new javax.swing.JLabel();
-        usernameSuccesslbl1 = new javax.swing.JLabel();
-        phoneSuccesslbl = new javax.swing.JLabel();
-        phoneErrlbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -323,48 +283,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         });
         add(orgCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 250, 35));
 
-        stateErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        stateErrlbl.setForeground(new java.awt.Color(255, 0, 0));
-        stateErrlbl.setText("Please  select a state to proceed!");
-        add(stateErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, 210, 20));
-
-        emailFormatErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        emailFormatErrlbl.setForeground(new java.awt.Color(255, 0, 0));
-        emailFormatErrlbl.setText("Email format incorrect- xxx@xxx.com");
-        add(emailFormatErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 350, 250, 20));
-
-        emailSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/tick1.4.gif"))); // NOI18N
-        add(emailSuccesslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 30, 30));
-
-        passwordSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/tick1.4.gif"))); // NOI18N
-        add(passwordSuccesslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 290, 40, 40));
-
-        duplicateUsernamelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        duplicateUsernamelbl.setForeground(new java.awt.Color(255, 0, 0));
-        duplicateUsernamelbl.setText("Username already exists!Please use other to continue.");
-        add(duplicateUsernamelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 240, 280, 20));
-
-        orgErrlbl1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        orgErrlbl1.setForeground(new java.awt.Color(255, 0, 0));
-        orgErrlbl1.setText("Please  select an organisation to proceed!");
-        add(orgErrlbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 120, 210, 20));
-
-        passwordErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        passwordErrlbl.setForeground(new java.awt.Color(255, 51, 51));
-        passwordErrlbl.setText("Password format is incorrect - Atleast 1 uppercase,1lowercase,alphanumerics and @$!%*?& with minimum 8  characters");
-        add(passwordErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 640, 50));
-
-        usernameSuccesslbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/tick1.4.gif"))); // NOI18N
-        add(usernameSuccesslbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 230, 40, 40));
-
-        phoneSuccesslbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/tick1.4.gif"))); // NOI18N
-        add(phoneSuccesslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 510, 40, 40));
-
-        phoneErrlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        phoneErrlbl.setForeground(new java.awt.Color(255, 0, 0));
-        phoneErrlbl.setText("Please enter valid phone number!");
-        add(phoneErrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 520, 280, 20));
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/sun.png"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -380,7 +298,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                 } else if (o instanceof PropertyManagerOrganization) {
                     orgCombo.addItem(Organization.Type.PropertyManager);
                 }
-
             }
         }
     }//GEN-LAST:event_stateComboActionPerformed
@@ -389,124 +306,90 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
         Network network = (Network) stateCombo.getSelectedItem();
         Organization.Type type = (Organization.Type) orgCombo.getSelectedItem();
-        if (network == null) {
-            stateCombo.setBorder(BorderFactory.createLineBorder(Color.RED));
-            stateCombo.setForeground(Color.red);
-            //JOptionPane.showMessageDialog(null, "ERROR!", "Please select a network!",JOptionPane.ERROR_MESSAGE);
-            orgErrlbl1.setVisible(true);
-        }
-        if (type == null) {
-            orgCombo.setBorder(BorderFactory.createLineBorder(Color.RED));
-            orgCombo.setForeground(Color.red);
-            // JOptionPane.showMessageDialog(null, "ERROR!", "Please select an ogranisation!",JOptionPane.ERROR_MESSAGE);
-            stateErrlbl.setVisible(true);
-        }
-        orgErrlbl1.setVisible(false);
-        stateErrlbl.setVisible(false);
         String emailAddress = txtEmail.getText();
         String username = txtUsername.getText();
         String name = txtName.getText();
         String password = txtPassword.getText();
         String phone = txtContact.getText();
         String city = txtCity.getText();
-
-        if (name.isEmpty()) {
-            txtName.setBorder(BorderFactory.createLineBorder(Color.RED));
-            txtName.setForeground(Color.red);
-
+        if (network == null || type == null || name.isEmpty() || username.isEmpty() || password.isEmpty() || emailAddress.isEmpty()
+                || city.isEmpty() || phone.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All of the above the fields are required for registration!!", "Error!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        if (username.isEmpty()) {
-            txtUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
-            txtUsername.setForeground(Color.red);
-
+        if (!this.system.checkValidEmailFormat(emailAddress)) {
+            JOptionPane.showMessageDialog(null, "Please enter valid format of email! Ex: hello@hello.com", "Error!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        if (password.isEmpty()) {
-            txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
-            txtPassword.setForeground(Color.red);
-
+        if (!this.system.checkValidPhoneFormat(phone)) {
+            JOptionPane.showMessageDialog(null, "Please enter valid format of phone! Ex: 9876543210", "Error!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        if (emailAddress.isEmpty()) {
-            txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED));
-            txtEmail.setForeground(Color.red);
-
+        if (!this.system.checkIfPasswordIsValid(password)) {
+            JOptionPane.showMessageDialog(null, "Please enter valid format of password! Ex: Hello@123", "Error!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        if (city.isEmpty()) {
-            txtCity.setBorder(BorderFactory.createLineBorder(Color.RED));
-            txtCity.setForeground(Color.red);
-
+        if (!this.system.checkIfUserIsUnique(username)) {
+            JOptionPane.showMessageDialog(null, "Sorry! This Username already exists in our system", "Error!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        if (type == null) {
-            orgCombo.setBorder(BorderFactory.createLineBorder(Color.RED));
-            orgCombo.setForeground(Color.red);
-
+        if (!this.system.checkIfEmailIsUnique(emailAddress)) {
+            JOptionPane.showMessageDialog(null, "Sorry! This Email Address already exists in our system", "Error!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        if (phone.isEmpty()) {
-            txtContact.setBorder(BorderFactory.createLineBorder(Color.RED));
-            txtContact.setForeground(Color.red);
-
+        if (!this.system.checkIfPhoneIsUnique(phone)) {
+            JOptionPane.showMessageDialog(null, "Sorry! This Contact Number already exists in our system", "Error!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        if (username.isEmpty() || name.isEmpty()
-                || password.isEmpty()
-                || emailAddress.isEmpty()
-                || city.isEmpty()
-                || type == null
-                || phone.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter all the fields for registeration!", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (emailIDValidation && userUniqueCheck && phoneValidation && passwordCheck) {
-            if (Organization.Type.Buyer == type) {
-                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
-                        Organization org = enterprise.getOrganizationDirectory().createOrganization(type, name);
-                        Employee emp = org.getEmployeeDirectory().createEmployee(name);
-                        UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(username, password, emp, new BuyerRole());
-                        String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account is activated. Happy Housing!";
-                        sendEmailMessage(emailAddress, bodyMsg);
-                        SendSMS sendSMS = new SendSMS(phone, bodyMsg);
-                    }
+        if (Organization.Type.Buyer == type) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
+                    Organization org = enterprise.getOrganizationDirectory().createOrganization(type, name);
+                    Employee emp = org.getEmployeeDirectory().createEmployee(name);
+                    UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(username, password, emp, new BuyerRole());
+                    String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account is activated. Happy Housing!";
+                    system.sendEmailMessage(emailAddress, bodyMsg);
+                    SendSMS sendSMS = new SendSMS(phone, bodyMsg);
                 }
-            } else {
-                UserRegistrationRequest registrationRequest = new UserRegistrationRequest();
-                registrationRequest.setName(name);
-                registrationRequest.setUserName(username);
-                registrationRequest.setUserPassword(password);
-                registrationRequest.setUserEmailId(emailAddress);
-                registrationRequest.setNetwork(network);
-                registrationRequest.setUserCity(city);
-                registrationRequest.setOrgType(type);
-                registrationRequest.setStatus("Requested");
-                registrationRequest.setUserContact(phone);
-                String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.";
-                sendEmailMessage(emailAddress, bodyMsg);
-                SendSMS sendSMS = new SendSMS(phone, bodyMsg);
+            }
+        } else {
+            UserRegistrationRequest registrationRequest = new UserRegistrationRequest();
+            registrationRequest.setName(name);
+            registrationRequest.setUserName(username);
+            registrationRequest.setUserPassword(password);
+            registrationRequest.setUserEmailId(emailAddress);
+            registrationRequest.setNetwork(network);
+            registrationRequest.setUserCity(city);
+            registrationRequest.setOrgType(type);
+            registrationRequest.setStatus("Requested");
+            registrationRequest.setUserContact(phone);
 
-                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                        if (org.getType() == type) {
-                            if (enterprise.getWorkQueue() == null) {
-                                enterprise.setWorkQueue(new WorkQueue());
-                            }
-                            enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (org.getType() == type) {
+                        if (enterprise.getWorkQueue() == null) {
+                            enterprise.setWorkQueue(new WorkQueue());
                         }
+                        flag = true;
+                        enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
                     }
                 }
             }
-            JOptionPane.showMessageDialog(null, "You have been registered succesfully!");
-            txtName.setText("");
-            txtUsername.setText("");
-            txtPassword.setText("");
-            txtEmail.setText("");
-            txtCity.setText("");
-            txtContact.setText("");
         }
-
-
+        if (flag) {
+            String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.";
+            system.sendEmailMessage(emailAddress, bodyMsg);
+            SendSMS sendSMS = new SendSMS(phone, bodyMsg);
+            JOptionPane.showMessageDialog(null, "You have been registered succesfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Sorry! No such Organization is created by the enterprise");
+        }
+        txtName.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtEmail.setText("");
+        txtCity.setText("");
+        txtContact.setText("");
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -518,71 +401,38 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNameKeyPressed
 
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
-        // TODO add your handling code here:
-        txtName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        txtName.setForeground(Color.black);
+        // TODO add your handling code here
     }//GEN-LAST:event_txtNameKeyTyped
 
     private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
         // TODO add your handling code here:
-        txtUsername.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        txtUsername.setForeground(Color.black);
+
     }//GEN-LAST:event_txtUsernameKeyTyped
 
     private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
         // TODO add your handling code here:
-        txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        txtPassword.setForeground(Color.BLACK);
 
     }//GEN-LAST:event_txtPasswordKeyTyped
 
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
         // TODO add your handling code here:
-        txtEmail.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        txtEmail.setForeground(Color.BLACK);
 
     }//GEN-LAST:event_txtEmailKeyTyped
 
     private void stateComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stateComboItemStateChanged
         // TODO add your handling code here:
-        stateCombo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        stateCombo.setForeground(Color.BLACK);
     }//GEN-LAST:event_stateComboItemStateChanged
 
     private void txtCityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCityKeyTyped
-        // TODO add your handling code here:
-        txtCity.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        txtCity.setForeground(Color.BLACK);
+        // TODO add your handling code here
     }//GEN-LAST:event_txtCityKeyTyped
 
     private void txtContactKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactKeyTyped
-        // TODO add your handling code here:   
-        txtContact.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        txtContact.setForeground(Color.BLACK);
+        // TODO add your handling code here: 
     }//GEN-LAST:event_txtContactKeyTyped
 
     private void txtUsernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyReleased
         // TODO add your handling code here:
-        if (!system.checkIfUserIsUnique(txtUsername.getText())) {
-            duplicateUsernamelbl.setVisible(true);
-            usernameSuccesslbl1.setVisible(false);
-            userUniqueCheck = false;
-        } else {
-            txtUsername.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            txtUsername.setForeground(Color.BLACK);
-            duplicateUsernamelbl.setVisible(false);
-            usernameSuccesslbl1.setVisible(true);
-            userUniqueCheck = true;
-            int delay = 3500; //milliseconds
-            ActionListener taskPerformer = new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    usernameSuccesslbl1.setVisible(false);
-                }
-            };
-            javax.swing.Timer tick = new javax.swing.Timer(delay, taskPerformer);
-            tick.setRepeats(false);
-            tick.start();
-        }
     }//GEN-LAST:event_txtUsernameKeyReleased
 
 
@@ -592,27 +442,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
     private void txtContactKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactKeyReleased
         // TODO add your handling code here:
-        phoneValidation = PhoneNumberCheck(txtContact.getText());
-        if (phoneValidation == false) {
-            phoneErrlbl.setVisible(true);
-            phoneSuccesslbl.setVisible(false);
-            phoneValidation = false;
-        } else {
-            txtContact.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            txtContact.setForeground(Color.BLACK);
-            phoneErrlbl.setVisible(false);
-            phoneSuccesslbl.setVisible(true);
-            phoneValidation = true;
-            int delay = 3500; //milliseconds
-            ActionListener taskPerformer = new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    phoneSuccesslbl.setVisible(false);
-                }
-            };
-            javax.swing.Timer tick = new javax.swing.Timer(delay, taskPerformer);
-            tick.setRepeats(false);
-            tick.start();
-        }
     }//GEN-LAST:event_txtContactKeyReleased
 
     private void txtContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactActionPerformed
@@ -621,8 +450,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
     private void orgComboKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_orgComboKeyTyped
         // TODO add your handling code here:
-        orgCombo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        orgCombo.setForeground(Color.BLACK);
     }//GEN-LAST:event_orgComboKeyTyped
 
     private void orgComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgComboActionPerformed
@@ -631,134 +458,20 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
     private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
         // TODO add your handling code here:
-        passwordCheck = passwordValidator(txtPassword.getText());
-        if (passwordCheck == false) {
-            passwordErrlbl.setVisible(true);
-            passwordSuccesslbl.setVisible(false);
-            passwordCheck = false;
-        } else {
-            txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            txtPassword.setForeground(Color.BLACK);
-            passwordErrlbl.setVisible(false);
-            passwordSuccesslbl.setVisible(true);
-            passwordCheck = true;
-            int delay = 3500; //milliseconds
-            ActionListener taskPerformer = new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    passwordSuccesslbl.setVisible(false);
-                }
-            };
-            javax.swing.Timer tick = new javax.swing.Timer(delay, taskPerformer);
-            tick.setRepeats(false);
-            tick.start();
-        }
     }//GEN-LAST:event_txtPasswordKeyReleased
 
     private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
         // TODO add your handling code here:
-        emailIDValidation = emailValidator(txtEmail.getText());
-        if (emailIDValidation == false) {
-            emailFormatErrlbl.setVisible(true);
-            emailSuccesslbl.setVisible(false);
-            emailIDValidation = false;
-        } else {
-            txtEmail.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            txtEmail.setForeground(Color.BLACK);
-            emailFormatErrlbl.setVisible(false);
-            emailSuccesslbl.setVisible(true);
-            emailIDValidation = true;
-            int delay = 3500; //milliseconds
-            ActionListener taskPerformer = new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    emailSuccesslbl.setVisible(false);
-                }
-            };
-            javax.swing.Timer tick = new javax.swing.Timer(delay, taskPerformer);
-            tick.setRepeats(false);
-            tick.start();
-        }
     }//GEN-LAST:event_txtEmailKeyReleased
 
     private void stateComboKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stateComboKeyReleased
         // TODO add your handling code here:
-        if (orgCombo.getSelectedItem() == null) {
-            orgCombo.setBorder(BorderFactory.createLineBorder(Color.RED));
-            orgCombo.setForeground(Color.red);
-            stateErrlbl.setVisible(true);
-        } else {
-            orgCombo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            orgCombo.setForeground(Color.BLACK);
-        }
-
     }//GEN-LAST:event_stateComboKeyReleased
 
-    public static void sendEmailMessage(String emailId, String body) {
-        String to = emailId;
-        String from = "doneverevereply@gmail.com";
-        String pass = "Hello@123";
-
-        Properties properties = System.getProperties();
-        String host = "smtp.gmail.com";
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.ssl.trust", host);
-        properties.put("mail.smtp.user", from);
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.auth", "true");
-
-        Session session = Session.getDefaultInstance(properties);
-        try {
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("New User Registration");
-            message.setText(body);
-            Transport transport = session.getTransport("smtp");
-            transport.connect(host, from, pass);
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
-            System.out.println("Sent message successfully....");
-        } catch (MessagingException mex) {
-            JOptionPane.showMessageDialog(null, "Invalid Email Address");
-        }
-    }
-
-    private boolean PhoneNumberCheck(String phone) {
-        String regex = "^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
-        Pattern pattern = Pattern.compile(regex);
-
-        Matcher matcher = pattern.matcher(phone);
-        if (matcher.matches()) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean passwordValidator(String passwordValue) {
-        Pattern pattern;
-        Matcher matcher;
-        String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$";
-        //  = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=~|?])(?=\\S+$).{8,}$";
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(passwordValue);
-        return matcher.matches();
-    }
-
-    private boolean emailValidator(String email) {
-        Pattern pattern;
-        Matcher matcher;
-        String EMAIL_PATTERN
-                = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-        pattern = Pattern.compile(EMAIL_PATTERN);
-        matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UsrNameLabel;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JLabel duplicateUsernamelbl;
-    private javax.swing.JLabel emailFormatErrlbl;
-    private javax.swing.JLabel emailSuccesslbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -769,20 +482,13 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JComboBox orgCombo;
-    private javax.swing.JLabel orgErrlbl1;
-    private javax.swing.JLabel passwordErrlbl;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JLabel passwordSuccesslbl;
-    private javax.swing.JLabel phoneErrlbl;
-    private javax.swing.JLabel phoneSuccesslbl;
     private javax.swing.JComboBox stateCombo;
-    private javax.swing.JLabel stateErrlbl;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtContact;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
-    private javax.swing.JLabel usernameSuccesslbl1;
     // End of variables declaration//GEN-END:variables
 }
