@@ -41,12 +41,12 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
         txtName.setText(userAccount.getName());
         txtCharge.setText(userAccount.getCharge());
         txtCity.setText(userAccount.getCity());
-        txtState.setText(userAccount.getState());
+        txtStatus.setText(userAccount.getStatus());
         txtZipcode.setText(userAccount.getZipcode());
         txtStreet.setText(userAccount.getStreet());
         txtEmail.setText(userAccount.getEmail());
         txtPhone.setText(userAccount.getPhone());
-        txtStatus.setText(userAccount.getStatus());
+        txtState.setText(userAccount.getState());
     }
 
     /**
@@ -188,6 +188,33 @@ public class ManageInspectorProfileJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        if(system.isNull(txtName.getText()) || system.isNull(txtCharge.getText()) || system.isNull(txtCity.getText())
+           || system.isNull(txtStatus.getText()) || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
+           || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+            return;
+        }else if(!system.isDouble(txtCharge.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid charge!");
+            return;
+        }else if(!system.isInt(txtZipcode.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        }else if(!system.isInt(txtZipcode.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        }else if(!system.checkValidPhoneFormat(txtPhone.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid phone format!");
+            return;
+        }else if(!system.checkValidEmailFormat(txtEmail.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid email format!");
+            return;
+        }else if(!system.checkIfEmailIsUnique(TOOL_TIP_TEXT_KEY)){
+            JOptionPane.showMessageDialog(null, "Sorry this email address already exists in our system!");
+            return;
+        }else if(!system.checkIfPhoneIsUnique(TOOL_TIP_TEXT_KEY)){
+            JOptionPane.showMessageDialog(null, "Sorry this phone number already exists in our system!");
+            return;
+        }
         userAccount.setName(txtName.getText());
         userAccount.setCharge(txtCharge.getText());
         userAccount.setCity(txtCity.getText());

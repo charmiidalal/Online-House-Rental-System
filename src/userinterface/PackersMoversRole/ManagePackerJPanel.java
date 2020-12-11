@@ -5,7 +5,6 @@
  */
 package userinterface.PackersMoversRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 
@@ -29,7 +28,7 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageElectricianJPanel
      */
-   public ManagePackerJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
+    public ManagePackerJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -43,13 +42,14 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
         txtName.setText(userAccount.getName());
         txtCharge.setText(userAccount.getCharge());
         txtCity.setText(userAccount.getCity());
-        txtStatus.setText(userAccount.getState());
+        txtStatus.setText(userAccount.getStatus());
         txtZipcode.setText(userAccount.getZipcode());
         txtStreet.setText(userAccount.getStreet());
         txtEmail.setText(userAccount.getEmail());
         txtPhone.setText(userAccount.getPhone());
-        txtStatus.setText(userAccount.getStatus());
+        txtState.setText(userAccount.getState());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +59,6 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        checkbox1 = new java.awt.Checkbox();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -82,42 +81,42 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
-        checkbox1.setLabel("checkbox1");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(241, 241, 242));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setText("Name:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 84, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 89, -1, -1));
 
         txtName.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 84, 149, -1));
+        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 84, 149, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel3.setText("Street");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 159, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         txtStreet.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 159, 149, -1));
+        jPanel1.add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 165, 149, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel4.setText("City:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 229, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 246, -1, -1));
 
         txtCity.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 229, 149, -1));
+        jPanel1.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 241, 149, -1));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel5.setText("State");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 323, -1, -1));
 
         txtStatus.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 361, 149, -1));
+        jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 385, 149, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel6.setText("Phone:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 84, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 89, -1, -1));
 
         txtPhone.setBackground(new java.awt.Color(153, 204, 255));
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
@@ -125,28 +124,28 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
                 txtPhoneActionPerformed(evt);
             }
         });
-        jPanel1.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 84, 149, -1));
+        jPanel1.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 84, 149, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel7.setText("Email:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 159, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 170, -1, -1));
 
         txtEmail.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 159, 149, -1));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 165, 149, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel8.setText("Zipcode:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 229, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 246, -1, -1));
 
         txtZipcode.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 229, 149, -1));
+        jPanel1.add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 241, 149, -1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel9.setText("Charge:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 300, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 323, -1, -1));
 
         txtCharge.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 300, 149, -1));
+        jPanel1.add(txtCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 318, 149, -1));
 
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
@@ -157,14 +156,14 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 429, -1, -1));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 455, -1, -1));
 
         txtState.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 300, 149, -1));
+        jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 318, 149, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel10.setText("Status");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 361, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -172,20 +171,7 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
         jLabel11.setText("PACKER PROFILE");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 25, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 968, 556));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
@@ -194,7 +180,34 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       userAccount.setName(txtName.getText());
+        if(system.isNull(txtName.getText()) || system.isNull(txtCharge.getText()) || system.isNull(txtCity.getText())
+           || system.isNull(txtStatus.getText()) || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
+           || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+            return;
+        }else if(!system.isDouble(txtCharge.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid charge!");
+            return;
+        }else if(!system.isInt(txtZipcode.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        }else if(!system.isInt(txtZipcode.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        }else if(!system.checkValidPhoneFormat(txtPhone.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid phone format!");
+            return;
+        }else if(!system.checkValidEmailFormat(txtEmail.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid email format!");
+            return;
+        }else if(!system.checkIfEmailIsUnique(TOOL_TIP_TEXT_KEY)){
+            JOptionPane.showMessageDialog(null, "Sorry this email address already exists in our system!");
+            return;
+        }else if(!system.checkIfPhoneIsUnique(TOOL_TIP_TEXT_KEY)){
+            JOptionPane.showMessageDialog(null, "Sorry this phone number already exists in our system!");
+            return;
+        }
+        userAccount.setName(txtName.getText());
         userAccount.setCharge(txtCharge.getText());
         userAccount.setCity(txtCity.getText());
         userAccount.setStatus(txtStatus.getText());
@@ -209,7 +222,6 @@ public class ManagePackerJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
-    private java.awt.Checkbox checkbox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

@@ -49,6 +49,13 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
+    
+    private void manageProfile() {
+        ManageBuyerProfileJPanel manageSellerProfileJPanel = new ManageBuyerProfileJPanel(userProcessContainer, system, account);
+        rightSystemAdminPanel.add("ManageInspectorJPanel", manageSellerProfileJPanel);
+        CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
+        layout.next(rightSystemAdminPanel);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,6 +79,8 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         manageEmployeeLabel1 = new javax.swing.JLabel();
+        manageProfile = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         rightSystemAdminPanel = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1338, 840));
@@ -179,7 +188,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 280, 60));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 280, 60));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("BUYER MANAGEMENT");
@@ -236,6 +245,17 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
+        manageProfile.setBackground(new java.awt.Color(255, 213, 90));
+        manageProfile.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        manageProfile.setText("Manage Profile");
+        manageProfile.setPreferredSize(new java.awt.Dimension(115, 16));
+        jPanel3.add(manageProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+
+        jLabel7.setBackground(new java.awt.Color(255, 213, 90));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/icons8-houses-48.png"))); // NOI18N
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, -1, -1));
+
         rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
@@ -286,6 +306,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageOrganizationPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageOrganizationPanel1MousePressed
         // TODO add your handling code here:
+        manageProfile();
     }//GEN-LAST:event_manageOrganizationPanel1MousePressed
 
 
@@ -294,6 +315,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -303,6 +325,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel manageOrganization;
     private javax.swing.JPanel manageOrganizationPanel;
     private javax.swing.JPanel manageOrganizationPanel1;
+    private javax.swing.JLabel manageProfile;
     private javax.swing.JPanel rightSystemAdminPanel;
     private javax.swing.JPanel systemAdminPanel;
     // End of variables declaration//GEN-END:variables

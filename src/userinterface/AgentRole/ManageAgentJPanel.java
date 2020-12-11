@@ -5,9 +5,6 @@
  */
 package userinterface.AgentRole;
 
-
-
-
 import Business.EcoSystem;
 
 import Business.Enterprise.Enterprise;
@@ -29,42 +26,37 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount userAccount;
- 
+
     private PropertyDirectory propertyDirectory;
-   
+
     private Enterprise enterprise;
 
     /**
      * Creates new form ManagePlumberJPanel
      */
-    public ManageAgentJPanel(JPanel userProcess, EcoSystem system,Enterprise enterprise, UserAccount userAccount) {
+    public ManageAgentJPanel(JPanel userProcess, EcoSystem system, Enterprise enterprise, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.enterprise=enterprise;
+        this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-       
+
         populateRequestTable();
     }
 
     public void populateRequestTable() {
-       // Agent agent = agentDirectory.fetchAgent(userAccount.getEmployee().getName());
-       for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                String role = ua.getRole().toString();
-                if ("Agent".equals(role)) {
-       
-        txtName.setText(ua.getName());
-        txtCharge.setText(ua.getCharge());
-        txtCity.setText(ua.getCity());
-        txtStatus.setText(ua.getState());
-        txtZipcode.setText(ua.getZipcode());
-        txtStreet.setText(ua.getStreet());
-        txtEmail.setText(ua.getEmail());
-        txtPhone.setText(ua.getPhone());
-        txtStatus.setText(ua.getStatus());}}}
+        txtName.setText(userAccount.getName());
+        txtCharge.setText(userAccount.getCharge());
+        txtCity.setText(userAccount.getCity());
+        txtStatus.setText(userAccount.getStatus());
+        txtZipcode.setText(userAccount.getZipcode());
+        txtStreet.setText(userAccount.getStreet());
+        txtEmail.setText(userAccount.getEmail());
+        txtPhone.setText(userAccount.getPhone());
+        txtState.setText(userAccount.getState());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -179,7 +171,7 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, -1, -1));
 
         txtState.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 319, 149, -1));
@@ -216,22 +208,43 @@ public class ManageAgentJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                String role = ua.getRole().toString();
-                if ("Agent".equals(role)) {
-       
-       // Agent agent = agentDirectory.fetchAgent(userAccount.getEmployee().getName());
-        ua.setName(txtName.getText());
-        ua.setCharge(txtCharge.getText());
-        ua.setCity(txtCity.getText());
-        ua.setStatus(txtStatus.getText());
-        ua.setZipcode(txtZipcode.getText());
-        ua.setStreet(txtStreet.getText());
-        ua.setEmail(txtEmail.getText());
-        ua.setPhone(txtPhone.getText());
-        ua.setState(txtState.getText());
-        JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");}}}
+        if(system.isNull(txtName.getText()) || system.isNull(txtCharge.getText()) || system.isNull(txtCity.getText())
+           || system.isNull(txtStatus.getText()) || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
+           || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+            return;
+        }else if(!system.isDouble(txtCharge.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid charge!");
+            return;
+        }else if(!system.isInt(txtZipcode.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        }else if(!system.isInt(txtZipcode.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+            return;
+        }else if(!system.checkValidPhoneFormat(txtPhone.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid phone format!");
+            return;
+        }else if(!system.checkValidEmailFormat(txtEmail.getText())){
+            JOptionPane.showMessageDialog(null, "Please enter valid email format!");
+            return;
+        }else if(!system.checkIfEmailIsUnique(TOOL_TIP_TEXT_KEY)){
+            JOptionPane.showMessageDialog(null, "Sorry this email address already exists in our system!");
+            return;
+        }else if(!system.checkIfPhoneIsUnique(TOOL_TIP_TEXT_KEY)){
+            JOptionPane.showMessageDialog(null, "Sorry this phone number already exists in our system!");
+            return;
+        }
+        userAccount.setName(txtName.getText());
+        userAccount.setCharge(txtCharge.getText());
+        userAccount.setCity(txtCity.getText());
+        userAccount.setStatus(txtStatus.getText());
+        userAccount.setZipcode(txtZipcode.getText());
+        userAccount.setStreet(txtStreet.getText());
+        userAccount.setEmail(txtEmail.getText());
+        userAccount.setPhone(txtPhone.getText());
+        userAccount.setState(txtState.getText());
+        JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
 

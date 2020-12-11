@@ -24,8 +24,8 @@ public class PhotographerRole extends Role {
         return new PhotographerWorkAreaJPanel(userProcessContainer,account,organization,enterprise,network,business);
     }
    
- @Override
-    public String toString(){
+    @Override
+    public String toString() {
         return (Role.RoleType.Photographer.getValue());
     }
    

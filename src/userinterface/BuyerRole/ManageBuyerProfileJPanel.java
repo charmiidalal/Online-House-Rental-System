@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.SellerRole;
+package userinterface.BuyerRole;
 
 import Business.EcoSystem;
 import Business.Property.PropertyDirectory;
@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author dinesh
  */
-public class ManageSellerProfileJPanel extends javax.swing.JPanel {
+public class ManageBuyerProfileJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem system;
@@ -26,7 +26,7 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public ManageSellerProfileJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
+    public ManageBuyerProfileJPanel(JPanel userProcess, EcoSystem system, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
@@ -157,27 +157,27 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if(system.isNull(txtName.getText()) || system.isNull(txtCity.getText())
-           || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
-           || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())){
+        if (system.isNull(txtName.getText()) || system.isNull(txtCity.getText())
+                || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
+                || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter all fields!");
             return;
-        }else if(!system.isInt(txtZipcode.getText())){
+        } else if (!system.isInt(txtZipcode.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
             return;
-        }else if(!system.isInt(txtZipcode.getText())){
+        } else if (!system.isInt(txtZipcode.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
             return;
-        }else if(!system.checkValidPhoneFormat(txtPhone.getText())){
+        } else if (!system.checkValidPhoneFormat(txtPhone.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter valid phone format!");
             return;
-        }else if(!system.checkValidEmailFormat(txtEmail.getText())){
+        } else if (!system.checkValidEmailFormat(txtEmail.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter valid email format!");
             return;
-        }else if(!system.checkIfEmailIsUnique(TOOL_TIP_TEXT_KEY)){
+        } else if (!system.checkIfEmailIsUnique(TOOL_TIP_TEXT_KEY)) {
             JOptionPane.showMessageDialog(null, "Sorry this email address already exists in our system!");
             return;
-        }else if(!system.checkIfPhoneIsUnique(TOOL_TIP_TEXT_KEY)){
+        } else if (!system.checkIfPhoneIsUnique(TOOL_TIP_TEXT_KEY)) {
             JOptionPane.showMessageDialog(null, "Sorry this phone number already exists in our system!");
             return;
         }
