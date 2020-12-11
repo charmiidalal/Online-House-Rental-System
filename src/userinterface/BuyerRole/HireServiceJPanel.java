@@ -223,7 +223,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireInspectorActionPerformed(evt);
             }
         });
-        add(hireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 200, -1));
+        add(hireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 200, -1));
 
         hirePhotograph.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirePhotograph.setForeground(new java.awt.Color(0, 0, 51));

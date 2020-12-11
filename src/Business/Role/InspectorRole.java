@@ -11,19 +11,21 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.InspectorRole.InspectorWorkAreaJPanel;
-import userinterface.InspectorRole.InspectorWorkAreaJPanel;
 
 /**
  *
  * @author raunak
  */
-public class InspectorRole extends Role{
+public class InspectorRole extends Role {
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
-        return new InspectorWorkAreaJPanel(userProcessContainer,account,organization,enterprise,network,business);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
+        return new InspectorWorkAreaJPanel(userProcessContainer, account, organization, enterprise, network, business);
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return (Role.RoleType.Inspector.getValue());
+    }
+
 }

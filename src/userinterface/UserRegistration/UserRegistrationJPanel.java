@@ -342,6 +342,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
             return;
         }
         if (Organization.Type.Buyer == type) {
+            flag = true;
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
                     Organization org = enterprise.getOrganizationDirectory().createOrganization(type, name);
