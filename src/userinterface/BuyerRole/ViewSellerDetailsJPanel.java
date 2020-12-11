@@ -143,7 +143,7 @@ public class ViewSellerDetailsJPanel extends javax.swing.JPanel {
                 btnBack1ActionPerformed(evt);
             }
         });
-        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 30, 30));
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed

@@ -63,10 +63,13 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewManager = new javax.swing.JButton();
         btnViewBuilder = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        agentJob = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnHireInspector1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnHireInspector1.setForeground(new java.awt.Color(41, 50, 80));
         btnHireInspector1.setText("View Inspector Jobs");
         btnHireInspector1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +78,8 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         });
         add(btnHireInspector1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 174, -1));
 
+        btnViewElectrician.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewElectrician.setForeground(new java.awt.Color(41, 50, 80));
         btnViewElectrician.setText("View Electrician Jobs");
         btnViewElectrician.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +88,8 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         });
         add(btnViewElectrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 174, -1));
 
+        btnViewPlumber.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewPlumber.setForeground(new java.awt.Color(41, 50, 80));
         btnViewPlumber.setText("View Plumber Jobs");
         btnViewPlumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +98,8 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         });
         add(btnViewPlumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 174, -1));
 
+        btnViewPacker.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewPacker.setForeground(new java.awt.Color(41, 50, 80));
         btnViewPacker.setText("View Packer Jobs");
         btnViewPacker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +108,8 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         });
         add(btnViewPacker, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 174, -1));
 
+        btnViewPhoto.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewPhoto.setForeground(new java.awt.Color(41, 50, 80));
         btnViewPhoto.setText("View Photographer Jobs");
         btnViewPhoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +118,8 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         });
         add(btnViewPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 190, -1));
 
+        btnViewCleaner.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewCleaner.setForeground(new java.awt.Color(41, 50, 80));
         btnViewCleaner.setText("View Cleaner Jobs");
         btnViewCleaner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,14 +128,18 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         });
         add(btnViewCleaner, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 190, -1));
 
+        btnViewManager.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewManager.setForeground(new java.awt.Color(41, 50, 80));
         btnViewManager.setText("View Property Manager Jobs");
         btnViewManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewManagerActionPerformed(evt);
             }
         });
-        add(btnViewManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, 200, -1));
+        add(btnViewManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, 240, -1));
 
+        btnViewBuilder.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewBuilder.setForeground(new java.awt.Color(41, 50, 80));
         btnViewBuilder.setText("View Builder Jobs");
         btnViewBuilder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +150,16 @@ public class viewJobsJPanel extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/jobs.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+
+        agentJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        agentJob.setForeground(new java.awt.Color(41, 50, 80));
+        agentJob.setText("View Agent Jobs");
+        agentJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agentJobActionPerformed(evt);
+            }
+        });
+        add(agentJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHireInspector1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireInspector1ActionPerformed
@@ -192,8 +219,17 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewBuilderActionPerformed
 
+    private void agentJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentJobActionPerformed
+        // TODO add your handling code here:
+        ManageAgentActivity manageAgentActivity = new ManageAgentActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
+        userProcessContainer.add("ManageAgentActivity", manageAgentActivity);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_agentJobActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agentJob;
     private javax.swing.JButton btnHireInspector1;
     private javax.swing.JButton btnViewBuilder;
     private javax.swing.JButton btnViewCleaner;

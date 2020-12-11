@@ -37,40 +37,28 @@ public class PropertyEntAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
     
     private void manageOrganization(){
-        manageOrganizationPanel.setBackground(new Color(236,113,107));
-        manageEmployee.setBackground(new Color(215,81,81));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+        
         PropertyEntManageOrganizationsJPanel pemoj = new PropertyEntManageOrganizationsJPanel(enterprise.getOrganizationDirectory());
         rightSystemAdminPanel.add("PropertyEntManageOrganizationsJPanel", pemoj);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageEmployee(){
-        manageEmployee.setBackground(new Color(236,113,107));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+        
         PropertyEntManageEmployeesJPanel pemej = new PropertyEntManageEmployeesJPanel(rightSystemAdminPanel, enterprise.getOrganizationDirectory());
         rightSystemAdminPanel.add("PropertyEntManageEmployeesJPanel", pemej);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageUsers(){
-        manageUserAccount.setBackground(new Color(236,113,107));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageEmployee.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+       
         PropertyEntUserAccounts peua = new PropertyEntUserAccounts(rightSystemAdminPanel, enterprise, system, organization);
         rightSystemAdminPanel.add("PropertyEntUserAccounts", peua);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageRequests(){
-        manageRequestPanel.setBackground(new Color(236,113,107));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageEmployee.setBackground(new Color(215,81,81));
+       
         PropertyEntWorkRequestJPanel pewrj = new PropertyEntWorkRequestJPanel(rightSystemAdminPanel, account, enterprise, network, system);
         rightSystemAdminPanel.add("PropertyEntWorkRequestJPanel", pewrj);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();

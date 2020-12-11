@@ -12,6 +12,7 @@ import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
+import java.awt.Image;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 /**
@@ -60,8 +61,9 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         priceTxt.setText(Double.toString(property.getPrice()));
         bhkTxt.setText(Integer.toString(property.getBhk()));
         bathroomTxt.setText(Double.toString(property.getBathroom()));
-        ImageIcon propertyImg = (ImageIcon) property.getUploadImg();
-        imgupload.setIcon(propertyImg);
+        ImageIcon imgIcon = new ImageIcon(property.getUploadImg().getImage());  
+        Image imgResize = imgIcon.getImage().getScaledInstance(460, 280, Image.SCALE_SMOOTH);
+        imgupload.setIcon(new ImageIcon(imgResize));
     }
 
     /**

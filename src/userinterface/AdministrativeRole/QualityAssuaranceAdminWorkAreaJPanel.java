@@ -37,40 +37,28 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
     
     private void manageOrganization(){
-        manageOrganizationPanel.setBackground(new Color(236,113,107));
-        manageEmployee.setBackground(new Color(215,81,81));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+        
         QualityAssuaranceEntManageOrganizationsJPanel pemoj = new QualityAssuaranceEntManageOrganizationsJPanel(rightSystemAdminPanel, enterprise.getOrganizationDirectory(),enterprise, network, system);
         rightSystemAdminPanel.add("QualityAssuaranceEntManageOrganizationsJPanel", pemoj);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageEmployee(){
-        manageEmployee.setBackground(new Color(236,113,107));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+        
         QualityAssuaranceEntManageEmployeesJPanel pemej = new QualityAssuaranceEntManageEmployeesJPanel(rightSystemAdminPanel, enterprise.getOrganizationDirectory());
         rightSystemAdminPanel.add("QualityAssuaranceEntManageEmployeesJPanel", pemej);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageUsers(){
-        manageUserAccount.setBackground(new Color(236,113,107));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageEmployee.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+        
         QualityAssuaranceEntUserAccounts peua = new QualityAssuaranceEntUserAccounts(rightSystemAdminPanel, enterprise, system, organization);
         rightSystemAdminPanel.add("QualityAssuaranceEntUserAccounts", peua);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageRequests(){
-        manageRequestPanel.setBackground(new Color(236,113,107));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageEmployee.setBackground(new Color(215,81,81));
+        
         QualityAssuaranceEntWorkRequestJPanel pewrj = new QualityAssuaranceEntWorkRequestJPanel(rightSystemAdminPanel, account, enterprise, network, system);
         rightSystemAdminPanel.add("QualityAssuaranceEntWorkRequestJPanel", pewrj);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();

@@ -37,40 +37,28 @@ public class ServiceProviderAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
     
     private void manageOrganization(){
-        manageOrganizationPanel.setBackground(new Color(236,113,107));
-        manageEmployee.setBackground(new Color(215,81,81));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+        
         ServiceProviderEntManageOrganizationsJPanel pemoj = new ServiceProviderEntManageOrganizationsJPanel(rightSystemAdminPanel, enterprise.getOrganizationDirectory(),enterprise, network, system);
         rightSystemAdminPanel.add("ServiceProvider", pemoj);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageEmployee(){
-        manageEmployee.setBackground(new Color(236,113,107));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+       
         ServiceProviderEntManageEmployeesJPanel pemej = new ServiceProviderEntManageEmployeesJPanel(rightSystemAdminPanel, enterprise.getOrganizationDirectory());
         rightSystemAdminPanel.add("ServiceProviderEntManageEmployeesJPanel", pemej);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageUsers(){
-        manageUserAccount.setBackground(new Color(236,113,107));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageEmployee.setBackground(new Color(215,81,81));
-        manageRequestPanel.setBackground(new Color(215,81,81));
+        
         ServiceProviderEntUserAccounts peua = new ServiceProviderEntUserAccounts(rightSystemAdminPanel, enterprise, system, organization);
         rightSystemAdminPanel.add("ServiceProviderEntUserAccounts", peua);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
     private void manageRequests(){
-        manageRequestPanel.setBackground(new Color(236,113,107));
-        manageUserAccount.setBackground(new Color(215,81,81));
-        manageOrganizationPanel.setBackground(new Color(215,81,81));
-        manageEmployee.setBackground(new Color(215,81,81));
+       
         ServiceProviderEntWorkRequestJPanel pewrj = new ServiceProviderEntWorkRequestJPanel(rightSystemAdminPanel, account, enterprise, network, system);
         rightSystemAdminPanel.add("ServiceProviderEntWorkRequestJPanel", pewrj);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();

@@ -71,6 +71,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePhotograph = new javax.swing.JButton();
         hireBuilder = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        hireAgent = new javax.swing.JButton();
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -169,7 +170,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hirePropertyManagerActionPerformed(evt);
             }
         });
-        add(hirePropertyManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
+        add(hirePropertyManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("SERVICE MANAGEMENT");
@@ -203,7 +204,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireEletricianActionPerformed(evt);
             }
         });
-        add(hireEletrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 190, -1));
+        add(hireEletrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 190, -1));
 
         hirepackerMover.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirepackerMover.setForeground(new java.awt.Color(0, 0, 51));
@@ -213,7 +214,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hirepackerMoverActionPerformed(evt);
             }
         });
-        add(hirepackerMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 200, -1));
+        add(hirepackerMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 200, -1));
 
         hireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireInspector.setForeground(new java.awt.Color(0, 0, 51));
@@ -223,7 +224,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireInspectorActionPerformed(evt);
             }
         });
-        add(hireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 200, -1));
+        add(hireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 200, -1));
 
         hirePhotograph.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirePhotograph.setForeground(new java.awt.Color(0, 0, 51));
@@ -243,10 +244,21 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireBuilderActionPerformed(evt);
             }
         });
-        add(hireBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 190, -1));
+        add(hireBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 190, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property_manager.png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 540, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 550, 500));
+
+        hireAgent.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        hireAgent.setForeground(new java.awt.Color(41, 50, 80));
+        hireAgent.setText("Hire Agent");
+        hireAgent.setOpaque(false);
+        hireAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireAgentActionPerformed(evt);
+            }
+        });
+        add(hireAgent, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 500, 210, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -314,7 +326,16 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_hireBuilderActionPerformed
 
+    private void hireAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireAgentActionPerformed
+        // TODO add your handling code here:
+         HireAgentJPanel hireAgent = new HireAgentJPanel(userProcessContainer, organization, network, enterprise,property, userAccount, system);
+        userProcessContainer.add("HireAgentJPanel", hireAgent);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_hireAgentActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton hireAgent;
     private javax.swing.JButton hireBuilder;
     private javax.swing.JButton hireCleaner;
     private javax.swing.JButton hireEletrician;
