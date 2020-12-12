@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AgentRequest;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.WorkQueue.CleaningRequest;
+import java.util.ArrayList;
 
 /**
  *
@@ -45,6 +47,7 @@ public class ManageAgentActivity extends javax.swing.JPanel {
         this.network = network;
         this.organization = organization;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
+        jtblHouse.setVisible(false);
         populateRequestTable();
     }
 
@@ -95,6 +98,9 @@ public class ManageAgentActivity extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         btnBack3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jhousebtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtblHouse = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,7 +123,7 @@ public class ManageAgentActivity extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(houseTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 960, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 960, 270));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
@@ -148,7 +154,37 @@ public class ManageAgentActivity extends javax.swing.JPanel {
         add(btnBack3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 30, 30, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENT.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 360, 145, 164));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 370, 145, 164));
+
+        jhousebtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jhousebtn.setForeground(new java.awt.Color(41, 50, 80));
+        jhousebtn.setText("See Suggested Houses");
+        jhousebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jhousebtnActionPerformed(evt);
+            }
+        });
+        add(jhousebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 240, 30));
+
+        jtblHouse.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "HouseID", " Name", " Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status", "SoldTo", "SellerName"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jtblHouse);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 630, 900, 280));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompleteJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteJobActionPerformed
@@ -178,6 +214,51 @@ public class ManageAgentActivity extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBack3ActionPerformed
 
+    private void jhousebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jhousebtnActionPerformed
+        // TODO add your handling code here:
+        jtblHouse.setVisible(true);
+         DefaultTableModel model = (DefaultTableModel) jtblHouse.getModel();
+        model.setRowCount(0);
+      int selectedRow = houseTable.getSelectedRow();
+
+        if (selectedRow >= 0) {
+            AgentRequest br = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
+  
+            if (br instanceof AgentRequest) {
+                ArrayList<String> propertyList=((AgentRequest) br).getPropertyList();
+               for( String propertyID : propertyList)
+               {
+                   Property property=system.getPropertyDirectory().fetchProperty(propertyID);
+               if(property!=null){
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = property.getPropertyID();
+                row[1] = property.getPropertyName();
+                row[2] = property.getStreet();
+                row[3] = property.getCity();
+                row[4] = property.getState();
+                row[5] = property.getPincode();
+                row[6] = property.getBhk();
+                row[7] = property.getBathroom();
+                row[8] = property.getPrice();
+                row[9] = property.getStatus();
+                row[10] = property.getBuyer();
+                row[11] = property.getSeller();
+                model.addRow(row);
+               }
+               else
+               {
+                   JOptionPane.showMessageDialog(null, "Sorry there are no house suggestions!");
+               }
+               }
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+        
+        
+    }//GEN-LAST:event_jhousebtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack3;
@@ -186,7 +267,10 @@ public class ManageAgentActivity extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jhousebtn;
+    private javax.swing.JTable jtblHouse;
     private javax.swing.JTextField txtFeedback;
     // End of variables declaration//GEN-END:variables
 }
