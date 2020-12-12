@@ -59,7 +59,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
                 row[7] = property.getBathroom();
                 row[8] = property.getPrice();
                 row[9] = property.getStatus();
-                row[10]=property.getBuyer().getName();
+                row[10]= property.getBuyer();
                 dtm.addRow(row);
             }
         }

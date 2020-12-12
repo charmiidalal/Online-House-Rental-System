@@ -277,25 +277,25 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
                 || priceTxt.getText().isEmpty() || img == null || bathroomTxt.getText().isEmpty()
                 || longitudeTxt.getText().isEmpty() || latitudeTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter all the fields continue!");
-        } else if (system.isDouble(priceTxt.getText())) {
+        } else if (!system.isDouble(priceTxt.getText())) {
             pricelbl.setVisible(true);
             JOptionPane.showMessageDialog(null, "Please enter valid rent!");
             return;
-        } else if (system.isDouble(bathroomTxt.getText())) {
+        } else if (!system.isDouble(bathroomTxt.getText())) {
             bathroomlbl.setVisible(true);
-            JOptionPane.showMessageDialog(null, "Please enter valid rent!");
+            JOptionPane.showMessageDialog(null, "Please enter valid bathroom value!");
             return;
-        } else if (system.isDouble(longitudeTxt.getText())) {
+        } else if (!system.isDouble(longitudeTxt.getText())) {
             longitudelbl.setVisible(true);
-            JOptionPane.showMessageDialog(null, "Please enter valid rent!");
+            JOptionPane.showMessageDialog(null, "Please enter valid longitude!");
             return;
-        } else if (system.isDouble(latitudeTxt.getText())) {
+        } else if (!system.isDouble(latitudeTxt.getText())) {
             latitudelbl.setVisible(true);
-            JOptionPane.showMessageDialog(null, "Please enter valid rent!");
+            JOptionPane.showMessageDialog(null, "Please enter valid latitude!");
             return;
-        } else if (system.isInt(bhkTxt.getText())) {
+        } else if (!system.isInt(bhkTxt.getText())) {
             bhklbl.setVisible(true);
-            JOptionPane.showMessageDialog(null, "Please enter valid rent!");
+            JOptionPane.showMessageDialog(null, "Please enter valid bhk value!");
             return;
         } else {
             disableLabels();

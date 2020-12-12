@@ -48,40 +48,6 @@ public class MainJFrame extends javax.swing.JFrame {
         container.setVisible(false);
         leftPanel.setVisible(false);
         getRootPane().setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
-//        
-//        JFrame test = new JFrame("Google Maps");
-//
-//        try {
-//            String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center=42.3205,-71.04150&zoom=13&size=600x300&maptype=roadmap" +
-//"&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318" +
-//"&markers=color:red%7Clabel:C%7C42.3205,-71.04150&key=AIzaSyC-yF5aM8YUko4sdBf2WfT0dYbPZSLXRlU&secret=-RHjX3W5fnP-JA0UVWwL2iKExBU=";
-//            String destinationFile = "image.jpg";
-//            String str = destinationFile;
-//            URL url = new URL(imageUrl);
-//            InputStream is = url.openStream();
-//            OutputStream os = new FileOutputStream(destinationFile);
-//
-//            byte[] b = new byte[2048];
-//            int length;
-//
-//            while ((length = is.read(b)) != -1) {
-//                os.write(b, 0, length);
-//            }
-//
-//            is.close();
-//            os.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.exit(1);
-//        }
-//
-//        test.add(new JLabel(new ImageIcon((new ImageIcon("image.jpg")).getImage().getScaledInstance(630, 600,
-//                java.awt.Image.SCALE_SMOOTH))));
-//
-//        test.setVisible(true);
-//        test.pack();
-//        
-//    }
     }
 
     private void changePanel1(UserAccount userAccount) {

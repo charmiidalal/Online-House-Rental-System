@@ -13,6 +13,14 @@ import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +43,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyerWorkAreaJpanel
      */
-    public BuyerScreenJPanel(JPanel userProcessContainer, UserAccount userAccount,  Enterprise enterprise,  EcoSystem system, Network network,Organization organization ) {
+    public BuyerScreenJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system, Network network, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.network = network;
@@ -82,9 +90,10 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnBuyHouse = new javax.swing.JButton();
         btnRegistration = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         btnViewHouseDetails = new javax.swing.JButton();
         btnViewSellerDetails = new javax.swing.JButton();
+        btnViewHouseOnMap = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         hireSPBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
@@ -135,11 +144,6 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         });
         add(btnRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, 201, -1));
 
-        jLabel3.setBackground(new java.awt.Color(241, 241, 242));
-        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/household.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 690, 600));
-
         btnViewHouseDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewHouseDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewHouseDetails.setText("View House Details");
@@ -158,7 +162,22 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
                 btnViewSellerDetailsActionPerformed(evt);
             }
         });
-        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 203, 31));
+        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 203, 31));
+
+        btnViewHouseOnMap.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewHouseOnMap.setForeground(new java.awt.Color(41, 50, 80));
+        btnViewHouseOnMap.setText("View House On Map");
+        btnViewHouseOnMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewHouseOnMapActionPerformed(evt);
+            }
+        });
+        add(btnViewHouseOnMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 203, 31));
+
+        jLabel3.setBackground(new java.awt.Color(241, 241, 242));
+        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/household.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 690, 600));
 
         hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireSPBtn.setForeground(new java.awt.Color(41, 50, 80));
@@ -179,11 +198,11 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
             if (selectedRow >= 0) {
-               CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-               String Id = (String) houseTable.getValueAt(selectedRow, 0);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                String Id = (String) houseTable.getValueAt(selectedRow, 0);
                 Property property = propertyDirectory.fetchProperty(Id);
-               ViewHouseDetailJPanel viewJPanel = new ViewHouseDetailJPanel(userProcessContainer, property, propertyDirectory, system, userAccount);
-               userProcessContainer.add(viewJPanel);
+                ViewHouseDetailJPanel viewJPanel = new ViewHouseDetailJPanel(userProcessContainer, property, propertyDirectory, system, userAccount);
+                userProcessContainer.add(viewJPanel);
                 layout.next(userProcessContainer);
             }
         } else {
@@ -256,22 +275,67 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
             //Buyer buyer = buyerDirectory.searchBuyer(userAccount.getEmployee().getName());
-      
-            HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer,organization,network,enterprise, property,system, userAccount);
+
+            HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer, organization, network, enterprise, property, system, userAccount);
             userProcessContainer.add("hireServiceJPanel", hireServiceJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-        
-        }else {
+
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_hireSPBtnActionPerformed
+
+    private void btnViewHouseOnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHouseOnMapActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+        int count = houseTable.getSelectedRowCount();
+        if (count == 1) {
+            String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
+            Property property = propertyDirectory.fetchProperty(propertyID);
+            Double latitude = property.getLatitude();
+            Double longitude = property.getLongitude();
+            JFrame test = new JFrame("Google Maps");
+            String destinationFile = "";
+//            try {
+//                String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+latitude+",-"+longitude+"&zoom=13&size=600x300&maptype=roadmap"
+//                        + "&markers=color:red%7Clabel:C%7C"+latitude+",-"+longitude+"&key=AIzaSyC-yF5aM8YUko4sdBf2WfT0dYbPZSLXRlU&secret=-RHjX3W5fnP-JA0UVWwL2iKExBU=";
+//                destinationFile = property.getPropertyName()+".jpg";
+//                URL url = new URL(imageUrl);
+//                InputStream is = url.openStream();
+//                OutputStream os = new FileOutputStream(destinationFile);
+//
+//                byte[] b = new byte[2048];
+//                int length;
+//
+//                while ((length = is.read(b)) != -1) {
+//                    os.write(b, 0, length);
+//                }
+//
+//                is.close();
+//                os.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                System.exit(1);
+//            }
+//
+//            test.add(new JLabel(new ImageIcon((new ImageIcon(destinationFile)).getImage().getScaledInstance(630, 600,
+//                    java.awt.Image.SCALE_SMOOTH))));
+//
+//            test.setVisible(true);
+//            test.pack();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_btnViewHouseOnMapActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyHouse;
     private javax.swing.JButton btnRegistration;
     private javax.swing.JButton btnViewHouseDetails;
+    private javax.swing.JButton btnViewHouseOnMap;
     private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JButton hireSPBtn;
     private javax.swing.JTable houseTable;
