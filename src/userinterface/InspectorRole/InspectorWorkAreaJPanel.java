@@ -85,6 +85,7 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
 
         manageInspectorProfile.setBackground(new java.awt.Color(255, 213, 90));
         manageInspectorProfile.setToolTipText("");
+        manageInspectorProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageInspectorProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageInspectorProfileMousePressed(evt);
@@ -131,6 +132,7 @@ public class InspectorWorkAreaJPanel extends javax.swing.JPanel {
 
         manageJobs.setBackground(new java.awt.Color(255, 213, 90));
         manageJobs.setToolTipText("");
+        manageJobs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageJobs.setPreferredSize(new java.awt.Dimension(264, 48));
         manageJobs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

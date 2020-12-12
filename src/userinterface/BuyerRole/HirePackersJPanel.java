@@ -131,7 +131,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, true, false, true
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -216,8 +216,6 @@ public class HirePackersJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnHireInspector;
-    private javax.swing.JButton btnBack1;
-    private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnBack3;
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;

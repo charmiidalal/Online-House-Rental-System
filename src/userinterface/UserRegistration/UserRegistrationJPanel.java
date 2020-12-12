@@ -16,11 +16,8 @@ import Business.Organization.Organization;
 import Business.Role.BuyerRole;
 import Business.SendSMS.SendSMS;
 import Business.UserAccount.UserAccount;
-import Business.Utils.Validation;
 import Business.WorkQueue.UserRegistrationRequest;
 import Business.WorkQueue.WorkQueue;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -30,13 +27,7 @@ import javax.swing.JPanel;
  */
 public class UserRegistrationJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
-    private EcoSystem system;
-    private Validation validation;
-    private boolean emailIDValidation;
-    private boolean phoneValidation;
-    private boolean userUniqueCheck;
-    private boolean passwordCheck;
+    private final EcoSystem system;
     private boolean flag = false;
 
     /**
@@ -44,11 +35,10 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
      */
     public UserRegistrationJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
         this.system = system;
-        validation = new Validation();
         populateNetworkComboBox();
         populateOrgTypes();
+        pleaseWait.setVisible(false);
     }
 
     public void populateNetworkComboBox() {
@@ -101,6 +91,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         orgCombo = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
+        pleaseWait = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1338, 900));
@@ -262,7 +253,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Home_Image_Signup.png"))); // NOI18N
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 830, 400));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, 400, 830, 400));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(25, 56, 82));
@@ -285,6 +276,12 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/sun.png"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, -1, -1));
+
+        pleaseWait.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        pleaseWait.setForeground(new java.awt.Color(0, 102, 0));
+        pleaseWait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/spinning-arrows.gif"))); // NOI18N
+        pleaseWait.setText("Please Wait . . .");
+        add(pleaseWait, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 440, 300, 210));
     }// </editor-fold>//GEN-END:initComponents
 
     private void stateComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateComboActionPerformed
@@ -317,29 +314,46 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "All of the above the fields are required for registration!!", "Error!", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if (!system.checkValidPasswordFormat(password)) {
+            return;
+        }
+        if (!system.checkIfUserIsUnique(username)) {
+            return;
+        }
         if (!this.system.checkValidEmailFormat(emailAddress)) {
-            JOptionPane.showMessageDialog(null, "Please enter valid format of email! Ex: hello@hello.com", "Error!", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!this.system.checkValidPhoneFormat(phone)) {
-            JOptionPane.showMessageDialog(null, "Please enter valid format of phone! Ex: 9876543210", "Error!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!this.system.checkIfPasswordIsValid(password)) {
-            JOptionPane.showMessageDialog(null, "Please enter valid format of password! Ex: Hello@123", "Error!", JOptionPane.ERROR_MESSAGE);
-            return;
+
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount u : o.getUserAccountDirectory().getUserAccountList()) {
+                        if (u.getEmail() != null) {
+                            if (u.getEmail().toLowerCase().equals(emailAddress.toLowerCase())) {
+                                JOptionPane.showMessageDialog(null, "Sorry! This Email Address already exists in our system", "Error!", JOptionPane.ERROR_MESSAGE);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
-        if (!this.system.checkIfUserIsUnique(username)) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Username already exists in our system", "Error!", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (!this.system.checkIfEmailIsUnique(emailAddress)) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Email Address already exists in our system", "Error!", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (!this.system.checkIfPhoneIsUnique(phone)) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Contact Number already exists in our system", "Error!", JOptionPane.ERROR_MESSAGE);
-            return;
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount u : o.getUserAccountDirectory().getUserAccountList()) {
+                        if (u.getPhone() != null) {
+                            if (u.getPhone().equals(phone)) {
+                                JOptionPane.showMessageDialog(null, "Sorry! This Contact Number already exists in our system", "Error!", JOptionPane.ERROR_MESSAGE);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
         if (Organization.Type.Buyer == type) {
             flag = true;
@@ -349,8 +363,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                     Employee emp = org.getEmployeeDirectory().createEmployee(name);
                     UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(username, password, emp, new BuyerRole());
                     String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account is activated. Happy Housing!";
-                    system.sendEmailMessage(emailAddress, bodyMsg);
-                    SendSMS sendSMS = new SendSMS(phone, bodyMsg);
                 }
             }
         } else {
@@ -378,6 +390,8 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
             }
         }
         if (flag) {
+//            pleaseWait.setVisible(true);
+//            btnRegister.setEnabled(false);
             String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account will be activated within 48 hours. We will keep you posted here.";
             system.sendEmailMessage(emailAddress, bodyMsg);
             SendSMS sendSMS = new SendSMS(phone, bodyMsg);
@@ -391,6 +405,8 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         txtEmail.setText("");
         txtCity.setText("");
         txtContact.setText("");
+        pleaseWait.setVisible(false);
+        btnRegister.setEnabled(true);
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -484,6 +500,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblPhone;
     private javax.swing.JComboBox orgCombo;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel pleaseWait;
     private javax.swing.JComboBox stateCombo;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtContact;

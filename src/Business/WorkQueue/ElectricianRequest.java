@@ -149,4 +149,9 @@ public class ElectricianRequest extends WorkRequest {
         this.max = max;
     }
     
+     @Override
+    public String toString() {
+        return requestID;
+    }
+    
 }

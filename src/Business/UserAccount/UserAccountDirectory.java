@@ -29,7 +29,7 @@ public class UserAccountDirectory {
 
     public UserAccount authenticateUser(String username, String password) {
         for (UserAccount ua : userAccountList) {
-            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)) {
+            if (ua.getUsername().toLowerCase().equals(username.toLowerCase()) && ua.getPassword().equals(password)) {
                 return ua;
             }
         }

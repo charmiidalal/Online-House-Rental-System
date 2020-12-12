@@ -148,5 +148,8 @@ public class PlumberRequest extends WorkRequest {
     public void setMax(int max) {
         this.max = max;
     }
-    
+    @Override
+    public String toString() {
+        return requestID;
+    }
 }

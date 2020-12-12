@@ -57,7 +57,7 @@ public class ManageManagerActivity extends javax.swing.JPanel {
                     if (workRequest instanceof ManagerRequest) {
                         if (userAccount.getUsername().equals(((ManagerRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((ManagerRequest) workRequest).getRequestID();
+                            row[0] = ((ManagerRequest) workRequest);
                             row[1] = ((ManagerRequest) workRequest).getManager().getName();
                             row[2] = ((ManagerRequest) workRequest).getSeller().getName();
                             row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
@@ -128,11 +128,11 @@ public class ManageManagerActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
+                "JobID", "Manager", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

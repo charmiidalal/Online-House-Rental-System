@@ -60,7 +60,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
                     if (workRequest instanceof PackerRequest) {
                         if (userAccount.getUsername().equals(((PackerRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PackerRequest) workRequest).getRequestID();
+                            row[0] = ((PackerRequest) workRequest);
                             row[1] = ((PackerRequest) workRequest).getPacker().getName();
                             row[2] = ((PackerRequest) workRequest).getSeller().getName();
                             row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
@@ -129,11 +129,11 @@ public class ManagePackerActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
+                "JobID", "Packer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

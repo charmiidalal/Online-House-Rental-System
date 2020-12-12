@@ -51,7 +51,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 //    }
 
     private void manageHouses() {
-        ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(rightSystemAdminPanel, enterprise, account, system);
+        ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(userProcessContainer, enterprise, account, system);
         rightSystemAdminPanel.add("ManageHouseJPanel", mngHousesPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
@@ -104,6 +104,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         manageAdvertisePanel.setBackground(new java.awt.Color(255, 213, 90));
         manageAdvertisePanel.setToolTipText("");
+        manageAdvertisePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageAdvertisePanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageAdvertisePanelMousePressed(evt);
@@ -118,6 +119,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageAdvertise.setBackground(new java.awt.Color(255, 213, 90));
         manageAdvertise.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         manageAdvertise.setText("Create Advertise");
+        manageAdvertise.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageAdvertise.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageAdvertiseMousePressed(evt);
@@ -140,15 +142,16 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageAdvertisePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(manageAdvertisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manageAdvertise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel3.add(manageAdvertisePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
+        jPanel3.add(manageAdvertisePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, 50));
 
         manageSellerProfile.setBackground(new java.awt.Color(255, 213, 90));
         manageSellerProfile.setToolTipText("");
+        manageSellerProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageSellerProfile.setPreferredSize(new java.awt.Dimension(264, 48));
         manageSellerProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -159,6 +162,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageProfile.setBackground(new java.awt.Color(255, 213, 90));
         manageProfile.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageProfile.setText("Manage Profile");
+        manageProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageProfile.setPreferredSize(new java.awt.Dimension(115, 16));
 
         jLabel6.setBackground(new java.awt.Color(255, 213, 90));
@@ -189,6 +193,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(manageSellerProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
 
         manageHousesJpanel.setBackground(new java.awt.Color(255, 213, 90));
+        manageHousesJpanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageHousesJpanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageHousesJpanelMousePressed(evt);
@@ -198,7 +203,13 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         manageHouses.setBackground(new java.awt.Color(255, 213, 90));
         manageHouses.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageHouses.setText("Manage Houses");
+        manageHouses.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageHouses.setPreferredSize(new java.awt.Dimension(115, 16));
+        manageHouses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageHousesMousePressed(evt);
+            }
+        });
 
         jLabel7.setBackground(new java.awt.Color(255, 213, 90));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -213,7 +224,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(manageHouses, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         manageHousesJpanelLayout.setVerticalGroup(
             manageHousesJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +232,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
             .addComponent(manageHouses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel3.add(manageHousesJpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 280, 40));
+        jPanel3.add(manageHousesJpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 280, 50));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("SELLER WORK AREA ");
@@ -308,6 +319,12 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         manageHouses();
     }//GEN-LAST:event_manageHousesPanelMousePressed
+
+    private void manageHousesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageHousesMousePressed
+        // TODO add your handling code here:
+                manageHouses();
+
+    }//GEN-LAST:event_manageHousesMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

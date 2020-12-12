@@ -155,7 +155,7 @@ public class ServiceProviderEntWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MANAGE VOLUNTEER UNIT WORK REQUEST");
+        jLabel1.setText("MANAGE SERVICE PROVIDER WORK REQUEST");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 41, 431, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/enterprise_back.png"))); // NOI18N

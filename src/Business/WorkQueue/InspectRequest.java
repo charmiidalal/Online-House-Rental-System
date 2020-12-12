@@ -150,5 +150,8 @@ public class InspectRequest extends WorkRequest {
     public void setProperty(Property property) {
         this.property = property;
     }
-
+    @Override
+    public String toString() {
+        return requestID;
+    }
 }

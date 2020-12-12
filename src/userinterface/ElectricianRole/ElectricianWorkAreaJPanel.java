@@ -83,12 +83,14 @@ public class ElectricianWorkAreaJPanel extends javax.swing.JPanel {
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
         jPanel3.setBackground(new java.awt.Color(255, 213, 90));
+        jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel3.setMinimumSize(new java.awt.Dimension(280, 840));
         jPanel3.setPreferredSize(new java.awt.Dimension(280, 840));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         manageOrganizationPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganizationPanel.setToolTipText("");
+        manageOrganizationPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageOrganizationPanelMousePressed(evt);
@@ -138,6 +140,7 @@ public class ElectricianWorkAreaJPanel extends javax.swing.JPanel {
 
         manageEmployee.setBackground(new java.awt.Color(255, 213, 90));
         manageEmployee.setToolTipText("");
+        manageEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

@@ -162,23 +162,16 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
            || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())){
             JOptionPane.showMessageDialog(null, "Please enter all fields!");
             return;
-        }else if(!system.isInt(txtZipcode.getText())){
-            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
-            return;
-        }else if(!system.isInt(txtZipcode.getText())){
-            JOptionPane.showMessageDialog(null, "Please enter valid zipcode!");
+        }else if(!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5){
+            JOptionPane.showMessageDialog(null, "Please enter valid 5 digit zipcode!");
             return;
         }else if(!system.checkValidPhoneFormat(txtPhone.getText())){
-            JOptionPane.showMessageDialog(null, "Please enter valid phone format!");
             return;
         }else if(!system.checkValidEmailFormat(txtEmail.getText())){
-            JOptionPane.showMessageDialog(null, "Please enter valid email format!");
             return;
-        }else if(!system.checkIfEmailIsUnique(TOOL_TIP_TEXT_KEY)){
-            JOptionPane.showMessageDialog(null, "Sorry this email address already exists in our system!");
+        }else if(!system.checkIfEmailIsUnique(txtEmail.getText(), userAccount.getUsername())){
             return;
-        }else if(!system.checkIfPhoneIsUnique(TOOL_TIP_TEXT_KEY)){
-            JOptionPane.showMessageDialog(null, "Sorry this phone number already exists in our system!");
+        }else if(!system.checkIfPhoneIsUnique(txtPhone.getText(), userAccount.getUsername())){
             return;
         }
         userAccount.setName(txtName.getText());

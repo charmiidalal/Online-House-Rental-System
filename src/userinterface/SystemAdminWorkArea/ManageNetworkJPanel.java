@@ -14,7 +14,9 @@ import javax.swing.table.DefaultTableModel;
  * @author raunak
  */
 public class ManageNetworkJPanel extends javax.swing.JPanel {
+
     private final EcoSystem system;
+
     /**
      *
      * Creates new form ManageNetworkJPanel
@@ -133,19 +135,18 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void submitButton() {
         String name = nameJTextField.getText().trim();
-        if (!name.isEmpty()) {
-            if (system.checkExistingNetwork(name)) {
-                Network network = system.createAndAddNetwork();
-                network.setName(name);
-                JOptionPane.showMessageDialog(null, "Network Created Successfully");
-                nameJTextField.setText("");
-            } else {
-                JOptionPane.showMessageDialog(null, "Network Already Exists");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please Enter Network Name to Proceed!");
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please Enter Network Name!");
+            return;
         }
-
+        if (system.checkIfNetworkIsUnique(name)) {
+            Network network = system.createAndAddNetwork();
+            network.setName(name);
+            JOptionPane.showMessageDialog(null, "Network Created Successfully");
+            nameJTextField.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Network Already Exists");
+        }
         populateNetworkTable();
     }
 

@@ -79,6 +79,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         manageEmployeeLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         manageProfile = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         rightSystemAdminPanel = new javax.swing.JPanel();
@@ -188,7 +189,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 280, 60));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 280, 40));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("BUYER MANAGEMENT");
@@ -245,16 +246,50 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageOrganizationPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 280, -1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 213, 90));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
         manageProfile.setBackground(new java.awt.Color(255, 213, 90));
         manageProfile.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageProfile.setText("Manage Profile");
         manageProfile.setPreferredSize(new java.awt.Dimension(115, 16));
-        jPanel3.add(manageProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+        manageProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                manageProfileMousePressed(evt);
+            }
+        });
 
         jLabel7.setBackground(new java.awt.Color(255, 213, 90));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/icons8-houses-48.png"))); // NOI18N
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, -1, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(manageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(manageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 250, 60));
 
         rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
@@ -309,6 +344,18 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
         manageProfile();
     }//GEN-LAST:event_manageOrganizationPanel1MousePressed
 
+    private void manageProfileMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageProfileMousePressed
+        // TODO add your handling code here:
+                manageProfile();
+
+    }//GEN-LAST:event_manageProfileMousePressed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        // TODO add your handling code here:
+                manageProfile();
+
+    }//GEN-LAST:event_jPanel1MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
@@ -316,6 +363,7 @@ public class BuyerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

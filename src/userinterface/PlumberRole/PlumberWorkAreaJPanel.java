@@ -89,6 +89,7 @@ public class PlumberWorkAreaJPanel extends javax.swing.JPanel {
 
         manageProfilePanel.setBackground(new java.awt.Color(255, 213, 90));
         manageProfilePanel.setToolTipText("");
+        manageProfilePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageProfilePanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageProfilePanelMousePressed(evt);
@@ -138,6 +139,7 @@ public class PlumberWorkAreaJPanel extends javax.swing.JPanel {
 
         manageJobsPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageJobsPanel.setToolTipText("");
+        manageJobsPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageJobsPanel.setPreferredSize(new java.awt.Dimension(264, 48));
         manageJobsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

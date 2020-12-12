@@ -60,7 +60,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
                     if (workRequest instanceof PhotographerRequest) {
                         if (userAccount.getUsername().equals(((PhotographerRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PhotographerRequest) workRequest).getRequestID();
+                            row[0] = ((PhotographerRequest) workRequest);
                             row[1] = ((PhotographerRequest) workRequest).getPhotographer().getName();
                             row[2] = ((PhotographerRequest) workRequest).getSeller().getName();
                             row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
@@ -130,11 +130,11 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
+                "JobID", "Photographer", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

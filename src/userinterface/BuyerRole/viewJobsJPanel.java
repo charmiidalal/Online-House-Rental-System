@@ -62,8 +62,8 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewCleaner = new javax.swing.JButton();
         btnViewManager = new javax.swing.JButton();
         btnViewBuilder = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         agentJob = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -148,9 +148,6 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         });
         add(btnViewBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 190, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/jobs.png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
-
         agentJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         agentJob.setForeground(new java.awt.Color(41, 50, 80));
         agentJob.setText("View Agent Jobs");
@@ -159,7 +156,10 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 agentJobActionPerformed(evt);
             }
         });
-        add(agentJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, -1, -1));
+        add(agentJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 180, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/jobs.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHireInspector1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireInspector1ActionPerformed

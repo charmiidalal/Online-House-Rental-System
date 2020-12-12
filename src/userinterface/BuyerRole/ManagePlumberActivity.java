@@ -60,7 +60,7 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
                     if (workRequest instanceof PlumberRequest) {
                         if (userAccount.getUsername().equals(((PlumberRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PlumberRequest) workRequest).getRequestID();
+                            row[0] = ((PlumberRequest) workRequest);
                             row[1] = ((PlumberRequest) workRequest).getPlumber().getName();
                             row[2] = ((PlumberRequest) workRequest).getSeller().getName();
                             row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
@@ -130,11 +130,11 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Inspector", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
+                "JobID", "Plumber", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

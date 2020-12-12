@@ -16,6 +16,7 @@ import Business.UserAccount.UserAccount;
  * @author anush
  */
 public class BuyerRequest {
+
     private Network network;
     private Enterprise enterprise;
     private Organization.Type orgType;
@@ -31,8 +32,8 @@ public class BuyerRequest {
     private UserAccount serviceProviders;
     int min = 100;
     int max = 999;
-    
-     public BuyerRequest() {
+
+    public BuyerRequest() {
         int randomNum = (int) (Math.random() * (max - min + 1) + min);
         requestID = "Request" + randomNum;
     }
@@ -156,5 +157,9 @@ public class BuyerRequest {
     public void setMax(int max) {
         this.max = max;
     }
-     
+
+    @Override
+    public String toString() {
+        return requestID;
+    }
 }
