@@ -60,7 +60,7 @@ public class ManagePackerActivity extends javax.swing.JPanel {
                     if (workRequest instanceof PackerRequest) {
                         if (userAccount.getUsername().equals(((PackerRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PackerRequest) workRequest).getRequestID();
+                            row[0] = ((PackerRequest) workRequest);
                             row[1] = ((PackerRequest) workRequest).getPacker().getName();
                             row[2] = ((PackerRequest) workRequest).getSeller().getName();
                             row[3] = ((PackerRequest) workRequest).getProperty().getStreet();

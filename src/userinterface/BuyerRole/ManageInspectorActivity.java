@@ -56,7 +56,7 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
                     if (workRequest instanceof InspectRequest) {
                         if (userAccount.getUsername().equals(((InspectRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((InspectRequest) workRequest).getRequestID();
+                            row[0] = ((InspectRequest) workRequest);
                             row[1] = ((InspectRequest) workRequest).getInspector().getName();
                             row[2] = ((InspectRequest) workRequest).getSeller().getName();
                             row[3] = ((InspectRequest) workRequest).getProperty().getStreet();

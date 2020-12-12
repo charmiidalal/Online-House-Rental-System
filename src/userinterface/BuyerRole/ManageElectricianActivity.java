@@ -56,7 +56,7 @@ public class ManageElectricianActivity extends javax.swing.JPanel {
                     if (workRequest instanceof ElectricianRequest) {
                         if (userAccount.getUsername().equals(((ElectricianRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((ElectricianRequest) workRequest).getRequestID();
+                            row[0] = ((ElectricianRequest) workRequest);
                             row[1] = ((ElectricianRequest) workRequest).getElectrician().getName();
                             row[2] = ((ElectricianRequest) workRequest).getSeller().getName();
                             row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();

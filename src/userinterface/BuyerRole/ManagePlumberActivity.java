@@ -60,7 +60,7 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
                     if (workRequest instanceof PlumberRequest) {
                         if (userAccount.getUsername().equals(((PlumberRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PlumberRequest) workRequest).getRequestID();
+                            row[0] = ((PlumberRequest) workRequest);
                             row[1] = ((PlumberRequest) workRequest).getPlumber().getName();
                             row[2] = ((PlumberRequest) workRequest).getSeller().getName();
                             row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();

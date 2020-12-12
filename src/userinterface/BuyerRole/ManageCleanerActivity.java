@@ -56,7 +56,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
                     if (workRequest instanceof CleaningRequest) {
                         if (userAccount.getUsername().equals(((CleaningRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((CleaningRequest) workRequest).getRequestID();
+                            row[0] = ((CleaningRequest) workRequest);
                             row[1] = ((CleaningRequest) workRequest).getCleaner().getName();
                             row[2] = ((CleaningRequest) workRequest).getSeller().getName();
                             row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();

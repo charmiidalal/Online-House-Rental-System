@@ -57,7 +57,7 @@ public class ManageAgentActivity extends javax.swing.JPanel {
                     if (workRequest instanceof AgentRequest) {
                         if (userAccount.getUsername().equals(((AgentRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((AgentRequest) workRequest).getRequestID();
+                            row[0] = ((AgentRequest) workRequest);
                             row[1] = ((AgentRequest) workRequest).getAgent().getName();
                             row[2] = ((AgentRequest) workRequest).getSeller().getName();
                             row[3] = ((AgentRequest) workRequest).getProperty().getStreet();

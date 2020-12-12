@@ -59,7 +59,7 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
                     if (workRequest instanceof BuilderRequest) {
                         if (userAccount.getUsername().equals(((BuilderRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((BuilderRequest) workRequest).getRequestID();
+                            row[0] = ((BuilderRequest) workRequest);
                             row[1] = ((BuilderRequest) workRequest).getBuilder().getName();
                             row[2] = ((BuilderRequest) workRequest).getSeller().getName();
                             row[3] = ((BuilderRequest) workRequest).getProperty().getStreet();

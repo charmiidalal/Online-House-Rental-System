@@ -60,7 +60,7 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
                     if (workRequest instanceof PhotographerRequest) {
                         if (userAccount.getUsername().equals(((PhotographerRequest) workRequest).getBuyer().getUsername())) {
                             Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PhotographerRequest) workRequest).getRequestID();
+                            row[0] = ((PhotographerRequest) workRequest);
                             row[1] = ((PhotographerRequest) workRequest).getPhotographer().getName();
                             row[2] = ((PhotographerRequest) workRequest).getSeller().getName();
                             row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
