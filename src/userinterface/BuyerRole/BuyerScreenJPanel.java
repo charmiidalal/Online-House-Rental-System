@@ -266,33 +266,33 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             Double longitude = property.getLongitude();
             JFrame test = new JFrame("Google Maps");
             String destinationFile = "";
-//            try {
-//                String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+latitude+",-"+longitude+"&zoom=13&size=600x300&maptype=roadmap"
-//                        + "&markers=color:red%7Clabel:C%7C"+latitude+",-"+longitude+"&key=AIzaSyC-yF5aM8YUko4sdBf2WfT0dYbPZSLXRlU&secret=-RHjX3W5fnP-JA0UVWwL2iKExBU=";
-//                destinationFile = property.getPropertyName()+".jpg";
-//                URL url = new URL(imageUrl);
-//                InputStream is = url.openStream();
-//                OutputStream os = new FileOutputStream(destinationFile);
-//
-//                byte[] b = new byte[2048];
-//                int length;
-//
-//                while ((length = is.read(b)) != -1) {
-//                    os.write(b, 0, length);
-//                }
-//
-//                is.close();
-//                os.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                System.exit(1);
-//            }
-//
-//            test.add(new JLabel(new ImageIcon((new ImageIcon(destinationFile)).getImage().getScaledInstance(630, 600,
-//                    java.awt.Image.SCALE_SMOOTH))));
-//
-//            test.setVisible(true);
-//            test.pack();
+            try {
+                String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+latitude+",-"+longitude+"&zoom=13&size=600x300&maptype=roadmap"
+                        + "&markers=color:red%7Clabel:C%7C"+latitude+",-"+longitude+"&key=AIzaSyC-yF5aM8YUko4sdBf2WfT0dYbPZSLXRlU&secret=-RHjX3W5fnP-JA0UVWwL2iKExBU=";
+                destinationFile = property.getPropertyName()+".jpg";
+                URL url = new URL(imageUrl);
+                InputStream is = url.openStream();
+                OutputStream os = new FileOutputStream(destinationFile);
+
+                byte[] b = new byte[2048];
+                int length;
+
+                while ((length = is.read(b)) != -1) {
+                    os.write(b, 0, length);
+                }
+
+                is.close();
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+
+            test.add(new JLabel(new ImageIcon((new ImageIcon(destinationFile)).getImage().getScaledInstance(630, 600,
+                    java.awt.Image.SCALE_SMOOTH))));
+
+            test.setVisible(true);
+            test.pack();
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

@@ -9,6 +9,8 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Property.Property;
+import Business.Property.PropertyDirectory;
 import Business.Role.AgentRole;
 import Business.Role.BuilderRole;
 import Business.Role.BuyerRole;
@@ -19,90 +21,101 @@ import Business.Role.PackersMoversRole;
 import Business.Role.PhotographerRole;
 import Business.Role.SellerRole;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
+import Business.WorkQueue.*;
 
 /**
  *
  * @author Mayank
  */
-public class PieGraphforNumofUsers extends javax.swing.JPanel {
-    
+public class BarGraphforStatusofWR1 extends javax.swing.JPanel {
+
     JPanel userProcessContainer;
     EcoSystem system;
-    JFreeChart pieChart;
+    JFreeChart barChart;
+    private PropertyDirectory propertyDirectory;
+
     /**
      * Creates new form ViewScenesGraph
      */
-    public PieGraphforNumofUsers(JPanel userProcessContainer, EcoSystem system) {
+    public BarGraphforStatusofWR1(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
         populateBarGraph();
     }
-    
+
     public void populateBarGraph() {
-        pieChart = ChartFactory.createPieChart(
-         "Number of Scenes Created across Networks",                     
-         createDataset(),          
-         true, true, false);
-        ChartPanel chartPanel = new ChartPanel( pieChart );   
+        barChart = ChartFactory.createBarChart(
+                "Sample",
+                "Status",
+                "Work Request Count",
+                createDataset(),
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        ChartPanel chartPanel = new ChartPanel(barChart);
         jPanel1.removeAll();
         jPanel1.add(chartPanel, BorderLayout.CENTER);
         jPanel1.validate();
     }
-    
-    private PieDataset createDataset() {
-       
-        int BuyerCount = 0, SellerCount = 0, AgentCount = 0, InspectorCount = 0, CleanerCount = 0,
-                BuilderCount = 0, ElectricianCount = 0, PhotographerCount = 0, PackersMoversCount = 0;
-        DefaultPieDataset result = new DefaultPieDataset();
 
+    private CategoryDataset createDataset() {
+        final String completed = "Sold";
+        final String requested = "Vacant";
+        final DefaultCategoryDataset dataset
+                = new DefaultCategoryDataset();
+        int soldHouses = 0, vacantHoused = 0;
+        DefaultPieDataset result = new DefaultPieDataset();
         for (Network network : system.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getRole() instanceof BuyerRole) {
-                            BuyerCount++;
-                        } else if (ua.getRole() instanceof SellerRole) {
-                            SellerCount++;
-                        } else if (ua.getRole() instanceof AgentRole) {
-                            AgentCount++;
-                        } else if (ua.getRole() instanceof InspectorRole) {
-                            InspectorCount++;
-                        } else if (ua.getRole() instanceof CleaningRole) {
-                            CleanerCount++;
-                        } else if (ua.getRole() instanceof BuilderRole) {
-                            BuilderCount++;
-                        } else if (ua.getRole() instanceof ElectricianRole) {
-                            ElectricianCount++;
-                        } else if (ua.getRole() instanceof PhotographerRole) {
-                            PhotographerCount++;
-                        } else if (ua.getRole() instanceof PackersMoversRole) {
-                            PackersMoversCount++;
+                if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
+                    for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                        if (o.getType() == Organization.Type.Seller) {
+                            for (UserAccount ua : o.getUserAccountDirectory().getUserAccountList()) {
+                                for (Property property : propertyDirectory.getPropertyList()) {
+                                    if(property.getSeller().getUsername().equals(ua.getUsername())){
+                                        if("sold".equals(property.getStatus().toLowerCase())){
+                                            soldHouses++;
+                                        }else{
+                                            vacantHoused++;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
+            dataset.addValue(soldHouses,network.getName(), "Sold");
+            dataset.addValue(vacantHoused,network.getName(), "Vacant");
+            soldHouses = 0; vacantHoused = 0;
         }
-        result.setValue("Buyer", BuyerCount);
-        result.setValue("Seller", SellerCount);
-        result.setValue("Agent", AgentCount);
-        result.setValue("Inspector", InspectorCount);
-        result.setValue("Cleaner", CleanerCount);
-        result.setValue("Builder", BuilderCount);
-        result.setValue("Electrician", ElectricianCount);
-        result.setValue("Photographer", PhotographerCount);
-        result.setValue("PackersMovers", PackersMoversCount);
+        return dataset;
+    }
 
-        return result;
-   }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,10 +141,10 @@ public class PieGraphforNumofUsers extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(25, 56, 82));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("NUMBER OF USERS BY ROLES");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 594, -1));
+        jLabel6.setText("HOUSE SELLANALYSIS PER NETWORK");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 594, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/chart-pie-big.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/bar-chart-big.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
