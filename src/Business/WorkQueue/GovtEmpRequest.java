@@ -28,6 +28,7 @@ public class GovtEmpRequest extends WorkRequest {
     private String buyerNote;
     private String status;
     private String requestedDate;
+    private double discount;
     int min = 100;
     int max = 999;
 
@@ -152,5 +153,14 @@ public class GovtEmpRequest extends WorkRequest {
     public String toString() {
         return requestID;
     }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+    
     
 }

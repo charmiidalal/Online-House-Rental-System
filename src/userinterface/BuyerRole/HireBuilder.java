@@ -157,7 +157,7 @@ public class HireBuilder extends javax.swing.JPanel {
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 0);
+        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
         String comment = commentTxxt.getText();
         if (count > 1) {
             JOptionPane.showMessageDialog(null, "Please select one row!");

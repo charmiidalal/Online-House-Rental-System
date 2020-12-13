@@ -31,9 +31,6 @@ public class Property {
     private double latitude;
 
     ArrayList<ImageIcon> images = new ArrayList<>();
-
-   
-   
     ArrayList<UserAccount> RegisteredBuyer = new ArrayList<UserAccount>();
 
     public ArrayList<UserAccount> getRegisteredBuyer() {
@@ -186,6 +183,5 @@ public class Property {
     public String toString() {
         return propertyName;
     }
-
    
 }

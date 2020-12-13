@@ -112,7 +112,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnLogoutLabelMousePressed(evt);
             }
         });
-        leftPanel.add(btnLogoutLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 0, 70, 60));
+        leftPanel.add(btnLogoutLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, 70, 60));
 
         greetingUserLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         leftPanel.add(greetingUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 690, 60));
@@ -411,6 +411,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void cancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMousePressed
         // TODO add your handling code here:
+        dB4OUtil.storeSystem(system);
         System.exit(0);
     }//GEN-LAST:event_cancelButtonMousePressed
 

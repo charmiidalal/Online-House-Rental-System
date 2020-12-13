@@ -27,6 +27,7 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
         initComponents();
         this.organizationDirectory = organizationDirectory;
         populateOrganizationEmployeeComboBox();
+        populateTable();
     }
 
     public void populateOrganizationEmployeeComboBox() {

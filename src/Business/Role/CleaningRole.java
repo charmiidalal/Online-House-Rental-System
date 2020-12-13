@@ -10,8 +10,8 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.CleaningRole.BuyerWorkAreaJPanel;
-import userinterface.CleaningRole.BuyerWorkAreaJPanel;
+import userinterface.CleaningRole.CleaningWorkAreaJPanel;
+
 
 /**
  *
@@ -21,7 +21,7 @@ public class CleaningRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
-        return new BuyerWorkAreaJPanel(userProcessContainer,account,organization,enterprise,network,business);
+        return new CleaningWorkAreaJPanel(userProcessContainer,account,organization,enterprise,network,business);
     }
 
     @Override

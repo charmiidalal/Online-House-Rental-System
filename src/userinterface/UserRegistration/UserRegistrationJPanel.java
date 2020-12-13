@@ -362,6 +362,9 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                     Organization org = enterprise.getOrganizationDirectory().createOrganization(type, name);
                     Employee emp = org.getEmployeeDirectory().createEmployee(name);
                     UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(username, password, emp, new BuyerRole());
+                    ua1.setEmail(emailAddress);
+                    ua1.setPhone(phone);
+                    ua1.setCity(city);
                     String bodyMsg = "Hello " + username + ", \n Thank you for registering with us. Your account is activated. Happy Housing!";
                 }
             }
