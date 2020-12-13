@@ -114,13 +114,14 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, -1, -1));
 
+        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 420, 150, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 150, -1));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 370, 120, -1));

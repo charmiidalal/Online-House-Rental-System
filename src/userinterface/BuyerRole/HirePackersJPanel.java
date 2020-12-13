@@ -100,6 +100,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         brnHireInspector.setForeground(new java.awt.Color(0, 0, 51));
         brnHireInspector.setText("Hire Packer");
+        brnHireInspector.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnHireInspectorActionPerformed(evt);
@@ -143,6 +144,7 @@ public class HirePackersJPanel extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 790, 300));
 
         btnBack3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBack3ActionPerformed(evt);

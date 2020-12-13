@@ -141,6 +141,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnDeleteHouse.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnDeleteHouse.setForeground(new java.awt.Color(0, 0, 51));
         btnDeleteHouse.setText("Delete House");
+        btnDeleteHouse.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDeleteHouse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteHouseActionPerformed(evt);
@@ -151,6 +152,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnEdit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnEdit.setForeground(new java.awt.Color(0, 0, 51));
         btnEdit.setText("Edit House");
+        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -161,6 +163,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         btnBuyers.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnBuyers.setForeground(new java.awt.Color(0, 0, 51));
         btnBuyers.setText("View Interested Buyers");
+        btnBuyers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuyers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuyersActionPerformed(evt);

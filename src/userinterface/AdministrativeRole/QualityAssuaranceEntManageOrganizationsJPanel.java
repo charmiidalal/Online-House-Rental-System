@@ -149,6 +149,8 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
         addJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         addJButton.setForeground(new java.awt.Color(25, 56, 82));
         addJButton.setText("Add Organization");
+        addJButton.setContentAreaFilled(false);
+        addJButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addJButtonActionPerformed(evt);

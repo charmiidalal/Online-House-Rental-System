@@ -70,10 +70,10 @@ public class ViewJobJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         brnTakeJob = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         btnCompleteJob = new javax.swing.JButton();
         txtFeedback = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -83,12 +83,10 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         btnViewSellerDetails = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
+        btnReject = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumberop.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 690, 550));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
@@ -107,6 +105,10 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plumberop.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 690, 550));
+
+        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +173,15 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(houseTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 910, 300));
+
+        btnReject.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnReject.setText("Reject");
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 430, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
@@ -269,10 +280,40 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
 
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            PlumberRequest inspectRequest = (PlumberRequest) houseTable.getValueAt(selectedRow, 0);
+            String feedback = txtFeedback.getText();
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
+            }
+            if (!"Completed".equals(inspectRequest.getStatus()) && !"In Progress".equals(inspectRequest.getStatus())) {
+                inspectRequest.setStatus("Rejected");
+                inspectRequest.setInspectorNote(feedback);
+                JOptionPane.showMessageDialog(null, "Job is set to rejected!");
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to set your status to Available?", "Warning", dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    useraccount.setStatus("Available");
+                }
+                populateRequestTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_btnRejectActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
+    private javax.swing.JButton btnReject;
     private javax.swing.JButton btnViewBuyerDetails;
     private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JTable houseTable;

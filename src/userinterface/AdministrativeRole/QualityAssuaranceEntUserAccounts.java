@@ -173,6 +173,7 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         createUserJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         createUserJButton.setForeground(new java.awt.Color(25, 56, 82));
         createUserJButton.setText("Create Users");
+        createUserJButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         createUserJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createUserJButtonActionPerformed(evt);

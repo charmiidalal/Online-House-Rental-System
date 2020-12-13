@@ -136,6 +136,7 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
 
         btnSave.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSave.setText("Save");
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);

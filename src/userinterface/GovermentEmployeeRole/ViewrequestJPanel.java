@@ -75,7 +75,6 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
 
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         btnApprove = new javax.swing.JButton();
         btnViewBuyerDetails = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -96,9 +95,6 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaning-staff.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 145, 164));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/CLEANING.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 680, 500));
-
         btnApprove.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnApprove.setText("Approve");
         btnApprove.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +102,7 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
                 btnApproveActionPerformed(evt);
             }
         });
-        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
+        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, -1));
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewBuyerDetails.setText("View Assignee Details");
@@ -239,7 +235,6 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

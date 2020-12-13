@@ -134,6 +134,7 @@ public class ServiceProviderEntWorkRequestJPanel extends javax.swing.JPanel {
         btnAccept.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnAccept.setForeground(new java.awt.Color(25, 56, 82));
         btnAccept.setText("Accept");
+        btnAccept.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcceptActionPerformed(evt);
@@ -145,6 +146,7 @@ public class ServiceProviderEntWorkRequestJPanel extends javax.swing.JPanel {
         btnReject.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnReject.setForeground(new java.awt.Color(25, 56, 82));
         btnReject.setText("Reject");
+        btnReject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRejectActionPerformed(evt);

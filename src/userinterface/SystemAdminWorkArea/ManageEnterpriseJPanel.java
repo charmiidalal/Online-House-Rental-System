@@ -159,6 +159,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         btnSubmit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnSubmit.setText("Submit");
         btnSubmit.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(25, 56, 82)));
+        btnSubmit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSubmit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnSubmitMousePressed(evt);

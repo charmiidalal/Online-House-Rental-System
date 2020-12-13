@@ -112,6 +112,7 @@ public class ManageLoanActivity extends javax.swing.JPanel {
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
         btnCompleteJob.setText("Send Message");
+        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
@@ -145,6 +146,7 @@ public class ManageLoanActivity extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 960, 270));
 
         btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBack1ActionPerformed(evt);

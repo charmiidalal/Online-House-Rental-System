@@ -127,6 +127,7 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
         btnSendMsg.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSendMsg.setForeground(new java.awt.Color(0, 0, 51));
         btnSendMsg.setText("Send Message");
+        btnSendMsg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSendMsg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendMsgActionPerformed(evt);
@@ -142,6 +143,7 @@ public class ManageInspectorActivity extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, 30));
 
         btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBack1ActionPerformed(evt);
