@@ -221,13 +221,14 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, -30, 690, 550));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, -50, 690, 550));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 140, 164));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setText("Take Job");
+        brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnTakeJobActionPerformed(evt);
@@ -236,6 +237,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, -1));
 
         btnCompleteJob.setText("Mark Complete");
+        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
@@ -264,6 +266,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewBuyerDetails.setText("View Buyer Details");
+        btnViewBuyerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuyerDetailsActionPerformed(evt);
@@ -273,22 +276,24 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewSellerDetails.setText("View Seller Details");
+        btnViewSellerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewSellerDetailsActionPerformed(evt);
             }
         });
-        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, -1, -1));
+        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, -1, -1));
 
         hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireSPBtn.setForeground(new java.awt.Color(41, 50, 80));
         hireSPBtn.setText("Hire Services");
+        hireSPBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hireSPBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hireSPBtnActionPerformed(evt);
             }
         });
-        add(hireSPBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 120, -1));
+        add(hireSPBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 540, 120, -1));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -312,6 +317,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnReject.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnReject.setText("Reject");
+        btnReject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRejectActionPerformed(evt);

@@ -97,7 +97,7 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 145, 164));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/gov_big.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 680, 500));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 680, 500));
 
         btnApprove.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnApprove.setText("Approve");
@@ -138,7 +138,7 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
