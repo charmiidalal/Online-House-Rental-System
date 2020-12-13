@@ -85,9 +85,11 @@ public class ViewBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel3.setText("Street");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
 
+        txtZipcode.setBackground(new java.awt.Color(153, 204, 255));
         txtZipcode.setEnabled(false);
         add(txtZipcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 160, -1));
 
+        txtStreet.setBackground(new java.awt.Color(153, 204, 255));
         txtStreet.setEnabled(false);
         add(txtStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 160, -1));
 
@@ -96,6 +98,7 @@ public class ViewBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel4.setText("City:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
 
+        txtCity.setBackground(new java.awt.Color(153, 204, 255));
         txtCity.setEnabled(false);
         add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 160, -1));
 
@@ -104,6 +107,7 @@ public class ViewBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel5.setText("State");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, -1, -1));
 
+        txtState.setBackground(new java.awt.Color(153, 204, 255));
         txtState.setEnabled(false);
         add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 160, -1));
 
@@ -112,6 +116,7 @@ public class ViewBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel6.setText("Phone:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
 
+        txtPhone.setBackground(new java.awt.Color(153, 204, 255));
         txtPhone.setEnabled(false);
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,9 +140,11 @@ public class ViewBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel2.setText("Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, -1, -1));
 
+        txtEmail.setBackground(new java.awt.Color(153, 204, 255));
         txtEmail.setEnabled(false);
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 160, -1));
 
+        txtName.setBackground(new java.awt.Color(153, 204, 255));
         txtName.setEnabled(false);
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

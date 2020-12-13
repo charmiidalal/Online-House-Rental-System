@@ -32,6 +32,7 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
+                populateTable();
         populateOrganizationEmployeeComboBox();
     }
 
