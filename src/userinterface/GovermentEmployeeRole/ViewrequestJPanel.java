@@ -93,11 +93,11 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
         jLabel11.setText("LOAN REQUESTS");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaning-staff.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/gov_small.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 145, 164));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/CLEANING.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 680, 500));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/gov_big.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 680, 500));
 
         btnApprove.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnApprove.setText("Approve");

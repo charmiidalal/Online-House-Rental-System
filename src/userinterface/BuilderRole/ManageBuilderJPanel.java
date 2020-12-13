@@ -8,7 +8,6 @@ package userinterface.BuilderRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -147,7 +146,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(41, 50, 80));
         jLabel10.setText("Status");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 370, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
         txtStatus.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 368, 180, -1));
@@ -161,7 +160,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, -1));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
 
         txtCity.setBackground(new java.awt.Color(153, 204, 255));
         txtCity.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +192,7 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -203,24 +202,24 @@ public class ManageBuilderJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if(system.isNull(txtName.getText()) || system.isNull(txtCharge.getText()) || system.isNull(txtCity.getText())
-           || system.isNull(txtStatus.getText()) || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
-           || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())){
+        if (system.isNull(txtName.getText()) || system.isNull(txtCharge.getText()) || system.isNull(txtCity.getText())
+                || system.isNull(txtStatus.getText()) || system.isNull(txtZipcode.getText()) || system.isNull(txtStreet.getText())
+                || system.isNull(txtEmail.getText()) || system.isNull(txtPhone.getText()) || system.isNull(txtState.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter all fields!");
             return;
-        }else if(!system.isDouble(txtCharge.getText())){
+        } else if (!system.isDouble(txtCharge.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter valid charge!");
             return;
-        }else if(!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5){
+        } else if (!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5) {
             JOptionPane.showMessageDialog(null, "Please enter valid 5 digit zipcode!");
             return;
-        }else if(!system.checkValidPhoneFormat(txtPhone.getText())){
+        } else if (!system.checkValidPhoneFormat(txtPhone.getText())) {
             return;
-        }else if(!system.checkValidEmailFormat(txtEmail.getText())){
+        } else if (!system.checkValidEmailFormat(txtEmail.getText())) {
             return;
-        }else if(!system.checkIfEmailIsUnique(txtEmail.getText(), userAccount.getUsername())){
+        } else if (!system.checkIfEmailIsUnique(txtEmail.getText(), userAccount.getUsername())) {
             return;
-        }else if(!system.checkIfPhoneIsUnique(txtPhone.getText(), userAccount.getUsername())){
+        } else if (!system.checkIfPhoneIsUnique(txtPhone.getText(), userAccount.getUsername())) {
             return;
         }
         userAccount.setName(txtName.getText());

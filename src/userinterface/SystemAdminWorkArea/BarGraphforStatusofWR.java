@@ -43,8 +43,6 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 import Business.WorkQueue.*;
 
-
-
 /**
  *
  * @author Mayank
@@ -82,8 +80,8 @@ public class BarGraphforStatusofWR extends javax.swing.JPanel {
 
     private CategoryDataset createDataset() {
         final String completed = "Completed";
-        final String requested = "Requested";
-        final String accepted = "Accepted";
+        final String requested = "Pending";
+        final String accepted = "In Progress";
         final DefaultCategoryDataset dataset
                 = new DefaultCategoryDataset();
         int AgentRCompletedCount = 0, AgentRRequestedCount = 0, AgentRAcceptedCount = 0,
@@ -97,64 +95,62 @@ public class BarGraphforStatusofWR extends javax.swing.JPanel {
 
         for (Network network : system.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    for (WorkRequest wr : organization.getWorkQueue().getWorkRequestList()) {
-                        if (wr instanceof AgentRequest) {
-                            if (wr.getStatus().equals("Completed")) {
-                                AgentRCompletedCount++;
-                            } else if (wr.getStatus().equals("Pending")) {
-                                AgentRRequestedCount++;
-                            } else if (wr.getStatus().equals("In Process")) {
-                                AgentRAcceptedCount++;
-                            }
-                        } else if (wr instanceof InspectRequest) {
-                            if (wr.getStatus().equals("Completed")) {
-                                InspectorRCompletedCount++;
-                            } else if (wr.getStatus().equals("Pending")) {
-                                InspectorRRequestedCount++;
-                            } else if (wr.getStatus().equals("In Process")) {
-                                InspectorRAcceptedCount++;
-                            }
-                        } else if (wr instanceof CleaningRequest) {
-                            if (wr.getStatus().equals("Completed")) {
-                                CleanerRCompletedCount++;
-                            } else if (wr.getStatus().equals("Pending")) {
-                                CleanerRRequestedCount++;
-                            } else if (wr.getStatus().equals("In Process")) {
-                                CleanerRAcceptedCount++;
-                            }
-                        } else if (wr instanceof BuilderRequest) {
-                            if (wr.getStatus().equals("Completed")) {
-                                BuilderRCompletedCount++;
-                            } else if (wr.getStatus().equals("Pending")) {
-                                BuilderRRequestedCount++;
-                            } else if (wr.getStatus().equals("In Process")) {
-                                BuilderRAcceptedCount++;
-                            }
-                        } else if (wr instanceof ElectricianRequest) {
-                            if (wr.getStatus().equals("Completed")) {
-                                ElectricianRCompletedCount++;
-                            } else if (wr.getStatus().equals("Pending")) {
-                                ElectricianRRequestedCount++;
-                            } else if (wr.getStatus().equals("In Process")) {
-                                ElectricianRAcceptedCount++;
-                            }
-                        } else if (wr instanceof PhotographerRequest) {
-                            if (wr.getStatus().equals("Completed")) {
-                                PhotographerRCompletedCount++;
-                            } else if (wr.getStatus().equals("Pending")) {
-                                PhotographerRRequestedCount++;
-                            } else if (wr.getStatus().equals("In Process")) {
-                                PhotographerRAcceptedCount++;
-                            }
-                        } else if (wr instanceof PackerRequest) {
-                            if (wr.getStatus().equals("Completed")) {
-                                PackersMoversRCompletedCount++;
-                            } else if (wr.getStatus().equals("Pending")) {
-                                PackersMoversRRequestedCount++;
-                            } else if (wr.getStatus().equals("In Process")) {
-                                PackersMoversRAcceptedCount++;
-                            }
+                for (WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()) {
+                    if (wr instanceof AgentRequest) {
+                        if (wr.getStatus().equals("Completed")) {
+                            AgentRCompletedCount++;
+                        } else if (wr.getStatus().equals("Pending")) {
+                            AgentRRequestedCount++;
+                        } else if (wr.getStatus().equals("In Progress")) {
+                            AgentRAcceptedCount++;
+                        }
+                    } else if (wr instanceof InspectRequest) {
+                        if (wr.getStatus().equals("Completed")) {
+                            InspectorRCompletedCount++;
+                        } else if (wr.getStatus().equals("Pending")) {
+                            InspectorRRequestedCount++;
+                        } else if (wr.getStatus().equals("In Progress")) {
+                            InspectorRAcceptedCount++;
+                        }
+                    } else if (wr instanceof CleaningRequest) {
+                        if (wr.getStatus().equals("Completed")) {
+                            CleanerRCompletedCount++;
+                        } else if (wr.getStatus().equals("Pending")) {
+                            CleanerRRequestedCount++;
+                        } else if (wr.getStatus().equals("In Progress")) {
+                            CleanerRAcceptedCount++;
+                        }
+                    } else if (wr instanceof BuilderRequest) {
+                        if (wr.getStatus().equals("Completed")) {
+                            BuilderRCompletedCount++;
+                        } else if (wr.getStatus().equals("Pending")) {
+                            BuilderRRequestedCount++;
+                        } else if (wr.getStatus().equals("In Progress")) {
+                            BuilderRAcceptedCount++;
+                        }
+                    } else if (wr instanceof ElectricianRequest) {
+                        if (wr.getStatus().equals("Completed")) {
+                            ElectricianRCompletedCount++;
+                        } else if (wr.getStatus().equals("Pending")) {
+                            ElectricianRRequestedCount++;
+                        } else if (wr.getStatus().equals("In Progress")) {
+                            ElectricianRAcceptedCount++;
+                        }
+                    } else if (wr instanceof PhotographerRequest) {
+                        if (wr.getStatus().equals("Completed")) {
+                            PhotographerRCompletedCount++;
+                        } else if (wr.getStatus().equals("Pending")) {
+                            PhotographerRRequestedCount++;
+                        } else if (wr.getStatus().equals("In Progress")) {
+                            PhotographerRAcceptedCount++;
+                        }
+                    } else if (wr instanceof PackerRequest) {
+                        if (wr.getStatus().equals("Completed")) {
+                            PackersMoversRCompletedCount++;
+                        } else if (wr.getStatus().equals("Pending")) {
+                            PackersMoversRRequestedCount++;
+                        } else if (wr.getStatus().equals("In Progress")) {
+                            PackersMoversRAcceptedCount++;
                         }
                     }
                 }
