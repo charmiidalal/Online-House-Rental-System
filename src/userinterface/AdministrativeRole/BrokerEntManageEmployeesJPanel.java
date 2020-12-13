@@ -25,6 +25,7 @@ public class BrokerEntManageEmployeesJPanel extends javax.swing.JPanel {
     public BrokerEntManageEmployeesJPanel(OrganizationDirectory organizationDirectory) {
         initComponents();
         this.organizationDirectory = organizationDirectory;
+                populateTable();
         populateOrganizationEmployeeComboBox();
     }
 

@@ -31,6 +31,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="13" style="1"/>
         </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="50" green="32" red="29" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Take Job"/>
       </Properties>
       <Events>
@@ -49,6 +52,9 @@
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="13" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="50" green="32" red="29" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="View Assignee Details"/>
       </Properties>
@@ -78,6 +84,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="50" green="32" red="29" type="rgb"/>
+        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/icon_new/inspectJob.png"/>
         </Property>
@@ -191,6 +200,12 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnCompleteJob">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="50" green="32" red="29" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mark Complete"/>
       </Properties>
       <Events>
@@ -198,7 +213,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="800" y="430" width="150" height="-1"/>
+          <AbsoluteConstraints x="900" y="430" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -210,7 +225,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="860" y="380" width="120" height="-1"/>
+          <AbsoluteConstraints x="840" y="380" width="200" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -218,6 +233,9 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="13" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="50" green="32" red="29" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Feedback:"/>
       </Properties>
@@ -231,6 +249,9 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="13" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="50" green="32" red="29" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Quotation Amount: "/>
       </Properties>
@@ -275,6 +296,9 @@
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="13" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="50" green="32" red="29" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="View Seller Details"/>
       </Properties>

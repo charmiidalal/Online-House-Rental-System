@@ -113,7 +113,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -122,7 +122,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 523, 95));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 523, 95));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
@@ -202,7 +202,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/admin_big.png"))); // NOI18N
         jLabel8.setPreferredSize(new java.awt.Dimension(1058, 840));
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 950, 790));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 950, 730));
     }// </editor-fold>//GEN-END:initComponents
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
