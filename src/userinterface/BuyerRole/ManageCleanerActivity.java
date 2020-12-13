@@ -106,7 +106,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Cleaner", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Charge", "Quote", "OrgType"
+                "JobID", "Cleaner", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Cleaner Message", "Charge", "Quote", "OrgType"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -130,6 +130,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCompleteJob.setForeground(new java.awt.Color(0, 0, 51));
         btnCompleteJob.setText("Send Message");
+        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
@@ -142,6 +143,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, 30));
 
         btnBack3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBack3ActionPerformed(evt);

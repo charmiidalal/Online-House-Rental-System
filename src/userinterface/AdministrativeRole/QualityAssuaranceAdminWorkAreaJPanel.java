@@ -106,6 +106,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageOrganizationPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageOrganizationPanel.setToolTipText("");
+        manageOrganizationPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageOrganizationPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageOrganizationPanelMousePressed(evt);
@@ -151,6 +152,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageEmployee.setBackground(new java.awt.Color(255, 213, 90));
         manageEmployee.setToolTipText("");
+        manageEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -166,6 +168,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEmployeeLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageEmployeeLabel.setText("Manage Employee");
         manageEmployeeLabel.setAutoscrolls(true);
+        manageEmployeeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageEmployeeLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageEmployeeLabelMousePressed(evt);
@@ -197,6 +200,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(manageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
 
         manageUserAccount.setBackground(new java.awt.Color(255, 213, 90));
+        manageUserAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageUserAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageUserAccountMousePressed(evt);
@@ -248,6 +252,7 @@ public class QualityAssuaranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 30, 370, 20));
 
         manageRequestPanel.setBackground(new java.awt.Color(255, 213, 90));
+        manageRequestPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageRequestPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageRequestPanelMousePressed(evt);

@@ -72,6 +72,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnHireInspector1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnHireInspector1.setForeground(new java.awt.Color(41, 50, 80));
         btnHireInspector1.setText("View Inspector Jobs");
+        btnHireInspector1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHireInspector1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHireInspector1ActionPerformed(evt);
@@ -82,6 +83,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewElectrician.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewElectrician.setForeground(new java.awt.Color(41, 50, 80));
         btnViewElectrician.setText("View Electrician Jobs");
+        btnViewElectrician.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewElectrician.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewElectricianActionPerformed(evt);
@@ -92,6 +94,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewPlumber.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewPlumber.setForeground(new java.awt.Color(41, 50, 80));
         btnViewPlumber.setText("View Plumber Jobs");
+        btnViewPlumber.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewPlumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewPlumberActionPerformed(evt);
@@ -102,6 +105,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewPacker.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewPacker.setForeground(new java.awt.Color(41, 50, 80));
         btnViewPacker.setText("View Packer Jobs");
+        btnViewPacker.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewPacker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewPackerActionPerformed(evt);
@@ -112,6 +116,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewPhoto.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewPhoto.setForeground(new java.awt.Color(41, 50, 80));
         btnViewPhoto.setText("View Photographer Jobs");
+        btnViewPhoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewPhoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewPhotoActionPerformed(evt);
@@ -122,6 +127,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewCleaner.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewCleaner.setForeground(new java.awt.Color(41, 50, 80));
         btnViewCleaner.setText("View Cleaner Jobs");
+        btnViewCleaner.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewCleaner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewCleanerActionPerformed(evt);
@@ -132,6 +138,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewManager.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewManager.setForeground(new java.awt.Color(41, 50, 80));
         btnViewManager.setText("View Property Manager Jobs");
+        btnViewManager.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewManagerActionPerformed(evt);
@@ -142,6 +149,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewBuilder.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewBuilder.setForeground(new java.awt.Color(41, 50, 80));
         btnViewBuilder.setText("View Builder Jobs");
+        btnViewBuilder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewBuilder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuilderActionPerformed(evt);
@@ -152,6 +160,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         agentJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         agentJob.setForeground(new java.awt.Color(41, 50, 80));
         agentJob.setText("View Agent Jobs");
+        agentJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agentJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agentJobActionPerformed(evt);
@@ -165,6 +174,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewLoanRequest.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewLoanRequest.setForeground(new java.awt.Color(41, 50, 80));
         btnViewLoanRequest.setText("View Loan Requests");
+        btnViewLoanRequest.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewLoanRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewLoanRequestActionPerformed(evt);

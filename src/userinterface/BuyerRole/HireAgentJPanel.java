@@ -123,6 +123,7 @@ public class HireAgentJPanel extends javax.swing.JPanel {
         brnHireAgent.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         brnHireAgent.setForeground(new java.awt.Color(41, 50, 80));
         brnHireAgent.setText("Hire Agent");
+        brnHireAgent.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnHireAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnHireAgentActionPerformed(evt);
