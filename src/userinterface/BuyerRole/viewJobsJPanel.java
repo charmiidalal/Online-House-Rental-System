@@ -64,6 +64,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewBuilder = new javax.swing.JButton();
         agentJob = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnViewLoanRequest = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -146,7 +147,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewBuilderActionPerformed(evt);
             }
         });
-        add(btnViewBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 190, -1));
+        add(btnViewBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 190, -1));
 
         agentJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         agentJob.setForeground(new java.awt.Color(41, 50, 80));
@@ -160,6 +161,16 @@ public class viewJobsJPanel extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/jobs.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+
+        btnViewLoanRequest.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnViewLoanRequest.setForeground(new java.awt.Color(41, 50, 80));
+        btnViewLoanRequest.setText("View Loan Requests");
+        btnViewLoanRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewLoanRequestActionPerformed(evt);
+            }
+        });
+        add(btnViewLoanRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 190, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHireInspector1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireInspector1ActionPerformed
@@ -227,6 +238,14 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_agentJobActionPerformed
 
+    private void btnViewLoanRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLoanRequestActionPerformed
+        // TODO add your handling code here:
+        ManageLoanActivity manageLoanActivity = new ManageLoanActivity(userProcessContainer, userAccount, system, enterprise, network, organization);
+        userProcessContainer.add("manageLoanActivity", manageLoanActivity);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewLoanRequestActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agentJob;
@@ -234,6 +253,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnViewBuilder;
     private javax.swing.JButton btnViewCleaner;
     private javax.swing.JButton btnViewElectrician;
+    private javax.swing.JButton btnViewLoanRequest;
     private javax.swing.JButton btnViewManager;
     private javax.swing.JButton btnViewPacker;
     private javax.swing.JButton btnViewPhoto;

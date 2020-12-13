@@ -20,9 +20,12 @@ public class GovermentEmployeeRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
-        return new GovermentEmployeeWorkAreaJPanel(userProcessContainer, enterprise);
+        return new GovermentEmployeeWorkAreaJPanel(userProcessContainer,account,organization,enterprise,network,business);
     }
 
-    
+    @Override
+    public String toString(){
+        return (RoleType.GovermentEmployee.getValue());
+    }
     
 }

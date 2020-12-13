@@ -89,7 +89,6 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         houseTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnBuyHouse = new javax.swing.JButton();
-        btnRegistration = new javax.swing.JButton();
         btnViewHouseDetails = new javax.swing.JButton();
         btnViewSellerDetails = new javax.swing.JButton();
         btnViewHouseOnMap = new javax.swing.JButton();
@@ -132,17 +131,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
                 btnBuyHouseActionPerformed(evt);
             }
         });
-        add(btnBuyHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 203, -1));
-
-        btnRegistration.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnRegistration.setForeground(new java.awt.Color(41, 50, 80));
-        btnRegistration.setText("Registeration Form");
-        btnRegistration.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrationActionPerformed(evt);
-            }
-        });
-        add(btnRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, 201, -1));
+        add(btnBuyHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 203, -1));
 
         btnViewHouseDetails.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewHouseDetails.setForeground(new java.awt.Color(41, 50, 80));
@@ -177,7 +166,7 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
         jLabel3.setBackground(new java.awt.Color(241, 241, 242));
         jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/household.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 690, 600));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 690, 600));
 
         hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireSPBtn.setForeground(new java.awt.Color(41, 50, 80));
@@ -214,19 +203,21 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
     private void btnBuyHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyHouseActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
         if (count == 1) {
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to buy the house? Please fill the Property Registration Form first! If you have completed and got it approved please click yes!", "Warning", dialogButton);
-            if (dialogResult == JOptionPane.YES_OPTION) {
+            String status = (String) houseTable.getValueAt(selectedRow, 9);
+            if (!"sold".equalsIgnoreCase(status)) {
+                String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
                 Property property = propertyDirectory.fetchProperty(propertyID);
-                property.setStatus("Sold");
-                property.setBuyer(userAccount);
-                populateRequestTable();
+                BuyerRegistrationFormJPanel regBuyerPanel = new BuyerRegistrationFormJPanel(userProcessContainer, organization, network, enterprise, property, system, userAccount);
+                userProcessContainer.add("BuyerRegistrationFormJPanel", regBuyerPanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
             } else {
-                JOptionPane.showMessageDialog(null, "Please click on Registration Form to buy the house!");
+                JOptionPane.showMessageDialog(null, "Sorry the selected house is sold! Choose other vacant houses!.");
+                return;
             }
-        } else {
+        } // TODO add your handling code here:
+        else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnBuyHouseActionPerformed
@@ -245,28 +236,6 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
-
-    private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
-        int selectedRow = houseTable.getSelectedRow();
-        int count = houseTable.getSelectedRowCount();
-        if (count == 1) {
-            String status = (String) houseTable.getValueAt(selectedRow, 9);
-            if (!"sold".equalsIgnoreCase(status)) {
-                String propertyID = (String) houseTable.getValueAt(selectedRow, 0);
-                Property property = propertyDirectory.fetchProperty(propertyID);
-                BuyerRegistrationFormJPanel regBuyerPanel = new BuyerRegistrationFormJPanel(userProcessContainer, property, system, userAccount);
-                userProcessContainer.add("BuyerRegistrationFormJPanel", regBuyerPanel);
-                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                layout.next(userProcessContainer);
-            } else {
-                JOptionPane.showMessageDialog(null, "Sorry the selected house is sold! Choose other vacant houses!.");
-            }
-        } // TODO add your handling code here:
-        else {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-        }
-
-    }//GEN-LAST:event_btnRegistrationActionPerformed
 
     private void hireSPBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireSPBtnActionPerformed
         int selectedRow = houseTable.getSelectedRow();
@@ -333,7 +302,6 @@ public class BuyerScreenJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyHouse;
-    private javax.swing.JButton btnRegistration;
     private javax.swing.JButton btnViewHouseDetails;
     private javax.swing.JButton btnViewHouseOnMap;
     private javax.swing.JButton btnViewSellerDetails;

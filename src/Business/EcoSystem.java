@@ -132,6 +132,9 @@ public class EcoSystem extends Organization {
                 }
             }
         }
+        if("admin".equals(userName.toLowerCase())){
+            flag = false;
+        }
         if (!flag) {
             JOptionPane.showMessageDialog(null, "Sorry! " + userName + " already exists in the system!", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;

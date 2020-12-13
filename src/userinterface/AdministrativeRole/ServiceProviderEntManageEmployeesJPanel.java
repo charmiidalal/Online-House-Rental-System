@@ -34,6 +34,7 @@ public class ServiceProviderEntManageEmployeesJPanel extends javax.swing.JPanel 
         this.organizationDirectory = organizationDirectory;
         populateTable();
         populateOrganizationEmployeeComboBox();
+        populateTable();
     }
 
     public void populateOrganizationEmployeeComboBox() {
@@ -48,14 +49,14 @@ public class ServiceProviderEntManageEmployeesJPanel extends javax.swing.JPanel 
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
 
         model.setRowCount(0);
-        
+
         for (Organization organization : organizationDirectory.getOrganizationList()) {
-        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
-            Object[] row = new Object[model.getColumnCount()];
-            row[0] = employee.getId();
-            row[1] = employee.getName();
-            model.addRow(row);
-        }
+            for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+                Object[] row = new Object[model.getColumnCount()];
+                row[0] = employee.getId();
+                row[1] = employee.getName();
+                model.addRow(row);
+            }
         }
     }
 

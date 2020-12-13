@@ -7,9 +7,13 @@ package userinterface.SellerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
+import Business.SendSMS.SendSMS;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.GovtEmpRequest;
 import java.awt.CardLayout;
 import java.io.File;
 import java.util.ArrayList;
@@ -28,15 +32,18 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
     private UserAccount useraccount;
     private Property property;
     private PropertyDirectory propertyDirectory;
+    private Network network;
+    private Organization organization;
 
-    public BuyerRegistrationFormJPanel(JPanel userProcessContainer, Property property, EcoSystem system, UserAccount useraccount) {
+    public BuyerRegistrationFormJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, EcoSystem system, UserAccount useraccount) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.userProcessContainer = userProcess;
         this.useraccount = useraccount;
         this.system = system;
         this.property = property;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
-
+        this.network = network;
+        this.organization = organization;
         txtHouse.setText(property.getPropertyName());
     }
 
@@ -71,6 +78,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
+        applyForLoan = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,7 +116,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                 btnUploadActionPerformed(evt);
             }
         });
-        add(btnUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 458, -1, 25));
+        add(btnUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, -1, 25));
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 779, -1, -1));
 
         btnsubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -118,7 +126,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                 btnsubmitActionPerformed(evt);
             }
         });
-        add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, -1, -1));
+        add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 600, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setText("REGISTRATION FORM");
@@ -131,10 +139,10 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setText("Selected House");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 532, -1, 27));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, 27));
 
         txtHouse.setEnabled(false);
-        add(txtHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 534, 127, 27));
+        add(txtHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 127, 27));
 
         jLabel10.setBackground(new java.awt.Color(204, 204, 204));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house5.png"))); // NOI18N
@@ -148,11 +156,18 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, -1, 30));
+
+        applyForLoan.setText("Apply For Government Loan");
+        applyForLoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyForLoanActionPerformed(evt);
+            }
+        });
+        add(applyForLoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
         // TODO add your handling code here:
-
         String name = txtname.getText();
         String phone = txtPhone.getText();
         String address = txtAddress.getText();
@@ -160,14 +175,15 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         String email = txtEmail.getText();
         String nationalId = txtId.getText();
         String idDoc = uploadlbl.getText();
+        Boolean applyLoan = applyForLoan.isSelected();
 
         // Buyer buyer = (this.buyerDirectory.getBuyer(name)) == null ? new Buyer() : this.buyerDirectory.getBuyer(name);
         if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || zipcode.isEmpty() || nationalId.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
-        } else if(!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5){
+        } else if (!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5) {
             JOptionPane.showMessageDialog(null, "Please enter valid 5 digit zipcode!");
             return;
-        }else{
+        } else {
             useraccount.setName(name);
             useraccount.setPhone(phone);
             useraccount.setEmail(email);
@@ -178,6 +194,22 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
             ArrayList<UserAccount> registeredBuyer = property.getRegisteredBuyer();
             registeredBuyer.add(useraccount);
             property.setRegisteredBuyer(registeredBuyer);
+            if (applyLoan) {
+                for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                        if (org.getType() == Organization.Type.Goverment) {
+                            GovtEmpRequest cr = new GovtEmpRequest();
+                            cr.setRequestID();
+                            cr.setBuyer(useraccount);
+                            cr.setSeller(property.getSeller());
+                            cr.setStatus("Pending");
+                            cr.setProperty(property);
+                            e.getWorkQueue().getWorkRequestList().add(cr);
+                            JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                        }
+                    }
+                }
+            }
             JOptionPane.showMessageDialog(this, "Thank you for submitting the form!");
         }
     }//GEN-LAST:event_btnsubmitActionPerformed
@@ -198,8 +230,13 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBack1ActionPerformed
 
+    private void applyForLoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyForLoanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_applyForLoanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox applyForLoan;
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnUpload;
     private javax.swing.JButton btnsubmit;
