@@ -193,7 +193,8 @@ public class HireBuilder extends javax.swing.JPanel {
                     }
                 }
             }
-        } else {
+        } 
+        else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
 
         }

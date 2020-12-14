@@ -217,8 +217,8 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
                 }
             }
         }
-        }
-        }
+      }
+   }
         else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
 
