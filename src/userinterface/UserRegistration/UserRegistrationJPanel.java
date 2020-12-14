@@ -285,18 +285,18 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void stateComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateComboActionPerformed
-        Network n = (Network) stateCombo.getSelectedItem();
-        for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-                if (o instanceof AgentOrganization) {
-                    orgCombo.addItem(Organization.Type.Agent);
-                } else if (o instanceof BuilderOrganization) {
-                    orgCombo.addItem(Organization.Type.Builder);
-                } else if (o instanceof PropertyManagerOrganization) {
-                    orgCombo.addItem(Organization.Type.PropertyManager);
-                }
-            }
-        }
+//        Network n = (Network) stateCombo.getSelectedItem();
+//        for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+//            for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+//                if (o instanceof AgentOrganization) {
+//                    orgCombo.addItem(Organization.Type.Agent);
+//                } else if (o instanceof BuilderOrganization) {
+//                    orgCombo.addItem(Organization.Type.Builder);
+//                } else if (o instanceof PropertyManagerOrganization) {
+//                    orgCombo.addItem(Organization.Type.PropertyManager);
+//                }
+//            }
+//        }
     }//GEN-LAST:event_stateComboActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
