@@ -95,20 +95,22 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         btnCompleteJob = new javax.swing.JButton();
         btnReject = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENTO.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 530, 450));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 380, 138, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(41, 50, 80));
         jLabel1.setText("Feedback:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 380, -1, -1));
 
         btnSuggestProperty.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnSuggestProperty.setForeground(new java.awt.Color(41, 50, 80));
         btnSuggestProperty.setText("Suggest Property");
         btnSuggestProperty.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuggestProperty.addActionListener(new java.awt.event.ActionListener() {
@@ -144,9 +146,10 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(houseTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 910, 300));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 940, 280));
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnViewBuyerDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewBuyerDetails.setText("View Assignee Details");
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +159,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(btnViewBuyerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, -1, -1));
 
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnViewSellerDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewSellerDetails.setText("View Seller Details");
         btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +169,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        brnTakeJob.setForeground(new java.awt.Color(41, 50, 80));
         brnTakeJob.setText("Take Job");
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +179,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Quotation Amount: ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 160, 20));
 
@@ -185,6 +191,8 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         });
         add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, 120, -1));
 
+        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnCompleteJob.setForeground(new java.awt.Color(41, 50, 80));
         btnCompleteJob.setText("Mark Complete");
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +202,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 430, 150, -1));
 
         btnReject.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnReject.setForeground(new java.awt.Color(41, 50, 80));
         btnReject.setText("Reject");
         btnReject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReject.addActionListener(new java.awt.event.ActionListener() {
@@ -210,10 +219,16 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
             AgentRequest agentRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
+            String requestStatus=(String) houseTable.getValueAt(selectedRow, 7);
+            if(requestStatus.equalsIgnoreCase("In Progress")){
             AssignPropetyJPanel assignPropetyJPanel = new AssignPropetyJPanel(userProcessContainer, userAccount, system, agentRequest);
             userProcessContainer.add("assignPropetyJPanel", assignPropetyJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+            layout.next(userProcessContainer);}
+            else
+            {
+               JOptionPane.showMessageDialog(null, "Cannot suggest house now ,You have completed this request already !");   
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }

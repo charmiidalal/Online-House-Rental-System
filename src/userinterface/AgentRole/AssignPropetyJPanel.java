@@ -87,7 +87,7 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/houseop.png"))); // NOI18N
@@ -123,7 +123,7 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
             jtblHouse.getColumnModel().getColumn(9).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 730, 219));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 790, 219));
 
         btnBack.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         btnBack.setForeground(new java.awt.Color(41, 50, 80));
@@ -134,9 +134,9 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 30, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 20, 40, 30));
 
-        btnSendHouseSug.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        btnSendHouseSug.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSendHouseSug.setForeground(new java.awt.Color(41, 50, 80));
         btnSendHouseSug.setText("Send House Suggestions");
         btnSendHouseSug.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -145,7 +145,7 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
                 btnSendHouseSugActionPerformed(evt);
             }
         });
-        add(btnSendHouseSug, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 180, 30));
+        add(btnSendHouseSug, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 220, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 145, 164));
@@ -153,7 +153,7 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("LIST OF ALL THE HOUSES");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -169,11 +169,23 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
         if (jtblHouse.getSelectedRow() >= 0) {
             for(int i = 0; i < jtblHouse.getSelectedRows().length; i++){
                 String propertyID =  (String) jtblHouse.getValueAt(jtblHouse.getSelectedRows()[i], 0);
+                Property property=system.getPropertyDirectory().fetchProperty(propertyID);
+                if(!property.getStatus().equalsIgnoreCase("sold")){
                 propertyList.add(propertyID);
+                agentRequest.setPropertyList(propertyList);
+                }
+                 else
+                {
+                     JOptionPane.showMessageDialog(this, "Property is sold !Please suggest other vacant property.");
+
+                }
             }
-            agentRequest.setPropertyList(propertyList);
-            JOptionPane.showMessageDialog(this, "Property Suggested Successfully!");
-        } else {
+                JOptionPane.showMessageDialog(this, "Property Suggested Successfully!");
+                }
+               
+            
+            
+        else {
             JOptionPane.showMessageDialog(this, "Please select a house to suggest");
         }
     }//GEN-LAST:event_btnSendHouseSugActionPerformed

@@ -228,11 +228,12 @@ public class ManageAgentActivity extends javax.swing.JPanel {
             AgentRequest br = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
   
             if (br instanceof AgentRequest) {
-                ArrayList<String> propertyList=((AgentRequest) br).getPropertyList();
-               for( String propertyID : propertyList)
+                ArrayList<String> propertyList= br.getPropertyList();
+                
+               for(String propertyID : propertyList)
                {
-                   Property property=system.getPropertyDirectory().fetchProperty(propertyID);
-               if(property!=null){
+               Property property=system.getPropertyDirectory().fetchProperty(propertyID);
+                if(property!=null){
                 Object[] row = new Object[model.getColumnCount()];
                 row[0] = property.getPropertyID();
                 row[1] = property.getPropertyName();
@@ -248,13 +249,16 @@ public class ManageAgentActivity extends javax.swing.JPanel {
                 row[11] = property.getSeller();
                 model.addRow(row);
                }
+               
                else
                {
                    JOptionPane.showMessageDialog(null, "Sorry there are no house suggestions!");
                }
+               
                }
             }
-        }
+            }
+        
         else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
