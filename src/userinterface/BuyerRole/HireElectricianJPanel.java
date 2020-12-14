@@ -176,8 +176,30 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                         cr.setProperty(property);
                         e.getWorkQueue().getWorkRequestList().add(cr);
                         JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                        try{
+                            if(serviceAcc.getPhone()!=null){
                         SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
-                        EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                            }
+                            else
+                            {
+                                System.out.println("NophoneNumber");
+                            }
+                        }
+                        catch(NullPointerException ex){
+                            System.out.println("NophoneNumber");
+                        }
+                        try{
+                            if(serviceAcc.getEmail()!=null){
+                             EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                            }
+                            else
+                            {
+                                System.out.println("Noemail");
+                            }
+                        }
+                            catch(NullPointerException ex){
+                            System.out.println("NoEmail");
+                        }
                     }
                 }
             }

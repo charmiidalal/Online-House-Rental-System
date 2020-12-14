@@ -157,7 +157,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                 btnBack1ActionPerformed(evt);
             }
         });
-        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, -1, 30));
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 30, 30));
 
         applyForLoan.setText("Apply For Government Loan");
         applyForLoan.addActionListener(new java.awt.event.ActionListener() {

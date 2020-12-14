@@ -71,6 +71,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         btnView = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,6 +130,14 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house1.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 170, 750, 550));
+
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddBuyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBuyerActionPerformed
@@ -173,9 +182,17 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnViewActionPerformed
 
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBuyer;
+    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

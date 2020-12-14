@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -98,6 +99,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         bathroomTxt = new javax.swing.JTextField();
         longitudelbl = new javax.swing.JLabel();
         latitudelbl = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,7 +140,13 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel10.setText("BHK:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
-        jPanel1.add(longitudeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, 180, -1));
+
+        longitudeTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                longitudeTxtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(longitudeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, 180, -1));
 
         submitBtn.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         submitBtn.setText("Save");
@@ -172,14 +180,14 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel12.setText("Longitude:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, -1, -1));
         jPanel1.add(bhkTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 180, -1));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel13.setText("Rent:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, -1, -1));
         jPanel1.add(priceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, 180, -1));
-        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 250, 160, 100));
+        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 210, 300, 140));
         jPanel1.add(zipcodeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 180, -1));
 
         homeNamelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
@@ -190,7 +198,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         imglbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         imglbl.setForeground(new java.awt.Color(255, 51, 51));
         imglbl.setText("Please upload the image of the house ");
-        jPanel1.add(imglbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, 200, -1));
+        jPanel1.add(imglbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 280, 200, -1));
 
         bhklbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         bhklbl.setForeground(new java.awt.Color(255, 51, 51));
@@ -205,10 +213,10 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         bathroomlbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         bathroomlbl.setForeground(new java.awt.Color(255, 51, 51));
         bathroomlbl.setText("Enter the bathroom in number format");
-        jPanel1.add(bathroomlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, 190, -1));
+        jPanel1.add(bathroomlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, 190, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house4.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
         jPanel1.add(latitudeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 180, -1));
 
         jLabel14.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
@@ -217,20 +225,28 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel15.setText("Bathroom:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
-        jPanel1.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, 180, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, -1, -1));
+        jPanel1.add(bathroomTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 360, 180, -1));
 
         longitudelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         longitudelbl.setForeground(new java.awt.Color(255, 51, 51));
         longitudelbl.setText("Please enter longitude in 0.0 format");
-        jPanel1.add(longitudelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, 200, -1));
+        jPanel1.add(longitudelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, 200, -1));
 
         latitudelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         latitudelbl.setForeground(new java.awt.Color(255, 51, 51));
         latitudelbl.setText("Please enter latitude in 0.0 format");
         jPanel1.add(latitudelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 200, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, 680));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1280, 680));
+
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 20, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
@@ -321,6 +337,17 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_submitBtnActionPerformed
 
+    private void longitudeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_longitudeTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_longitudeTxtActionPerformed
+
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
     public void emptyAllFields() {
         nameTxt.setText("");
         addressTxt.setText("");
@@ -350,6 +377,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel bathroomlbl;
     private javax.swing.JTextField bhkTxt;
     private javax.swing.JLabel bhklbl;
+    private javax.swing.JButton btnBack1;
     private javax.swing.JTextField cityTxt;
     private javax.swing.JLabel homeNamelbl;
     private javax.swing.JLabel imglbl;

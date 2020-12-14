@@ -72,6 +72,7 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
         txtState = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setForeground(new java.awt.Color(0, 0, 51));
@@ -146,10 +147,18 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
         add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 200, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house5.png"))); // NOI18N
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 1020, 640));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 1020, 610));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/best-seller.png"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 460, -1, -1));
+
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(975, 20, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
@@ -189,8 +198,16 @@ public class ManageSellerProfileJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCityActionPerformed
 
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -361,9 +361,7 @@ public class MainJFrame extends javax.swing.JFrame {
         if (userAccount == null) {
             for (Network network : system.getNetworkList()) {
                 //Step 2.a: check against each enterprise
-                System.out.println("Network name --->> " + network.getName());
-                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    System.out.println("Enterprise name --->> " + enterprise.getName());
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) { 
                     userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
                     networkEmergency = network;
                     if (userAccount == null) {

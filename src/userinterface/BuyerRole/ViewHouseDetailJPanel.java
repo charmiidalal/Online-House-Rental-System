@@ -14,8 +14,11 @@ import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Image;
+import java.io.File;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,10 +67,11 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         priceTxt.setText(Double.toString(property.getPrice()));
         bhkTxt.setText(Integer.toString(property.getBhk()));
         bathroomTxt.setText(Double.toString(property.getBathroom()));
-        ImageIcon imgIcon = new ImageIcon(property.getUploadImg().getImage());
-        Image imgResize = imgIcon.getImage().getScaledInstance(460, 280, Image.SCALE_SMOOTH);
-        imgupload.setText("");
-        imgupload.setIcon(new ImageIcon(imgResize));
+      
+        ImageIcon imgIcon = (ImageIcon)property.getUploadImg();
+       
+       
+        imgupload.setIcon(imgIcon);
     }
 
     /**
@@ -204,7 +208,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(0, 0, 51));
         jLabel9.setText("HOUSE DETAILS");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
-        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 260, 170));
+        jPanel1.add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 340, 200));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/HOUSE1.jpg"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 30, 540, 690));
@@ -218,7 +222,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, 30, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 790));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 780));
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
