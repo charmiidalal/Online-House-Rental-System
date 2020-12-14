@@ -44,23 +44,26 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
 
             if (workRequest instanceof PlumberRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((PlumberRequest) workRequest).getBuyer();
-                row[2] = ((PlumberRequest) workRequest).getSeller();
-                row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
-                row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
-                row[5] = ((PlumberRequest) workRequest).getProperty().getState();
-                row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
-                row[7] = ((PlumberRequest) workRequest).getStatus();
-                row[8] = ((PlumberRequest) workRequest).getBuyerNote();
-                row[9] = ((PlumberRequest) workRequest).getInspectorNote();
-                row[10] = ((PlumberRequest) workRequest).getQuote();
-                row[11] = ((PlumberRequest) workRequest).getBuyer().getRole().toString();
-                model.addRow(row);
+                if (((PlumberRequest) workRequest).getPlumber().getUsername() == useraccount.getUsername()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((PlumberRequest) workRequest).getBuyer();
+                    row[2] = ((PlumberRequest) workRequest).getSeller();
+                    row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
+                    row[5] = ((PlumberRequest) workRequest).getProperty().getState();
+                    row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((PlumberRequest) workRequest).getStatus();
+                    row[8] = ((PlumberRequest) workRequest).getBuyerNote();
+                    row[9] = ((PlumberRequest) workRequest).getInspectorNote();
+                    row[10] = ((PlumberRequest) workRequest).getQuote();
+                    row[11] = ((PlumberRequest) workRequest).getBuyer().getRole().toString();
+                    model.addRow(row);
+                }
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -307,7 +310,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
                 }
                 populateRequestTable();
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+                JOptionPane.showMessageDialog(null, "Job is already " + inspectRequest.getStatus());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

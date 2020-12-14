@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author Charmi
  */
 public class ManageNetworkJPanel extends javax.swing.JPanel {
 
@@ -20,6 +20,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     /**
      *
      * Creates new form ManageNetworkJPanel
+     * @param system
      */
     public ManageNetworkJPanel(EcoSystem system) {
         initComponents();
@@ -56,7 +57,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         btnSubmit = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -94,16 +95,16 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             networkJTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 567, 91));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 567, 240));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
         jLabel1.setText("Please Enter State Name");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 265, 25));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 265, 25));
 
         nameJTextField.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         nameJTextField.setForeground(new java.awt.Color(25, 56, 82));
-        add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 296, -1));
+        add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 296, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -127,7 +128,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 btnSubmitMousePressed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 153, 32));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 153, 32));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Organization_back.png"))); // NOI18N

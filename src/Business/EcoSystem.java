@@ -123,6 +123,11 @@ public class EcoSystem extends Organization {
         boolean flag = true;
         for (Network n : business.getNetworkList()) {
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (UserAccount u : e.getUserAccountDirectory().getUserAccountList()) {
+                    if (u.getUsername().toLowerCase().equals(userName.toLowerCase())) {
+                        flag = false;
+                    }
+                }
                 for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
                     for (UserAccount u : o.getUserAccountDirectory().getUserAccountList()) {
                         if (u.getUsername().toLowerCase().equals(userName.toLowerCase())) {
@@ -132,7 +137,7 @@ public class EcoSystem extends Organization {
                 }
             }
         }
-        if("admin".equals(userName.toLowerCase())){
+        if ("admin".equals(userName.toLowerCase())) {
             flag = false;
         }
         if (!flag) {

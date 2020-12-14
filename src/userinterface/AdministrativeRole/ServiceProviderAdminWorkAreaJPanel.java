@@ -292,7 +292,7 @@ public class ServiceProviderAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(manageRequestPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 280, 40));
 
-        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 

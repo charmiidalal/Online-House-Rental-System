@@ -12,7 +12,6 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -55,13 +54,13 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        createPassword = new javax.swing.JTextField();
         createUsername = new javax.swing.JTextField();
         selectRole = new javax.swing.JComboBox();
         selectEmployee = new javax.swing.JComboBox();
         selectOrganization = new javax.swing.JComboBox();
         createUserJButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        createPassword = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 241, 242));
@@ -132,13 +131,9 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         jLabel2.setText("Password");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, -1));
 
-        createPassword.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        createPassword.setForeground(new java.awt.Color(25, 56, 82));
-        add(createPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 260, -1));
-
         createUsername.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         createUsername.setForeground(new java.awt.Color(25, 56, 82));
-        add(createUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 468, 260, -1));
+        add(createUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 260, -1));
 
         selectRole.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectRole.setForeground(new java.awt.Color(25, 56, 82));
@@ -182,8 +177,12 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/group.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
+        createPassword.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        createPassword.setForeground(new java.awt.Color(25, 56, 82));
+        add(createPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 260, 30));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/userAccount.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 600, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 600, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectRoleActionPerformed
@@ -195,10 +194,10 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
     }//GEN-LAST:event_selectEmployeeActionPerformed
 
     private void selectOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectOrganizationActionPerformed
-        Organization organization = (Organization) selectOrganization.getSelectedItem();
-        if (organization != null) {
-            populateEmployeeComboBox(organization);
-            popRoleComboBox(organization);
+        Organization org = (Organization) selectOrganization.getSelectedItem();
+        if (org != null) {
+            populateEmployeeComboBox(org);
+            popRoleComboBox(org);
         }
     }//GEN-LAST:event_selectOrganizationActionPerformed
 
@@ -216,10 +215,10 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
         if (!ecosystem.checkIfUserIsUnique(username)) {
             return;
         }
-        Organization organization = (Organization) selectOrganization.getSelectedItem();
+        Organization org = (Organization) selectOrganization.getSelectedItem();
         Employee employee = (Employee) selectEmployee.getSelectedItem();
         Role role = (Role) selectRole.getSelectedItem();
-        organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
+        org.getUserAccountDirectory().createUserAccount(username, password, employee, role);
         populateData();
         createUsername.setText("");
         createPassword.setText("");
@@ -228,8 +227,8 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
 
     public void populateOrganizationComboBox() {
         selectOrganization.removeAllItems();
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            selectOrganization.addItem(organization);
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            selectOrganization.addItem(org);
         }
     }
 
@@ -238,8 +237,8 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
 
         model.setRowCount(0);
 
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                 Object row[] = new Object[2];
                 row[0] = ua;
                 row[1] = ua.getRole();
@@ -264,7 +263,7 @@ public class BrokerEntUserAccounts extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField createPassword;
+    private javax.swing.JPasswordField createPassword;
     private javax.swing.JButton createUserJButton;
     private javax.swing.JTextField createUsername;
     private javax.swing.JLabel jLabel1;

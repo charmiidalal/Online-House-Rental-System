@@ -8,44 +8,21 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Organization.Organization;
-import Business.Role.AgentRole;
-import Business.Role.BuilderRole;
-import Business.Role.BuyerRole;
-import Business.Role.CleaningRole;
-import Business.Role.ElectricianRole;
-import Business.Role.InspectorRole;
-import Business.Role.PackersMoversRole;
-import Business.Role.PhotographerRole;
-import Business.Role.SellerRole;
-import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Component;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 import Business.WorkQueue.*;
 
 /**
  *
- * @author Mayank
+ * @author Charmi
  */
 public class BarGraphforStatusofWR extends javax.swing.JPanel {
 
@@ -55,6 +32,8 @@ public class BarGraphforStatusofWR extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewScenesGraph
+     * @param userProcessContainer
+     * @param system
      */
     public BarGraphforStatusofWR(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
@@ -193,7 +172,7 @@ public class BarGraphforStatusofWR extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

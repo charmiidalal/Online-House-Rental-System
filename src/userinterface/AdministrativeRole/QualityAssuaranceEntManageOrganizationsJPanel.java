@@ -86,7 +86,7 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
         addJButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setMinimumSize(new java.awt.Dimension(1058, 840));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -119,31 +119,31 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
         tblVoluntaryOrg.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(tblVoluntaryOrg);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 595, 203));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 595, 270));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MANAGE QUALITY ASSUARANCE ORGANIZATION");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 595, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 595, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
         jLabel1.setText("Organization Type ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 510, -1, -1));
 
         OrganizationTypeComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         OrganizationTypeComboBox.setForeground(new java.awt.Color(25, 56, 82));
-        add(OrganizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 171, -1));
+        add(OrganizationTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, 200, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("Organization Name");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, -1));
 
         organizationName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationName.setForeground(new java.awt.Color(25, 56, 82));
-        add(organizationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 171, -1));
+        add(organizationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 190, -1));
 
         addJButton.setBackground(new java.awt.Color(255, 255, 255));
         addJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -156,10 +156,10 @@ public class QualityAssuaranceEntManageOrganizationsJPanel extends javax.swing.J
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Organization_back.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 660, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 660, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed

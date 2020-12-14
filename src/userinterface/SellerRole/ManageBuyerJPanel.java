@@ -131,6 +131,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house1.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 170, 750, 550));
 
+        btnBack1.setBackground(new java.awt.Color(241, 241, 242));
         btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
         btnBack1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +150,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
             int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to sell the house", "Warning", dialogButton);
 
             if (dialogResult == JOptionPane.YES_OPTION) {
-                UserAccount buyerAcc = (UserAccount) jtblBuyers.getValueAt(selectedRow, 0);
+                UserAccount buyerAcc = (UserAccount) jtblBuyers.getValueAt(selectedRow, 1);
                 property.setBuyer(buyerAcc);
                 property.setStatus("Sold");
                 system.getPropertyDirectory().getPropertyList().set(propertyDirectory.getPropertyList().indexOf(property), property);

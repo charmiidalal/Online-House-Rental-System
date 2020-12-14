@@ -9,9 +9,6 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Organization.AgentOrganization;
-import Business.Organization.BuilderOrganization;
-import Business.Organization.PropertyManagerOrganization;
 import Business.Organization.Organization;
 import Business.Role.BuyerRole;
 import Business.SendSMS.SendSMS;
@@ -76,7 +73,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         UsrNameLabel = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
@@ -92,6 +88,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         orgCombo = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         pleaseWait = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1338, 900));
@@ -143,18 +140,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
             }
         });
         add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, 250, 35));
-
-        txtPassword.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(25, 56, 82));
-        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtPasswordKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPasswordKeyTyped(evt);
-            }
-        });
-        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 253, 35));
 
         passwordLabel.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         passwordLabel.setForeground(new java.awt.Color(25, 56, 82));
@@ -253,7 +238,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Home_Image_Signup.png"))); // NOI18N
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, 400, 830, 400));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(-350, 410, 830, 400));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(25, 56, 82));
@@ -282,6 +267,10 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         pleaseWait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/spinning-arrows.gif"))); // NOI18N
         pleaseWait.setText("Please Wait . . .");
         add(pleaseWait, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 440, 300, 210));
+
+        txtPassword.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(25, 56, 82));
+        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 250, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void stateComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateComboActionPerformed
@@ -387,8 +376,10 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
                             enterprise.setWorkQueue(new WorkQueue());
                         }
                         flag = true;
-                        enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
                     }
+                }
+                if(flag){
+                    enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
                 }
             }
         }
@@ -428,11 +419,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_txtUsernameKeyTyped
-
-    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_txtPasswordKeyTyped
 
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
         // TODO add your handling code here:
@@ -476,10 +462,6 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_orgComboActionPerformed
 
-    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordKeyReleased
-
     private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailKeyReleased
@@ -509,7 +491,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtContact;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

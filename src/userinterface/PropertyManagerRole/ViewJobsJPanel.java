@@ -39,7 +39,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewJobsJPanel
      */
-
     public ViewJobsJPanel(JPanel userProcessContainer, Organization organization, Network network, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -54,6 +53,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         popuatePropertyTable();
         populateRequestTable();
     }
+
     public void popuatePropertyTable() {
         DefaultTableModel model = (DefaultTableModel) propertyTable.getModel();
         model.setRowCount(0);
@@ -74,25 +74,27 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-    
+
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
             if (workRequest instanceof ManagerRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((ManagerRequest) workRequest).getBuyer().getName();
-                row[2] = ((ManagerRequest) workRequest).getSeller().getName();
-                row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
-                row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
-                row[5] = ((ManagerRequest) workRequest).getProperty().getState();
-                row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
-                row[7] = ((ManagerRequest) workRequest).getStatus();
-                row[8] = ((ManagerRequest) workRequest).getBuyerNote();
-                row[9] = ((ManagerRequest) workRequest).getInspectorNote();
-                model.addRow(row);
+                if (((ManagerRequest) workRequest).getManager().getUsername() == useraccount.getUsername()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((ManagerRequest) workRequest).getBuyer();
+                    row[2] = ((ManagerRequest) workRequest).getSeller();
+                    row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
+                    row[5] = ((ManagerRequest) workRequest).getProperty().getState();
+                    row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((ManagerRequest) workRequest).getStatus();
+                    row[8] = ((ManagerRequest) workRequest).getBuyerNote();
+                    row[9] = ((ManagerRequest) workRequest).getInspectorNote();
+                    model.addRow(row);
+                }
             }
         }
     }
@@ -331,15 +333,15 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_hireElecBtnActionPerformed
 
     private void hirePlumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePlumBtnActionPerformed
-       
+
     }//GEN-LAST:event_hirePlumBtnActionPerformed
 
     private void hirePhotoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hirePhotoBtnActionPerformed
-       
+
     }//GEN-LAST:event_hirePhotoBtnActionPerformed
 
     private void hireCleanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireCleanBtnActionPerformed
-       
+
     }//GEN-LAST:event_hireCleanBtnActionPerformed
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
@@ -445,12 +447,12 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
             String propertyID = (String) propertyTable.getValueAt(selectedRow, 0);
             Property property = propertyDirectory.fetchProperty(propertyID);
 
-            HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer,organization,network,enterprise, property,system, useraccount);
+            HireServiceJPanel hireServiceJPanel = new HireServiceJPanel(userProcessContainer, organization, network, enterprise, property, system, useraccount);
             userProcessContainer.add("hireServiceJPanel", hireServiceJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
 
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
     }//GEN-LAST:event_hireSPBtnActionPerformed
@@ -477,7 +479,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 }
                 populateRequestTable();
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+                JOptionPane.showMessageDialog(null, "Job is already " + inspectRequest.getStatus());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

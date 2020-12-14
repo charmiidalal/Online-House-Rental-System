@@ -11,53 +11,33 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.Role.AgentRole;
-import Business.Role.BuilderRole;
-import Business.Role.BuyerRole;
-import Business.Role.CleaningRole;
-import Business.Role.ElectricianRole;
-import Business.Role.InspectorRole;
-import Business.Role.PackersMoversRole;
-import Business.Role.PhotographerRole;
-import Business.Role.SellerRole;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.WorkRequest;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Component;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
-import Business.WorkQueue.*;
 
 /**
  *
- * @author Mayank
+ * @author Charmi
  */
 public class BarGraphforStatusofWR1 extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     EcoSystem system;
     JFreeChart barChart;
-    private PropertyDirectory propertyDirectory;
+    private final PropertyDirectory propertyDirectory;
 
     /**
      * Creates new form ViewScenesGraph
+     *
+     * @param userProcessContainer
+     * @param system
      */
     public BarGraphforStatusofWR1(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
@@ -83,8 +63,6 @@ public class BarGraphforStatusofWR1 extends javax.swing.JPanel {
     }
 
     private CategoryDataset createDataset() {
-        final String completed = "Sold";
-        final String requested = "Vacant";
         final DefaultCategoryDataset dataset
                 = new DefaultCategoryDataset();
         int soldHouses = 0, vacantHoused = 0;
@@ -96,10 +74,10 @@ public class BarGraphforStatusofWR1 extends javax.swing.JPanel {
                         if (o.getType() == Organization.Type.Seller) {
                             for (UserAccount ua : o.getUserAccountDirectory().getUserAccountList()) {
                                 for (Property property : propertyDirectory.getPropertyList()) {
-                                    if(property.getSeller().getUsername().equals(ua.getUsername())){
-                                        if("sold".equals(property.getStatus().toLowerCase())){
+                                    if (property.getSeller().getUsername().equals(ua.getUsername())) {
+                                        if ("sold".equals(property.getStatus().toLowerCase())) {
                                             soldHouses++;
-                                        }else{
+                                        } else {
                                             vacantHoused++;
                                         }
                                     }
@@ -109,9 +87,10 @@ public class BarGraphforStatusofWR1 extends javax.swing.JPanel {
                     }
                 }
             }
-            dataset.addValue(soldHouses,network.getName(), "Sold");
-            dataset.addValue(vacantHoused,network.getName(), "Vacant");
-            soldHouses = 0; vacantHoused = 0;
+            dataset.addValue(soldHouses, network.getName(), "Sold");
+            dataset.addValue(vacantHoused, network.getName(), "Vacant");
+            soldHouses = 0;
+            vacantHoused = 0;
         }
         return dataset;
     }
@@ -129,7 +108,7 @@ public class BarGraphforStatusofWR1 extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

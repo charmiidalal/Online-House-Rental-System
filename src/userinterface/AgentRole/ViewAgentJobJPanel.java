@@ -5,7 +5,6 @@
  */
 package userinterface.AgentRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
@@ -34,11 +33,11 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewJobJPanel
      */
-    public ViewAgentJobJPanel(JPanel userProcess, EcoSystem system,Enterprise enterprise, UserAccount userAccount) {
+    public ViewAgentJobJPanel(JPanel userProcess, EcoSystem system, Enterprise enterprise, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.enterprise=enterprise;
+        this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
 
@@ -52,20 +51,22 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
 
             if (workRequest instanceof AgentRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((AgentRequest) workRequest).getBuyer();
-                row[2] = ((AgentRequest) workRequest).getSeller();
-                row[3] = ((AgentRequest) workRequest).getProperty().getStreet();
-                row[4] = ((AgentRequest) workRequest).getProperty().getCity();
-                row[5] = ((AgentRequest) workRequest).getProperty().getState();
-                row[6] = ((AgentRequest) workRequest).getProperty().getPincode();
-                row[7] = ((AgentRequest) workRequest).getStatus();
-                row[8] = ((AgentRequest) workRequest).getBuyerNote();
-                row[9] = ((AgentRequest) workRequest).getInspectorNote();
-                row[10] = ((AgentRequest) workRequest).getQuote();
-                row[11] = ((AgentRequest) workRequest).getBuyer().getRole().toString();
-                model.addRow(row);
+                if (((AgentRequest) workRequest).getAgent().getUsername() == userAccount.getUsername()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((AgentRequest) workRequest).getBuyer();
+                    row[2] = ((AgentRequest) workRequest).getSeller();
+                    row[3] = ((AgentRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((AgentRequest) workRequest).getProperty().getCity();
+                    row[5] = ((AgentRequest) workRequest).getProperty().getState();
+                    row[6] = ((AgentRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((AgentRequest) workRequest).getStatus();
+                    row[8] = ((AgentRequest) workRequest).getBuyerNote();
+                    row[9] = ((AgentRequest) workRequest).getInspectorNote();
+                    row[10] = ((AgentRequest) workRequest).getQuote();
+                    row[11] = ((AgentRequest) workRequest).getBuyer().getRole().toString();
+                    model.addRow(row);
+                }
             }
         }
     }
@@ -219,15 +220,14 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
             AgentRequest agentRequest = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
-            String requestStatus=(String) houseTable.getValueAt(selectedRow, 7);
-            if(requestStatus.equalsIgnoreCase("In Progress")){
-            AssignPropetyJPanel assignPropetyJPanel = new AssignPropetyJPanel(userProcessContainer, userAccount, system, agentRequest);
-            userProcessContainer.add("assignPropetyJPanel", assignPropetyJPanel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);}
-            else
-            {
-               JOptionPane.showMessageDialog(null, "Cannot suggest house now ,You have completed this request already !");   
+            String requestStatus = (String) houseTable.getValueAt(selectedRow, 7);
+            if (requestStatus.equalsIgnoreCase("In Progress")) {
+                AssignPropetyJPanel assignPropetyJPanel = new AssignPropetyJPanel(userProcessContainer, userAccount, system, agentRequest);
+                userProcessContainer.add("assignPropetyJPanel", assignPropetyJPanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else {
+                JOptionPane.showMessageDialog(null, "Cannot suggest house now ,You have completed this request already !");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
@@ -352,7 +352,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
                 }
                 populateRequestTable();
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+                JOptionPane.showMessageDialog(null, "Job is already " + inspectRequest.getStatus());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

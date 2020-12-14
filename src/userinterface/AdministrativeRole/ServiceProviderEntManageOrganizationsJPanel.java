@@ -88,7 +88,7 @@ public class ServiceProviderEntManageOrganizationsJPanel extends javax.swing.JPa
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setMinimumSize(new java.awt.Dimension(1058, 840));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -121,13 +121,13 @@ public class ServiceProviderEntManageOrganizationsJPanel extends javax.swing.JPa
         tblVoluntaryOrg.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(tblVoluntaryOrg);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 595, 203));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 90, 680, 270));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MANAGE SERVICE PROVIDER ORGANIZATIONS");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 595, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 595, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
@@ -157,7 +157,7 @@ public class ServiceProviderEntManageOrganizationsJPanel extends javax.swing.JPa
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/organization.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, -1, -1));

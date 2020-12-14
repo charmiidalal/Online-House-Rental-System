@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
  */
 public class Property {
 
-    private ImageIcon uploadImg;
+    private String uploadImg;
     private String PropertyID;
     private String propertyName;
     private String street;
@@ -123,11 +123,11 @@ public class Property {
         this.bathroom = bathroom;
     }
 
-    public ImageIcon getUploadImg() {
+    public String getUploadImg() {
         return uploadImg;
     }
 
-    public void setUploadImg(ImageIcon uploadImg) {
+    public void setUploadImg(String uploadImg) {
         this.uploadImg = uploadImg;
     }
 

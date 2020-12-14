@@ -97,7 +97,7 @@ public class UserAccount {
 
     @Override
     public String toString() {
-        return username;
+        return name;
     }
 
     public Object getUserAccountDirectory() {

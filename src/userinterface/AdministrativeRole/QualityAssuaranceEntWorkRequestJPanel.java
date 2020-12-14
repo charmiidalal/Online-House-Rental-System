@@ -85,7 +85,7 @@ public class QualityAssuaranceEntWorkRequestJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setMinimumSize(new java.awt.Dimension(1058, 840));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -121,7 +121,7 @@ public class QualityAssuaranceEntWorkRequestJPanel extends javax.swing.JPanel {
         workRequestJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 854, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 854, 280));
 
         btnAccept.setBackground(new java.awt.Color(255, 255, 255));
         btnAccept.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -133,7 +133,7 @@ public class QualityAssuaranceEntWorkRequestJPanel extends javax.swing.JPanel {
                 btnAcceptActionPerformed(evt);
             }
         });
-        add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 387, -1, -1));
+        add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 490, -1, -1));
 
         btnReject.setBackground(new java.awt.Color(255, 255, 255));
         btnReject.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -145,7 +145,7 @@ public class QualityAssuaranceEntWorkRequestJPanel extends javax.swing.JPanel {
                 btnRejectActionPerformed(evt);
             }
         });
-        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(558, 387, -1, -1));
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));

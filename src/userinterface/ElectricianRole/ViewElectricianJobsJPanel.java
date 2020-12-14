@@ -5,7 +5,6 @@
  */
 package userinterface.ElectricianRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
@@ -48,26 +47,26 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
             if (workRequest instanceof ElectricianRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((ElectricianRequest) workRequest).getBuyer();
-                row[2] = ((ElectricianRequest) workRequest).getSeller();
-                row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();
-                row[4] = ((ElectricianRequest) workRequest).getProperty().getCity();
-                row[5] = ((ElectricianRequest) workRequest).getProperty().getState();
-                row[6] = ((ElectricianRequest) workRequest).getProperty().getPincode();
-                row[7] = ((ElectricianRequest) workRequest).getStatus();
-                row[8] = ((ElectricianRequest) workRequest).getBuyerNote();
-                row[9] = ((ElectricianRequest) workRequest).getInspectorNote();
-                row[10] = ((ElectricianRequest) workRequest).getQuote();
-                row[11] = ((ElectricianRequest) workRequest).getBuyer().getRole().toString();
-                model.addRow(row);
+                if (((ElectricianRequest) workRequest).getElectrician().getUsername() == useraccount.getUsername()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((ElectricianRequest) workRequest).getBuyer();
+                    row[2] = ((ElectricianRequest) workRequest).getSeller();
+                    row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((ElectricianRequest) workRequest).getProperty().getCity();
+                    row[5] = ((ElectricianRequest) workRequest).getProperty().getState();
+                    row[6] = ((ElectricianRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((ElectricianRequest) workRequest).getStatus();
+                    row[8] = ((ElectricianRequest) workRequest).getBuyerNote();
+                    row[9] = ((ElectricianRequest) workRequest).getInspectorNote();
+                    row[10] = ((ElectricianRequest) workRequest).getQuote();
+                    row[11] = ((ElectricianRequest) workRequest).getBuyer().getRole().toString();
+                    model.addRow(row);
+                }
             }
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -316,7 +315,7 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
                 }
                 populateRequestTable();
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+                JOptionPane.showMessageDialog(null, "Job is already " + inspectRequest.getStatus());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
