@@ -72,7 +72,7 @@ public class ViewBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -153,8 +153,9 @@ public class ViewBuyerDetailsJPanel extends javax.swing.JPanel {
         });
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, 160, -1));
 
+        jLabel9.setBackground(new java.awt.Color(241, 241, 242));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/buyerimg1.jpg"))); // NOI18N
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 160, 770, 400));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 150, 770, 400));
 
         btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
         btnBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

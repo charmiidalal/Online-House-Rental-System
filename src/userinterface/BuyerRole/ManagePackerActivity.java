@@ -100,6 +100,8 @@ public class ManagePackerActivity extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(241, 241, 242));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

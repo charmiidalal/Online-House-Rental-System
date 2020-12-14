@@ -102,7 +102,7 @@ public class ManageAgentActivity extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblHouse = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(

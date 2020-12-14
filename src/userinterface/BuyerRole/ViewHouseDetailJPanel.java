@@ -106,6 +106,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

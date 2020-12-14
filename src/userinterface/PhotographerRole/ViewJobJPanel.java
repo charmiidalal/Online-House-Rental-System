@@ -21,7 +21,7 @@ import userinterface.BuyerRole.ViewSellerDetailsJPanel;
 
 /**
  *
- * @author Dinesh
+ * @author dinesh
  */
 public class ViewJobJPanel extends javax.swing.JPanel {
 

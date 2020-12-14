@@ -95,7 +95,7 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         btnBack3 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/cleaning-staff.png"))); // NOI18N

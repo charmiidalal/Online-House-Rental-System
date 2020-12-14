@@ -167,16 +167,17 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
-        String comment = commentTxxt.getText();
-        if (count > 1) {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-            return;
-        } else if (comment.isEmpty()) {
+       
+        
+        if(count==1){
+            if(selectedRow >=0){
+                UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
+                String comment = commentTxxt.getText();
+            if (comment.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
             return;
         } else if (!serviceAcc.getStatus().equals("Available")) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Manager is already Occupied");
+            JOptionPane.showMessageDialog(null, "Sorry! This Plumber is already Occupied");
             return;
         }
         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -191,6 +192,7 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                         cr.setStatus("Pending");
                         cr.setBuyerNote(comment);
                         cr.setProperty(property);
+                        cr.setOrgType(org.getType());
                         e.getWorkQueue().getWorkRequestList().add(cr);
                         JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
                         SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
@@ -199,6 +201,10 @@ public class HiremanagerJPanel extends javax.swing.JPanel {
                 }
             }
         }
+        }
+            }else{
+                JOptionPane.showMessageDialog(null,"Please select one row!");
+            }
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed

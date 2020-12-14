@@ -149,6 +149,8 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(241, 241, 242));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -219,7 +221,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 agentHireActionPerformed(evt);
             }
         });
-        add(agentHire, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 180, -1));
+        add(agentHire, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 180, -1));
 
         hirepackerMover.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirepackerMover.setForeground(new java.awt.Color(0, 0, 51));
@@ -230,7 +232,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hirepackerMoverActionPerformed(evt);
             }
         });
-        add(hirepackerMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 200, -1));
+        add(hirepackerMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 200, -1));
 
         hireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireInspector.setForeground(new java.awt.Color(0, 0, 51));
@@ -241,7 +243,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
                 hireInspectorActionPerformed(evt);
             }
         });
-        add(hireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 200, -1));
+        add(hireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 200, -1));
 
         hirePhotograph.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirePhotograph.setForeground(new java.awt.Color(0, 0, 51));

@@ -293,7 +293,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 hireSPBtnActionPerformed(evt);
             }
         });
-        add(hireSPBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 540, 120, -1));
+        add(hireSPBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 120, -1));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
