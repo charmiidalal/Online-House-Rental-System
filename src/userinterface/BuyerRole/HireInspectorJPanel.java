@@ -62,7 +62,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                         row[4] = ua.getStatus();
                         row[5] = ua.getPhone();
                         row[6] = ua.getCharge();
-                        row[7] = org.getName();
+                        row[7] = org.getType();
                         model.addRow(row);
                     }
                 }
@@ -148,12 +148,11 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
+        if (count == 1) {
+        if (selectedRow >= 0) {
         UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
         String comment = commentTxxt.getText();
-        if (count > 1) {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-            return;
-        } else if (comment.isEmpty()) {
+       if (comment.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
             return;
         } else if (!serviceAcc.getStatus().equals("Available")) {
@@ -172,6 +171,7 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                         cr.setStatus("Pending");
                         cr.setBuyerNote(comment);
                         cr.setProperty(property);
+                        cr.setOrgType(org.getType());
                         SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
                         EcoSystem.sendEmailMessage(serviceAcc.getEmail(),"Hello! You have one new work request! Please login to know more!");
                         JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
@@ -179,6 +179,12 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
                     }
                 }
             }
+        }
+            }
+          }
+           else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+
         }
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 

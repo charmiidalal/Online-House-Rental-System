@@ -64,7 +64,7 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                         row[4] = ua.getStatus();
                         row[5] = ua.getPhone();
                         row[6] = ua.getCharge();
-                        row[7] = org.getName();
+                        row[7] = org.getType();
                         model.addRow(row);
                     }
                 }
@@ -150,59 +150,58 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
-        String comment = commentTxxt.getText();
-        if (count > 1) {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-            return;
-        } else if (comment.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
-            return;
-        } else if (!serviceAcc.getStatus().equals("Available")) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Electrician is already Occupied");
-            return;
-        }
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (serviceAcc.getUsername().equals(ua.getUsername())) {
-                        ElectricianRequest cr = new ElectricianRequest();
-                        cr.setRequestID();
-                        cr.setBuyer(userAccount);
-                        cr.setElectrician(serviceAcc);
-                        cr.setSeller(property.getSeller());
-                        cr.setStatus("Pending");
-                        cr.setBuyerNote(comment);
-                        cr.setProperty(property);
-                        e.getWorkQueue().getWorkRequestList().add(cr);
-                        JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                        try{
-                            if(serviceAcc.getPhone()!=null){
-                        SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
+                String comment = commentTxxt.getText();
+                if (comment.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
+                    return;
+                } else if (!serviceAcc.getStatus().equals("Available")) {
+                    JOptionPane.showMessageDialog(null, "Sorry! This Electrician is already Occupied");
+                    return;
+                }
+                for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                        for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                            if (serviceAcc.getUsername().equals(ua.getUsername())) {
+                                ElectricianRequest cr = new ElectricianRequest();
+                                cr.setRequestID();
+                                cr.setBuyer(userAccount);
+                                cr.setElectrician(serviceAcc);
+                                cr.setSeller(property.getSeller());
+                                cr.setStatus("Pending");
+                                cr.setBuyerNote(comment);
+                                cr.setProperty(property);
+                                cr.setOrgType(org.getType());
+                                e.getWorkQueue().getWorkRequestList().add(cr);
+                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                try {
+                                    if (serviceAcc.getPhone() != null) {
+                                        SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                                    } else {
+                                        System.out.println("NophoneNumber");
+                                    }
+                                } catch (NullPointerException ex) {
+                                    System.out.println("NophoneNumber");
+                                }
+                                try {
+                                    if (serviceAcc.getEmail() != null) {
+                                        EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                    } else {
+                                        System.out.println("Noemail");
+                                    }
+                                } catch (NullPointerException ex) {
+                                    System.out.println("NoEmail");
+                                }
                             }
-                            else
-                            {
-                                System.out.println("NophoneNumber");
-                            }
-                        }
-                        catch(NullPointerException ex){
-                            System.out.println("NophoneNumber");
-                        }
-                        try{
-                            if(serviceAcc.getEmail()!=null){
-                             EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
-                            }
-                            else
-                            {
-                                System.out.println("Noemail");
-                            }
-                        }
-                            catch(NullPointerException ex){
-                            System.out.println("NoEmail");
                         }
                     }
                 }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+
         }
 
 

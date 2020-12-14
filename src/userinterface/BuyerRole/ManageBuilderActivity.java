@@ -103,7 +103,7 @@ public class ManageBuilderActivity extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("VIEW BUILDER JOB LIST");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));

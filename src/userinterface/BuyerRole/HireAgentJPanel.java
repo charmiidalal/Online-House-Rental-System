@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Dinesh
@@ -184,38 +183,44 @@ public class HireAgentJPanel extends javax.swing.JPanel {
     private void brnHireAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireAgentActionPerformed
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-        UserAccount agentAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
-        String comment = commentTxxt.getText();
-        if (count > 1) {
-            JOptionPane.showMessageDialog(null, "Please select one row!");
-            return;
-        } else if (comment.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
-            return;
-        } else if (!agentAcc.getStatus().equals("Available")) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Agent is already Occupied");
-            return;
-        }
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (agentAcc.getUsername().equals(ua.getUsername())) {
 
-                        AgentRequest ar = new AgentRequest();
-                        ar.setRequestID();
-                        ar.setBuyer(userAccount);
-                        ar.setAgent(agentAcc);
-                        ar.setSeller(property.getSeller());
-                        ar.setStatus("Pending");
-                        ar.setBuyerNote(comment);
-                        ar.setProperty(property);
-                        e.getWorkQueue().getWorkRequestList().add(ar);
-                        JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                        SendSMS sms = new SendSMS(agentAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
-                        EcoSystem.sendEmailMessage(agentAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+        if (count == 1) {
+            if (selectedRow >= 0) {
+                UserAccount agentAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
+                String comment = commentTxxt.getText();
+                if (comment.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
+                    return;
+                } else if (!agentAcc.getStatus().equals("Available")) {
+                    JOptionPane.showMessageDialog(null, "Sorry! This Agent is already Occupied");
+                    return;
+                }
+                for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                        for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                            if (agentAcc.getUsername().equals(ua.getUsername())) {
+
+                                AgentRequest ar = new AgentRequest();
+                                ar.setRequestID();
+                                ar.setBuyer(userAccount);
+                                ar.setAgent(agentAcc);
+                                ar.setSeller(property.getSeller());
+                                ar.setStatus("Pending");
+                                ar.setBuyerNote(comment);
+                                ar.setProperty(property);
+                                ar.setOrgType(org.getType());
+                                e.getWorkQueue().getWorkRequestList().add(ar);
+                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                SendSMS sms = new SendSMS(agentAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                                EcoSystem.sendEmailMessage(agentAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                            }
+                        }
                     }
                 }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+
         }
     }//GEN-LAST:event_brnHireAgentActionPerformed
 
