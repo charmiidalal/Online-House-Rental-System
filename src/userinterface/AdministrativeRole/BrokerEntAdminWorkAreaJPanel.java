@@ -111,6 +111,7 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageOrgPanel.setBackground(new java.awt.Color(255, 213, 90));
         manageOrgPanel.setToolTipText("");
+        manageOrgPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageOrgPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageOrgPanelMousePressed(evt);
@@ -158,6 +159,7 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageEmp.setBackground(new java.awt.Color(255, 213, 90));
         manageEmp.setToolTipText("");
+        manageEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageEmp.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -203,6 +205,7 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
         menuPanel.add(manageEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
 
         manageUserAcc.setBackground(new java.awt.Color(255, 213, 90));
+        manageUserAcc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageUserAcc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageUserAccMousePressed(evt);
@@ -212,11 +215,13 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageUserAccountLabel.setBackground(new java.awt.Color(215, 81, 81));
         manageUserAccountLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageUserAccountLabel.setText("Manage User Account");
+        manageUserAccountLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageUserAccountLabel.setPreferredSize(new java.awt.Dimension(115, 16));
 
         jLabel6.setBackground(new java.awt.Color(215, 81, 81));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/login_small.png"))); // NOI18N
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout manageUserAccLayout = new javax.swing.GroupLayout(manageUserAcc);
         manageUserAcc.setLayout(manageUserAccLayout);
@@ -253,6 +258,7 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
         menuPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 280, 20));
 
         manageRequestPanel.setBackground(new java.awt.Color(255, 213, 90));
+        manageRequestPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageRequestPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageRequestPanelMousePressed(evt);
@@ -262,6 +268,7 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageRequestLabel.setBackground(new java.awt.Color(255, 213, 90));
         manageRequestLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         manageRequestLabel.setText("Manage Requests");
+        manageRequestLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageRequestLabel.setPreferredSize(new java.awt.Dimension(115, 16));
 
         jLabel7.setBackground(new java.awt.Color(215, 81, 81));
@@ -287,7 +294,7 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(manageRequestPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel7))
-                    .addComponent(manageRequestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(manageRequestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

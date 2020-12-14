@@ -111,6 +111,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
         btnUpload.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnUpload.setText("Upload ID document");
+        btnUpload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUploadActionPerformed(evt);
@@ -121,6 +122,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
         btnsubmit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnsubmit.setText("Submit");
+        btnsubmit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnsubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsubmitActionPerformed(evt);

@@ -96,6 +96,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         btnViewSellerDetails = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
+        btnReject = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,7 +106,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 287, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/BUILDING.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 660, 440));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
@@ -117,6 +118,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setText("Take Job");
+        brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnTakeJobActionPerformed(evt);
@@ -126,6 +128,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnCompleteJob.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
+        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
@@ -154,6 +157,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewBuyerDetails.setText("View Assignee Details");
+        btnViewBuyerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuyerDetailsActionPerformed(evt);
@@ -163,6 +167,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewSellerDetails.setText("View Seller Details");
+        btnViewSellerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewSellerDetailsActionPerformed(evt);
@@ -189,6 +194,16 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(houseTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 910, 300));
+
+        btnReject.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnReject.setText("Reject");
+        btnReject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 430, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnTakeJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnTakeJobActionPerformed
@@ -287,10 +302,40 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnViewSellerDetailsActionPerformed
 
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            BuilderRequest inspectRequest = (BuilderRequest) houseTable.getValueAt(selectedRow, 0);
+            String feedback = txtFeedback.getText();
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
+            }
+            if (!"Completed".equals(inspectRequest.getStatus()) && !"In Progress".equals(inspectRequest.getStatus())) {
+                inspectRequest.setStatus("Rejected");
+                inspectRequest.setInspectorNote(feedback);
+                JOptionPane.showMessageDialog(null, "Job is set to rejected!");
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to set your status to Available?", "Warning", dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    useraccount.setStatus("Available");
+                }
+                populateRequestTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_btnRejectActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
+    private javax.swing.JButton btnReject;
     private javax.swing.JButton btnViewBuyerDetails;
     private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JTable houseTable;

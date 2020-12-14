@@ -96,6 +96,7 @@ public class HireBuilder extends javax.swing.JPanel {
         brnHireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         brnHireInspector.setForeground(new java.awt.Color(41, 50, 80));
         brnHireInspector.setText("Hire Builder");
+        brnHireInspector.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnHireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnHireInspectorActionPerformed(evt);
@@ -119,6 +120,7 @@ public class HireBuilder extends javax.swing.JPanel {
 
         btnBack.setForeground(new java.awt.Color(41, 50, 80));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);

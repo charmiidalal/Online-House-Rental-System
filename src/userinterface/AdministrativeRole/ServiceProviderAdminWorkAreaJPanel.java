@@ -115,6 +115,7 @@ public class ServiceProviderAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganization.setBackground(new java.awt.Color(215, 81, 81));
         manageOrganization.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         manageOrganization.setText("Manage Organization");
+        manageOrganization.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageOrganization.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageOrganizationMousePressed(evt);
@@ -153,6 +154,7 @@ public class ServiceProviderAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageEmployee.setBackground(new java.awt.Color(255, 213, 90));
         manageEmployee.setToolTipText("");
+        manageEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageEmployee.setPreferredSize(new java.awt.Dimension(264, 48));
         manageEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -198,6 +200,7 @@ public class ServiceProviderAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(manageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 40));
 
         manageUserAccount.setBackground(new java.awt.Color(255, 213, 90));
+        manageUserAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageUserAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageUserAccountMousePressed(evt);
@@ -248,6 +251,7 @@ public class ServiceProviderAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 280, 20));
 
         manageRequestPanel.setBackground(new java.awt.Color(255, 213, 90));
+        manageRequestPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manageRequestPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 manageRequestPanelMousePressed(evt);
@@ -282,7 +286,7 @@ public class ServiceProviderAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(manageRequestPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel7))
-                    .addComponent(manageRequestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(manageRequestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

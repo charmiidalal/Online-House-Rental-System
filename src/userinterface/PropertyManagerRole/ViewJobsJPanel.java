@@ -114,8 +114,8 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         hireCleanBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         propertyTable = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         brnTakeJob = new javax.swing.JButton();
         btnCompleteJob = new javax.swing.JButton();
@@ -128,6 +128,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         hireSPBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
+        btnReject = new javax.swing.JButton();
 
         hireElecBtn.setText("Hire Electrician");
         hireElecBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -214,19 +215,20 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, 920, 300));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, -30, 690, 550));
-
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("PROPERTY MANAGER WORK REQUEST");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/property.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, -50, 690, 550));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/real-estate-agent.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 140, 164));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setText("Take Job");
+        brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnTakeJobActionPerformed(evt);
@@ -235,6 +237,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, -1));
 
         btnCompleteJob.setText("Mark Complete");
+        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
@@ -263,6 +266,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewBuyerDetails.setText("View Buyer Details");
+        btnViewBuyerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuyerDetailsActionPerformed(evt);
@@ -272,29 +276,31 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
 
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewSellerDetails.setText("View Seller Details");
+        btnViewSellerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewSellerDetailsActionPerformed(evt);
             }
         });
-        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, -1, -1));
+        add(btnViewSellerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, -1, -1));
 
         hireSPBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireSPBtn.setForeground(new java.awt.Color(41, 50, 80));
         hireSPBtn.setText("Hire Services");
+        hireSPBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hireSPBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hireSPBtnActionPerformed(evt);
             }
         });
-        add(hireSPBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 120, -1));
+        add(hireSPBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 540, 120, -1));
 
         houseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation", "Role"
+                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Manager Message", "Quotation", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -308,6 +314,16 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(houseTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 910, 300));
+
+        btnReject.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnReject.setText("Reject");
+        btnReject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 420, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void hireElecBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireElecBtnActionPerformed
@@ -439,10 +455,40 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_hireSPBtnActionPerformed
 
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        int selectedRow = houseTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            ManagerRequest inspectRequest = (ManagerRequest) houseTable.getValueAt(selectedRow, 0);
+            String feedback = txtFeedback.getText();
+            if (feedback.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for feedback");
+                return;
+            }
+            if (!"Completed".equals(inspectRequest.getStatus()) && !"In Progress".equals(inspectRequest.getStatus())) {
+                inspectRequest.setStatus("Rejected");
+                inspectRequest.setInspectorNote(feedback);
+                JOptionPane.showMessageDialog(null, "Job is set to rejected!");
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to set your status to Available?", "Warning", dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    useraccount.setStatus("Available");
+                }
+                populateRequestTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
+        }
+    }//GEN-LAST:event_btnRejectActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnTakeJob;
     private javax.swing.JButton btnCompleteJob;
+    private javax.swing.JButton btnReject;
     private javax.swing.JButton btnViewBuyerDetails;
     private javax.swing.JButton btnViewSellerDetails;
     private javax.swing.JButton hireCleanBtn;

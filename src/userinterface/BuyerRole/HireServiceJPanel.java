@@ -165,6 +165,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePropertyManager.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirePropertyManager.setForeground(new java.awt.Color(0, 0, 51));
         hirePropertyManager.setText("Hire Property Manager");
+        hirePropertyManager.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hirePropertyManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hirePropertyManagerActionPerformed(evt);
@@ -179,6 +180,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePlum.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirePlum.setForeground(new java.awt.Color(0, 0, 51));
         hirePlum.setText("Hire Plumber");
+        hirePlum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hirePlum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hirePlumActionPerformed(evt);
@@ -189,6 +191,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hireCleaner.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireCleaner.setForeground(new java.awt.Color(0, 0, 51));
         hireCleaner.setText("Hire Cleaner");
+        hireCleaner.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hireCleaner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hireCleanerActionPerformed(evt);
@@ -199,6 +202,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hireEletrician.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireEletrician.setForeground(new java.awt.Color(0, 0, 51));
         hireEletrician.setText("Hire Electrician");
+        hireEletrician.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hireEletrician.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hireEletricianActionPerformed(evt);
@@ -209,6 +213,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         agentHire.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         agentHire.setForeground(new java.awt.Color(41, 50, 80));
         agentHire.setText("Hire Agent");
+        agentHire.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agentHire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agentHireActionPerformed(evt);
@@ -219,6 +224,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirepackerMover.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirepackerMover.setForeground(new java.awt.Color(0, 0, 51));
         hirepackerMover.setText("Hire Packers Movers");
+        hirepackerMover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hirepackerMover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hirepackerMoverActionPerformed(evt);
@@ -229,6 +235,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hireInspector.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireInspector.setForeground(new java.awt.Color(0, 0, 51));
         hireInspector.setText("Hire Inspector");
+        hireInspector.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hireInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hireInspectorActionPerformed(evt);
@@ -239,6 +246,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hirePhotograph.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hirePhotograph.setForeground(new java.awt.Color(0, 0, 51));
         hirePhotograph.setText("Hire Photographer");
+        hirePhotograph.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hirePhotograph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hirePhotographActionPerformed(evt);
@@ -249,6 +257,7 @@ public class HireServiceJPanel extends javax.swing.JPanel {
         hireBuilder.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         hireBuilder.setForeground(new java.awt.Color(0, 0, 51));
         hireBuilder.setText("Hire Builder");
+        hireBuilder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hireBuilder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hireBuilderActionPerformed(evt);

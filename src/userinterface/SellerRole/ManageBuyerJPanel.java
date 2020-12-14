@@ -104,6 +104,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
         btnAddBuyer.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnAddBuyer.setText("Sell House");
+        btnAddBuyer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddBuyer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddBuyerActionPerformed(evt);
@@ -113,6 +114,7 @@ public class ManageBuyerJPanel extends javax.swing.JPanel {
 
         btnView.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnView.setText("View Buyers");
+        btnView.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);

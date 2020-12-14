@@ -91,7 +91,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/photograph.png"))); // NOI18N
 
         setBackground(new java.awt.Color(241, 241, 242));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -103,10 +103,11 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 140, 164));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/photograph.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 690, 550));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 690, 550));
 
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setText("Take Job");
+        brnTakeJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brnTakeJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brnTakeJobActionPerformed(evt);
@@ -114,13 +115,15 @@ public class ViewJobJPanel extends javax.swing.JPanel {
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, -1, -1));
 
+        btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnCompleteJob.setText("Mark Complete");
+        btnCompleteJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompleteJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteJobActionPerformed(evt);
             }
         });
-        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 420, 150, -1));
+        add(btnCompleteJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 150, -1));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 370, 120, -1));
@@ -143,6 +146,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewBuyerDetails.setText("View Assignee Details");
+        btnViewBuyerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewBuyerDetailsActionPerformed(evt);
@@ -152,6 +156,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewSellerDetails.setText("View Seller Details");
+        btnViewSellerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewSellerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewSellerDetailsActionPerformed(evt);
@@ -164,11 +169,11 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Inspector Message", "Quotation", "Role"
+                "JobID", "Assignee", "Seller", "Street", "City", "State", "Zipcode", "Status", "Buyer Message", "Photographer Message", "Quotation", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false, false, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -181,6 +186,7 @@ public class ViewJobJPanel extends javax.swing.JPanel {
 
         btnReject.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnReject.setText("Reject");
+        btnReject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRejectActionPerformed(evt);
