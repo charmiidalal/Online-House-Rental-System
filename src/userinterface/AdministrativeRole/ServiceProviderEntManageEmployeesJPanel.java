@@ -123,27 +123,27 @@ public class ServiceProviderEntManageEmployeesJPanel extends javax.swing.JPanel 
         organizationJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(organizationJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 445, 137));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 110, 480, 230));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CREATE AN EMPLOYEE");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 465, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 465, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("Organization");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, -1, 27));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, 27));
 
         organizationEmpJComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationEmpJComboBox.setForeground(new java.awt.Color(25, 56, 82));
-        add(organizationEmpJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 163, -1));
+        add(organizationEmpJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 163, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setText("Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, -1, -1));
 
         employeeName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         employeeName.setForeground(new java.awt.Color(25, 56, 82));
@@ -152,7 +152,7 @@ public class ServiceProviderEntManageEmployeesJPanel extends javax.swing.JPanel 
                 employeeNameKeyPressed(evt);
             }
         });
-        add(employeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, 163, -1));
+        add(employeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 163, -1));
 
         addJButton.setBackground(new java.awt.Color(255, 255, 255));
         addJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -164,13 +164,13 @@ public class ServiceProviderEntManageEmployeesJPanel extends javax.swing.JPanel 
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 520, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/team.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 40, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/employeee.png"))); // NOI18N
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void employeeNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_employeeNameKeyPressed

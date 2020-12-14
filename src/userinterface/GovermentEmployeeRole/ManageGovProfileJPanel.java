@@ -5,11 +5,9 @@
  */
 package userinterface.GovermentEmployeeRole;
 
-import userinterface.SellerRole.*;
 import Business.EcoSystem;
 import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 

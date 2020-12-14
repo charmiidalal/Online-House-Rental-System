@@ -117,7 +117,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "", " Name", " Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status", "SoldTo"
+                "Property ID", "Name", "Address", "City", "State", "Zipcode", "BHK", "Bathroom", "Rate", "Status", "SoldTo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -270,7 +270,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
         bhklbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         bhklbl.setForeground(new java.awt.Color(255, 51, 51));
         bhklbl.setText("Please enter BHK value in integers");
-        add(bhklbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 380, 210, -1));
+        add(bhklbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, 210, -1));
 
         homeNamelbl.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         homeNamelbl.setForeground(new java.awt.Color(255, 0, 0));
@@ -323,7 +323,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             double bathroom = (Double) jtblHouse.getValueAt(selectedRow, 7);
             double price = (Double) jtblHouse.getValueAt(selectedRow, 8);
             String status = (String) jtblHouse.getValueAt(selectedRow, 9);
-            String soldto = (String) jtblHouse.getValueAt(selectedRow, 10);
+            UserAccount soldto = (UserAccount) jtblHouse.getValueAt(selectedRow, 10);
 
             nameTxt.setText(name);
             addressTxt.setText(address);
@@ -336,7 +336,7 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             String priceset = Double.toString(price);
             priceTxt.setText(priceset);
             jComboBoxStatus.getModel().setSelectedItem(status);
-            txtSoldTo.setText(soldto);
+            txtSoldTo.setText(soldto.getName());
             cityTxt.setText(city);
 
         } else {

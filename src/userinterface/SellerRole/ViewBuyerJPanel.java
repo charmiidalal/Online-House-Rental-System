@@ -10,31 +10,9 @@ import Business.Property.Property;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.channels.ReadableByteChannel;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import static jdk.nashorn.internal.objects.NativeRegExp.source;
-
 /**
  *
  * @author anush
@@ -82,12 +60,8 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
         }).forEachOrdered((_item) -> {
             txtId.setText(buyer.getNationId());
         }); //File file=buyer.get
-        File file = new File(buyer.getIdDoc());
-        
-        ImageIcon imgIcon = new ImageIcon(file.getAbsolutePath());  
-        Image imgFit = imgIcon.getImage().getScaledInstance(460, 280, Image.SCALE_SMOOTH);
-        idImg.setText("");
-        idImg.setIcon(new ImageIcon(imgFit));
+        String imgIcon = buyer.getIdDoc();
+        idImg.setIcon(ResizeImage(imgIcon));
     }
 
     /**
@@ -197,7 +171,7 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
                 btnBack1ActionPerformed(evt);
             }
         });
-        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1085, 30, 30, 30));
+        add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
@@ -209,7 +183,7 @@ public class ViewBuyerJPanel extends javax.swing.JPanel {
     public ImageIcon ResizeImage(String ImagePath) {
         ImageIcon MyImage = new ImageIcon(ImagePath);
         Image img = MyImage.getImage();
-        Image newImg = img.getScaledInstance(idImg.getWidth(), idImg.getHeight(), Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(460, 280, Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
         return image;
     }

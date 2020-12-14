@@ -11,12 +11,15 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Property.Property;
 import Business.Property.PropertyDirectory;
-import Business.SendSMS.SendSMS;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.GovtEmpRequest;
 import java.awt.CardLayout;
+import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -34,6 +37,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
     private PropertyDirectory propertyDirectory;
     private Network network;
     private Organization organization;
+    private String imagePath;
 
     public BuyerRegistrationFormJPanel(JPanel userProcess, Organization organization, Network network, Enterprise enterprise, Property property, EcoSystem system, UserAccount useraccount) {
         initComponents();
@@ -46,7 +50,13 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         this.organization = organization;
         txtHouse.setText(property.getPropertyName());
     }
-
+    public ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(imgupload.getWidth(), imgupload.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,6 +89,8 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
         applyForLoan = new javax.swing.JCheckBox();
+        fileNameLabel = new javax.swing.JLabel();
+        imgupload = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,7 +140,7 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                 btnsubmitActionPerformed(evt);
             }
         });
-        add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 600, -1, -1));
+        add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 670, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setText("REGISTRATION FORM");
@@ -141,14 +153,14 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setText("Selected House");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, 27));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, -1, 27));
 
         txtHouse.setEnabled(false);
-        add(txtHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 127, 27));
+        add(txtHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 560, 127, 27));
 
         jLabel10.setBackground(new java.awt.Color(204, 204, 204));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house5.png"))); // NOI18N
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 470, 530));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 470, 530));
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 514, 269, -1));
 
         btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
@@ -165,7 +177,12 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
                 applyForLoanActionPerformed(evt);
             }
         });
-        add(applyForLoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, -1, -1));
+        add(applyForLoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 610, -1, -1));
+
+        fileNameLabel.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        fileNameLabel.setForeground(new java.awt.Color(25, 56, 82));
+        add(fileNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 270, 20));
+        add(imgupload, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, 300, 140));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
@@ -176,12 +193,22 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
         String zipcode = txtZipcode.getText();
         String email = txtEmail.getText();
         String nationalId = txtId.getText();
-        String idDoc = uploadlbl.getText();
+        String idDoc = imagePath;
         Boolean applyLoan = applyForLoan.isSelected();
 
-        // Buyer buyer = (this.buyerDirectory.getBuyer(name)) == null ? new Buyer() : this.buyerDirectory.getBuyer(name);
-        if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || zipcode.isEmpty() || nationalId.isEmpty() || email.isEmpty()) {
+        if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || zipcode.isEmpty() || nationalId.isEmpty() || email.isEmpty() || idDoc.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter the missing field to continue!");
+        }else if(!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5){
+            JOptionPane.showMessageDialog(null, "Please enter valid 5 digit zipcode!");
+            return;
+        }else if(!system.checkValidPhoneFormat(txtPhone.getText())){
+            return;
+        }else if(!system.checkValidEmailFormat(txtEmail.getText())){
+            return;
+        }else if(!system.checkIfEmailIsUnique(txtEmail.getText(), useraccount.getUsername())){
+            return;
+        }else if(!system.checkIfPhoneIsUnique(txtPhone.getText(), useraccount.getUsername())){
+            return;
         } else if (!system.isInt(txtZipcode.getText()) || txtZipcode.getText().length() != 5) {
             JOptionPane.showMessageDialog(null, "Please enter valid 5 digit zipcode!");
             return;
@@ -218,13 +245,28 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        String filename = f.getAbsolutePath();
-        uploadlbl.setText(filename);
-    }//GEN-LAST:event_btnUploadActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            imagePath = selectedFile.getAbsolutePath();
+            String regex
+                    = "([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)";
+            Pattern p = Pattern.compile(regex);
+            Matcher m = p.matcher(imagePath);
+            if (!m.matches()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid image file!");
+                return;
+            }
+            fileNameLabel.setText(imagePath);
+            displayImage(imagePath);
+            JOptionPane.showMessageDialog(null, "Picture Uploaded Successfully");
 
+        }
+    }//GEN-LAST:event_btnUploadActionPerformed
+    public void displayImage(String imgPath) {
+        imgupload.setIcon(ResizeImage(imgPath));
+    }
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
@@ -242,6 +284,8 @@ public class BuyerRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnUpload;
     private javax.swing.JButton btnsubmit;
+    private javax.swing.JLabel fileNameLabel;
+    private javax.swing.JLabel imgupload;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -47,20 +47,22 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
 
             if (workRequest instanceof InspectRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((InspectRequest) workRequest).getBuyer();
-                row[2] = ((InspectRequest) workRequest).getSeller();
-                row[3] = ((InspectRequest) workRequest).getProperty().getStreet();
-                row[4] = ((InspectRequest) workRequest).getProperty().getCity();
-                row[5] = ((InspectRequest) workRequest).getProperty().getState();
-                row[6] = ((InspectRequest) workRequest).getProperty().getPincode();
-                row[7] = ((InspectRequest) workRequest).getStatus();
-                row[8] = ((InspectRequest) workRequest).getBuyerNote();
-                row[9] = ((InspectRequest) workRequest).getInspectorNote();
-                row[10] = ((InspectRequest) workRequest).getQuote();
-                row[11] = ((InspectRequest) workRequest).getBuyer().getRole().toString();
-                model.addRow(row);
+                if (((InspectRequest) workRequest).getInspector().getUsername() == useraccount.getUsername()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((InspectRequest) workRequest).getBuyer();
+                    row[2] = ((InspectRequest) workRequest).getSeller();
+                    row[3] = ((InspectRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((InspectRequest) workRequest).getProperty().getCity();
+                    row[5] = ((InspectRequest) workRequest).getProperty().getState();
+                    row[6] = ((InspectRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((InspectRequest) workRequest).getStatus();
+                    row[8] = ((InspectRequest) workRequest).getBuyerNote();
+                    row[9] = ((InspectRequest) workRequest).getInspectorNote();
+                    row[10] = ((InspectRequest) workRequest).getQuote();
+                    row[11] = ((InspectRequest) workRequest).getBuyer().getRole().toString();
+                    model.addRow(row);
+                }
             }
         }
     }
@@ -316,7 +318,7 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
                 }
                 populateRequestTable();
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+                JOptionPane.showMessageDialog(null, "Job is already " + inspectRequest.getStatus());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

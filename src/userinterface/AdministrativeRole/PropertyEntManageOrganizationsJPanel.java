@@ -141,7 +141,7 @@ public class PropertyEntManageOrganizationsJPanel extends javax.swing.JPanel {
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 490, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/organization.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, -1, -1));

@@ -15,9 +15,12 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -28,12 +31,13 @@ import javax.swing.JPanel;
 public class CreateAdvertiseJPanel extends javax.swing.JPanel {
 
     JFileChooser imgChooser;
-    private EcoSystem system;
-    private UserAccount userAccount;
+    private final EcoSystem system;
+    private final UserAccount userAccount;
     BufferedImage img;
-    private JPanel userProcessContainer;
-    private Enterprise enterprise;
-    private PropertyDirectory propertyDirectory;
+    private final JPanel userProcessContainer;
+    private final Enterprise enterprise;
+    private final PropertyDirectory propertyDirectory;
+    private String imagePath;
 
     /**
      * Creates new form CreateAdvertiseJPanel
@@ -99,6 +103,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         bathroomTxt = new javax.swing.JTextField();
         longitudelbl = new javax.swing.JLabel();
         latitudelbl = new javax.swing.JLabel();
+        fileNameLabel = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(241, 241, 242));
@@ -216,7 +221,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         jPanel1.add(bathroomlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, 190, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house4.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
         jPanel1.add(latitudeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 180, -1));
 
         jLabel14.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
@@ -238,6 +243,10 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         latitudelbl.setText("Please enter latitude in 0.0 format");
         jPanel1.add(latitudelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 200, -1));
 
+        fileNameLabel.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        fileNameLabel.setForeground(new java.awt.Color(25, 56, 82));
+        jPanel1.add(fileNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, 330, 20));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1280, 680));
 
         btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
@@ -250,27 +259,29 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
-
-        JFileChooser biofilechooser = new JFileChooser();
-        biofilechooser.setDialogTitle("Choose Your File");
-        biofilechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        // below code selects the file
-        int returnvalbio = biofilechooser.showOpenDialog(this);
-        if (returnvalbio == JFileChooser.APPROVE_OPTION) {
-            File fileBio = biofilechooser.getSelectedFile();
-            String pathBio = fileBio.getAbsolutePath();
-            BufferedImage bioImage;
-            try {
-                // display the image in a Jlabel
-                bioImage = ImageIO.read(fileBio);
-                imgupload.setIcon(ResizeImage(pathBio));
-                //lblPhotos.setIcon(new ImageIcon(bi));
-            } catch (IOException e) {
-                e.printStackTrace(); // todo: implement proper error handeling
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            imagePath = selectedFile.getAbsolutePath();
+            String regex
+                    = "([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)";
+            Pattern p = Pattern.compile(regex);
+            Matcher m = p.matcher(imagePath);
+            if (!m.matches()) {
+                JOptionPane.showMessageDialog(null, "Please enter valid image file!");
+                return;
             }
+            fileNameLabel.setText(imagePath);
+            displayImage(imagePath);
+            JOptionPane.showMessageDialog(null, "Picture Uploaded Successfully");
+
         }
     }//GEN-LAST:event_uploadBtnActionPerformed
 
+    public void displayImage(String imgPath) {
+        imgupload.setIcon(ResizeImage(imgPath));
+    }
     private void addressTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addressTxtActionPerformed
@@ -296,23 +307,20 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
         } else if (!system.isDouble(priceTxt.getText())) {
             pricelbl.setVisible(true);
             JOptionPane.showMessageDialog(null, "Please enter valid rent!");
-            return;
         } else if (!system.isDouble(bathroomTxt.getText())) {
             bathroomlbl.setVisible(true);
             JOptionPane.showMessageDialog(null, "Please enter valid bathroom value!");
-            return;
         } else if (!system.isDouble(longitudeTxt.getText())) {
             longitudelbl.setVisible(true);
             JOptionPane.showMessageDialog(null, "Please enter valid longitude!");
-            return;
         } else if (!system.isDouble(latitudeTxt.getText())) {
             latitudelbl.setVisible(true);
             JOptionPane.showMessageDialog(null, "Please enter valid latitude!");
-            return;
         } else if (!system.isInt(bhkTxt.getText())) {
             bhklbl.setVisible(true);
             JOptionPane.showMessageDialog(null, "Please enter valid bhk value!");
-            return;
+        } else if (!system.isInt(zipcodeTxt.getText()) || zipcodeTxt.getText().length() != 5) {
+            JOptionPane.showMessageDialog(null, "Please enter valid 5 digit zipcode!");
         } else {
             disableLabels();
             Property property = new Property();
@@ -325,7 +333,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
             property.setBathroom(bathroom);
             property.setPrice(price);
             property.setStatus("Vacant");
-            property.setUploadImg((ImageIcon) imgupload.getIcon());
+            property.setUploadImg(imagePath);
             property.setSeller(userAccount);
             property.setPropertyID(propertyDirectory.generatePropertyID());
             property.setLatitude(latitude);
@@ -379,6 +387,7 @@ public class CreateAdvertiseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel bhklbl;
     private javax.swing.JButton btnBack1;
     private javax.swing.JTextField cityTxt;
+    private javax.swing.JLabel fileNameLabel;
     private javax.swing.JLabel homeNamelbl;
     private javax.swing.JLabel imglbl;
     private javax.swing.JLabel imgupload;

@@ -5,7 +5,6 @@
  */
 package userinterface.PackersMoversRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
@@ -49,23 +48,26 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
 
             if (workRequest instanceof PackerRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((PackerRequest) workRequest).getBuyer();
-                row[2] = ((PackerRequest) workRequest).getSeller();
-                row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
-                row[4] = ((PackerRequest) workRequest).getProperty().getCity();
-                row[5] = ((PackerRequest) workRequest).getProperty().getState();
-                row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
-                row[7] = ((PackerRequest) workRequest).getStatus();
-                row[8] = ((PackerRequest) workRequest).getBuyerNote();
-                row[9] = ((PackerRequest) workRequest).getInspectorNote();
-                row[10] = ((PackerRequest) workRequest).getQuote();
-                row[11] = ((PackerRequest) workRequest).getBuyer().getRole().toString();
-                model.addRow(row);
+                if (((PackerRequest) workRequest).getPacker().getUsername() == useraccount.getUsername()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((PackerRequest) workRequest).getBuyer();
+                    row[2] = ((PackerRequest) workRequest).getSeller();
+                    row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((PackerRequest) workRequest).getProperty().getCity();
+                    row[5] = ((PackerRequest) workRequest).getProperty().getState();
+                    row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((PackerRequest) workRequest).getStatus();
+                    row[8] = ((PackerRequest) workRequest).getBuyerNote();
+                    row[9] = ((PackerRequest) workRequest).getInspectorNote();
+                    row[10] = ((PackerRequest) workRequest).getQuote();
+                    row[11] = ((PackerRequest) workRequest).getBuyer().getRole().toString();
+                    model.addRow(row);
+                }
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -312,7 +314,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
                 }
                 populateRequestTable();
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+                JOptionPane.showMessageDialog(null, "Job is already " + inspectRequest.getStatus());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

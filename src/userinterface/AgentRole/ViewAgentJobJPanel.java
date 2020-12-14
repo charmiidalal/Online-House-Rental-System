@@ -5,7 +5,6 @@
  */
 package userinterface.AgentRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.PropertyDirectory;
@@ -15,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.WorkQueue.AgentRequest;
+import Business.WorkQueue.GovtEmpRequest;
 import Business.WorkQueue.WorkRequest;
 import userinterface.BuyerRole.ViewBuyerDetailsJPanel;
 import userinterface.BuyerRole.ViewSellerDetailsJPanel;
@@ -34,11 +34,11 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewJobJPanel
      */
-    public ViewAgentJobJPanel(JPanel userProcess, EcoSystem system,Enterprise enterprise, UserAccount userAccount) {
+    public ViewAgentJobJPanel(JPanel userProcess, EcoSystem system, Enterprise enterprise, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcess;
         this.system = system;
-        this.enterprise=enterprise;
+        this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.propertyDirectory = (system.getPropertyDirectory() == null) ? new PropertyDirectory() : system.getPropertyDirectory();
 
@@ -50,22 +50,23 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
             if (workRequest instanceof AgentRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((AgentRequest) workRequest).getBuyer();
-                row[2] = ((AgentRequest) workRequest).getSeller();
-                row[3] = ((AgentRequest) workRequest).getProperty().getStreet();
-                row[4] = ((AgentRequest) workRequest).getProperty().getCity();
-                row[5] = ((AgentRequest) workRequest).getProperty().getState();
-                row[6] = ((AgentRequest) workRequest).getProperty().getPincode();
-                row[7] = ((AgentRequest) workRequest).getStatus();
-                row[8] = ((AgentRequest) workRequest).getBuyerNote();
-                row[9] = ((AgentRequest) workRequest).getInspectorNote();
-                row[10] = ((AgentRequest) workRequest).getQuote();
-                row[11] = ((AgentRequest) workRequest).getBuyer().getRole().toString();
-                model.addRow(row);
+                if (((AgentRequest) workRequest).getAgent().getUsername() == userAccount.getUsername()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((AgentRequest) workRequest).getBuyer();
+                    row[2] = ((AgentRequest) workRequest).getSeller();
+                    row[3] = ((AgentRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((AgentRequest) workRequest).getProperty().getCity();
+                    row[5] = ((AgentRequest) workRequest).getProperty().getState();
+                    row[6] = ((AgentRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((AgentRequest) workRequest).getStatus();
+                    row[8] = ((AgentRequest) workRequest).getBuyerNote();
+                    row[9] = ((AgentRequest) workRequest).getInspectorNote();
+                    row[10] = ((AgentRequest) workRequest).getQuote();
+                    row[11] = ((AgentRequest) workRequest).getBuyer().getRole().toString();
+                    model.addRow(row);
+                }
             }
         }
     }
@@ -99,7 +100,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/AGENTO.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 660, 440));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 660, 440));
 
         txtFeedback.setBackground(new java.awt.Color(153, 204, 255));
         add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 380, 138, -1));
@@ -337,7 +338,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
                 }
                 populateRequestTable();
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+                JOptionPane.showMessageDialog(null, "Job is already " + inspectRequest.getStatus());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

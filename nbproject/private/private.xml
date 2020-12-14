@@ -5,35 +5,12 @@
             <url>src/userinterface/SystemAdminWorkArea/PieGraphforNumofUsers.java</url>
             <bookmark id="1">
                 <name/>
-                <line>88</line>
+                <line>90</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/HireAgentJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/HireCleanerJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/AdministrativeRole/ServiceProviderEntManageEmployeesJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/Business/Organization/Organization.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/AdministrativeRole/ServiceProviderEntManageOrganizationsJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/AdministrativeRole/QualityAssuaranceEntManageEmployeesJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/CleaningRole/ManageCleaningJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SystemAdminWorkArea/ManageEnterpriseAdminJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/InspectorRole/ManageInspectorProfileJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/AdministrativeRole/PropertyEntManageOrganizationsJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/AdministrativeRole/QualityAssuaranceEntManageOrganizationsJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/AdministrativeRole/BrokerEntManageOrganizationsJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/AdministrativeRole/PropertyEntManageEmployeesJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/SystemAdminWorkArea/ManageEnterpriseJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/AdministrativeRole/BrokerEntManageEmployeesJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerScreenJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/HirePlumberJPanel.java</file>
-=======
-            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/PhotographerRole/ViewJobJPanel.java</file>
->>>>>>> c2b2ff1dfa7d001669df9a01bb9f4c68aca05363
-        </group>
+        <group/>
     </open-files>
 </project-private>

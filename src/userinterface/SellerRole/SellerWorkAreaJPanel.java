@@ -37,28 +37,21 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     private void manageAdvertise() {
-        CreateAdvertiseJPanel advrtPanel = new CreateAdvertiseJPanel(userProcessContainer, enterprise, account, system);
+        CreateAdvertiseJPanel advrtPanel = new CreateAdvertiseJPanel(rightSystemAdminPanel, enterprise, account, system);
         rightSystemAdminPanel.add("advrtPanel", advrtPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
 
-//    private void manageBuyers() {
-//        ManageBuyerJPanel mngBuyerPanel = new ManageBuyerJPanel(userProcessContainer, enterprise, account, system);
-//        userProcessContainer.add("ManageBuyerJPanel", mngBuyerPanel);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
-//    }
-
     private void manageHouses() {
-        ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(userProcessContainer, enterprise, account, system);
+        ManageHouseJPanel mngHousesPanel = new ManageHouseJPanel(rightSystemAdminPanel, enterprise, account, system);
         rightSystemAdminPanel.add("ManageHouseJPanel", mngHousesPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);
     }
 
     private void manageProfile() {
-        ManageSellerProfileJPanel manageSellerProfileJPanel = new ManageSellerProfileJPanel(userProcessContainer, system, account);
+        ManageSellerProfileJPanel manageSellerProfileJPanel = new ManageSellerProfileJPanel(rightSystemAdminPanel, system, account);
         rightSystemAdminPanel.add("ManageInspectorJPanel", manageSellerProfileJPanel);
         CardLayout layout = (CardLayout) rightSystemAdminPanel.getLayout();
         layout.next(rightSystemAdminPanel);

@@ -35,6 +35,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
 
     private PropertyDirectory propertyDirectory;
+
     public ViewDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount useraccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -51,20 +52,22 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
 
             if (workRequest instanceof CleaningRequest) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = workRequest;
-                row[1] = ((CleaningRequest) workRequest).getBuyer();
-                row[2] = ((CleaningRequest) workRequest).getSeller();
-                row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
-                row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
-                row[5] = ((CleaningRequest) workRequest).getProperty().getState();
-                row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
-                row[7] = ((CleaningRequest) workRequest).getStatus();
-                row[8] = ((CleaningRequest) workRequest).getBuyerNote();
-                row[9] = ((CleaningRequest) workRequest).getInspectorNote();
-                row[10] = ((CleaningRequest) workRequest).getQuote();
-                row[11] = ((CleaningRequest) workRequest).getBuyer().getRole().toString();
-                model.addRow(row);
+                if (((CleaningRequest) workRequest).getCleaner().getUsername() == useraccount.getUsername()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = workRequest;
+                    row[1] = ((CleaningRequest) workRequest).getBuyer();
+                    row[2] = ((CleaningRequest) workRequest).getSeller();
+                    row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
+                    row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
+                    row[5] = ((CleaningRequest) workRequest).getProperty().getState();
+                    row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
+                    row[7] = ((CleaningRequest) workRequest).getStatus();
+                    row[8] = ((CleaningRequest) workRequest).getBuyerNote();
+                    row[9] = ((CleaningRequest) workRequest).getInspectorNote();
+                    row[10] = ((CleaningRequest) workRequest).getQuote();
+                    row[11] = ((CleaningRequest) workRequest).getBuyer().getRole().toString();
+                    model.addRow(row);
+                }
             }
         }
     }
@@ -316,7 +319,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
                 }
                 populateRequestTable();
             } else {
-                JOptionPane.showMessageDialog(null, "Job is already "+inspectRequest.getStatus() );
+                JOptionPane.showMessageDialog(null, "Job is already " + inspectRequest.getStatus());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

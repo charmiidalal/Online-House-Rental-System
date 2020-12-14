@@ -133,7 +133,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1338, 840));
         setLayout(new java.awt.BorderLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(255, 229, 180));
+        systemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
         jPanel3.setBackground(new java.awt.Color(255, 213, 90));
@@ -328,7 +328,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/company.png"))); // NOI18N
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 33, 50));
 
-        rightSystemAdminPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightSystemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         rightSystemAdminPanel.setPreferredSize(new java.awt.Dimension(1058, 840));
         rightSystemAdminPanel.setLayout(new java.awt.CardLayout());
 

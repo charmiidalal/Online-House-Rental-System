@@ -8,7 +8,6 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -95,7 +94,7 @@ public class PropertyEntAdminWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1338, 840));
         setLayout(new java.awt.BorderLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(215, 81, 81));
+        systemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 

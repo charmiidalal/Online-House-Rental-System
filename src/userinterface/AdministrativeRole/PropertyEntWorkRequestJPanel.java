@@ -30,19 +30,13 @@ public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BrokerEntWorkRequestJPanel
      */
-    private JPanel userProcessContainer;
     private EcoSystem business;
-    private UserAccount userAccount;
-    private Enterprise enterprise;
-    private Network network;
-    private OrganizationDirectory organizationDirectory;
+    private final Enterprise enterprise;
+    private final OrganizationDirectory organizationDirectory;
 
     public PropertyEntWorkRequestJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, Network network, EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.userAccount = account;
         this.enterprise = enterprise;
-        this.network = network;
         this.business = business;
         this.organizationDirectory = enterprise.getOrganizationDirectory();
         populateTable();
@@ -169,18 +163,27 @@ public class PropertyEntWorkRequestJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             UserRegistrationRequest request = (UserRegistrationRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
-            if (request.getOrgType() == Organization.Type.PropertyManager) {
-                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
-                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
-                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new PropertyManagerRole());
-            } else if (request.getOrgType() == Organization.Type.Builder) {
-                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
-                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
-                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new BuilderRole());
-            } else if (request.getOrgType() == Organization.Type.Seller) {
-                Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
-                Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
-                UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new SellerRole());
+            if (null != request.getOrgType()) switch (request.getOrgType()) {
+                case PropertyManager:{
+                    Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                    Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                    UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new PropertyManagerRole());
+                        break;
+                    }
+                case Builder:{
+                    Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                    Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                    UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new BuilderRole());
+                        break;
+                    }
+                case Seller:{
+                    Organization org = organizationDirectory.createOrganization(request.getOrgType(), request.getName());
+                    Employee emp = org.getEmployeeDirectory().createEmployee(request.getName());
+                    UserAccount ua1 = org.getUserAccountDirectory().createUserAccount(request.getUserName(), request.getUserPassword(), emp, new SellerRole());
+                        break;
+                    }
+                default:
+                    break;
             }
 
             request.setStatus("Completed");

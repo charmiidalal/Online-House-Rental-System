@@ -14,11 +14,8 @@ import Business.Property.PropertyDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Image;
-import java.io.File;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -57,7 +54,13 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
 
         populateRequestTable();
     }
-
+    public ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(460, 280, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     private void populateRequestTable() {
         nameTxt.setText(property.getPropertyName());
         cityTxt.setText(property.getCity());
@@ -67,11 +70,8 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         priceTxt.setText(Double.toString(property.getPrice()));
         bhkTxt.setText(Integer.toString(property.getBhk()));
         bathroomTxt.setText(Double.toString(property.getBathroom()));
-      
-        ImageIcon imgIcon = (ImageIcon)property.getUploadImg();
-       
-       
-        imgupload.setIcon(imgIcon);
+        String imgIcon = property.getUploadImg();
+        imgupload.setIcon(ResizeImage(imgIcon));
     }
 
     /**
@@ -243,13 +243,7 @@ public class ViewHouseDetailJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBack1ActionPerformed
-    public ImageIcon ResizeImage(String ImagePath) {
-        ImageIcon MyImage = new ImageIcon(ImagePath);
-        Image img = MyImage.getImage();
-        Image newImg = img.getScaledInstance(imgupload.getWidth(), imgupload.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon image = new ImageIcon(newImg);
-        return image;
-    }
+    
     // Variables declaration - do not modify                     
 
     private javax.swing.JPanel jPanel2;

@@ -97,6 +97,7 @@ public class BrokerEntAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         workPanel = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(241, 241, 242));
         setPreferredSize(new java.awt.Dimension(1338, 840));
         setLayout(new java.awt.BorderLayout());
 

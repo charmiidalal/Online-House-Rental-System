@@ -83,7 +83,7 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
         jLabel5.setForeground(new java.awt.Color(25, 56, 82));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("MANAGE QUALITY ASSUARANCE EMPLOYEES");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 492, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 492, -1));
 
         organizationJTable.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationJTable.setForeground(new java.awt.Color(25, 56, 82));
@@ -116,27 +116,27 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
         organizationJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(organizationJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 445, 137));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 130, 670, 230));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 56, 82));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CREATE AN EMPLOYEE");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 465, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 465, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("Organization");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, 27));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, -1, 27));
 
         organizationEmpJComboBox.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         organizationEmpJComboBox.setForeground(new java.awt.Color(25, 56, 82));
-        add(organizationEmpJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 163, -1));
+        add(organizationEmpJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 163, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 56, 82));
         jLabel2.setText("Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, -1, -1));
 
         employeeName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         employeeName.setForeground(new java.awt.Color(25, 56, 82));
@@ -145,7 +145,7 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
                 employeeNameKeyPressed(evt);
             }
         });
-        add(employeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 163, -1));
+        add(employeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, 163, -1));
 
         addJButton.setBackground(new java.awt.Color(255, 255, 255));
         addJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -157,7 +157,7 @@ public class QualityAssuaranceEntManageEmployeesJPanel extends javax.swing.JPane
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/team.png"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, -1, -1));

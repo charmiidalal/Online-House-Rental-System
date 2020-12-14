@@ -29,7 +29,7 @@ import org.jfree.data.general.PieDataset;
 
 /**
  *
- * @author Mayank
+ * @author Charmi
  */
 public class PieGraphforNumofUsers extends javax.swing.JPanel {
     
@@ -38,6 +38,8 @@ public class PieGraphforNumofUsers extends javax.swing.JPanel {
     JFreeChart pieChart;
     /**
      * Creates new form ViewScenesGraph
+     * @param userProcessContainer
+     * @param system
      */
     public PieGraphforNumofUsers(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
@@ -116,7 +118,7 @@ public class PieGraphforNumofUsers extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(241, 241, 242));
         setPreferredSize(new java.awt.Dimension(1058, 840));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

@@ -110,7 +110,7 @@ public class BrokerEntWorkRequestJPanel extends javax.swing.JPanel {
         workRequestJTable.setSelectionBackground(new java.awt.Color(56, 90, 174));
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 854, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 854, 270));
 
         btnAccept.setBackground(new java.awt.Color(255, 255, 255));
         btnAccept.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -122,7 +122,7 @@ public class BrokerEntWorkRequestJPanel extends javax.swing.JPanel {
                 btnAcceptActionPerformed(evt);
             }
         });
-        add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, -1, -1));
+        add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, -1, -1));
 
         btnReject.setBackground(new java.awt.Color(255, 255, 255));
         btnReject.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -134,7 +134,7 @@ public class BrokerEntWorkRequestJPanel extends javax.swing.JPanel {
                 btnRejectActionPerformed(evt);
             }
         });
-        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, -1, -1));
+        add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 480, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 56, 82));
@@ -146,7 +146,7 @@ public class BrokerEntWorkRequestJPanel extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 520, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/enterprise_icon.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
