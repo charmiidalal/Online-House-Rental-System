@@ -32,7 +32,7 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
-                populateTable();
+        populateTable();
         populateOrganizationEmployeeComboBox();
         populateTable();
     }
@@ -41,7 +41,9 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         organizationEmpJComboBox.removeAllItems();
 
         for (Organization organization : organizationDirectory.getOrganizationList()) {
-            organizationEmpJComboBox.addItem(organization);
+            if (organization.getType() != Organization.Type.Buyer) {
+                organizationEmpJComboBox.addItem(organization);
+            }
         }
     }
 
@@ -51,11 +53,13 @@ public class PropertyEntManageEmployeesJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (Organization organization : organizationDirectory.getOrganizationList()) {
-            for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = employee.getId();
-                row[1] = employee.getName();
-                model.addRow(row);
+            if (organization.getType() != Organization.Type.Buyer) {
+                for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = employee.getId();
+                    row[1] = employee.getName();
+                    model.addRow(row);
+                }
             }
         }
     }

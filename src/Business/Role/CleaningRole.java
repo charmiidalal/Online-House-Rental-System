@@ -15,7 +15,7 @@ import userinterface.CleaningRole.CleaningWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author Charmi
  */
 public class CleaningRole extends Role{
 

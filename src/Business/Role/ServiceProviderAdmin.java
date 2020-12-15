@@ -14,15 +14,13 @@ import userinterface.AdministrativeRole.ServiceProviderAdminWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author Charmi
  */
-public class ServiceProviderAdmin extends Role{
+public class ServiceProviderAdmin extends Role {
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,Network network, EcoSystem business) {
-        return new ServiceProviderAdminWorkAreaJPanel(userProcessContainer, account,organization, enterprise, network, business);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Network network, EcoSystem business) {
+        return new ServiceProviderAdminWorkAreaJPanel(userProcessContainer, account, organization, enterprise, network, business);
     }
 
-    
-    
 }

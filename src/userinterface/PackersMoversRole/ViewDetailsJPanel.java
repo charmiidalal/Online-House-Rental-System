@@ -7,7 +7,7 @@ package userinterface.PackersMoversRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Property.PropertyDirectory;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -44,25 +44,27 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof PackerRequest) {
-                if (((PackerRequest) workRequest).getPacker().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((PackerRequest) workRequest).getBuyer();
-                    row[2] = ((PackerRequest) workRequest).getSeller();
-                    row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((PackerRequest) workRequest).getProperty().getCity();
-                    row[5] = ((PackerRequest) workRequest).getProperty().getState();
-                    row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((PackerRequest) workRequest).getStatus();
-                    row[8] = ((PackerRequest) workRequest).getBuyerNote();
-                    row[9] = ((PackerRequest) workRequest).getInspectorNote();
-                    row[10] = ((PackerRequest) workRequest).getQuote();
-                    row[11] = ((PackerRequest) workRequest).getBuyer().getRole().toString();
-                    model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof PackerRequest) {
+                        if (((PackerRequest) workRequest).getPacker().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((PackerRequest) workRequest).getBuyer();
+                            row[2] = ((PackerRequest) workRequest).getSeller();
+                            row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((PackerRequest) workRequest).getProperty().getCity();
+                            row[5] = ((PackerRequest) workRequest).getProperty().getState();
+                            row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((PackerRequest) workRequest).getStatus();
+                            row[8] = ((PackerRequest) workRequest).getBuyerNote();
+                            row[9] = ((PackerRequest) workRequest).getInspectorNote();
+                            row[10] = ((PackerRequest) workRequest).getQuote();
+                            row[11] = ((PackerRequest) workRequest).getBuyer().getRole().toString();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }

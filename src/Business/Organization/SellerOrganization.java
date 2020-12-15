@@ -10,23 +10,24 @@ import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author Charmi
  */
-public class SellerOrganization extends Organization{
+public class SellerOrganization extends Organization {
 
     public SellerOrganization(String name) {
         super(name);
     }
-    
+
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new SellerRole());
         return roles;
     }
-       @Override
+
+    @Override
     public Type getType() {
         return Organization.Type.Seller;
-    }  
-     
+    }
+
 }

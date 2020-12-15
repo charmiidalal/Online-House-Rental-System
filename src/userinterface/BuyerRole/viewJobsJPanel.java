@@ -63,8 +63,8 @@ public class viewJobsJPanel extends javax.swing.JPanel {
         btnViewManager = new javax.swing.JButton();
         btnViewBuilder = new javax.swing.JButton();
         agentJob = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         btnViewLoanRequest = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,7 +78,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnHireInspector1ActionPerformed(evt);
             }
         });
-        add(btnHireInspector1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 174, -1));
+        add(btnHireInspector1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 230, -1));
 
         btnViewElectrician.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewElectrician.setForeground(new java.awt.Color(41, 50, 80));
@@ -89,7 +89,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewElectricianActionPerformed(evt);
             }
         });
-        add(btnViewElectrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 174, -1));
+        add(btnViewElectrician, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 230, -1));
 
         btnViewPlumber.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewPlumber.setForeground(new java.awt.Color(41, 50, 80));
@@ -100,7 +100,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewPlumberActionPerformed(evt);
             }
         });
-        add(btnViewPlumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 174, -1));
+        add(btnViewPlumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 230, -1));
 
         btnViewPacker.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewPacker.setForeground(new java.awt.Color(41, 50, 80));
@@ -111,7 +111,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewPackerActionPerformed(evt);
             }
         });
-        add(btnViewPacker, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 174, -1));
+        add(btnViewPacker, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 230, -1));
 
         btnViewPhoto.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewPhoto.setForeground(new java.awt.Color(41, 50, 80));
@@ -122,7 +122,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewPhotoActionPerformed(evt);
             }
         });
-        add(btnViewPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 190, -1));
+        add(btnViewPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 240, -1));
 
         btnViewCleaner.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewCleaner.setForeground(new java.awt.Color(41, 50, 80));
@@ -133,7 +133,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewCleanerActionPerformed(evt);
             }
         });
-        add(btnViewCleaner, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 190, -1));
+        add(btnViewCleaner, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 240, -1));
 
         btnViewManager.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewManager.setForeground(new java.awt.Color(41, 50, 80));
@@ -155,7 +155,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewBuilderActionPerformed(evt);
             }
         });
-        add(btnViewBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 190, -1));
+        add(btnViewBuilder, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 240, -1));
 
         agentJob.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         agentJob.setForeground(new java.awt.Color(41, 50, 80));
@@ -166,10 +166,7 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 agentJobActionPerformed(evt);
             }
         });
-        add(agentJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 180, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/jobs.png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+        add(agentJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 230, -1));
 
         btnViewLoanRequest.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewLoanRequest.setForeground(new java.awt.Color(41, 50, 80));
@@ -180,7 +177,10 @@ public class viewJobsJPanel extends javax.swing.JPanel {
                 btnViewLoanRequestActionPerformed(evt);
             }
         });
-        add(btnViewLoanRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 190, -1));
+        add(btnViewLoanRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 240, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/jobs.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHireInspector1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireInspector1ActionPerformed

@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Charmi Dalal
  */
 public class GovermentEmployeeDirectory {
+
     ArrayList<GovermentEmployee> govermentEmployeeList = new ArrayList<GovermentEmployee>();
 
     public ArrayList<GovermentEmployee> getPackersMoversList() {
@@ -21,7 +22,7 @@ public class GovermentEmployeeDirectory {
     public void setGovermentEmployeeList(ArrayList<GovermentEmployee> govermentEmployeeList) {
         this.govermentEmployeeList = govermentEmployeeList;
     }
-    
+
     public void addGovermentEmployee(GovermentEmployee govermentEmployee) {
         govermentEmployeeList.add(govermentEmployee);
     }
@@ -29,8 +30,8 @@ public class GovermentEmployeeDirectory {
     public void removeGovermentEmployee(GovermentEmployee govermentEmployee) {
         govermentEmployeeList.remove(govermentEmployee);
     }
-    
-    public String generateGovermentEmployeeID(){
-        return "GovermentEmployee"+(govermentEmployeeList.size()+1);
+
+    public String generateGovermentEmployeeID() {
+        return "GovermentEmployee" + (govermentEmployeeList.size() + 1);
     }
 }

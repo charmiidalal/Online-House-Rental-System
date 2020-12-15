@@ -78,22 +78,25 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-            if (workRequest instanceof ManagerRequest) {
-                if (((ManagerRequest) workRequest).getManager().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((ManagerRequest) workRequest).getBuyer();
-                    row[2] = ((ManagerRequest) workRequest).getSeller();
-                    row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
-                    row[5] = ((ManagerRequest) workRequest).getProperty().getState();
-                    row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((ManagerRequest) workRequest).getStatus();
-                    row[8] = ((ManagerRequest) workRequest).getBuyerNote();
-                    row[9] = ((ManagerRequest) workRequest).getInspectorNote();
-                    model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof ManagerRequest) {
+                        if (((ManagerRequest) workRequest).getManager().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((ManagerRequest) workRequest).getBuyer();
+                            row[2] = ((ManagerRequest) workRequest).getSeller();
+                            row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
+                            row[5] = ((ManagerRequest) workRequest).getProperty().getState();
+                            row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((ManagerRequest) workRequest).getStatus();
+                            row[8] = ((ManagerRequest) workRequest).getBuyerNote();
+                            row[9] = ((ManagerRequest) workRequest).getInspectorNote();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }

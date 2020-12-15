@@ -6,10 +6,10 @@ package Business.Employee;
 
 /**
  *
- * @author raunak
+ * @author Charmi
  */
 public class Employee {
-    
+
     private String name;
     private int id;
     private static int count = 1;
@@ -27,7 +27,6 @@ public class Employee {
         this.name = name;
     }
 
-    
     public String getName() {
         return name;
     }
@@ -36,6 +35,5 @@ public class Employee {
     public String toString() {
         return name;
     }
-    
-    
+
 }

@@ -6,12 +6,11 @@ package Business.Organization;
 
 import Business.Role.BuyerRole;
 import Business.Role.Role;
-import Business.Role.SellerRole;
 import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author Anusha
  */
 public class BuyerOrganization extends Organization{
 

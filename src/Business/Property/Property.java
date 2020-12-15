@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Business.Property;
+
 import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -41,7 +42,6 @@ public class Property {
         this.RegisteredBuyer = RegisteredBuyer;
     }
 
-   
     public ArrayList<ImageIcon> getImages() {
         return images;
     }
@@ -178,10 +178,10 @@ public class Property {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-    
+
     @Override
     public String toString() {
         return propertyName;
     }
-   
+
 }

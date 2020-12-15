@@ -57,8 +57,8 @@ public class ServiceProviderEntUserAccounts extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         createUsername = new javax.swing.JTextField();
         selectRole = new javax.swing.JComboBox();
-        selectEmployee = new javax.swing.JComboBox();
         createUserJButton = new javax.swing.JButton();
+        selectEmployee = new javax.swing.JComboBox();
         selectOrganization = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
         createPassword = new javax.swing.JPasswordField();
@@ -145,15 +145,6 @@ public class ServiceProviderEntUserAccounts extends javax.swing.JPanel {
         });
         add(selectRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 418, 378, -1));
 
-        selectEmployee.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        selectEmployee.setForeground(new java.awt.Color(25, 56, 82));
-        selectEmployee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectEmployeeActionPerformed(evt);
-            }
-        });
-        add(selectEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 368, 378, -1));
-
         createUserJButton.setBackground(new java.awt.Color(255, 255, 255));
         createUserJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         createUserJButton.setForeground(new java.awt.Color(25, 56, 82));
@@ -165,6 +156,15 @@ public class ServiceProviderEntUserAccounts extends javax.swing.JPanel {
             }
         });
         add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 570, 145, -1));
+
+        selectEmployee.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        selectEmployee.setForeground(new java.awt.Color(25, 56, 82));
+        selectEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectEmployeeActionPerformed(evt);
+            }
+        });
+        add(selectEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 368, 378, -1));
 
         selectOrganization.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         selectOrganization.setForeground(new java.awt.Color(25, 56, 82));
@@ -208,7 +208,7 @@ public class ServiceProviderEntUserAccounts extends javax.swing.JPanel {
 
         if ("".equals(username) || "".equals(password) || selectOrganization.getSelectedItem() == null
                 || selectEmployee.getSelectedItem() == null || selectRole.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(null, "Please enter required fields username & password!");
+            JOptionPane.showMessageDialog(null, "Please enter all required fields!");
             return;
         }
         if (!ecosystem.checkValidPasswordFormat(password)) {

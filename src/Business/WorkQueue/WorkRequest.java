@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author raunak
+ * @author Charmi
  */
 public abstract class WorkRequest {
 
@@ -28,8 +28,8 @@ public abstract class WorkRequest {
     public void setQuote(String quote) {
         this.quote = quote;
     }
-    
-    public WorkRequest(){
+
+    public WorkRequest() {
         requestDate = new Date();
     }
 

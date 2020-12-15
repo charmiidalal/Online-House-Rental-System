@@ -9,7 +9,6 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
-import java.util.ArrayList;
 
 /**
  *
@@ -33,7 +32,7 @@ public class UserAccount {
     private String Charge;
     private String NationId;
     private String IdDoc;
-    private boolean  isApproved;
+    private boolean isApproved;
     private Enterprise userEnterpriseList;
     private Organization userOrganizationList;
 
@@ -93,8 +92,6 @@ public class UserAccount {
         this.userOrganizationList = userOrganizationList;
     }
 
-    
-
     @Override
     public String toString() {
         return name;
@@ -104,8 +101,6 @@ public class UserAccount {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-
     public String getName() {
         return name;
     }
@@ -113,8 +108,6 @@ public class UserAccount {
     public void setName(String name) {
         this.name = name;
     }
-
-    
 
     public String getStatus() {
         return status;

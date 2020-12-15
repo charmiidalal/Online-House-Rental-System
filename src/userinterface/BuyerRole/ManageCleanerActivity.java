@@ -50,26 +50,28 @@ public class ManageCleanerActivity extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
-                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
-                    if (workRequest instanceof CleaningRequest) {
-                        if (userAccount.getUsername().equals(((CleaningRequest) workRequest).getBuyer().getUsername())) {
-                            Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((CleaningRequest) workRequest);
-                            row[1] = ((CleaningRequest) workRequest).getCleaner().getName();
-                            row[2] = ((CleaningRequest) workRequest).getSeller().getName();
-                            row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
-                            row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
-                            row[5] = ((CleaningRequest) workRequest).getProperty().getState();
-                            row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
-                            row[7] = ((CleaningRequest) workRequest).getStatus();
-                            row[8] = ((CleaningRequest) workRequest).getBuyerNote();
-                            row[9] = ((CleaningRequest) workRequest).getInspectorNote();
-                            row[10] = ((CleaningRequest) workRequest).getCleaner().getCharge();
-                            row[11] = ((CleaningRequest) workRequest).getQuote();
-                            row[12] = ((CleaningRequest) workRequest).getOrgType();
-                            model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
+                    for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                        if (workRequest instanceof CleaningRequest) {
+                            if (userAccount.getUsername().equals(((CleaningRequest) workRequest).getBuyer().getUsername())) {
+                                Object[] row = new Object[model.getColumnCount()];
+                                row[0] = ((CleaningRequest) workRequest);
+                                row[1] = ((CleaningRequest) workRequest).getCleaner().getName();
+                                row[2] = ((CleaningRequest) workRequest).getSeller().getName();
+                                row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
+                                row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
+                                row[5] = ((CleaningRequest) workRequest).getProperty().getState();
+                                row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
+                                row[7] = ((CleaningRequest) workRequest).getStatus();
+                                row[8] = ((CleaningRequest) workRequest).getBuyerNote();
+                                row[9] = ((CleaningRequest) workRequest).getInspectorNote();
+                                row[10] = ((CleaningRequest) workRequest).getCleaner().getCharge();
+                                row[11] = ((CleaningRequest) workRequest).getQuote();
+                                row[12] = ((CleaningRequest) workRequest).getOrgType();
+                                model.addRow(row);
+                            }
                         }
                     }
                 }

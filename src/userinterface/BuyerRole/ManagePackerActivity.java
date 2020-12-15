@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.Organization.Organization;
-import Business.Property.Property;
 import Business.WorkQueue.PackerRequest;
 import Business.WorkQueue.WorkRequest;
 
@@ -54,26 +53,28 @@ public class ManagePackerActivity extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
-                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
-                    if (workRequest instanceof PackerRequest) {
-                        if (userAccount.getUsername().equals(((PackerRequest) workRequest).getBuyer().getUsername())) {
-                            Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PackerRequest) workRequest);
-                            row[1] = ((PackerRequest) workRequest).getPacker().getName();
-                            row[2] = ((PackerRequest) workRequest).getSeller().getName();
-                            row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
-                            row[4] = ((PackerRequest) workRequest).getProperty().getCity();
-                            row[5] = ((PackerRequest) workRequest).getProperty().getState();
-                            row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
-                            row[7] = ((PackerRequest) workRequest).getStatus();
-                            row[8] = ((PackerRequest) workRequest).getBuyerNote();
-                            row[9] = ((PackerRequest) workRequest).getInspectorNote();
-                            row[10] = ((PackerRequest) workRequest).getPacker().getCharge();
-                            row[11] = ((PackerRequest) workRequest).getQuote();
-                            row[12] = ((PackerRequest) workRequest).getOrgType();
-                            model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
+                    for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                        if (workRequest instanceof PackerRequest) {
+                            if (userAccount.getUsername().equals(((PackerRequest) workRequest).getBuyer().getUsername())) {
+                                Object[] row = new Object[model.getColumnCount()];
+                                row[0] = ((PackerRequest) workRequest);
+                                row[1] = ((PackerRequest) workRequest).getPacker().getName();
+                                row[2] = ((PackerRequest) workRequest).getSeller().getName();
+                                row[3] = ((PackerRequest) workRequest).getProperty().getStreet();
+                                row[4] = ((PackerRequest) workRequest).getProperty().getCity();
+                                row[5] = ((PackerRequest) workRequest).getProperty().getState();
+                                row[6] = ((PackerRequest) workRequest).getProperty().getPincode();
+                                row[7] = ((PackerRequest) workRequest).getStatus();
+                                row[8] = ((PackerRequest) workRequest).getBuyerNote();
+                                row[9] = ((PackerRequest) workRequest).getInspectorNote();
+                                row[10] = ((PackerRequest) workRequest).getPacker().getCharge();
+                                row[11] = ((PackerRequest) workRequest).getQuote();
+                                row[12] = ((PackerRequest) workRequest).getOrgType();
+                                model.addRow(row);
+                            }
                         }
                     }
                 }

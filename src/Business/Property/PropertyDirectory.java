@@ -35,7 +35,8 @@ public class PropertyDirectory {
         }
         return null;
     }
-     public Property searchPropertyName(String PropertyName) {
+
+    public Property searchPropertyName(String PropertyName) {
         for (Property property : propertyList) {
             if (property.getPropertyName().equalsIgnoreCase(PropertyName)) {
                 return property;
@@ -56,5 +57,5 @@ public class PropertyDirectory {
     public void removeProperty(Property property) {
         propertyList.remove(property);
     }
-   
+
 }

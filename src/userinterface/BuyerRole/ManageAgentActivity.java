@@ -18,7 +18,6 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import Business.WorkQueue.CleaningRequest;
 import java.util.ArrayList;
 
 /**
@@ -54,26 +53,28 @@ public class ManageAgentActivity extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.Broker) {
-                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
-                    if (workRequest instanceof AgentRequest) {
-                        if (userAccount.getUsername().equals(((AgentRequest) workRequest).getBuyer().getUsername())) {
-                            Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((AgentRequest) workRequest);
-                            row[1] = ((AgentRequest) workRequest).getAgent().getName();
-                            row[2] = ((AgentRequest) workRequest).getSeller().getName();
-                            row[3] = ((AgentRequest) workRequest).getProperty().getStreet();
-                            row[4] = ((AgentRequest) workRequest).getProperty().getCity();
-                            row[5] = ((AgentRequest) workRequest).getProperty().getState();
-                            row[6] = ((AgentRequest) workRequest).getProperty().getPincode();
-                            row[7] = ((AgentRequest) workRequest).getStatus();
-                            row[8] = ((AgentRequest) workRequest).getBuyerNote();
-                            row[9] = ((AgentRequest) workRequest).getInspectorNote();
-                            row[10] = ((AgentRequest) workRequest).getAgent().getCharge();
-                            row[11] = ((AgentRequest) workRequest).getQuote();
-                            row[12] = ((AgentRequest) workRequest).getOrgType();
-                            model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                if (e.getEnterpriseType() == Enterprise.EnterpriseType.Broker) {
+                    for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                        if (workRequest instanceof AgentRequest) {
+                            if (userAccount.getUsername().equals(((AgentRequest) workRequest).getBuyer().getUsername())) {
+                                Object[] row = new Object[model.getColumnCount()];
+                                row[0] = ((AgentRequest) workRequest);
+                                row[1] = ((AgentRequest) workRequest).getAgent().getName();
+                                row[2] = ((AgentRequest) workRequest).getSeller().getName();
+                                row[3] = ((AgentRequest) workRequest).getProperty().getStreet();
+                                row[4] = ((AgentRequest) workRequest).getProperty().getCity();
+                                row[5] = ((AgentRequest) workRequest).getProperty().getState();
+                                row[6] = ((AgentRequest) workRequest).getProperty().getPincode();
+                                row[7] = ((AgentRequest) workRequest).getStatus();
+                                row[8] = ((AgentRequest) workRequest).getBuyerNote();
+                                row[9] = ((AgentRequest) workRequest).getInspectorNote();
+                                row[10] = ((AgentRequest) workRequest).getAgent().getCharge();
+                                row[11] = ((AgentRequest) workRequest).getQuote();
+                                row[12] = ((AgentRequest) workRequest).getOrgType();
+                                model.addRow(row);
+                            }
                         }
                     }
                 }
@@ -167,7 +168,7 @@ public class ManageAgentActivity extends javax.swing.JPanel {
                 jhousebtnActionPerformed(evt);
             }
         });
-        add(jhousebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 240, 30));
+        add(jhousebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 240, 30));
 
         jtblHouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -220,50 +221,42 @@ public class ManageAgentActivity extends javax.swing.JPanel {
     private void jhousebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jhousebtnActionPerformed
         // TODO add your handling code here:
         jtblHouse.setVisible(true);
-         DefaultTableModel model = (DefaultTableModel) jtblHouse.getModel();
+        DefaultTableModel model = (DefaultTableModel) jtblHouse.getModel();
         model.setRowCount(0);
-      int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
 
         if (selectedRow >= 0) {
             AgentRequest br = (AgentRequest) houseTable.getValueAt(selectedRow, 0);
-  
+
             if (br instanceof AgentRequest) {
-                ArrayList<String> propertyList= br.getPropertyList();
-                
-               for(String propertyID : propertyList)
-               {
-               Property property=system.getPropertyDirectory().fetchProperty(propertyID);
-                if(property!=null){
-                Object[] row = new Object[model.getColumnCount()];
-                row[0] = property.getPropertyID();
-                row[1] = property.getPropertyName();
-                row[2] = property.getStreet();
-                row[3] = property.getCity();
-                row[4] = property.getState();
-                row[5] = property.getPincode();
-                row[6] = property.getBhk();
-                row[7] = property.getBathroom();
-                row[8] = property.getPrice();
-                row[9] = property.getStatus();
-                row[10] = property.getBuyer();
-                row[11] = property.getSeller();
-                model.addRow(row);
-               }
-               
-               else
-               {
-                   JOptionPane.showMessageDialog(null, "Sorry there are no house suggestions!");
-               }
-               
-               }
+                ArrayList<String> propertyList = br.getPropertyList();
+                if (propertyList.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Sorry there are no house suggestions yet!");
+                    return;
+                }
+                for (String propertyID : propertyList) {
+                    Property property = system.getPropertyDirectory().fetchProperty(propertyID);
+                    Object[] row = new Object[model.getColumnCount()];
+                    row[0] = property.getPropertyID();
+                    row[1] = property.getPropertyName();
+                    row[2] = property.getStreet();
+                    row[3] = property.getCity();
+                    row[4] = property.getState();
+                    row[5] = property.getPincode();
+                    row[6] = property.getBhk();
+                    row[7] = property.getBathroom();
+                    row[8] = property.getPrice();
+                    row[9] = property.getStatus();
+                    row[10] = property.getBuyer();
+                    row[11] = property.getSeller();
+                    model.addRow(row);
+                }
             }
-            }
-        
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
         }
-        
-        
+
+
     }//GEN-LAST:event_jhousebtnActionPerformed
 
 

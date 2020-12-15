@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author raunak
+ * @author Charmi
  */
 public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -86,7 +86,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1338, 840));
         setLayout(new java.awt.BorderLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(255, 213, 90));
+        systemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
         systemAdminPanel.setMinimumSize(new java.awt.Dimension(1338, 840));
         systemAdminPanel.setPreferredSize(new java.awt.Dimension(1338, 840));
 
@@ -315,7 +315,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageHousesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageHousesMousePressed
         // TODO add your handling code here:
-                manageHouses();
+        manageHouses();
 
     }//GEN-LAST:event_manageHousesMousePressed
 

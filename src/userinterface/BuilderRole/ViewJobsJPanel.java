@@ -8,6 +8,7 @@ package userinterface.BuilderRole;
 import Business.WorkQueue.BuilderRequest;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -49,25 +50,28 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
 
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof BuilderRequest) {
-                if (((BuilderRequest) workRequest).getBuilder().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((BuilderRequest) workRequest).getBuyer();
-                    row[2] = ((BuilderRequest) workRequest).getSeller();
-                    row[3] = ((BuilderRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((BuilderRequest) workRequest).getProperty().getCity();
-                    row[5] = ((BuilderRequest) workRequest).getProperty().getState();
-                    row[6] = ((BuilderRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((BuilderRequest) workRequest).getStatus();
-                    row[8] = ((BuilderRequest) workRequest).getBuyerNote();
-                    row[9] = ((BuilderRequest) workRequest).getInspectorNote();
-                    row[10] = ((BuilderRequest) workRequest).getQuote();
-                    row[11] = ((BuilderRequest) workRequest).getBuyer().getRole().toString();
-                    model.addRow(row);
+                    if (workRequest instanceof BuilderRequest) {
+                        if (((BuilderRequest) workRequest).getBuilder().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((BuilderRequest) workRequest).getBuyer();
+                            row[2] = ((BuilderRequest) workRequest).getSeller();
+                            row[3] = ((BuilderRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((BuilderRequest) workRequest).getProperty().getCity();
+                            row[5] = ((BuilderRequest) workRequest).getProperty().getState();
+                            row[6] = ((BuilderRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((BuilderRequest) workRequest).getStatus();
+                            row[8] = ((BuilderRequest) workRequest).getBuyerNote();
+                            row[9] = ((BuilderRequest) workRequest).getInspectorNote();
+                            row[10] = ((BuilderRequest) workRequest).getQuote();
+                            row[11] = ((BuilderRequest) workRequest).getBuyer().getRole().toString();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }
@@ -83,16 +87,16 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         brnTakeJob = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         btnCompleteJob = new javax.swing.JButton();
         txtFeedback = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        btnViewBuyerDetails = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         quoteTxt = new javax.swing.JTextField();
-        btnViewBuyerDetails = new javax.swing.JButton();
         btnViewSellerDetails = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         houseTable = new javax.swing.JTable();
@@ -105,16 +109,13 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 287, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/BUILDING.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 660, 440));
-
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 56, 82));
         jLabel3.setText("BUILDER WORK REQUEST");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/builder.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 145, 164));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/BUILDING.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 660, 440));
 
         brnTakeJob.setBackground(new java.awt.Color(241, 241, 242));
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
@@ -127,6 +128,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
             }
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/builder.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 145, 164));
 
         btnCompleteJob.setBackground(new java.awt.Color(241, 241, 242));
         btnCompleteJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
@@ -149,6 +153,18 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         jLabel1.setText("Feedback:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 380, -1, -1));
 
+        btnViewBuyerDetails.setBackground(new java.awt.Color(241, 241, 242));
+        btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        btnViewBuyerDetails.setForeground(new java.awt.Color(41, 50, 80));
+        btnViewBuyerDetails.setText("View Assignee Details");
+        btnViewBuyerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBuyerDetailsActionPerformed(evt);
+            }
+        });
+        add(btnViewBuyerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, -1));
+
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 50, 80));
         jLabel2.setText("Quotation Amount: ");
@@ -161,18 +177,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
             }
         });
         add(quoteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, 120, -1));
-
-        btnViewBuyerDetails.setBackground(new java.awt.Color(241, 241, 242));
-        btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        btnViewBuyerDetails.setForeground(new java.awt.Color(41, 50, 80));
-        btnViewBuyerDetails.setText("View Assignee Details");
-        btnViewBuyerDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnViewBuyerDetails.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewBuyerDetailsActionPerformed(evt);
-            }
-        });
-        add(btnViewBuyerDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, -1));
 
         btnViewSellerDetails.setBackground(new java.awt.Color(241, 241, 242));
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N

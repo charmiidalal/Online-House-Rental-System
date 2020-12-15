@@ -238,7 +238,7 @@ public class UserRegistrationJPanel extends javax.swing.JPanel {
         add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/Home_Image_Signup.png"))); // NOI18N
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(-350, 410, 830, 400));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 830, 400));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(25, 56, 82));

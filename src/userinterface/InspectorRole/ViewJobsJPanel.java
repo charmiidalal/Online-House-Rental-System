@@ -7,6 +7,7 @@ package userinterface.InspectorRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.WorkQueue.InspectRequest;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
@@ -43,25 +44,27 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof InspectRequest) {
-                if (((InspectRequest) workRequest).getInspector().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((InspectRequest) workRequest).getBuyer();
-                    row[2] = ((InspectRequest) workRequest).getSeller();
-                    row[3] = ((InspectRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((InspectRequest) workRequest).getProperty().getCity();
-                    row[5] = ((InspectRequest) workRequest).getProperty().getState();
-                    row[6] = ((InspectRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((InspectRequest) workRequest).getStatus();
-                    row[8] = ((InspectRequest) workRequest).getBuyerNote();
-                    row[9] = ((InspectRequest) workRequest).getInspectorNote();
-                    row[10] = ((InspectRequest) workRequest).getQuote();
-                    row[11] = ((InspectRequest) workRequest).getBuyer().getRole().toString();
-                    model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof InspectRequest) {
+                        if (((InspectRequest) workRequest).getInspector().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((InspectRequest) workRequest).getBuyer();
+                            row[2] = ((InspectRequest) workRequest).getSeller();
+                            row[3] = ((InspectRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((InspectRequest) workRequest).getProperty().getCity();
+                            row[5] = ((InspectRequest) workRequest).getProperty().getState();
+                            row[6] = ((InspectRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((InspectRequest) workRequest).getStatus();
+                            row[8] = ((InspectRequest) workRequest).getBuyerNote();
+                            row[9] = ((InspectRequest) workRequest).getInspectorNote();
+                            row[10] = ((InspectRequest) workRequest).getQuote();
+                            row[11] = ((InspectRequest) workRequest).getBuyer().getRole().toString();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }

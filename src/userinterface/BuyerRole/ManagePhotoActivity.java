@@ -54,26 +54,28 @@ public class ManagePhotoActivity extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
-                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
-                    if (workRequest instanceof PhotographerRequest) {
-                        if (userAccount.getUsername().equals(((PhotographerRequest) workRequest).getBuyer().getUsername())) {
-                            Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PhotographerRequest) workRequest);
-                            row[1] = ((PhotographerRequest) workRequest).getPhotographer().getName();
-                            row[2] = ((PhotographerRequest) workRequest).getSeller().getName();
-                            row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
-                            row[4] = ((PhotographerRequest) workRequest).getProperty().getCity();
-                            row[5] = ((PhotographerRequest) workRequest).getProperty().getState();
-                            row[6] = ((PhotographerRequest) workRequest).getProperty().getPincode();
-                            row[7] = ((PhotographerRequest) workRequest).getStatus();
-                            row[8] = ((PhotographerRequest) workRequest).getBuyerNote();
-                            row[9] = ((PhotographerRequest) workRequest).getInspectorNote();
-                            row[10] = ((PhotographerRequest) workRequest).getPhotographer().getCharge();
-                            row[11] = ((PhotographerRequest) workRequest).getQuote();
-                            row[12] = ((PhotographerRequest) workRequest).getOrgType();
-                            model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                if (e.getEnterpriseType() == Enterprise.EnterpriseType.QualityAssurance) {
+                    for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                        if (workRequest instanceof PhotographerRequest) {
+                            if (userAccount.getUsername().equals(((PhotographerRequest) workRequest).getBuyer().getUsername())) {
+                                Object[] row = new Object[model.getColumnCount()];
+                                row[0] = ((PhotographerRequest) workRequest);
+                                row[1] = ((PhotographerRequest) workRequest).getPhotographer().getName();
+                                row[2] = ((PhotographerRequest) workRequest).getSeller().getName();
+                                row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
+                                row[4] = ((PhotographerRequest) workRequest).getProperty().getCity();
+                                row[5] = ((PhotographerRequest) workRequest).getProperty().getState();
+                                row[6] = ((PhotographerRequest) workRequest).getProperty().getPincode();
+                                row[7] = ((PhotographerRequest) workRequest).getStatus();
+                                row[8] = ((PhotographerRequest) workRequest).getBuyerNote();
+                                row[9] = ((PhotographerRequest) workRequest).getInspectorNote();
+                                row[10] = ((PhotographerRequest) workRequest).getPhotographer().getCharge();
+                                row[11] = ((PhotographerRequest) workRequest).getQuote();
+                                row[12] = ((PhotographerRequest) workRequest).getOrgType();
+                                model.addRow(row);
+                            }
                         }
                     }
                 }

@@ -53,20 +53,22 @@ public class HireAgentJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (ua.getRole() instanceof AgentRole) {
-                        Object[] row = new Object[8];
-                        row[0] = ua.getEmployee().getId();
-                        row[1] = ua;
-                        row[2] = ua.getCity();
-                        row[3] = ua.getState();
-                        row[4] = ua.getStatus();
-                        row[5] = ua.getPhone();
-                        row[6] = ua.getCharge();
-                        row[7] = org.getName();
-                        model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getRole() instanceof AgentRole) {
+                            Object[] row = new Object[8];
+                            row[0] = ua.getEmployee().getId();
+                            row[1] = ua;
+                            row[2] = ua.getCity();
+                            row[3] = ua.getState();
+                            row[4] = ua.getStatus();
+                            row[5] = ua.getPhone();
+                            row[6] = ua.getCharge();
+                            row[7] = org.getName();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -90,6 +92,7 @@ public class HireAgentJPanel extends javax.swing.JPanel {
         commentTxxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -150,6 +153,11 @@ public class HireAgentJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 30, 30));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
+        jLabel2.setText("AGENTS LIST");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, 30));
+
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(41, 50, 80));
         jLabel3.setText("AGENTS  LIST");
@@ -195,24 +203,26 @@ public class HireAgentJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Sorry! This Agent is already Occupied");
                     return;
                 }
-                for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                        for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                            if (agentAcc.getUsername().equals(ua.getUsername())) {
+                for (Network n : system.getNetworkList()) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                                if (agentAcc.getUsername().equals(ua.getUsername())) {
 
-                                AgentRequest ar = new AgentRequest();
-                                ar.setRequestID();
-                                ar.setBuyer(userAccount);
-                                ar.setAgent(agentAcc);
-                                ar.setSeller(property.getSeller());
-                                ar.setStatus("Pending");
-                                ar.setBuyerNote(comment);
-                                ar.setProperty(property);
-                                ar.setOrgType(org.getType());
-                                e.getWorkQueue().getWorkRequestList().add(ar);
-                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                                SendSMS sms = new SendSMS(agentAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
-                                EcoSystem.sendEmailMessage(agentAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                    AgentRequest ar = new AgentRequest();
+                                    ar.setRequestID();
+                                    ar.setBuyer(userAccount);
+                                    ar.setAgent(agentAcc);
+                                    ar.setSeller(property.getSeller());
+                                    ar.setStatus("Pending");
+                                    ar.setBuyerNote(comment);
+                                    ar.setProperty(property);
+                                    ar.setOrgType(org.getType());
+                                    e.getWorkQueue().getWorkRequestList().add(ar);
+                                    JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                    SendSMS sms = new SendSMS(agentAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                                    EcoSystem.sendEmailMessage(agentAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                }
                             }
                         }
                     }
@@ -238,6 +248,7 @@ public class HireAgentJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

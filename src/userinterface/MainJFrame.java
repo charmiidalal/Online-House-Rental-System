@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package userinterface;
+
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
@@ -11,15 +12,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import userinterface.UserRegistration.UserRegistrationJPanel;
 
@@ -53,7 +46,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void changePanel1(UserAccount userAccount) {
 
         if (userAccount != null && userAccount.getRole() != null) {
-            String greetings = "Hi";
+            String greetings = "Welcome";
 
             greetings = greetings + " " + userAccount.getUsername();
             container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, networkEmergency, system));
@@ -83,6 +76,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         userNameJTextField = new javax.swing.JTextField();
@@ -101,7 +96,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1338, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        leftPanel.setBackground(new java.awt.Color(244, 242, 227));
+        leftPanel.setBackground(new java.awt.Color(41, 50, 80));
         leftPanel.setMinimumSize(new java.awt.Dimension(1338, 60));
         leftPanel.setPreferredSize(new java.awt.Dimension(1338, 60));
         leftPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,7 +109,9 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         leftPanel.add(btnLogoutLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, 70, 60));
 
+        greetingUserLabel.setBackground(new java.awt.Color(255, 255, 255));
         greetingUserLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        greetingUserLabel.setForeground(new java.awt.Color(255, 255, 255));
         leftPanel.add(greetingUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 690, 60));
 
         btnBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/back.png"))); // NOI18N
@@ -146,28 +143,47 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(41, 50, 80));
-        jLabel1.setText("HOUSE RENTAL SYSTEM");
+        jLabel1.setText("When you're ready for a change");
+
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(41, 50, 80));
+        jLabel6.setText("HOUSE RENTAL SYSTEM");
+
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(41, 50, 80));
+        jLabel7.setText("we're ready to help.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(jLabel1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jLabel7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jLabel1)
-                .addGap(121, 121, 121)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(jLabel6)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -291,7 +307,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addGap(746, 746, 746)
                         .addComponent(cancelButton))
                     .addGroup(loginJPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
                         .addGroup(loginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,7 +334,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
         );
 
         getContentPane().add(loginJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 1110));
@@ -348,64 +364,59 @@ public class MainJFrame extends javax.swing.JFrame {
         String userName = userNameJTextField.getText();
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
-       if(userName.isEmpty() || password.isEmpty())
-       {
-        JOptionPane.showMessageDialog(null, "Enter valid user credentials to login!");
-       }
-       else{
-        userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
-        inEnterprise = null;
-        inOrganization = null;
-        networkEmergency = null;
+        if (userName.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter valid user credentials to login!");
+        } else {
+            userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+            inEnterprise = null;
+            inOrganization = null;
+            networkEmergency = null;
 
-        if (userAccount == null) {
-            for (Network network : system.getNetworkList()) {
-                //Step 2.a: check against each enterprise
-                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) { 
-                    userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                    networkEmergency = network;
-                    if (userAccount == null) {
-                        //Step 3:check against each organization for each enterprise
-                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                            userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
-                            if (userAccount != null) {
-                                inEnterprise = enterprise;
-                                inOrganization = organization;
-                                networkEmergency = network;
-                                break;
+            if (userAccount == null) {
+                for (Network network : system.getNetworkList()) {
+                    //Step 2.a: check against each enterprise
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                        networkEmergency = network;
+                        if (userAccount == null) {
+                            //Step 3:check against each organization for each enterprise
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
+                                if (userAccount != null) {
+                                    inEnterprise = enterprise;
+                                    inOrganization = organization;
+                                    networkEmergency = network;
+                                    break;
+                                }
                             }
-                        }
 
-                    } else {
-                        inEnterprise = enterprise;
-                        break;
+                        } else {
+                            inEnterprise = enterprise;
+                            break;
+                        }
+                        if (inOrganization != null) {
+                            break;
+                        }
                     }
-                    if (inOrganization != null) {
+                    if (inEnterprise != null) {
                         break;
                     }
                 }
-                if (inEnterprise != null) {
-                    break;
-                }
-                /*if (networkEmergency != null) {//changed
-                    break;
-                }*/
+            }
+            if (userAccount == null) {
+                JOptionPane.showMessageDialog(null, "Invalid user credentials,Try again!");
+                return;
+            } else {
+                loginJPanel.setVisible(false);
+                container.setVisible(true);
+                leftPanel.setVisible(true);
+                btnLogoutLabel.setVisible(true);
+                btnBackLabel.setVisible(false);
+                userNameJTextField.setText("");
+                passwordField.setText("");
+                changePanel1(userAccount);
             }
         }
-        if (userAccount == null) {
-            JOptionPane.showMessageDialog(null, "Invalid user credentials,Try again!");
-            return;
-        } else {
-            loginJPanel.setVisible(false);
-            container.setVisible(true);
-            leftPanel.setVisible(true);
-            btnLogoutLabel.setVisible(true);
-            btnBackLabel.setVisible(false);
-            userNameJTextField.setText("");
-            passwordField.setText("");
-            changePanel1(userAccount);
-        }
-       }
     }//GEN-LAST:event_loginButtonMousePressed
 
     private void cancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMousePressed
@@ -417,7 +428,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnRegisterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMousePressed
         // TODO add your handling code here:
         UserRegistrationJPanel panel = new UserRegistrationJPanel(container, system);
-        greetingUserLabel.setText("WELCOME TO NEW HOUSERENTAL ORGANIZATION REGISTRATION!!!");
+        greetingUserLabel.setText("WELCOME TO NEW HOUSE RENTAL ORGANIZATION REGISTRATION!!!");
         loginJPanel.setVisible(false);
         container.setVisible(true);
         leftPanel.setVisible(true);
@@ -487,6 +498,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -92,7 +92,7 @@ public class PropertyManagerWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1338, 840));
         setLayout(new java.awt.BorderLayout());
 
-        systemAdminPanel.setBackground(new java.awt.Color(255, 213, 90));
+        systemAdminPanel.setBackground(new java.awt.Color(241, 241, 242));
 
         userLeft.setBackground(new java.awt.Color(255, 213, 90));
         userLeft.setPreferredSize(new java.awt.Dimension(280, 148));

@@ -7,13 +7,12 @@ package userinterface.CleaningRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Property.Property;
+import Business.Network.Network;
 import Business.Property.PropertyDirectory;
 import Business.WorkQueue.CleaningRequest;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -48,25 +47,28 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
 
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof CleaningRequest) {
-                if (((CleaningRequest) workRequest).getCleaner().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((CleaningRequest) workRequest).getBuyer();
-                    row[2] = ((CleaningRequest) workRequest).getSeller();
-                    row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
-                    row[5] = ((CleaningRequest) workRequest).getProperty().getState();
-                    row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((CleaningRequest) workRequest).getStatus();
-                    row[8] = ((CleaningRequest) workRequest).getBuyerNote();
-                    row[9] = ((CleaningRequest) workRequest).getInspectorNote();
-                    row[10] = ((CleaningRequest) workRequest).getQuote();
-                    row[11] = ((CleaningRequest) workRequest).getBuyer().getRole().toString();
-                    model.addRow(row);
+                    if (workRequest instanceof CleaningRequest) {
+                        if (((CleaningRequest) workRequest).getCleaner().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((CleaningRequest) workRequest).getBuyer();
+                            row[2] = ((CleaningRequest) workRequest).getSeller();
+                            row[3] = ((CleaningRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((CleaningRequest) workRequest).getProperty().getCity();
+                            row[5] = ((CleaningRequest) workRequest).getProperty().getState();
+                            row[6] = ((CleaningRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((CleaningRequest) workRequest).getStatus();
+                            row[8] = ((CleaningRequest) workRequest).getBuyerNote();
+                            row[9] = ((CleaningRequest) workRequest).getInspectorNote();
+                            row[10] = ((CleaningRequest) workRequest).getQuote();
+                            row[11] = ((CleaningRequest) workRequest).getBuyer().getRole().toString();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }

@@ -7,6 +7,7 @@ package userinterface.PlumberRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -40,25 +41,27 @@ public class ViewJobJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof PlumberRequest) {
-                if (((PlumberRequest) workRequest).getPlumber().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((PlumberRequest) workRequest).getBuyer();
-                    row[2] = ((PlumberRequest) workRequest).getSeller();
-                    row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
-                    row[5] = ((PlumberRequest) workRequest).getProperty().getState();
-                    row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((PlumberRequest) workRequest).getStatus();
-                    row[8] = ((PlumberRequest) workRequest).getBuyerNote();
-                    row[9] = ((PlumberRequest) workRequest).getInspectorNote();
-                    row[10] = ((PlumberRequest) workRequest).getQuote();
-                    row[11] = ((PlumberRequest) workRequest).getBuyer().getRole().toString();
-                    model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof PlumberRequest) {
+                        if (((PlumberRequest) workRequest).getPlumber().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((PlumberRequest) workRequest).getBuyer();
+                            row[2] = ((PlumberRequest) workRequest).getSeller();
+                            row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
+                            row[5] = ((PlumberRequest) workRequest).getProperty().getState();
+                            row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((PlumberRequest) workRequest).getStatus();
+                            row[8] = ((PlumberRequest) workRequest).getBuyerNote();
+                            row[9] = ((PlumberRequest) workRequest).getInspectorNote();
+                            row[10] = ((PlumberRequest) workRequest).getQuote();
+                            row[11] = ((PlumberRequest) workRequest).getBuyer().getRole().toString();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author Anusha
  */
 public class PhotographerOrganization extends Organization{
 

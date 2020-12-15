@@ -52,20 +52,22 @@ public class HireBuilder extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (ua.getRole() instanceof BuilderRole) {
-                        Object[] row = new Object[8];
-                        row[0] = ua.getEmployee().getId();
-                        row[1] = ua;
-                        row[2] = ua.getCity();
-                        row[3] = ua.getState();
-                        row[4] = ua.getStatus();
-                        row[5] = ua.getPhone();
-                        row[6] = ua.getCharge();
-                        row[7] = org.getType();
-                        model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getRole() instanceof BuilderRole) {
+                            Object[] row = new Object[8];
+                            row[0] = ua.getEmployee().getId();
+                            row[1] = ua;
+                            row[2] = ua.getCity();
+                            row[3] = ua.getState();
+                            row[4] = ua.getStatus();
+                            row[5] = ua.getPhone();
+                            row[6] = ua.getCharge();
+                            row[7] = org.getType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -82,8 +84,8 @@ public class HireBuilder extends javax.swing.JPanel {
     private void initComponents() {
 
         brnHireInspector = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         commentTxxt = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -104,14 +106,14 @@ public class HireBuilder extends javax.swing.JPanel {
         });
         add(brnHireInspector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, -1, 21));
 
+        commentTxxt.setForeground(new java.awt.Color(41, 50, 80));
+        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 190, -1));
+
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setForeground(new java.awt.Color(41, 50, 80));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/BUILDING.png"))); // NOI18N
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 660, 440));
-
-        commentTxxt.setForeground(new java.awt.Color(41, 50, 80));
-        add(commentTxxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 190, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(41, 50, 80));
@@ -171,30 +173,31 @@ public class HireBuilder extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Sorry! This Builder is already Occupied");
                     return;
                 }
-                for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                        for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                            if (serviceAcc.getUsername().equals(ua.getUsername())) {
-                                BuilderRequest builder = new BuilderRequest();
-                                builder.setRequestID();
-                                builder.setBuyer(userAccount);
-                                builder.setBuilder(serviceAcc);
-                                builder.setSeller(property.getSeller());
-                                builder.setStatus("Pending");
-                                builder.setBuyerNote(comment);
-                                builder.setProperty(property);
-                                builder.setOrgType(org.getType());
-                                e.getWorkQueue().getWorkRequestList().add(builder);
-                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                                SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
-                                EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                for (Network n : system.getNetworkList()) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                                if (serviceAcc.getUsername().equals(ua.getUsername())) {
+                                    BuilderRequest builder = new BuilderRequest();
+                                    builder.setRequestID();
+                                    builder.setBuyer(userAccount);
+                                    builder.setBuilder(serviceAcc);
+                                    builder.setSeller(property.getSeller());
+                                    builder.setStatus("Pending");
+                                    builder.setBuyerNote(comment);
+                                    builder.setProperty(property);
+                                    builder.setOrgType(org.getType());
+                                    e.getWorkQueue().getWorkRequestList().add(builder);
+                                    JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                    SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                                    EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                }
                             }
                         }
                     }
                 }
             }
-        } 
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
 
         }

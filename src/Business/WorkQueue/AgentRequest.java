@@ -16,7 +16,8 @@ import java.util.ArrayList;
  *
  * @author Dinesh
  */
-public class AgentRequest extends WorkRequest{
+public class AgentRequest extends WorkRequest {
+
     ArrayList<String> propertyList = new ArrayList<String>();
     private Network network;
     private Enterprise enterprise;
@@ -69,7 +70,6 @@ public class AgentRequest extends WorkRequest{
     public void setPropertyList(ArrayList<String> propertyList) {
         this.propertyList = propertyList;
     }
-    
 
     public String getRequestID() {
         return requestID;
@@ -159,6 +159,7 @@ public class AgentRequest extends WorkRequest{
     public void setMax(int max) {
         this.max = max;
     }
+
     @Override
     public String toString() {
         return requestID;

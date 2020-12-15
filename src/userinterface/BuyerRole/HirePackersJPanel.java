@@ -53,8 +53,9 @@ public class HirePackersJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+        
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                         if (ua.getRole() instanceof PackersMoversRole) {
@@ -171,46 +172,47 @@ public class HirePackersJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void brnHireInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnHireInspectorActionPerformed
-       int selectedRow = houseTable.getSelectedRow();
+        int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
-       
-        
-        if(count==1){
-            if(selectedRow >=0){
+
+        if (count == 1) {
+            if (selectedRow >= 0) {
                 UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
                 String comment = commentTxxt.getText();
-            if (comment.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
-            return;
-        } else if (!serviceAcc.getStatus().equals("Available")) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Plumber is already Occupied");
-            return;
-        }
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (serviceAcc.getUsername().equals(ua.getUsername())) {
-                        PackerRequest cr = new PackerRequest();
-                        cr.setRequestID();
-                        cr.setBuyer(userAccount);
-                        cr.setPacker(serviceAcc);
-                        cr.setSeller(property.getSeller());
-                        cr.setStatus("Pending");
-                        cr.setBuyerNote(comment);
-                        cr.setProperty(property);
-                        cr.setOrgType(org.getType());
-                        e.getWorkQueue().getWorkRequestList().add(cr);
-                        JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                        SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
-                        EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                if (comment.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
+                    return;
+                } else if (!serviceAcc.getStatus().equals("Available")) {
+                    JOptionPane.showMessageDialog(null, "Sorry! This Plumber is already Occupied");
+                    return;
+                }
+                for (Network n : system.getNetworkList()) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                                if (serviceAcc.getUsername().equals(ua.getUsername())) {
+                                    PackerRequest cr = new PackerRequest();
+                                    cr.setRequestID();
+                                    cr.setBuyer(userAccount);
+                                    cr.setPacker(serviceAcc);
+                                    cr.setSeller(property.getSeller());
+                                    cr.setStatus("Pending");
+                                    cr.setBuyerNote(comment);
+                                    cr.setProperty(property);
+                                    cr.setOrgType(org.getType());
+                                    e.getWorkQueue().getWorkRequestList().add(cr);
+                                    JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                    SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                                    EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                }
+                            }
+                        }
                     }
                 }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one row!");
         }
-        }
-            }else{
-                JOptionPane.showMessageDialog(null,"Please select one row!");
-            }
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 
     private void btnBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack3ActionPerformed

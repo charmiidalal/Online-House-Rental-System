@@ -54,26 +54,28 @@ public class ManagePlumberActivity extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
-                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
-                    if (workRequest instanceof PlumberRequest) {
-                        if (userAccount.getUsername().equals(((PlumberRequest) workRequest).getBuyer().getUsername())) {
-                            Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((PlumberRequest) workRequest);
-                            row[1] = ((PlumberRequest) workRequest).getPlumber().getName();
-                            row[2] = ((PlumberRequest) workRequest).getSeller().getName();
-                            row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
-                            row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
-                            row[5] = ((PlumberRequest) workRequest).getProperty().getState();
-                            row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
-                            row[7] = ((PlumberRequest) workRequest).getStatus();
-                            row[8] = ((PlumberRequest) workRequest).getBuyerNote();
-                            row[9] = ((PlumberRequest) workRequest).getInspectorNote();
-                            row[10] = ((PlumberRequest) workRequest).getPlumber().getCharge();
-                            row[11] = ((PlumberRequest) workRequest).getQuote();
-                            row[12] = ((PlumberRequest) workRequest).getOrgType();
-                            model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                if (e.getEnterpriseType() == Enterprise.EnterpriseType.ServiceProvider) {
+                    for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                        if (workRequest instanceof PlumberRequest) {
+                            if (userAccount.getUsername().equals(((PlumberRequest) workRequest).getBuyer().getUsername())) {
+                                Object[] row = new Object[model.getColumnCount()];
+                                row[0] = ((PlumberRequest) workRequest);
+                                row[1] = ((PlumberRequest) workRequest).getPlumber().getName();
+                                row[2] = ((PlumberRequest) workRequest).getSeller().getName();
+                                row[3] = ((PlumberRequest) workRequest).getProperty().getStreet();
+                                row[4] = ((PlumberRequest) workRequest).getProperty().getCity();
+                                row[5] = ((PlumberRequest) workRequest).getProperty().getState();
+                                row[6] = ((PlumberRequest) workRequest).getProperty().getPincode();
+                                row[7] = ((PlumberRequest) workRequest).getStatus();
+                                row[8] = ((PlumberRequest) workRequest).getBuyerNote();
+                                row[9] = ((PlumberRequest) workRequest).getInspectorNote();
+                                row[10] = ((PlumberRequest) workRequest).getPlumber().getCharge();
+                                row[11] = ((PlumberRequest) workRequest).getQuote();
+                                row[12] = ((PlumberRequest) workRequest).getOrgType();
+                                model.addRow(row);
+                            }
                         }
                     }
                 }

@@ -1,14 +1,12 @@
 package Business;
 
 import Business.Employee.Employee;
-import Business.Role.BuyerRole;
-import Business.Role.SellerRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 
 /**
  *
- * @author rrheg
+ * @author Charmi
  */
 public class ConfigureASystem {
     

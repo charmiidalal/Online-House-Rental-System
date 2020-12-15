@@ -5,7 +5,6 @@
  */
 package userinterface.AgentRole;
 
-
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Property.Property;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -38,7 +36,7 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
     private PropertyDirectory propertyDirectory;
     private EcoSystem system;
 
-    public AssignPropetyJPanel(JPanel userProcessContainer, UserAccount useraccount, EcoSystem system,AgentRequest agentRequest) {
+    public AssignPropetyJPanel(JPanel userProcessContainer, UserAccount useraccount, EcoSystem system, AgentRequest agentRequest) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -53,20 +51,20 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) jtblHouse.getModel();
         dtm.setRowCount(0);
         for (Property property : propertyDirectory.getPropertyList()) {
-                Object[] row = new Object[12];
-                row[0] = property.getPropertyID();
-                row[1] = property.getPropertyName();
-                row[2] = property.getStreet();
-                row[3] = property.getCity();
-                row[4] = property.getState();
-                row[5] = property.getPincode();
-                row[6] = property.getBhk();
-                row[7] = property.getBathroom();
-                row[8] = property.getPrice();
-                row[9] = property.getStatus();
-                row[10] = property.getBuyer();
-                row[11] = property.getSeller().getName();
-                dtm.addRow(row);
+            Object[] row = new Object[12];
+            row[0] = property.getPropertyID();
+            row[1] = property.getPropertyName();
+            row[2] = property.getStreet();
+            row[3] = property.getCity();
+            row[4] = property.getState();
+            row[5] = property.getPincode();
+            row[6] = property.getBhk();
+            row[7] = property.getBathroom();
+            row[8] = property.getPrice();
+            row[9] = property.getStatus();
+            row[10] = property.getBuyer();
+            row[11] = property.getSeller().getName();
+            dtm.addRow(row);
         }
     }
 
@@ -167,25 +165,18 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
         // TODO add your handling code here
         ArrayList<String> propertyList = new ArrayList<String>();
         if (jtblHouse.getSelectedRow() >= 0) {
-            for(int i = 0; i < jtblHouse.getSelectedRows().length; i++){
-                String propertyID =  (String) jtblHouse.getValueAt(jtblHouse.getSelectedRows()[i], 0);
-                Property property=system.getPropertyDirectory().fetchProperty(propertyID);
-                if(!property.getStatus().equalsIgnoreCase("sold")){
-                propertyList.add(propertyID);
-                agentRequest.setPropertyList(propertyList);
-                }
-                 else
-                {
-                     JOptionPane.showMessageDialog(this, "Property is sold !Please suggest other vacant property.");
-
+            for (int i = 0; i < jtblHouse.getSelectedRows().length; i++) {
+                String propertyID = (String) jtblHouse.getValueAt(jtblHouse.getSelectedRows()[i], 0);
+                Property property = system.getPropertyDirectory().fetchProperty(propertyID);
+                if (!property.getStatus().equalsIgnoreCase("sold")) {
+                    propertyList.add(propertyID);
+                    agentRequest.setPropertyList(propertyList);
+                } else {
+                    JOptionPane.showMessageDialog(this, property.getPropertyName()+" is sold! Please suggest other vacant property.");
                 }
             }
-                JOptionPane.showMessageDialog(this, "Property Suggested Successfully!");
-                }
-               
-            
-            
-        else {
+            JOptionPane.showMessageDialog(this, "Property Suggested Successfully!");
+        } else {
             JOptionPane.showMessageDialog(this, "Please select a house to suggest");
         }
     }//GEN-LAST:event_btnSendHouseSugActionPerformed

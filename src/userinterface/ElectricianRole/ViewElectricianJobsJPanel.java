@@ -7,8 +7,7 @@ package userinterface.ElectricianRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Property.Property;
-import Business.Property.PropertyDirectory;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -45,24 +44,27 @@ public class ViewElectricianJobsJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-            if (workRequest instanceof ElectricianRequest) {
-                if (((ElectricianRequest) workRequest).getElectrician().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((ElectricianRequest) workRequest).getBuyer();
-                    row[2] = ((ElectricianRequest) workRequest).getSeller();
-                    row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((ElectricianRequest) workRequest).getProperty().getCity();
-                    row[5] = ((ElectricianRequest) workRequest).getProperty().getState();
-                    row[6] = ((ElectricianRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((ElectricianRequest) workRequest).getStatus();
-                    row[8] = ((ElectricianRequest) workRequest).getBuyerNote();
-                    row[9] = ((ElectricianRequest) workRequest).getInspectorNote();
-                    row[10] = ((ElectricianRequest) workRequest).getQuote();
-                    row[11] = ((ElectricianRequest) workRequest).getBuyer().getRole().toString();
-                    model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof ElectricianRequest) {
+                        if (((ElectricianRequest) workRequest).getElectrician().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((ElectricianRequest) workRequest).getBuyer();
+                            row[2] = ((ElectricianRequest) workRequest).getSeller();
+                            row[3] = ((ElectricianRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((ElectricianRequest) workRequest).getProperty().getCity();
+                            row[5] = ((ElectricianRequest) workRequest).getProperty().getState();
+                            row[6] = ((ElectricianRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((ElectricianRequest) workRequest).getStatus();
+                            row[8] = ((ElectricianRequest) workRequest).getBuyerNote();
+                            row[9] = ((ElectricianRequest) workRequest).getInspectorNote();
+                            row[10] = ((ElectricianRequest) workRequest).getQuote();
+                            row[11] = ((ElectricianRequest) workRequest).getBuyer().getRole().toString();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }

@@ -17,7 +17,7 @@ import userinterface.BuyerRole.BuyerWorkAreaJPanel;
 
 /**
  *
- * @author anush
+ * @author Charmi
  */
 public class BuyerRole extends Role {
 

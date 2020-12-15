@@ -51,26 +51,28 @@ public class ManageManagerActivity extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (e.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
-                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
-                    if (workRequest instanceof ManagerRequest) {
-                        if (userAccount.getUsername().equals(((ManagerRequest) workRequest).getBuyer().getUsername())) {
-                            Object[] row = new Object[model.getColumnCount()];
-                            row[0] = ((ManagerRequest) workRequest);
-                            row[1] = ((ManagerRequest) workRequest).getManager().getName();
-                            row[2] = ((ManagerRequest) workRequest).getSeller().getName();
-                            row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
-                            row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
-                            row[5] = ((ManagerRequest) workRequest).getProperty().getState();
-                            row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
-                            row[7] = ((ManagerRequest) workRequest).getStatus();
-                            row[8] = ((ManagerRequest) workRequest).getBuyerNote();
-                            row[9] = ((ManagerRequest) workRequest).getInspectorNote();
-                            row[10] = ((ManagerRequest) workRequest).getManager().getCharge();
-                            row[11] = ((ManagerRequest) workRequest).getQuote();
-                            row[12] = ((ManagerRequest) workRequest).getOrgType();
-                            model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                if (e.getEnterpriseType() == Enterprise.EnterpriseType.Property) {
+                    for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                        if (workRequest instanceof ManagerRequest) {
+                            if (userAccount.getUsername().equals(((ManagerRequest) workRequest).getBuyer().getUsername())) {
+                                Object[] row = new Object[model.getColumnCount()];
+                                row[0] = ((ManagerRequest) workRequest);
+                                row[1] = ((ManagerRequest) workRequest).getManager().getName();
+                                row[2] = ((ManagerRequest) workRequest).getSeller().getName();
+                                row[3] = ((ManagerRequest) workRequest).getProperty().getStreet();
+                                row[4] = ((ManagerRequest) workRequest).getProperty().getCity();
+                                row[5] = ((ManagerRequest) workRequest).getProperty().getState();
+                                row[6] = ((ManagerRequest) workRequest).getProperty().getPincode();
+                                row[7] = ((ManagerRequest) workRequest).getStatus();
+                                row[8] = ((ManagerRequest) workRequest).getBuyerNote();
+                                row[9] = ((ManagerRequest) workRequest).getInspectorNote();
+                                row[10] = ((ManagerRequest) workRequest).getManager().getCharge();
+                                row[11] = ((ManagerRequest) workRequest).getQuote();
+                                row[12] = ((ManagerRequest) workRequest).getOrgType();
+                                model.addRow(row);
+                            }
                         }
                     }
                 }

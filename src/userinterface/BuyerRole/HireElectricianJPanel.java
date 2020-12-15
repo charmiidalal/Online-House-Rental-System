@@ -51,21 +51,24 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    String role = ua.getRole().toString();
-                    if (ua.getRole() instanceof ElectricianRole) {
-                        Object[] row = new Object[8];
-                        row[0] = ua.getEmployee().getId();
-                        row[1] = ua;
-                        row[2] = ua.getCity();
-                        row[3] = ua.getState();
-                        row[4] = ua.getStatus();
-                        row[5] = ua.getPhone();
-                        row[6] = ua.getCharge();
-                        row[7] = org.getType();
-                        model.addRow(row);
+        
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        String role = ua.getRole().toString();
+                        if (ua.getRole() instanceof ElectricianRole) {
+                            Object[] row = new Object[8];
+                            row[0] = ua.getEmployee().getId();
+                            row[1] = ua;
+                            row[2] = ua.getCity();
+                            row[3] = ua.getState();
+                            row[4] = ua.getStatus();
+                            row[5] = ua.getPhone();
+                            row[6] = ua.getCharge();
+                            row[7] = org.getType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -161,38 +164,40 @@ public class HireElectricianJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Sorry! This Electrician is already Occupied");
                     return;
                 }
-                for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                        for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                            if (serviceAcc.getUsername().equals(ua.getUsername())) {
-                                ElectricianRequest cr = new ElectricianRequest();
-                                cr.setRequestID();
-                                cr.setBuyer(userAccount);
-                                cr.setElectrician(serviceAcc);
-                                cr.setSeller(property.getSeller());
-                                cr.setStatus("Pending");
-                                cr.setBuyerNote(comment);
-                                cr.setProperty(property);
-                                cr.setOrgType(org.getType());
-                                e.getWorkQueue().getWorkRequestList().add(cr);
-                                JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                                try {
-                                    if (serviceAcc.getPhone() != null) {
-                                        SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
-                                    } else {
+                for (Network n : system.getNetworkList()) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                                if (serviceAcc.getUsername().equals(ua.getUsername())) {
+                                    ElectricianRequest cr = new ElectricianRequest();
+                                    cr.setRequestID();
+                                    cr.setBuyer(userAccount);
+                                    cr.setElectrician(serviceAcc);
+                                    cr.setSeller(property.getSeller());
+                                    cr.setStatus("Pending");
+                                    cr.setBuyerNote(comment);
+                                    cr.setProperty(property);
+                                    cr.setOrgType(org.getType());
+                                    e.getWorkQueue().getWorkRequestList().add(cr);
+                                    JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                    try {
+                                        if (serviceAcc.getPhone() != null) {
+                                            SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                                        } else {
+                                            System.out.println("NophoneNumber");
+                                        }
+                                    } catch (NullPointerException ex) {
                                         System.out.println("NophoneNumber");
                                     }
-                                } catch (NullPointerException ex) {
-                                    System.out.println("NophoneNumber");
-                                }
-                                try {
-                                    if (serviceAcc.getEmail() != null) {
-                                        EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
-                                    } else {
-                                        System.out.println("Noemail");
+                                    try {
+                                        if (serviceAcc.getEmail() != null) {
+                                            EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                        } else {
+                                            System.out.println("Noemail");
+                                        }
+                                    } catch (NullPointerException ex) {
+                                        System.out.println("NoEmail");
                                     }
-                                } catch (NullPointerException ex) {
-                                    System.out.println("NoEmail");
                                 }
                             }
                         }

@@ -15,13 +15,14 @@ import java.util.ArrayList;
 
 /**
  *
- * @author MyPC1
+ * @author Dinesh
  */
 public class ServiceProviderEnterprise extends Enterprise {
-    
-    public ServiceProviderEnterprise(String name){
-        super(name,EnterpriseType.ServiceProvider);
+
+    public ServiceProviderEnterprise(String name) {
+        super(name, EnterpriseType.ServiceProvider);
     }
+
     @Override
 
     public ArrayList<Role> getSupportedRole() {
@@ -33,5 +34,5 @@ public class ServiceProviderEnterprise extends Enterprise {
         roles.add(new GovermentEmployeeRole());
         return roles;
     }
-    
+
 }

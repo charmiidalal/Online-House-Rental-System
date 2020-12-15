@@ -71,7 +71,6 @@ public class ManageBuyerProfileJPanel extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         txtState = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 241, 242));
         setForeground(new java.awt.Color(0, 0, 51));
@@ -146,10 +145,7 @@ public class ManageBuyerProfileJPanel extends javax.swing.JPanel {
         add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 200, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/house5.png"))); // NOI18N
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 1020, 640));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/best-seller.png"))); // NOI18N
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 460, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 1020, 640));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
@@ -193,7 +189,6 @@ public class ManageBuyerProfileJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -14,7 +14,7 @@ import userinterface.AgentRole.AgentWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author Charmi
  */
 public class AgentRole extends Role{
 

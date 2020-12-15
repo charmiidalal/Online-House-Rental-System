@@ -336,7 +336,9 @@ public class ManageHouseJPanel extends javax.swing.JPanel {
             String priceset = Double.toString(price);
             priceTxt.setText(priceset);
             jComboBoxStatus.getModel().setSelectedItem(status);
-            txtSoldTo.setText(soldto.getName());
+            if(soldto != null){
+                txtSoldTo.setText(soldto.getName());
+            }
             cityTxt.setText(city);
 
         } else {

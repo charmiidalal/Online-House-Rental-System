@@ -15,7 +15,7 @@ import userinterface.SellerRole.SellerWorkAreaJPanel;
 
 /**
  *
- * @author anush
+ * @author Charmi
  */
 public class SellerRole extends Role {
 

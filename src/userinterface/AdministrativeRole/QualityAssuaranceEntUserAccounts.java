@@ -207,7 +207,7 @@ public class QualityAssuaranceEntUserAccounts extends javax.swing.JPanel {
         String password = createPassword.getText();
         if ("".equals(username) || "".equals(password) || selectOrganization.getSelectedItem() == null
                 || selectEmployee.getSelectedItem() == null || selectRole.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(null, "Please enter required fields username & password!");
+            JOptionPane.showMessageDialog(null, "Please enter all required fields!");
             return;
         }
         if (!ecosystem.checkValidPasswordFormat(password)) {

@@ -44,10 +44,12 @@ public class PropertyEntManageOrganizationsJPanel extends javax.swing.JPanel {
 
         for (Organization organization : directory.getOrganizationList()) {
             {
-                Object[] row = new Object[2];
-                row[0] = organization.getType().getValue();
-                row[1] = organization.getName();
-                model.addRow(row);
+                if (organization.getType() != Organization.Type.Buyer) {
+                    Object[] row = new Object[2];
+                    row[0] = organization.getType().getValue();
+                    row[1] = organization.getName();
+                    model.addRow(row);
+                }
             }
         }
     }

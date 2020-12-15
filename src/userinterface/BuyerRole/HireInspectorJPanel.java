@@ -50,20 +50,22 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
 
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (ua.getRole() instanceof InspectorRole) {
-                        Object[] row = new Object[8];
-                        row[0] = ua.getEmployee().getId();
-                        row[1] = ua;
-                        row[2] = ua.getCity();
-                        row[3] = ua.getState();
-                        row[4] = ua.getStatus();
-                        row[5] = ua.getPhone();
-                        row[6] = ua.getCharge();
-                        row[7] = org.getType();
-                        model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getRole() instanceof InspectorRole) {
+                            Object[] row = new Object[8];
+                            row[0] = ua.getEmployee().getId();
+                            row[1] = ua;
+                            row[2] = ua.getCity();
+                            row[3] = ua.getState();
+                            row[4] = ua.getStatus();
+                            row[5] = ua.getPhone();
+                            row[6] = ua.getCharge();
+                            row[7] = org.getType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -149,40 +151,41 @@ public class HireInspectorJPanel extends javax.swing.JPanel {
         int selectedRow = houseTable.getSelectedRow();
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
-        if (selectedRow >= 0) {
-        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
-        String comment = commentTxxt.getText();
-       if (comment.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
-            return;
-        } else if (!serviceAcc.getStatus().equals("Available")) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Inspector is already Occupied");
-            return;
-        }
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (serviceAcc.getUsername().equals(ua.getUsername())) {
-                        InspectRequest cr = new InspectRequest();
-                        cr.setRequestID();
-                        cr.setBuyer(userAccount);
-                        cr.setInspector(serviceAcc);
-                        cr.setSeller(property.getSeller());
-                        cr.setStatus("Pending");
-                        cr.setBuyerNote(comment);
-                        cr.setProperty(property);
-                        cr.setOrgType(org.getType());
-                        SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
-                        EcoSystem.sendEmailMessage(serviceAcc.getEmail(),"Hello! You have one new work request! Please login to know more!");
-                        JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                        e.getWorkQueue().getWorkRequestList().add(cr);
+            if (selectedRow >= 0) {
+                UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
+                String comment = commentTxxt.getText();
+                if (comment.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
+                    return;
+                } else if (!serviceAcc.getStatus().equals("Available")) {
+                    JOptionPane.showMessageDialog(null, "Sorry! This Inspector is already Occupied");
+                    return;
+                }
+                for (Network n : system.getNetworkList()) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                                if (serviceAcc.getUsername().equals(ua.getUsername())) {
+                                    InspectRequest cr = new InspectRequest();
+                                    cr.setRequestID();
+                                    cr.setBuyer(userAccount);
+                                    cr.setInspector(serviceAcc);
+                                    cr.setSeller(property.getSeller());
+                                    cr.setStatus("Pending");
+                                    cr.setBuyerNote(comment);
+                                    cr.setProperty(property);
+                                    cr.setOrgType(org.getType());
+                                    SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                                    EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                    JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                    e.getWorkQueue().getWorkRequestList().add(cr);
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-            }
-          }
-           else {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
 
         }

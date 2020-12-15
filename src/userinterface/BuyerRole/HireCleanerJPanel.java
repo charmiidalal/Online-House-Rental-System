@@ -52,21 +52,23 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (ua.getRole() instanceof CleaningRole) {
-                        Object[] row = new Object[8];
-                        row[0] = ua.getEmployee().getId();
-                        row[1] = ua;
-                        row[2] = ua.getCity();
-                        row[3] = ua.getState();
-                        row[4] = ua.getStatus();
-                        row[5] = ua.getPhone();
-                        row[6] = ua.getCharge();
-                        row[7] = org.getType();
-                        model.addRow(row);
+        
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getRole() instanceof CleaningRole) {
+                            Object[] row = new Object[8];
+                            row[0] = ua.getEmployee().getId();
+                            row[1] = ua;
+                            row[2] = ua.getCity();
+                            row[3] = ua.getState();
+                            row[4] = ua.getStatus();
+                            row[5] = ua.getPhone();
+                            row[6] = ua.getCharge();
+                            row[7] = org.getType();
+                            model.addRow(row);
+                        }
                     }
                 }
             }
@@ -90,7 +92,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         commentTxxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -151,33 +153,24 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 30, 30));
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(41, 50, 80));
-        jLabel3.setText("CLEANERS LIST");
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(41, 50, 80));
+        jLabel2.setText("CLEANERS LIST");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(322, 322, 322)
-                .addComponent(jLabel3)
-                .addContainerGap(660, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1091, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1091, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(754, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 36, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 36, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,44 +179,45 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
         int count = houseTable.getSelectedRowCount();
         if (count == 1) {
             if (selectedRow >= 0) {
-        UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
-        String comment = commentTxxt.getText();
-        if (comment.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
-            return;
-        } else if (!serviceAcc.getStatus().equals("Available")) {
-            JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");
-            return;
-        }
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                    if (serviceAcc.getUsername().equals(ua.getUsername())) {
+                UserAccount serviceAcc = (UserAccount) houseTable.getValueAt(selectedRow, 1);
+                String comment = commentTxxt.getText();
+                if (comment.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please enter valid & non empty value for Comment note!");
+                    return;
+                } else if (!serviceAcc.getStatus().equals("Available")) {
+                    JOptionPane.showMessageDialog(null, "Sorry! This Cleaner is already Occupied");
+                    return;
+                }
+                for (Network n : system.getNetworkList()) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                                if (serviceAcc.getUsername().equals(ua.getUsername())) {
 
-                        CleaningRequest cr = new CleaningRequest();
-                        cr.setRequestID();
-                        cr.setBuyer(userAccount);
-                        cr.setCleaner(serviceAcc);
-                        cr.setSeller(property.getSeller());
-                        cr.setStatus("Pending");
-                        cr.setBuyerNote(comment);
-                        cr.setProperty(property);
-                         cr.setOrgType(org.getType());
-                        e.getWorkQueue().getWorkRequestList().add(cr);
-                        JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
-                        SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
-                        EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                    CleaningRequest cr = new CleaningRequest();
+                                    cr.setRequestID();
+                                    cr.setBuyer(userAccount);
+                                    cr.setCleaner(serviceAcc);
+                                    cr.setSeller(property.getSeller());
+                                    cr.setStatus("Pending");
+                                    cr.setBuyerNote(comment);
+                                    cr.setProperty(property);
+                                    cr.setOrgType(org.getType());
+                                    e.getWorkQueue().getWorkRequestList().add(cr);
+                                    JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                                    SendSMS sms = new SendSMS(serviceAcc.getPhone(), "Hello! You have one new work request! Please login to know more!");
+                                    EcoSystem.sendEmailMessage(serviceAcc.getEmail(), "Hello! You have one new work request! Please login to know more!");
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-      }
-   }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");
 
         }
-        
+
     }//GEN-LAST:event_brnHireInspectorActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
@@ -240,7 +234,7 @@ public class HireCleanerJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField commentTxxt;
     private javax.swing.JTable houseTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -7,6 +7,7 @@ package userinterface.GovermentEmployeeRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Property.Property;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.GovtEmpRequest;
@@ -44,24 +45,27 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-            if (workRequest instanceof GovtEmpRequest) {
-                if (((GovtEmpRequest) workRequest).getGovtEmp() == null || ((GovtEmpRequest) workRequest).getGovtEmp().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((GovtEmpRequest) workRequest).getBuyer();
-                    row[2] = ((GovtEmpRequest) workRequest).getSeller();
-                    row[3] = ((GovtEmpRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((GovtEmpRequest) workRequest).getProperty().getCity();
-                    row[5] = ((GovtEmpRequest) workRequest).getProperty().getState();
-                    row[6] = ((GovtEmpRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((GovtEmpRequest) workRequest).getStatus();
-                    row[8] = ((GovtEmpRequest) workRequest).getBuyerNote();
-                    row[9] = ((GovtEmpRequest) workRequest).getInspectorNote();
-                    row[10] = ((GovtEmpRequest) workRequest).getDiscount();
-                    row[11] = ((GovtEmpRequest) workRequest).getProperty();
-                    model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof GovtEmpRequest) {
+                        if (((GovtEmpRequest) workRequest).getGovtEmp() == null || ((GovtEmpRequest) workRequest).getGovtEmp().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((GovtEmpRequest) workRequest).getBuyer();
+                            row[2] = ((GovtEmpRequest) workRequest).getSeller();
+                            row[3] = ((GovtEmpRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((GovtEmpRequest) workRequest).getProperty().getCity();
+                            row[5] = ((GovtEmpRequest) workRequest).getProperty().getState();
+                            row[6] = ((GovtEmpRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((GovtEmpRequest) workRequest).getStatus();
+                            row[8] = ((GovtEmpRequest) workRequest).getBuyerNote();
+                            row[9] = ((GovtEmpRequest) workRequest).getInspectorNote();
+                            row[10] = ((GovtEmpRequest) workRequest).getDiscount();
+                            row[11] = ((GovtEmpRequest) workRequest).getProperty();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }

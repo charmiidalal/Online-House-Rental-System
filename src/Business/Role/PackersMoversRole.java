@@ -9,11 +9,10 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.PackersMoversRole.PackerWorkAreaJPanel;
-import userinterface.PackersMoversRole.PackerWorkAreaJPanel;
 
 /**
  *
- * @author raunak
+ * @author Anusha
  */
 public class PackersMoversRole extends Role{
 

@@ -5,10 +5,9 @@
  */
 package userinterface.PhotographerRole;
 
-import userinterface.PlumberRole.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Property.PropertyDirectory;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -42,25 +41,27 @@ public class ViewJobJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) houseTable.getModel();
         model.setRowCount(0);
-
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-
-            if (workRequest instanceof PhotographerRequest) {
-                if (((PhotographerRequest) workRequest).getPhotographer().getUsername() == useraccount.getUsername()) {
-                    Object[] row = new Object[model.getColumnCount()];
-                    row[0] = workRequest;
-                    row[1] = ((PhotographerRequest) workRequest).getBuyer();
-                    row[2] = ((PhotographerRequest) workRequest).getSeller();
-                    row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
-                    row[4] = ((PhotographerRequest) workRequest).getProperty().getCity();
-                    row[5] = ((PhotographerRequest) workRequest).getProperty().getState();
-                    row[6] = ((PhotographerRequest) workRequest).getProperty().getPincode();
-                    row[7] = ((PhotographerRequest) workRequest).getStatus();
-                    row[8] = ((PhotographerRequest) workRequest).getBuyerNote();
-                    row[9] = ((PhotographerRequest) workRequest).getInspectorNote();
-                    row[10] = ((PhotographerRequest) workRequest).getQuote();
-                    row[11] = ((PhotographerRequest) workRequest).getBuyer().getRole().toString();
-                    model.addRow(row);
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (WorkRequest workRequest : e.getWorkQueue().getWorkRequestList()) {
+                    if (workRequest instanceof PhotographerRequest) {
+                        if (((PhotographerRequest) workRequest).getPhotographer().getUsername().equals(useraccount.getUsername())) {
+                            Object[] row = new Object[model.getColumnCount()];
+                            row[0] = workRequest;
+                            row[1] = ((PhotographerRequest) workRequest).getBuyer();
+                            row[2] = ((PhotographerRequest) workRequest).getSeller();
+                            row[3] = ((PhotographerRequest) workRequest).getProperty().getStreet();
+                            row[4] = ((PhotographerRequest) workRequest).getProperty().getCity();
+                            row[5] = ((PhotographerRequest) workRequest).getProperty().getState();
+                            row[6] = ((PhotographerRequest) workRequest).getProperty().getPincode();
+                            row[7] = ((PhotographerRequest) workRequest).getStatus();
+                            row[8] = ((PhotographerRequest) workRequest).getBuyerNote();
+                            row[9] = ((PhotographerRequest) workRequest).getInspectorNote();
+                            row[10] = ((PhotographerRequest) workRequest).getQuote();
+                            row[11] = ((PhotographerRequest) workRequest).getBuyer().getRole().toString();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }

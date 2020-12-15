@@ -61,9 +61,9 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         selectRole = new javax.swing.JComboBox();
         selectEmployee = new javax.swing.JComboBox();
         selectOrganization = new javax.swing.JComboBox();
+        createUserJButton = new javax.swing.JButton();
         createPassword = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
-        createUserJButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 241, 242));
@@ -165,13 +165,6 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         });
         add(selectOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 318, 378, -1));
 
-        createPassword.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
-        createPassword.setForeground(new java.awt.Color(25, 56, 82));
-        add(createPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 380, 30));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/userAccount.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 570, -1));
-
         createUserJButton.setBackground(new java.awt.Color(255, 255, 255));
         createUserJButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         createUserJButton.setForeground(new java.awt.Color(25, 56, 82));
@@ -183,6 +176,13 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
             }
         });
         add(createUserJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 569, 145, -1));
+
+        createPassword.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        createPassword.setForeground(new java.awt.Color(25, 56, 82));
+        add(createPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 380, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/userAccount.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 570, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/group.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
@@ -207,9 +207,9 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
         String username = createUsername.getText();
         String password = createPassword.getText();
-        if ("".equals(username) || "".equals(password)|| selectOrganization.getSelectedItem() == null
+        if ("".equals(username) || "".equals(password) || selectOrganization.getSelectedItem() == null
                 || selectEmployee.getSelectedItem() == null || selectRole.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(null, "Please enter required fields username & password!");
+            JOptionPane.showMessageDialog(null, "Please enter all required  fields!");
             return;
         }
         if (!ecosystem.checkValidPasswordFormat(password)) {
@@ -231,7 +231,9 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
     public void populateOrganizationComboBox() {
         selectOrganization.removeAllItems();
         for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            selectOrganization.addItem(org);
+            if (org.getType() != Organization.Type.Buyer) {
+                selectOrganization.addItem(org);
+            }
         }
     }
 
@@ -241,11 +243,13 @@ public class PropertyEntUserAccounts extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
-                Object row[] = new Object[2];
-                row[0] = ua;
-                row[1] = ua.getRole();
-                ((DefaultTableModel) tblUserDetails.getModel()).addRow(row);
+            if (org.getType() != Organization.Type.Buyer) {
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    Object row[] = new Object[2];
+                    row[0] = ua;
+                    row[1] = ua.getRole();
+                    ((DefaultTableModel) tblUserDetails.getModel()).addRow(row);
+                }
             }
         }
     }
