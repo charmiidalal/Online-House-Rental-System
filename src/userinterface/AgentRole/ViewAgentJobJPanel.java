@@ -230,7 +230,7 @@ public class ViewAgentJobJPanel extends javax.swing.JPanel {
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
             } else {
-                JOptionPane.showMessageDialog(null, "Please set this job in progress to suggest houses !");
+                JOptionPane.showMessageDialog(null, "Please set this job in progress to suggest houses!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select one row!");

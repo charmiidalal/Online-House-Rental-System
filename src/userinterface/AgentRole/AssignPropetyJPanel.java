@@ -171,11 +171,11 @@ public class AssignPropetyJPanel extends javax.swing.JPanel {
                 if (!property.getStatus().equalsIgnoreCase("sold")) {
                     propertyList.add(propertyID);
                     agentRequest.setPropertyList(propertyList);
+                    JOptionPane.showMessageDialog(this, "Property Suggested Successfully!");
                 } else {
-                    JOptionPane.showMessageDialog(this, property.getPropertyName()+" is sold! Please suggest other vacant property.");
+                    JOptionPane.showMessageDialog(this, property.getPropertyName() + " is sold! Please suggest other vacant property.");
                 }
             }
-            JOptionPane.showMessageDialog(this, "Property Suggested Successfully!");
         } else {
             JOptionPane.showMessageDialog(this, "Please select a house to suggest");
         }

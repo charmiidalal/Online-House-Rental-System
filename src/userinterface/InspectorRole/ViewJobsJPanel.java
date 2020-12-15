@@ -94,10 +94,9 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         btnViewSellerDetails = new javax.swing.JButton();
         btnReject = new javax.swing.JButton();
 
-        setBackground(null);
+        setBackground(new java.awt.Color(241, 241, 241));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        brnTakeJob.setBackground(null);
         brnTakeJob.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         brnTakeJob.setForeground(new java.awt.Color(41, 50, 80));
         brnTakeJob.setText("Take Job");
@@ -108,7 +107,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         });
         add(brnTakeJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
 
-        btnViewBuyerDetails.setBackground(null);
         btnViewBuyerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewBuyerDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewBuyerDetails.setText("View Assignee Details");
@@ -182,7 +180,6 @@ public class ViewJobsJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/detective (1).png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 145, 164));
 
-        btnViewSellerDetails.setBackground(null);
         btnViewSellerDetails.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         btnViewSellerDetails.setForeground(new java.awt.Color(41, 50, 80));
         btnViewSellerDetails.setText("View Seller Details");
