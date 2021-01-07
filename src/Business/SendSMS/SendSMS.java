@@ -21,9 +21,6 @@ import org.apache.http.message.BasicNameValuePair;
  */
 public class SendSMS {
 
-    public static final String ACCOUNT_SID = "AC0be691496ae4f8904f0577602229fb2a";
-    public static final String AUTH_TOKEN = "57bbcdc7e10da6535ff056ae5e320b79";
-    public final String fromNum = "+12512558071";
     public String toNum;
     public String body;
 

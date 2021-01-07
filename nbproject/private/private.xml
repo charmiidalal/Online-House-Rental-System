@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-<<<<<<< HEAD
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuilderRole/ViewJobsJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/PropertyManagerRole/ViewJobsJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/HireBuilder.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/PropertyManagerRole/PropertyManagerWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/ManageBuilderActivity.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/BuyerRole/BuyerScreenJPanel.java</file>
-            <file>file:/C:/Users/anush/OneDrive/Documents/MSIS/Lab/Assignments/aed_final_project/src/userinterface/PropertyManagerRole/ManageProfileJPanel.java</file>
-        </group>
-=======
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
         <file>
             <url>src/userinterface/SystemAdminWorkArea/PieGraphforNumofUsers.java</url>
@@ -24,7 +11,8 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
->>>>>>> 9cf84c8eff250a0547d658a0ff000564b0776b6c
+        <group>
+            <file>file:/Users/manushpatel/Desktop/Charmi/AED/Labs&amp;Assignments/aed_final_project/src/userinterface/MainJFrame.java</file>
+        </group>
     </open-files>
 </project-private>
