@@ -300,9 +300,7 @@ public class EcoSystem extends Organization {
 
     public static void sendEmailMessage(String emailId, String body) {
         String to = emailId;
-        String from = "doneverevereply@gmail.com";
-        String pass = "Hello@123";
-
+        
         Properties properties = System.getProperties();
         String host = "smtp.gmail.com";
         properties.put("mail.smtp.starttls.enable", "true");
